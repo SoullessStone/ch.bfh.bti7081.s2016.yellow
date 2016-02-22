@@ -1,1 +1,9 @@
-bla
+/// meetings ///
+
+date		attendance		duration
+
+--- tasks ---
+
+date		description		status (open/in progress/done)
+22.2.16		setup			done
+
