@@ -1,7 +1,7 @@
 /// meetings ///
 
 date		attendance		duration	notes
-
+										
 --- tasks ---
 
 date		status		What	Who		deadline
