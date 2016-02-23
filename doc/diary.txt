@@ -1,8 +1,0 @@
-/// meetings ///
-
-date		attendance		duration	notes
-										
---- tasks ---
-
-date		status		What	Who		deadline
-22.2.16		done		setup	all		22.2.16
