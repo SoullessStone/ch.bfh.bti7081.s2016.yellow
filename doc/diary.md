@@ -7,8 +7,8 @@
 |  |  |  |  |
 
 ### Tasks
-| Name  | What | Assignee  | Status (open/assigned/done) | Deadline  |
+| Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
-| CS0 Task 1 | Read INSIEME report | all | assigned | 29.02.2016  |
-|  |  |  |  |  |
+| CS0 Task 1: INSIEME Project | Read INSIEME report and answers questions | halter, schaad | done | 29.02.2016  |
+| CS1 Task 1: First Analysis | Identify key features, target users, critical success factors | tbd | open | 29.02.2016 |
 
