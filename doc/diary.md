@@ -12,4 +12,3 @@
 | CS0 Task 1 | Read INSIEME report | all | assigned | 29.02.2016  |
 |  |  |  |  |  |
 
-
