@@ -8,7 +8,7 @@
 | 29.02.2016 | all | 4h | Course + Besprechung CS0 Task 1 + CS1 Task 1 |
 | 01.03.2016 | all | 4h | Course CS1 Task 2 |
 | 07.03.2016 | all | 4h | Course CS1 Task 3: Preparation + CS2 Task 1 |
-| 08.03.2016 | all | 4h | Course CS1 Task 3: CS2 Task 2 & 3 |
+| 08.03.2016 | all | 4h | CS2 Task 2 and 3 +  |
 
 ### Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
@@ -19,6 +19,6 @@
 | CS1 Task 3: Preparation | decide for which user group the application has to be developed - decision: nr. 3 (doctors)  |  alle | done | 07.03.2016 |
 | CS1 Task 3: Execution | requirements analysis: conduct interview with a potential user |  tbd | open | 18.03.2016 |
 | CS1 Task 3: Presentation | requirements analysis: conduct interview with a potential user |  tbd | open | 29.03.2016 |
-| CS2 Task 1: Use-Case diagram | find actors and use-cases for PIP and draw UML Use-Case diagram | alle | open | 08.03.2016 |
-| CS2 Task 2: Elaborate Activity Diagram | Elaborate an activity diagram from the description and and the use cases | alle | open | 08.03.2016 |
-| CS2 Task 3: Elicitate Requirements| Elicitate Requirements from task 1 and 2 | alle | open | 08.03.2016 |
+| CS2 Task 1: Use-Case diagram | find actors and use-cases for PIP and draw UML Use-Case diagram | alle | done | 08.03.2016 |
+| CS2 Task 2: Elaborate Activity Diagram | Elaborate an activity diagram from the description and and the use cases | alle | done | 08.03.2016 |
+| CS2 Task 3: Elicitate Requirements| Elicitate Requirements from task 1 and 2 | alle | done | 08.03.2016 |
