@@ -25,3 +25,11 @@
 | CS2 Task 3: Elicitate Requirements | Elicitate Requirements from task 1 and 2 | alle | done | 08.03.2016 |
 | CS1 Task 3: Research | Informationen zur Umsetzung in bestehenden Systemen | halter | assigned | 29.03.2016 |
 | CS1 Task 3: Personas erfassen | 2 Personas | schaad, zumstein | done | 14.03.2016 |
+
+### Rating
+| Task  | Documentation | Presentation|
+| --- | --- | --- | 
+| 01 | 5/5 | 4/5 | 
+| 02 | 10/10 | 5/5 | 
+
+Current total: 24/25
