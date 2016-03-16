@@ -9,7 +9,8 @@
 | 01.03.2016 | all | 4h | Course CS1 Task 2 |
 | 07.03.2016 | all | 4h | Course CS1 Task 3: Preparation + CS2 Task 1 |
 | 08.03.2016 | all | 4h | CS2 Task 2 and 3 +  |
-| 14.03.2016 | all | 4h | CS1 Task 3 Project Thinking  |
+| 14.03.2016 | all | 4h | CS1 Task 3 Project Thinking Iteration 1 |
+| 15.03.2016 | all | 4h | CS1 Task 3 Project Thinking Iteration 2 |
 
 ### Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
@@ -24,7 +25,6 @@
 | CS2 Task 2: Elaborate Activity Diagram | Elaborate an activity diagram from the description and and the use cases | alle | done | 08.03.2016 |
 | CS2 Task 3: Elicitate Requirements | Elicitate Requirements from task 1 and 2 | alle | done | 08.03.2016 |
 | CS1 Task 3: Research | Informationen zur Umsetzung in bestehenden Systemen | halter | assigned | 29.03.2016 |
-| CS1 Task 3: Personas erfassen | 2 Personas | schaad, zumstein | done | 14.03.2016 |
 
 ### Rating
 | Task  | Documentation | Presentation|
