@@ -19,8 +19,8 @@
 | CS1 Task 3: Presentation | present results of design thinking | tbd | open | 29.03.2016 |
 | CS1 Task 3: Research | Informationen zur Umsetzung in bestehenden Systemen | halter | assigned | 29.03.2016 |
 | CS1 Task 3: Mock-up | Revision of Medi suchen/erfassen and Krankengeschichte | schaad | assigned | 29.03.2016 |
-| CS1 Task 3: Mock-up | Revision of Patient suchen/erfassen | zumstein | assigned | 29.03.2016 |
-| CS1 Task 3: Mock-up | Additional Mock-ups "Wiki" and Login | utz | assigned | 29.03.2016 |
+| CS1 Task 3: Mock-up | Additional Mock-ups Patient suchen/erfassen | zumstein | done | 29.03.2016 |
+| CS1 Task 3: Mock-up | Additional Mock-ups "Wiki" and Login | utz | done | 29.03.2016 |
 | CS1 Task 3: Mock-up | Revision of Sitzungsprotokoll, new Storyboard elektr. Rezeptausstellung | suter | assigned | 29.03.2016 |
 | CS1 Task 3: Basic Layout | Layout of application | nussbaum | assigned | 29.03.2016 |
 
