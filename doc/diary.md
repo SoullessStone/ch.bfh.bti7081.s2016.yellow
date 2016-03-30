@@ -16,13 +16,11 @@
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
-| CS1 Task 3: Presentation | present results of design thinking | tbd | open | 29.03.2016 |
-| CS1 Task 3: Research | Informationen zur Umsetzung in bestehenden Systemen | halter | assigned | 29.03.2016 |
-| CS1 Task 3: Mock-up | Revision of Medi suchen/erfassen and Krankengeschichte | schaad | assigned | 29.03.2016 |
-| CS1 Task 3: Mock-up | Additional Mock-ups Patient suchen/erfassen | zumstein | done | 29.03.2016 |
-| CS1 Task 3: Mock-up | Additional Mock-ups "Wiki" and Login | utz | done | 29.03.2016 |
-| CS1 Task 3: Mock-up | Revision of Sitzungsprotokoll, new Storyboard elektr. Rezeptausstellung | suter | assigned | 29.03.2016 |
-| CS1 Task 3: Basic Layout | Layout of application | nussbaum | assigned | 29.03.2016 |
+| CS1 Task 4: Use Cases | Create Use Cases Wiki + Benutzersuche | utz | assigned | 03.04.2016 |
+| CS1 Task 4: Use Cases/Form/Requirements 1 | Create Use Cases/Form/Requirements Sitzungsprotokoll | zumstein | assigned | 03.04.2016 |
+| CS1 Task 4: Use Cases/Form/Requirements 2 | Create Use Cases/Form/Requirements History | schaad | assigned | 03.04.2016 |
+| CS1 Task 4:  Requirements Document | Create an initial Version of the requirements dokument | halter | assigned | 03.04.2016 |
+
 
 ### Completed Tasks
 | Name  | What | Assignee(s)  | Status (done) | Deadline  |
@@ -36,6 +34,13 @@
 | CS2 Task 2: Elaborate Activity Diagram | Elaborate an activity diagram from the description and and the use cases | alle | done | 08.03.2016 |
 | CS2 Task 3: Elicitate Requirements | Elicitate Requirements from task 1 and 2 | alle | done | 08.03.2016 |
 | CS1 Task 3: Interview Procession | Process Interview and define resulting work | alle | done | 23.03.2016 |
+| CS1 Task 3: Presentation | present results of design thinking | tbd | done | 29.03.2016 |
+| CS1 Task 3: Research | Informationen zur Umsetzung in bestehenden Systemen | halter | done | 29.03.2016 |
+| CS1 Task 3: Mock-up | Revision of Medi suchen/erfassen and Krankengeschichte | schaad | done | 29.03.2016 |
+| CS1 Task 3: Mock-up | Additional Mock-ups Patient suchen/erfassen | zumstein | done | 29.03.2016 |
+| CS1 Task 3: Mock-up | Additional Mock-ups "Wiki" and Login | utz | done | 29.03.2016 |
+| CS1 Task 3: Mock-up | Revision of Sitzungsprotokoll, new Storyboard elektr. Rezeptausstellung | suter | done | 29.03.2016 |
+| CS1 Task 3: Basic Layout | Layout of application | nussbaum | done | 29.03.2016 |
 
 
 ### Rating
