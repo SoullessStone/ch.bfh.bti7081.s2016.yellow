@@ -1,5 +1,12 @@
 # Diary Team Yellow
 
+### Rating
+| Task  | Documentation | Presentation|
+| --- | --- | --- | 
+| 01 | 5/5 | 4/5 | 
+| 02 | 10/10 | 5/5 | 
+
+Current total: 24/25
 ### Meetings
 | Date | Attendence | Duration | Notes  |
 | --- | --- | --- | --- |
@@ -43,10 +50,3 @@
 | CS1 Task 3: Basic Layout | Layout of application | nussbaum | done | 29.03.2016 |
 
 
-### Rating
-| Task  | Documentation | Presentation|
-| --- | --- | --- | 
-| 01 | 5/5 | 4/5 | 
-| 02 | 10/10 | 5/5 | 
-
-Current total: 24/25
