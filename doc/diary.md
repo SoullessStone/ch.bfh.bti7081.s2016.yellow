@@ -23,7 +23,7 @@ Current total: 24/25
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
-| CS1 Task 4: Use Cases | Create Use Cases Wiki + Benutzersuche | utz | assigned | 03.04.2016 |
+| CS1 Task 4: Use Cases | Create Use Cases Wiki + Benutzersuche | utz | done | 03.04.2016 |
 | CS1 Task 4: Use Cases/Form/Requirements 1 | Create Use Cases/Form/Requirements Sitzungsprotokoll | zumstein | assigned | 03.04.2016 |
 | CS1 Task 4: Use Cases/Form/Requirements 2 | Create Use Cases/Form/Requirements History | schaad | assigned | 03.04.2016 |
 | CS1 Task 4:  Requirements Document | Create an initial Version of the requirements document | halter | assigned | 03.04.2016 |
