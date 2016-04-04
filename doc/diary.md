@@ -24,12 +24,8 @@ Current total: 24/25
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
-| CS1 Task 4: Use Cases | Create Use Cases Wiki + Benutzersuche | utz | done | 03.04.2016 |
-| CS1 Task 4: Use Cases/Form/Requirements 1 | Create Use Cases/Form/Requirements Sitzungsprotokoll | zumstein | assigned | 03.04.2016 |
-| CS1 Task 4: Use Cases/Form/Requirements 2 | Create Use Cases/Form/Requirements Krankengeschichte | schaad | assigned | 03.04.2016 |
-| CS1 Task 4:  Requirements Document | Create an initial Version of the requirements document | halter | done | 03.04.2016 |
-| CS1 Task 4:  Requirements Document | Complete requirements document | all | assigned | 03.04.2016 |
-| CS1 Task 4:  System Design | Create initial System Design | utz | done | 03.04.2016 |
+| CS1 Task 4:  Requirements Document | Complete requirements document | all | in progress | 04.04.2016 |
+
 
 
 ### Completed Tasks
@@ -51,5 +47,8 @@ Current total: 24/25
 | CS1 Task 3: Mock-up | Additional Mock-ups "Wiki" and Login | utz | done | 29.03.2016 |
 | CS1 Task 3: Mock-up | Revision of Sitzungsprotokoll, new Storyboard elektr. Rezeptausstellung | suter | done | 29.03.2016 |
 | CS1 Task 3: Basic Layout | Layout of application | nussbaum | done | 29.03.2016 |
-
-
+| CS1 Task 4: Use Cases | Create Use Cases Wiki + Benutzersuche | utz | done | 03.04.2016 |
+| CS1 Task 4: Use Cases/Form/Requirements 1 | Create Use Cases/Form/Requirements Sitzungsprotokoll | zumstein | done | 03.04.2016 |
+| CS1 Task 4: Use Cases/Form/Requirements 2 | Create Use Cases/Form/Requirements Krankengeschichte | schaad | done | 03.04.2016 |
+| CS1 Task 4:  Requirements Document | Create an initial Version of the requirements document | halter | done | 03.04.2016 |
+| CS1 Task 4:  System Design | Create initial System Design | utz | done | 03.04.2016 |
