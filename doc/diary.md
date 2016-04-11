@@ -21,13 +21,13 @@ Current total: 46/50
 | 15.03.2016 | all | 4h | CS1 Task 3 Project Thinking Iteration 2 |
 | 23.03.2016 | all | 4h | CS1 Task 3 Project Thinking Iteration 2: Interview Procession |
 | 29.03.2016 | all | 0.5h | CS1 Task 4 Requirements: Distribution of tasks |
-| 04.04.2016 | all | 4h | Course + CS1 Task 4 Presentation |
-| 05.04.2016 | --- | 4h | --- |
+| 04.04.2016 | all | 4h | Course + CS1 Task 4 Presentation+ CS1 Task 5 |
+| 05.04.2016 | all | 4h | Course + CS1 Task 6 + Exercise 3 |
 
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
-| CS1 Task 4:  Requirements Document | Complete requirements document | all | in progress | 04.04.2016 |
+| CS- Task -:  - | - | - | in progress | - |
 
 
 
@@ -55,3 +55,7 @@ Current total: 46/50
 | CS1 Task 4: Use Cases/Form/Requirements 2 | Create Use Cases/Form/Requirements Krankengeschichte | schaad | done | 03.04.2016 |
 | CS1 Task 4:  Requirements Document | Create an initial Version of the requirements document | halter | done | 03.04.2016 |
 | CS1 Task 4:  System Design | Create initial System Design | utz | done | 03.04.2016 |
+| CS1 Task 4:  Requirements Document | Complete requirements document | all | done | 04.04.2016 |
+| CS1 Task 4:  Presentation Requirements Specification | Present results | halter, nussbaum, schaad, utz | done | 04.04.2016 |
+| CS1 Task 5:  Requirements Review | Write review for team red | all | done | 04.05.2016 |
+| CS1 Task 6:  Activity Diagram | Create Diagram | all | done | 05.05.2016 |
