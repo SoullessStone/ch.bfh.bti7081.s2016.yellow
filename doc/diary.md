@@ -23,6 +23,8 @@ Current total: 46/50
 | 29.03.2016 | all | 0.5h | CS1 Task 4 Requirements: Distribution of tasks |
 | 04.04.2016 | all | 4h | Course + CS1 Task 4 Presentation+ CS1 Task 5 |
 | 05.04.2016 | all | 4h | Course + CS1 Task 6 + Exercise 3 |
+| 11.04.2016 | all | 4h | Course + Exercise 4 |
+| 12.04.2016 | all | 4h | Course + Exercise 5 |
 
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
@@ -57,5 +59,5 @@ Current total: 46/50
 | CS1 Task 4:  System Design | Create initial System Design | utz | done | 03.04.2016 |
 | CS1 Task 4:  Requirements Document | Complete requirements document | all | done | 04.04.2016 |
 | CS1 Task 4:  Presentation Requirements Specification | Present results | halter, nussbaum, schaad, utz | done | 04.04.2016 |
-| CS1 Task 5:  Requirements Review | Write review for team red | all | done | 04.05.2016 |
-| CS1 Task 6:  Activity Diagram | Create Diagram | all | done | 05.05.2016 |
+| CS1 Task 5:  Requirements Review | Write review for team red | all | done | 04.04.2016 |
+| CS1 Task 6:  Activity Diagram | Create Diagram | all | done | 05.04.2016 |
