@@ -24,12 +24,16 @@ Current total: 46/50
 | 04.04.2016 | all | 4h | Course + CS1 Task 4 Presentation+ CS1 Task 5 |
 | 05.04.2016 | all | 4h | Course + CS1 Task 6 + Exercise 3 |
 | 11.04.2016 | all | 4h | Course + Exercise 4 |
-| 12.04.2016 | all | 4h | Course + Exercise 5 |
+| 12.04.2016 | all | 4h | Course + Exercise 5 + CS1 Task 7 |
 
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
+| CS1 Task 7:  Class Diagram | Create Class Diagram | suter | assigned | 18.04.2016 |
+| CS1 Task 7:  Sequence diagram | Review Diagrams | all | assigned | 18.04.2016 |
+| CS1 Task 7:  Sequence diagram Medikamenten-Verschreibung | Create Diagram Medikamenten-Verschreibung | halter  | assigned | 18.04.2016|
 | CS- Task -:  - | - | - | in progress | - |
+
 
 
 
@@ -61,3 +65,4 @@ Current total: 46/50
 | CS1 Task 4:  Presentation Requirements Specification | Present results | halter, nussbaum, schaad, utz | done | 04.04.2016 |
 | CS1 Task 5:  Requirements Review | Write review for team red | all | done | 04.04.2016 |
 | CS1 Task 6:  Activity Diagram | Create Diagram | all | done | 05.04.2016 |
+| CS1 Task 7:  Sequence diagram Eskalation | Create Diagram Eskalation | utz | done | 14.04.2016 |
