@@ -31,8 +31,7 @@ Current total: 46/50
 | --- | --- | --- | --- | --- |
 | CS1 Task 7:  Class Diagram | Create Class Diagram | suter | assigned | 18.04.2016 |
 | CS1 Task 7:  Sequence diagram | Review Diagrams | all | assigned | 18.04.2016 |
-| CS1 Task 7:  Sequence diagram Medikamenten-Verschreibung | Create Diagram Medikamenten-Verschreibung | halter  | assigned |
-| CS1 Task 7:  Sequence diagram Eskalation | Create Diagram Eskalation | utz  | done | 18.04.2016|
+| CS1 Task 7:  Sequence diagram Medikamenten-Verschreibung | Create Diagram Medikamenten-Verschreibung | halter  | assigned|18.04.2016|
 | CS1 Task 7:  Finish domain model | Refurbish sketch, convert it into beautiful diagram | schaad  | assigned | 18.04.2016|
 | CS- Task -:  - | - | - | in progress | - |
 
