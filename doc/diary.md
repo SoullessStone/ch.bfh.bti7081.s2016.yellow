@@ -8,7 +8,7 @@
 | 03 | 17/20 | 5/5 | 
 | 04 | 15/15 | 5/5 | 
 
-Current total: 46/50
+Current total: 66/70
 ### Meetings
 | Date | Attendence | Duration | Notes  |
 | --- | --- | --- | --- |
