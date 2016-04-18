@@ -30,14 +30,7 @@ Current total: 66/70
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
-| CS1 Task 7:  Class Diagram | Create Class Diagram | suter | assigned | 18.04.2016 |
-| CS1 Task 7:  Sequence diagram | Review Diagrams | all | assigned | 18.04.2016 |
-| CS1 Task 7:  Sequence diagram Medikamenten-Verschreibung | Create Diagram Medikamenten-Verschreibung | halter  | assigned|18.04.2016|
-| CS1 Task 7:  Finish domain model | Refurbish sketch, convert it into beautiful diagram | schaad  | assigned | 18.04.2016|
 | CS- Task -:  - | - | - | in progress | - |
-
-
-
 
 ### Completed Tasks
 | Name  | What | Assignee(s)  | Status (done) | Deadline  |
@@ -68,3 +61,8 @@ Current total: 66/70
 | CS1 Task 5:  Requirements Review | Write review for team red | all | done | 04.04.2016 |
 | CS1 Task 6:  Activity Diagram | Create Diagram | all | done | 05.04.2016 |
 | CS1 Task 7:  Sequence diagram Eskalation | Create Diagram Eskalation | utz | done | 14.04.2016 |
+| CS1 Task 7:  Class Diagram | Create Class Diagram | suter | done | 18.04.2016 |
+| CS1 Task 7:  Sequence diagram | Review Diagrams | all | done | 18.04.2016 |
+| CS1 Task 7:  Sequence diagram Medikamenten-Verschreibung | Create Diagram Medikamenten-Verschreibung | halter  | done |18.04.2016|
+| CS1 Task 7:  Finish domain model | Refurbish sketch, convert it into beautiful diagram | schaad  | done | 18.04.2016|
+| CS1 Task 7:  Presentation Domain Model and Sequence Diagram | Present results | halter, nussbaum, schaad, suter, utz | done | 18.04.2016 |
