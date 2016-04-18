@@ -22,10 +22,11 @@ Current total: 66/70
 | 15.03.2016 | all | 4h | CS1 Task 3 Project Thinking Iteration 2 |
 | 23.03.2016 | all | 4h | CS1 Task 3 Project Thinking Iteration 2: Interview Procession |
 | 29.03.2016 | all | 0.5h | CS1 Task 4 Requirements: Distribution of tasks |
-| 04.04.2016 | all | 4h | Course + CS1 Task 4 Presentation+ CS1 Task 5 |
+| 04.04.2016 | all | 4h | Course + CS1 Task 4 Presentation + CS1 Task 5 |
 | 05.04.2016 | all | 4h | Course + CS1 Task 6 + Exercise 3 |
 | 11.04.2016 | all | 4h | Course + Exercise 4 |
 | 12.04.2016 | all | 4h | Course + Exercise 5 + CS1 Task 7 |
+| 18.04.2016 | all | 4h | Course + Task 7 Presentation |
 
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
