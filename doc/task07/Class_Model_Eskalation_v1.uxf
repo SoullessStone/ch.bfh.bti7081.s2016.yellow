@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>132</x>
+      <y>156</y>
+      <w>180</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>Patient
+--
+-gefährlichkeit: DANGER_LEVEL
+--
++setGefährlichkeit(g: DANGER_LEVEL)
++getGefährlichkeit():DANGER_LEVEL
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>156</y>
+      <w>252</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>EskalationService
+--
+-mailClient:MailClient
+-sitzungService: SitzungService
+--
++alertDoctors(patient: Patient)
+-getDoctorsInSitzungen(sitzungen:&lt;List&gt;Sitzungen):&lt;List&gt;Arzt
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>666</x>
+      <y>156</y>
+      <w>126</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>MailClient
+--
+-mailserver: MailServer
+--
++sendMail(String address)
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>216</x>
+      <y>108</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>330</y>
+      <w>252</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>SitzungService
+--
+
+--
++getSitzungen(patient:Patient):&lt;List&gt;Sitzung
+-getAlleSitzungen():&lt;List&gt;Sitzung
+-filterSitzungen(patient:Patient, sitzungen:Sitzung):&lt;List&gt;Sitzung
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>444</x>
+      <y>492</y>
+      <w>180</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>Sitzung
+--
+-sitzungseinträge:&lt;List&gt;Sitzungseintrag
+-arzt: Arzt
+-patient: Patient
+--
++addSitzungseintrag(eintrag Sitzungseintrag)
++getArzt():Arzt
++getPatient(): Patient
++setArzt(arzt Arzt)
++setPatient(patient Patient)
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>132</x>
+      <y>0</y>
+      <w>180</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+DANGER_LEVEL
+--
+HARMLESS
+DANGER_TO_HIMSELF
+DANGER_TO_OTHERS
+DANGER_TO_EVERYONE
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>606</x>
+      <y>198</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>498</x>
+      <y>438</y>
+      <w>18</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>570</y>
+      <w>150</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>132</x>
+      <y>492</y>
+      <w>180</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>Arzt
+--
+-praxis: String
+--
++getPraxis():String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>132</x>
+      <y>330</y>
+      <w>180</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>Person
+--
+-name:String
+-vorname:String
+--
++getName():String
++getVorname():String
++setName():String
++setVorname():String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>222</x>
+      <y>438</y>
+      <w>18</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>222</x>
+      <y>264</y>
+      <w>18</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>210</y>
+      <w>66</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>234</y>
+      <w>66</w>
+      <h>324</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;520.0;40.0;520.0;40.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>258</x>
+      <y>264</y>
+      <w>204</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;320.0;60.0;320.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>492</x>
+      <y>264</y>
+      <w>18</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>246</x>
+      <y>264</y>
+      <w>210</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0;170.0;90.0;170.0;480.0;330.0;480.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>696</x>
+      <y>510</y>
+      <w>126</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Sitzungseintrag
+--
+-notizen:&lt;List&gt;String
+--
++getNotizen():&lt;List&gt;String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>618</x>
+      <y>564</y>
+      <w>90</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=1..n</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+</diagram>

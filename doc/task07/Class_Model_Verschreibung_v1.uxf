@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>215</x>
+      <y>90</y>
+      <w>430</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>VerschreibungService
+--
+-medikamentService: MedikamentService
+-SitzungService: SitzungService
+--
++createPrescription(medikament: Medikament, dosis:Integer, gültigkeitsdauer:DateRange, sitzung:Sitzung):Verschreibung
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>435</x>
+      <y>235</y>
+      <w>210</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>MedikamentService
+--
+
+--
++searchDrug(searchString:String):List&lt;Medikament&gt;
++isValid(medikament: Medikament, dosis: Dosis): boolean
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>640</x>
+      <y>125</y>
+      <w>60</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>315</x>
+      <y>180</y>
+      <w>15</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>605</x>
+      <y>180</y>
+      <w>170</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>320.0;10.0;320.0;560.0;10.0;560.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>690</x>
+      <y>90</y>
+      <w>210</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>Verschreibung
+--
+-medikament: Medikament
+-dosisInMilligramm: Integer
+-validity: DateRange
+--
++setDosis(dosisInMilligramm:integer)
++setValidity(von:Datum, bis:Datum)
++setMedikament(medikament:Medikament)
++getDosis():Integer
++getValidity():DateRange
++getMedikament():Medikament
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>215</x>
+      <y>235</y>
+      <w>210</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>SitzungService
+--
+
+--
++addPrescription(verschreibung Verschreibung, sitzung: Sitzung)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>260</x>
+      <y>395</y>
+      <w>155</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Sitzung
+--
+-verschreibungen:&lt;List&gt;Verschreibung
+-sitzungseinträge:&lt;List&gt;Sitzungseintrag
+-arzt: Arzt
+-patient: Patient
+--
++addPrescription(verschreibung Verschreibung)
++addSitzungseintrag(eintrag Sitzungseintrag)
++getArzt():Arzt
++getPatient(): Patient
++setArzt(arzt Arzt)
++setPatient(patient Patient)
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>325</y>
+      <w>15</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>540</x>
+      <y>325</y>
+      <w>15</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>410</y>
+      <w>130</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>Medikament
+--
+-name:String
+-wirkstoff: String
+--
++getName():String
++getWirkstoff():String
++setName(name:String)
++setWirkstoff(wirkstoff:String)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>515</x>
+      <y>180</y>
+      <w>15</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>495</y>
+      <w>15</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>535</y>
+      <w>105</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Sitzungseintrag
+--
+-notizen:&lt;List&gt;String
+--
++getNotizen():&lt;List&gt;String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>345</x>
+      <y>180</y>
+      <w>390</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;
+</panel_attributes>
+    <additional_attributes>760.0;10.0;760.0;370.0;10.0;370.0;10.0;430.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>515</y>
+      <w>150</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>Arzt
+--
+-praxis:String
+--
++getPraxis():String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>380</y>
+      <w>150</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>Person
+--
+-name:String
+-vorname:String
+--
++getName():String
++getVorname():String
++setName():String
++setVorname():String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>35</x>
+      <y>235</y>
+      <w>150</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>Patient
+--
+-gefährlichkeit: DANGER_LEVEL
+-diagnose: &lt;List&gt;Diagnose
+--
++setGefährlichkeit(g: DANGER_LEVEL)
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>105</x>
+      <y>325</y>
+      <w>15</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>105</x>
+      <y>470</y>
+      <w>15</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>285</y>
+      <w>90</w>
+      <h>185</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;50.0;350.0;160.0;350.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>175</x>
+      <y>485</y>
+      <w>95</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;200.0;60.0;200.0;60.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>785</x>
+      <y>355</y>
+      <w>95</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Krankengeschichtseintrag
+--
++ getEntry():String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>825</x>
+      <y>180</y>
+      <w>15</w>
+      <h>185</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;350.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>380</x>
+      <y>370</y>
+      <w>415</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>810.0;10.0;10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>785</x>
+      <y>440</y>
+      <w>90</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Diagnose
+--
+-krankheit:Krankheit
+--
++getKrankheit():Krankheit
++setKrankheit(krankheit Krankheit)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>825</x>
+      <y>385</y>
+      <w>15</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>135</x>
+      <y>325</y>
+      <w>660</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>1300.0;310.0;1230.0;310.0;1230.0;50.0;10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
