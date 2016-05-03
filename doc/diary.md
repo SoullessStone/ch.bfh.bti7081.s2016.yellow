@@ -33,7 +33,8 @@ Current total: 85/90
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
-| CS- Task -:  - | - | - | in progress | - |
+| CS1 IDE Setup: Install all software | none | alle | in progress | 03.05.2016 |
+| CS1Task 9: Software Architecture | Present results | alle | in progress |  | 09.05.2016 |
 
 ### Completed Tasks
 | Name  | What | Assignee(s)  | Status (done) | Deadline  |
@@ -69,5 +70,4 @@ Current total: 85/90
 | CS1 Task 7:  Sequence diagram Medikamenten-Verschreibung | Create Diagram Medikamenten-Verschreibung | halter  | done |18.04.2016|
 | CS1 Task 7:  Finish domain model | Refurbish sketch, convert it into beautiful diagram | schaad  | done | 18.04.2016|
 | CS1 Task 7:  Presentation Domain Model and Sequence Diagram | Present results | halter, nussbaum, schaad, suter, utz | done | 18.04.2016 |
-| CS1 IDE Setup: Install all software | none | alle | open | 03.05.2016 |
-| CS1Task 9: Software Architecture | Present results | alle | open | 09.05.2016 |
+
