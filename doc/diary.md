@@ -29,12 +29,14 @@ Current total: 85/90
 | 11.04.2016 | all | 4h | Course + Exercise 4 |
 | 12.04.2016 | all | 4h | Course + Exercise 5 + CS1 Task 7 |
 | 18.04.2016 | all | 4h | Course + Task 7 Presentation |
+| 02.05.2016 | all | 4h | Course  |
+| 03.05.2016 | all | 4h | Course + IDE Setup + Task 9 |
 
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
-| CS1 IDE Setup: Install all software | none | alle | in progress | 03.05.2016 |
-| CS1Task 9: Software Architecture | Present results | alle | in progress |  | 09.05.2016 |
+| CS1 IDE Setup | none | alle | in progress | 03.05.2016 |
+| CS1 Task 9: Software Architecture | Present results | alle | in progress |  | 09.05.2016 |
 
 ### Completed Tasks
 | Name  | What | Assignee(s)  | Status (done) | Deadline  |
