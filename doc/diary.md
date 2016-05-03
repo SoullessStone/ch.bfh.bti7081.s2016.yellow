@@ -36,7 +36,9 @@ Current total: 85/90
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
 | CS1 IDE Setup | none | alle | in progress | 03.05.2016 |
-| CS1 Task 9: Software Architecture | Present results | alle | in progress |  | 09.05.2016 |
+| CS1 Task 9: Software Architecture | Create the UML package and class diagrams | alle | in progress |  | 09.05.2016 |
+| CS1 Task 9: Software Architecture | Create an overview of the architecture model | alle | in progress |  | 09.05.2016 |
+| CS1 Task 9: Software Architecture | Prepare presentation | alle | in progress |  | 09.05.2016 |
 
 ### Completed Tasks
 | Name  | What | Assignee(s)  | Status (done) | Deadline  |
@@ -46,6 +48,7 @@ Current total: 85/90
 | CS1 Task 2: SE Process | decide which state of the art suits our project the best, create process model |  alle (vortrag suter, schaad) | done | 01.03.2016 |
 | CS1 Task 3: Preparation | decide for which user group the application has to be developed - decision: nr. 3 (doctors)  |  alle | done | 07.03.2016 |
 | CS1 Task 3: Research | conduct interview with a potential user | schaad | done | 18.03.2016 |
+| CS1 Task 3: Research | conduct interview with a medical specialist about research | halter | done | 21.03.2016 |
 | CS2 Task 1: Use-Case diagram | find actors and use-cases for PIP and draw UML Use-Case diagram | alle | done | 08.03.2016 |
 | CS2 Task 2: Elaborate Activity Diagram | Elaborate an activity diagram from the description and and the use cases | alle | done | 08.03.2016 |
 | CS2 Task 3: Elicitate Requirements | Elicitate Requirements from task 1 and 2 | alle | done | 08.03.2016 |
