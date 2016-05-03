@@ -36,9 +36,10 @@ Current total: 85/90
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
 | CS1 IDE Setup | none | alle | in progress | 03.05.2016 |
-| CS1 Task 9: Software Architecture | Create the UML package and class diagrams | alle | in progress |  | 09.05.2016 |
-| CS1 Task 9: Software Architecture | Create an overview of the architecture model | alle | in progress |  | 09.05.2016 |
-| CS1 Task 9: Software Architecture | Prepare presentation | alle | in progress |  | 09.05.2016 |
+| CS1 Task 9: Software Architecture | Create the UML package and class diagrams | schaad | in progress | 09.05.2016 |
+| CS1 Task 9: Software Architecture | Testing the architecture with Vaadin (dependencies) | suter | in progress | 09.05.2016 |
+| CS1 Task 9: Software Architecture | Create an overview of the architecture model | halter | in progress |  09.05.2016 |
+| CS1 Task 9: Software Architecture | Prepare presentation | zumstein | open |  09.05.2016 |
 
 ### Completed Tasks
 | Name  | What | Assignee(s)  | Status (done) | Deadline  |
