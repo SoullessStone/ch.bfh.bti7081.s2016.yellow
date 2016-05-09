@@ -31,12 +31,12 @@ Current total: 85/90
 | 18.04.2016 | all | 4h | Course + Task 7 Presentation |
 | 02.05.2016 | all | 4h | Course  |
 | 03.05.2016 | all | 4h | Course + IDE Setup + Task 9 |
-| 09.05.2016 | all | 4h | Course + Presentation Task 9 |
+| 09.05.2016 | all | 4h | Course + Presentation Task 9 + Task 10 Scrum Setup (team and roles, product backlog, sprint backlog) |
 
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
-
+| CS1 Task 11:  | --- | --- | open | 23.05.2016 |
 
 
 ### Completed Tasks
@@ -79,3 +79,5 @@ Current total: 85/90
 | CS1 Task 9: Software Architecture | Testing the architecture with Vaadin (dependencies) | suter | done | 08.05.2016 |
 | CS1 Task 9: Software Architecture | Create an overview of the architecture model | halter | done |  08.05.2016 |
 | CS1 Task 9: Software Architecture | Prepare presentation | zumstein | done |  09.05.2016 |
+| CS1 Task 10: Scrum setup | Define scrum project team, create product backlog and sprint backlog | alle | done |  09.05.2016 |
+| CS1 Task 10: Scrum setup | Presentation of Scrum setup | alle | done |  09.05.2016 |
