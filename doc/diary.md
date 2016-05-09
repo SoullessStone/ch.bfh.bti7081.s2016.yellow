@@ -31,15 +31,13 @@ Current total: 85/90
 | 18.04.2016 | all | 4h | Course + Task 7 Presentation |
 | 02.05.2016 | all | 4h | Course  |
 | 03.05.2016 | all | 4h | Course + IDE Setup + Task 9 |
+| 09.05.2016 | all | 4h | Course + Presentation Task 9 |
 
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
-| CS1 IDE Setup | none | alle | in progress | 03.05.2016 |
-| CS1 Task 9: Software Architecture | Create the UML package and class diagrams | schaad | in progress | 08.05.2016 |
-| CS1 Task 9: Software Architecture | Testing the architecture with Vaadin (dependencies) | suter | in progress | 08.05.2016 |
-| CS1 Task 9: Software Architecture | Create an overview of the architecture model | halter | in progress |  08.05.2016 |
-| CS1 Task 9: Software Architecture | Prepare presentation | zumstein | open |  09.05.2016 |
+
+
 
 ### Completed Tasks
 | Name  | What | Assignee(s)  | Status (done) | Deadline  |
@@ -76,4 +74,8 @@ Current total: 85/90
 | CS1 Task 7:  Sequence diagram Medikamenten-Verschreibung | Create Diagram Medikamenten-Verschreibung | halter  | done |18.04.2016|
 | CS1 Task 7:  Finish domain model | Refurbish sketch, convert it into beautiful diagram | schaad  | done | 18.04.2016|
 | CS1 Task 7:  Presentation Domain Model and Sequence Diagram | Present results | halter, nussbaum, schaad, suter, utz | done | 18.04.2016 |
-
+| CS1 IDE Setup | none | alle | done | 03.05.2016 |
+| CS1 Task 9: Software Architecture | Create the UML package and class diagrams | schaad | done | 08.05.2016 |
+| CS1 Task 9: Software Architecture | Testing the architecture with Vaadin (dependencies) | suter | done | 08.05.2016 |
+| CS1 Task 9: Software Architecture | Create an overview of the architecture model | halter | done |  08.05.2016 |
+| CS1 Task 9: Software Architecture | Prepare presentation | zumstein | done |  09.05.2016 |
