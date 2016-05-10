@@ -28,10 +28,11 @@ Current total: 85/90
 | 05.04.2016 | all | 4h | Course + CS1 Task 6 + Exercise 3 |
 | 11.04.2016 | all | 4h | Course + Exercise 4 |
 | 12.04.2016 | all | 4h | Course + Exercise 5 + CS1 Task 7 |
-| 18.04.2016 | all | 4h | Course + Task 7 Presentation |
+| 18.04.2016 | all | 4h | Course + CS1 Task 7 Presentation |
 | 02.05.2016 | all | 4h | Course  |
-| 03.05.2016 | all | 4h | Course + IDE Setup + Task 9 |
-| 09.05.2016 | all | 4h | Course + Presentation Task 9 + Task 10 Scrum Setup (team and roles, product backlog, sprint backlog) |
+| 03.05.2016 | all | 4h | Course + CS 1 IDE Setup + CS1 Task 9: Preparation |
+| 09.05.2016 | all | 4h | Course + CS1 Task 9: Presentation + CS1 Task 10: Scrum Setup  |
+| 10.05.2016 | all | 4h | Course +  |
 
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
@@ -80,4 +81,4 @@ Current total: 85/90
 | CS1 Task 9: Software Architecture | Create an overview of the architecture model | halter | done |  08.05.2016 |
 | CS1 Task 9: Software Architecture | Prepare presentation | zumstein | done |  09.05.2016 |
 | CS1 Task 10: Scrum setup | Define scrum project team, create product backlog and sprint backlog | alle | done |  09.05.2016 |
-| CS1 Task 10: Scrum setup | Presentation of Scrum setup | alle | done |  09.05.2016 |
+| CS1 Task 10: Scrum setup | Presentation of Scrum setup | suter | done |  09.05.2016 |
