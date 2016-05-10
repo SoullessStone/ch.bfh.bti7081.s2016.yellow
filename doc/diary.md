@@ -32,13 +32,21 @@ Current total: 85/90
 | 02.05.2016 | all | 4h | Course  |
 | 03.05.2016 | all | 4h | Course + CS 1 IDE Setup + CS1 Task 9: Preparation |
 | 09.05.2016 | all | 4h | Course + CS1 Task 9: Presentation + CS1 Task 10: Scrum Setup  |
-| 10.05.2016 | all | 4h | Course +  |
+| 10.05.2016 | all | 4h | Course + CS1 Task 11: Start Development Phase Scrum Sprint 1 |
 
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
-| CS1 Task 11:  | --- | --- | open | 23.05.2016 |
-
+| CS1 Task 11: Sprint 1  | Session handling, enable navigation, Vaadin seup (ID 11)   | suter, utz | open | 14.05.2016 |
+| CS1 Task 11: Sprint 1  | Create DB tables (ID 11)   | halter | open | 15.05.2016 |
+| CS1 Task 11: Sprint 1  | Add mock data to DB (ID 11)   | zumstein | open | 15.05.2016 |
+| CS1 Task 11: Sprint 1  | Create base layout (ID 11) | tbd | open | 22.05.2016 |
+| CS1 Task 11: Sprint 1  | Create meeting notes view (ID 4) | tbd | open | 22.05.2016 |
+| CS1 Task 11: Sprint 1  | Create overview view (ID 1) | tbd | open | 22.05.2016 |
+| CS1 Task 11: Sprint 1  | Create meeting notes model (ID 4) | tbd | open | 22.05.2016 |
+| CS1 Task 11: Sprint 1  | Create meeting notes presenter (ID 4) | tbd | open | 22.05.2016 |
+| CS1 Task 11: Sprint 1  | Create patient model (ID 1) | tbd | open | 22.05.2016 |
+| CS1 Task 11: Sprint 1  | Create overview presenter (ID 1) | tbd | open | 22.05.2016 |
 
 ### Completed Tasks
 | Name  | What | Assignee(s)  | Status (done) | Deadline  |
