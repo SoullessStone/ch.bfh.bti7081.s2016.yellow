@@ -14,6 +14,7 @@ import com.vaadin.ui.VerticalLayout;
 @SuppressWarnings("serial")
 public class LoginView extends VerticalLayout implements View {
 
+	// TODO: Check User credentials
 	public LoginView() {
 		setSizeFull();
 		setSpacing(true);

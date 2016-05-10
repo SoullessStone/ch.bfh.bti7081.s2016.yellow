@@ -8,7 +8,9 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
-
+// When just clicked: Shows the users information
+// When navigated to from PersonSearch: Shows the chosen Person
+// Can show Person, Doctor and Patient
 @SuppressWarnings("serial")
 public class PersonView extends VerticalLayout implements View {
 

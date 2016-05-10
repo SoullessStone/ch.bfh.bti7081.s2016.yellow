@@ -9,6 +9,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
+// Just do
 @SuppressWarnings("serial")
 public class WikiView extends VerticalLayout implements View {
 

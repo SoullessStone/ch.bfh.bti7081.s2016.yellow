@@ -9,6 +9,9 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
+// Can change Perscriptions
+// Can create Perscriptions
+// if just clicked (not navigated to from Patient) this view could show all the Perscriptions of the current doctor)
 @SuppressWarnings("serial")
 public class PrescriptionView extends VerticalLayout implements View {
 
