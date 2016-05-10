@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.NavigatorUI;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.LoginPresenter;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -11,10 +12,11 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
+// TODO: Check User credentials
 @SuppressWarnings("serial")
 public class LoginView extends VerticalLayout implements View {
-
-	// TODO: Check User credentials
+	private LoginPresenter loginPresenter = new LoginPresenter(this);
+	
 	public LoginView() {
 		setSizeFull();
 		setSpacing(true);

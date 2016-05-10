@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.Menu;
 
 import com.vaadin.navigator.View;
@@ -13,7 +14,8 @@ import com.vaadin.ui.VerticalLayout;
 // Can show Person, Doctor and Patient
 @SuppressWarnings("serial")
 public class PersonView extends VerticalLayout implements View {
-
+	private PersonPresenter personPresenter = new PersonPresenter(this);
+	
 	public PersonView() {
 		setSizeFull();
 		setSpacing(true);
