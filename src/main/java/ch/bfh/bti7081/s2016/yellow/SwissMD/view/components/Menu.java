@@ -1,6 +1,6 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.NavigatorUI;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.NavigatorUI;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CustomComponent;
@@ -22,8 +22,11 @@ public class Menu extends CustomComponent {
 	public Menu() {
 		HorizontalLayout layout = new HorizontalLayout();
 		MenuBar menubar = new MenuBar();
-		layout.addComponent(mainButton());
-		layout.addComponent(helpButton());
+		layout.addComponent(createPersonSearchViewButton());
+		layout.addComponent(createPersonViewButton());
+		layout.addComponent(createPrescriptionViewButton());
+		layout.addComponent(createWikiViewButton());
+		layout.addComponent(createMeetingViewButton());
 		layout.addComponent(logoutButton());
 		layout.setSizeUndefined();
 		layout.setSpacing(true);
@@ -31,21 +34,51 @@ public class Menu extends CustomComponent {
 		setCompositionRoot(layout);
 	}
 	
-	private Button mainButton() {
-		Button button = new Button("Main", new Button.ClickListener() {
+	private Button createPersonSearchViewButton() {
+		Button button = new Button("PersonSearchView", new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
-				getUI().getNavigator().navigateTo(NavigatorUI.MAINVIEW);
+				getUI().getNavigator().navigateTo(NavigatorUI.PERSONSEARCHVIEW);
 			}
 		});
 		return button;
 	}
 	
-	private Button helpButton() {
-		Button button = new Button("Help", new Button.ClickListener() {
+	private Button createPersonViewButton() {
+		Button button = new Button("PersonView", new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
-				getUI().getNavigator().navigateTo(NavigatorUI.HELPVIEW);
+				getUI().getNavigator().navigateTo(NavigatorUI.PERSONVIEW);
+			}
+		});
+		return button;
+	}
+	
+	private Button createPrescriptionViewButton() {
+		Button button = new Button("PrescriptionView", new Button.ClickListener() {
+			@Override
+			public void buttonClick(ClickEvent event) {
+				getUI().getNavigator().navigateTo(NavigatorUI.PRESCRIPTIONVIEW);
+			}
+		});
+		return button;
+	}
+	
+	private Button createWikiViewButton() {
+		Button button = new Button("WikiView", new Button.ClickListener() {
+			@Override
+			public void buttonClick(ClickEvent event) {
+				getUI().getNavigator().navigateTo(NavigatorUI.WIKIVIEW);
+			}
+		});
+		return button;
+	}
+	
+	private Button createMeetingViewButton() {
+		Button button = new Button("MeetingView", new Button.ClickListener() {
+			@Override
+			public void buttonClick(ClickEvent event) {
+				getUI().getNavigator().navigateTo(NavigatorUI.MEETINGVIEW);
 			}
 		});
 		return button;

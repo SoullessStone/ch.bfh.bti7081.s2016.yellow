@@ -1,6 +1,13 @@
-package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
+package ch.bfh.bti7081.s2016.yellow.SwissMD;
 
 import javax.servlet.annotation.WebServlet;
+
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.LoginView;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.MeetingView;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonSearchView;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonView;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PrescriptionView;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.WikiView;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
@@ -21,13 +28,14 @@ public class NavigatorUI extends UI{
 
 	public Navigator navigator;
 
-	public static final String MAINVIEW = "main";
-	public static final String HELPVIEW = "help";
-	
+	public static final String PERSONSEARCHVIEW = "PERSONSEARCH";
+	public static final String PERSONVIEW = "PERSONVIEW";
+	public static final String PRESCRIPTIONVIEW = "PRESCRIPTIONVIEW";
+	public static final String WIKIVIEW = "WIKIVIEW";
+	public static final String MEETINGVIEW = "MEETINGVIEW";
 
 	@Override
 	protected void init(VaadinRequest request) {
-		System.out.println("init UI");
 		
 		final VerticalLayout layout = new VerticalLayout();
 		layout.setMargin(true);
@@ -36,8 +44,11 @@ public class NavigatorUI extends UI{
 		ComponentContainerViewDisplay viewDisplay = new ComponentContainerViewDisplay(layout);
 		navigator = new Navigator(UI.getCurrent(), viewDisplay);
 		navigator.addView("", new LoginView());
-		navigator.addView(MAINVIEW, new MainView());
-		navigator.addView(HELPVIEW, new HelpView());
+		navigator.addView(PERSONSEARCHVIEW, new PersonSearchView());
+		navigator.addView(PERSONVIEW, new PersonView());
+		navigator.addView(PRESCRIPTIONVIEW, new PrescriptionView());
+		navigator.addView(WIKIVIEW, new WikiView());
+		navigator.addView(MEETINGVIEW, new MeetingView());
 		
 	}
 	
