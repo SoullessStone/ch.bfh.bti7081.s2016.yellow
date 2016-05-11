@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD;
 
 import javax.servlet.annotation.WebServlet;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.WikiPresenter.ArtikelId;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.LoginView;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.MeetingView;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonSearchView;
@@ -47,7 +48,7 @@ public class NavigatorUI extends UI{
 		navigator.addView(PERSONSEARCHVIEW, new PersonSearchView());
 		navigator.addView(PERSONVIEW, new PersonView());
 		navigator.addView(PRESCRIPTIONVIEW, new PrescriptionView());
-		navigator.addView(WIKIVIEW, new WikiView());
+		navigator.addView(WIKIVIEW, new WikiView(ArtikelId.KOPFSCHMERZEN));
 		navigator.addView(MEETINGVIEW, new MeetingView());
 		
 	}
