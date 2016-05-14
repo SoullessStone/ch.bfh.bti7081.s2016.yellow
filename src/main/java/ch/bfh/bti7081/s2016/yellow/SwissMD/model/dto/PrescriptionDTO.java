@@ -1,16 +1,13 @@
-package ch.bfh.bti7081.s2016.yellow.SwissMD.model;
+package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 
-//TODO: Erstellt von Michel (wegen Abhängigkeit von Meeting), muss noch implementiert werden
-public class Prescription {
-
-	// TODO: Medication ist kein String!
+public class PrescriptionDTO {
 	private String medication;
 	private int dosisInMilligrams;
 	private DateRange validity;
 
-	public Prescription(String medication, int dosisInMilligrams,
+	public PrescriptionDTO(String medication, int dosisInMilligrams,
 			DateRange validity) {
 		this.medication = medication;
 		this.dosisInMilligrams = dosisInMilligrams;
@@ -40,6 +37,4 @@ public class Prescription {
 	public void setValidity(DateRange validity) {
 		this.validity = validity;
 	}
-
-	
 }

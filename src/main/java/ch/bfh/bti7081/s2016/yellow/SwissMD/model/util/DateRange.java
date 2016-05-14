@@ -1,5 +1,7 @@
-package ch.bfh.bti7081.s2016.yellow.SwissMD.model;
+package ch.bfh.bti7081.s2016.yellow.SwissMD.model.util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -20,8 +22,10 @@ public class DateRange {
 
 	/**
 	 * 
-	 * @param from Startdatum des Bereichs
-	 * @param to Enddatum des Bereichs
+	 * @param from
+	 *            Startdatum des Bereichs
+	 * @param to
+	 *            Enddatum des Bereichs
 	 * @return Validiert die Parameter und gibt deren Validität zurück
 	 */
 	private boolean validate(Date from, Date to) {
@@ -29,5 +33,19 @@ public class DateRange {
 			return true;
 		}
 		return false;
+	}
+
+	public Date getFrom() {
+		return from;
+	}
+
+	public Date getTo() {
+		return to;
+	}
+
+	@Override
+	public String toString() {
+		DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+		return df.format(from) + "-" + df.format(to);
 	}
 }

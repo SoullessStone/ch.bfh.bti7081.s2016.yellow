@@ -5,17 +5,18 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Person;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 
 import com.vaadin.ui.CustomComponent;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-public class PersonenTile extends CustomComponent {
-	private Person person;
+public class PersonTile extends CustomComponent {
+	private PersonDTO person;
 
-	public PersonenTile(Person person, String title) {
+	// TODO: Work with DTOs
+	public PersonTile(PersonDTO person, String title) {
 		this.person = person;
 
 		Panel tile = new Panel(title);
@@ -50,7 +51,7 @@ public class PersonenTile extends CustomComponent {
 			float result = 0;
 			result = calend.get(Calendar.YEAR) - 1970;
 			result += (float) calend.get(Calendar.MONTH) / (float) 12;
-			return (int)result;
+			return (int) result;
 		}
 
 	}

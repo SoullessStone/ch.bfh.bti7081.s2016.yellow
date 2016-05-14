@@ -11,7 +11,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PrescriptionView;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.WikiView;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.annotations.Widgetset;
 import com.vaadin.navigator.Navigator;
@@ -49,7 +48,7 @@ public class NavigatorUI extends UI {
 		navigator.addView(PERSONSEARCHVIEW, new PersonSearchView());
 		navigator.addView(PERSONVIEW, new PersonView());
 		navigator.addView(PRESCRIPTIONVIEW, new PrescriptionView());
-		navigator.addView(WIKIVIEW, new WikiView(ArtikelId.KOPFSCHMERZEN));
+		navigator.addView(WIKIVIEW, new WikiView());
 		navigator.addView(MEETINGVIEW, new MeetingView());
 
 	}
