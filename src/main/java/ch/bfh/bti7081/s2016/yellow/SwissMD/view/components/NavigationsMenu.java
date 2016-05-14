@@ -9,7 +9,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.MenuBar;
 
 @SuppressWarnings("serial")
-public class Menu extends CustomComponent {
+public class NavigationsMenu extends CustomComponent {
 
 	
 	// Personensuche (sucht Patienten und Doktoren, navigiert Personenview)
@@ -19,7 +19,7 @@ public class Menu extends CustomComponent {
 	// Sitzungsview
 	
 	
-	public Menu() {
+	public NavigationsMenu() {
 		HorizontalLayout layout = new HorizontalLayout();
 		MenuBar menubar = new MenuBar();
 		layout.addComponent(createPersonSearchViewButton());

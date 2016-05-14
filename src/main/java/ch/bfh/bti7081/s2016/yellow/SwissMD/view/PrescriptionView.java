@@ -1,8 +1,13 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
 
+import java.util.Date;
+
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Person;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PrescriptionPresenter;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.Menu;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.NavigationsMenu;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonenTile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PrescriptionTile;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -20,8 +25,9 @@ public class PrescriptionView extends VerticalLayout implements View {
 	public PrescriptionView() {
 		setSizeFull();
 		setSpacing(true);
-		addComponent(new Menu());
+		addComponent(new NavigationsMenu());
 		addComponent(headingLabel());
+		// addComponent(new PrescriptionTile(new Person("Paul Medici", new Date(768907564000L))));
 	}
 
 	@Override

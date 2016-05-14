@@ -3,7 +3,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.WikiPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.WikiPresenter.ArtikelId;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.Menu;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.NavigationsMenu;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -24,7 +24,7 @@ public class WikiView extends VerticalLayout implements View {
 		this.artikelToShow = artikelToShow;
 		setSizeFull();
 		setSpacing(true);
-		addComponent(new Menu());
+		addComponent(new NavigationsMenu());
 		addComponent(headingLabel());
 		wikiText = new Label(wikiPresenter.getWikiText(artikelToShow),
 			    ContentMode.HTML);

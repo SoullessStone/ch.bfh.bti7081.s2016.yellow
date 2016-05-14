@@ -1,12 +1,11 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model;
 
+import java.util.Date;
+
 // TODO: Erstellt von Michel (wegen Abhängigkeit von Meeting), muss noch implementiert werden
-public class Patient {
+public class Patient extends Person {
 
-	// TODO: Neu Machen
-	@Override
-	public String toString() {
-		return "Patient [toString()]";
+	public Patient(String name, Date birthdate) {
+		super(name, birthdate);
 	}
-
 }

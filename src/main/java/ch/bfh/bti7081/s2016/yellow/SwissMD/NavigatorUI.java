@@ -25,7 +25,7 @@ import com.vaadin.ui.VerticalLayout;
 
 @Theme("mytheme")
 @Widgetset("ch.bfh.bti7081.s2016.yellow.SwissMD.MyAppWidgetset")
-public class NavigatorUI extends UI{
+public class NavigatorUI extends UI {
 
 	public Navigator navigator;
 
@@ -37,12 +37,13 @@ public class NavigatorUI extends UI{
 
 	@Override
 	protected void init(VaadinRequest request) {
-		
+
 		final VerticalLayout layout = new VerticalLayout();
 		layout.setMargin(true);
 		layout.setSpacing(true);
 		setContent(layout);
-		ComponentContainerViewDisplay viewDisplay = new ComponentContainerViewDisplay(layout);
+		ComponentContainerViewDisplay viewDisplay = new ComponentContainerViewDisplay(
+				layout);
 		navigator = new Navigator(UI.getCurrent(), viewDisplay);
 		navigator.addView("", new LoginView());
 		navigator.addView(PERSONSEARCHVIEW, new PersonSearchView());
@@ -50,13 +51,11 @@ public class NavigatorUI extends UI{
 		navigator.addView(PRESCRIPTIONVIEW, new PrescriptionView());
 		navigator.addView(WIKIVIEW, new WikiView(ArtikelId.KOPFSCHMERZEN));
 		navigator.addView(MEETINGVIEW, new MeetingView());
-		
+
 	}
-	
 
-
-    @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
-    @VaadinServletConfiguration(ui = NavigatorUI.class, productionMode = false)
-    public static class MyUIServlet extends VaadinServlet {
-    }
+	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
+	@VaadinServletConfiguration(ui = NavigatorUI.class, productionMode = false)
+	public static class MyUIServlet extends VaadinServlet {
+	}
 }

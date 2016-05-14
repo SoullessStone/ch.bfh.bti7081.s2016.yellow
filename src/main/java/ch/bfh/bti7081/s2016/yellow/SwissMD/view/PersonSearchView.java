@@ -2,7 +2,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonSearchPresenter;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.Menu;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.NavigationsMenu;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -18,7 +18,7 @@ public class PersonSearchView extends VerticalLayout implements View {
 	public PersonSearchView() {
 		setSizeFull();
 		setSpacing(true);
-		addComponent(new Menu());
+		addComponent(new NavigationsMenu());
 		addComponent(headingLabel());
 	}
 
