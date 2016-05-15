@@ -2,9 +2,21 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 //TODO: Erstellt von Michel (wegen Abhängigkeit von Meeting), muss noch implementiert werden
 // TODO: Erweitere PersonTile, wenn nötig
+@Entity
+@Table
 public class Person {
+	
+	@Id
+    @GeneratedValue
+    private Long id;
+	
 	private String name;
 	private Date birthdate;
 

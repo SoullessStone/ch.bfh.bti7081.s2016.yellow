@@ -4,10 +4,20 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Definiert einen Zeitbereich anhand von Start- und Enddatum
  */
+@Entity
 public class DateRange {
+	
+	@Id
+    @GeneratedValue
+    private Long id;
+	
 	private Date from;
 	private Date to;
 

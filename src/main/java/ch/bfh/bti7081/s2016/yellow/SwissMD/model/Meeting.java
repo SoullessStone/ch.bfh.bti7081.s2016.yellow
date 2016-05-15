@@ -3,12 +3,35 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Meeting {
+	
+	@Id
+    @GeneratedValue
+    private Long id;
+	
+	@ManyToOne
 	private Patient patient;
+	
+	@ManyToOne
 	private Doctor doctor;
+	
 	// TODO: Gemäss classmodel muss das eine Liste von Sitzungseinträgen werden.
 	private String notes;
+	
+	@OneToMany(mappedBy = "meeting")
 	private List<Prescription> prescriptions;
+	
 	private Date appointmentTime;
 
 	// TODO: Braucht es noch eine Duration?
