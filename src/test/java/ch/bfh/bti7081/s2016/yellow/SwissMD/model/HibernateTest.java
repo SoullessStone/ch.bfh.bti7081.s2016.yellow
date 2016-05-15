@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2016.yellow.SwissMD;
+package ch.bfh.bti7081.s2016.yellow.SwissMD.model;
 
 import java.util.Date;
 import java.util.List;
@@ -21,6 +21,8 @@ public class HibernateTest {
 
 		entityManager.persist(new Person("Jakab Gipsz", new Date()));
 		entityManager.persist(new Person("Captain Nemo", new Date()));
+		entityManager.persist(new Doctor("Doctor House", new Date()));
+		entityManager.persist(new Patient("Sick Billy", new Date()));
 
 		entityManager.getTransaction().commit();
 		
