@@ -2,7 +2,6 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD;
 
 import javax.servlet.annotation.WebServlet;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.WikiPresenter.ArtikelId;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.LoginView;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.MeetingView;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonSearchView;

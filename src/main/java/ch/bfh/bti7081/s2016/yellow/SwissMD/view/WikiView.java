@@ -21,7 +21,8 @@ public class WikiView extends VerticalLayout implements View {
 		setSpacing(true);
 		addComponent(new NavigationsMenu());
 		addComponent(headingLabel());
-		wikiText = new Label(wikiPresenter.getWikiText(ArtikelId.ANGSTZUSTAENDE),
+		wikiText = new Label(
+				wikiPresenter.getWikiText(ArtikelId.ANGSTZUSTAENDE),
 				ContentMode.HTML);
 		addComponent(wikiText);
 	}
@@ -36,6 +37,9 @@ public class WikiView extends VerticalLayout implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
+		// Wird jedes Mal aufgerufen, wenn hierhin navigiert wird. Hier könnte
+		// man also den Parameter in der URL auslesen
+		System.out.println(event.getParameters());
 	}
 
 	private Label headingLabel() {

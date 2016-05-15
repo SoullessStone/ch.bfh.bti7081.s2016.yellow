@@ -9,7 +9,8 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.MenuBar;
 
 /**
- * Diese Klasse stellt das Navigationsmenü dar und wird von allen Views eingebunden. Somit können 
+ * Diese Klasse stellt das Navigationsmenü dar und wird von allen Views
+ * eingebunden. Somit können Änderungen in der Navigation hier eingefügt werden
  */
 @SuppressWarnings("serial")
 public class NavigationsMenu extends CustomComponent {
@@ -84,7 +85,8 @@ public class NavigationsMenu extends CustomComponent {
 		Button button = new Button("MeetingView", new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
-				getUI().getNavigator().navigateTo(NavigatorUI.MEETINGVIEW + "/Hanpeter");
+				getUI().getNavigator().navigateTo(
+						NavigatorUI.MEETINGVIEW + "/Hanpeter");
 			}
 		});
 		return button;

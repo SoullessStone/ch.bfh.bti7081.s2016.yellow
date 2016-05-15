@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Person;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 
 import com.vaadin.ui.CustomComponent;
@@ -15,7 +14,6 @@ import com.vaadin.ui.VerticalLayout;
 public class PersonTile extends CustomComponent {
 	private PersonDTO person;
 
-	// TODO: Work with DTOs
 	public PersonTile(PersonDTO person, String title) {
 		this.person = person;
 
@@ -32,8 +30,14 @@ public class PersonTile extends CustomComponent {
 		setCompositionRoot(tile);
 	}
 
+	/**
+	 * Berechnet die Anzahl ganzer Jahre zwischen zwei Daten
+	 * 
+	 * @param current
+	 * @param birthdate
+	 * @return
+	 */
 	public static int getAge(final Date current, final Date birthdate) {
-
 		if (birthdate == null) {
 			return 0;
 		}

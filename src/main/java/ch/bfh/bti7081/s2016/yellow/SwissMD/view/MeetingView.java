@@ -1,11 +1,6 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
-import java.util.Date;
-
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Person;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Prescription;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.NavigationsMenu;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
@@ -15,17 +10,16 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.datefield.Resolution;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Button.ClickEvent;
 
 @SuppressWarnings("serial")
 public class MeetingView extends VerticalLayout implements View {
@@ -58,7 +52,8 @@ public class MeetingView extends VerticalLayout implements View {
 		VerticalLayout verticalLayoutRight = new VerticalLayout();
 		verticalLayoutRight.setSpacing(true);
 		verticalLayoutRight.addComponent(getAddPrescriptionButton());
-		verticalLayoutRight.addComponent(new PrescriptionTile(meetingPresenter.getPerscriptionsForMeeting(4321).get(0)));
+		verticalLayoutRight.addComponent(new PrescriptionTile(meetingPresenter
+				.getPerscriptionsForMeeting(4321).get(0)));
 		grid.addComponent(verticalLayoutRight, 2, 0);
 
 		this.addComponent(grid);
@@ -67,12 +62,11 @@ public class MeetingView extends VerticalLayout implements View {
 	private Button getAddPrescriptionButton() {
 		Button b = new Button("Neues Medikament verschreiben");
 		b.addClickListener(new ClickListener() {
-			
+
 			@Override
 			public void buttonClick(ClickEvent event) {
 				// TODO: DO IT!
-				Notification.show("TODO",
-						Type.WARNING_MESSAGE);
+				Notification.show("TODO", Type.WARNING_MESSAGE);
 			}
 		});
 		return b;
@@ -116,6 +110,8 @@ public class MeetingView extends VerticalLayout implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
+		// Wird jedes Mal aufgerufen, wenn hierhin navigiert wird. Hier könnte
+		// man also den Parameter in der URL auslesen
 		System.out.println(event.getParameters());
 	}
 

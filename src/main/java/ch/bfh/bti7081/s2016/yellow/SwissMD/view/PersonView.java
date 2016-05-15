@@ -24,6 +24,9 @@ public class PersonView extends VerticalLayout implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
+		// Wird jedes Mal aufgerufen, wenn hierhin navigiert wird. Hier könnte
+		// man also den Parameter in der URL auslesen
+		System.out.println(event.getParameters());
 	}
 
 	private Label headingLabel() {

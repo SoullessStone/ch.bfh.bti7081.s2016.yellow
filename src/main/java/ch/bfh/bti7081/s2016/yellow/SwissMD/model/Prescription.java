@@ -41,5 +41,4 @@ public class Prescription {
 		this.validity = validity;
 	}
 
-	
 }
