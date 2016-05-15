@@ -9,14 +9,22 @@ import javax.persistence.Table;
 
 //TODO: Erstellt von Michel (wegen Abhängigkeit von Meeting), muss noch implementiert werden
 // TODO: Erweitere PersonTile, wenn nötig
+
+/**
+ * Entity that represents a person. Can be a doctor or a patient. To use in the
+ * data access layer.
+ * 
+ * @author K.Suter
+ * 
+ * */
 @Entity
 @Table
 public class Person {
-	
+
 	@Id
-    @GeneratedValue
-    private Long id;
-	
+	@GeneratedValue
+	private Long id;
+
 	private String name;
 	private Date birthdate;
 

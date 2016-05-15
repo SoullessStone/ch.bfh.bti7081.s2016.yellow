@@ -6,6 +6,12 @@ import java.lang.reflect.ParameterizedType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+/**
+ * Implementation of the {@code GenericDao} interface. 
+ * 
+ * @author K.Suter
+ * 
+ * */
 public class GenericDaoImpl<T, PK extends Serializable> implements
 		GenericDao<T, PK> {
 

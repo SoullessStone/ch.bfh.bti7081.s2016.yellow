@@ -2,6 +2,12 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 
+/**
+ * Data transfer object for a  {@code Prescription} entity. To use in the views.
+ * 
+ * @author K.Suter
+ * 
+ * */
 public class PrescriptionDTO {
 	private String medication;
 	private int dosisInMilligrams;

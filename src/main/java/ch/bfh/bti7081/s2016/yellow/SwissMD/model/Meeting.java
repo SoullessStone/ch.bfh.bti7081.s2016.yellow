@@ -12,26 +12,32 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * Entity that represents a meeting. To use in the data access layer.
+ * 
+ * @author K.Suter
+ * 
+ * */
 @Entity
 @Table
 public class Meeting {
-	
+
 	@Id
-    @GeneratedValue
-    private Long id;
-	
+	@GeneratedValue
+	private Long id;
+
 	@ManyToOne
 	private Patient patient;
-	
+
 	@ManyToOne
 	private Doctor doctor;
-	
+
 	// TODO: Gemäss classmodel muss das eine Liste von Sitzungseinträgen werden.
 	private String notes;
-	
+
 	@OneToMany(mappedBy = "meeting")
 	private List<Prescription> prescriptions;
-	
+
 	private Date appointmentTime;
 
 	// TODO: Braucht es noch eine Duration?

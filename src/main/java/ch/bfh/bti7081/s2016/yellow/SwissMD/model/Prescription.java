@@ -10,23 +10,31 @@ import javax.persistence.Table;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 
-//TODO: Erstellt von Michel (wegen Abhängigkeit von Meeting), muss noch implementiert werden
+/**
+ * Entity that represents a prescription. To use in the data access layer.
+ * 
+ * @author K.Suter
+ * 
+ * */
+// TODO: Erstellt von Michel (wegen Abhängigkeit von Meeting), muss noch
+// implementiert werden
 @Entity
 @Table
 public class Prescription {
-	
+
 	@Id
-    @GeneratedValue
-    private Long id;
+	@GeneratedValue
+	private Long id;
 
 	// TODO: Medication ist kein String!
 	private String medication;
 	private int dosisInMilligrams;
-	
+
 	// TODO: Hibernate custom type
-	//@OneToOne(fetch = FetchType.EAGER, mappedBy = "stock", cascade = CascadeType.ALL)
-	//private DateRange validity;
-	
+	// @OneToOne(fetch = FetchType.EAGER, mappedBy = "stock", cascade =
+	// CascadeType.ALL)
+	// private DateRange validity;
+
 	@ManyToOne
 	private Meeting meeting;
 
@@ -34,7 +42,7 @@ public class Prescription {
 			DateRange validity) {
 		this.medication = medication;
 		this.dosisInMilligrams = dosisInMilligrams;
-		//this.validity = validity;
+		// this.validity = validity;
 	}
 
 	public String getMedication() {
@@ -53,12 +61,12 @@ public class Prescription {
 		this.dosisInMilligrams = dosisInMilligrams;
 	}
 
-//	public DateRange getValidity() {
-//		return validity;
-//	}
-//
-//	public void setValidity(DateRange validity) {
-//		this.validity = validity;
-//	}
+	// public DateRange getValidity() {
+	// return validity;
+	// }
+	//
+	// public void setValidity(DateRange validity) {
+	// this.validity = validity;
+	// }
 
 }
