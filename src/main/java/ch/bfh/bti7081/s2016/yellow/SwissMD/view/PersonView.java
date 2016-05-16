@@ -1,7 +1,20 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Doctor;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Patient;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Prescription;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MeetingTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.NavigationsMenu;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -20,6 +33,15 @@ public class PersonView extends VerticalLayout implements View {
 		setSpacing(true);
 		addComponent(new NavigationsMenu());
 		addComponent(headingLabel());
+
+		List<PrescriptionDTO> medis = new ArrayList();
+		medis.add(new PrescriptionDTO("Aspirin", 50, new DateRange(new Date(), new Date(new Date().getTime() + 1000000))));
+		medis.add(new PrescriptionDTO("Alcacyl", 50, new DateRange(new Date(), new Date(new Date().getTime() + 1000000))));
+		medis.add(new PrescriptionDTO("Gift", 50, new DateRange(new Date(), new Date(new Date().getTime() + 1000000))));
+		addComponent(new MeetingTile(new MeetingDTO(new Patient("Franz Erl", new Date(-620438400000L)),
+				new Doctor("Doktor Who", new Date(335145600000L)), new Date(1457802000000L), medis)));
+		setSizeFull();
+		setSpacing(true);
 	}
 
 	@Override
