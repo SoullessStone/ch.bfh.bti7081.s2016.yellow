@@ -7,15 +7,18 @@ import java.io.Serializable;
  * 
  * @author K.Suter
  * 
- * */
+ */
 public interface GenericDao<T, PK extends Serializable> {
 	// create a single entity in the database
 	T create(T t);
+
 	// read a single entity from the database
-    T read(PK id);
-    // update a single entity in the database
-    T update(T t);
-    //delete a single entity in the database
-    void delete(T t);
-    
+	T read(PK id);
+
+	// update a single entity in the database
+	T update(T t);
+
+	// delete a single entity in the database
+	void delete(T t);
+
 }

@@ -37,7 +37,6 @@ public class MeetingPresenter {
 	public List<PrescriptionDTO> getPerscriptionsForMeeting(int i) {
 		// TODO: Real Data
 		return Arrays.asList(new PrescriptionDTO("Aspirin", 1_000,
-				new DateRange(new Date(1451606400000L),
-						new Date(1454284800000L))));
+				new DateRange(new Date(1451606400000L), new Date(1454284800000L))));
 	}
 }

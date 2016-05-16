@@ -1,11 +1,5 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.NavigationsMenu;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PrescriptionTile;
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.datefield.Resolution;
@@ -20,6 +14,12 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
+
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.NavigationsMenu;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PrescriptionTile;
 
 @SuppressWarnings("serial")
 public class MeetingView extends VerticalLayout implements View {
@@ -40,11 +40,9 @@ public class MeetingView extends VerticalLayout implements View {
 		verticalLayoutLeft.setSpacing(true);
 		verticalLayoutLeft.addComponent(getAppointmentTimeDateField());
 		// TODO: Durch richtige Daten erweitern
-		verticalLayoutLeft.addComponent(new PersonTile(meetingPresenter
-				.getPatientForMeeting(4321), "Patient"));
+		verticalLayoutLeft.addComponent(new PersonTile(meetingPresenter.getPatientForMeeting(4321), "Patient"));
 
-		verticalLayoutLeft.addComponent(new PersonTile(meetingPresenter
-				.getDoctorForMeeting(4321), "Arzt"));
+		verticalLayoutLeft.addComponent(new PersonTile(meetingPresenter.getDoctorForMeeting(4321), "Arzt"));
 		grid.addComponent(verticalLayoutLeft, 0, 0);
 
 		grid.addComponent(getNoteArea(), 1, 0);
@@ -52,8 +50,8 @@ public class MeetingView extends VerticalLayout implements View {
 		VerticalLayout verticalLayoutRight = new VerticalLayout();
 		verticalLayoutRight.setSpacing(true);
 		verticalLayoutRight.addComponent(getAddPrescriptionButton());
-		verticalLayoutRight.addComponent(new PrescriptionTile(meetingPresenter
-				.getPerscriptionsForMeeting(4321).get(0)));
+		verticalLayoutRight
+				.addComponent(new PrescriptionTile(meetingPresenter.getPerscriptionsForMeeting(4321).get(0)));
 		grid.addComponent(verticalLayoutRight, 2, 0);
 
 		this.addComponent(grid);
@@ -81,12 +79,9 @@ public class MeetingView extends VerticalLayout implements View {
 				// TODO: call Presenter mit richtigen Daten
 				try {
 					meetingPresenter.save();
-					Notification.show("Änderungen wurden gespeichert",
-							Type.HUMANIZED_MESSAGE);
+					Notification.show("Änderungen wurden gespeichert", Type.HUMANIZED_MESSAGE);
 				} catch (CouldNotSaveException e) {
-					Notification.show(
-							"Änderungen konnten nicht gespeichert werden",
-							Type.ERROR_MESSAGE);
+					Notification.show("Änderungen konnten nicht gespeichert werden", Type.ERROR_MESSAGE);
 				}
 			}
 		});

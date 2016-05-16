@@ -1,8 +1,5 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.NavigatorUI;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.LoginPresenter;
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
@@ -11,6 +8,9 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+
+import ch.bfh.bti7081.s2016.yellow.SwissMD.NavigatorUI;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.LoginPresenter;
 
 // TODO: Check User credentials
 @SuppressWarnings("serial")

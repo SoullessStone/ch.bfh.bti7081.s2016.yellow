@@ -5,7 +5,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception;
  * 
  * @author K.Suter
  * 
- * */
+ */
 public class CouldNotSaveException extends Exception {
 
 }

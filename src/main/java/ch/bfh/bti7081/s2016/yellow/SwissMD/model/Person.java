@@ -16,7 +16,7 @@ import javax.persistence.Table;
  * 
  * @author K.Suter
  * 
- * */
+ */
 @Entity
 @Table
 public class Person {

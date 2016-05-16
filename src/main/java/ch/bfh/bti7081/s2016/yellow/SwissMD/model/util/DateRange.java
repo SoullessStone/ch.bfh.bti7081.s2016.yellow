@@ -13,11 +13,11 @@ import javax.persistence.Id;
  */
 @Entity
 public class DateRange {
-	
+
 	@Id
-    @GeneratedValue
-    private Long id;
-	
+	@GeneratedValue
+	private Long id;
+
 	private Date from;
 	private Date to;
 

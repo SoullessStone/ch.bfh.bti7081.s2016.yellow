@@ -1,11 +1,9 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
@@ -15,7 +13,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
  * 
  * @author K.Suter
  * 
- * */
+ */
 // TODO: Erstellt von Michel (wegen Abhängigkeit von Meeting), muss noch
 // implementiert werden
 @Entity
@@ -38,8 +36,7 @@ public class Prescription {
 	@ManyToOne
 	private Meeting meeting;
 
-	public Prescription(String medication, int dosisInMilligrams,
-			DateRange validity) {
+	public Prescription(String medication, int dosisInMilligrams, DateRange validity) {
 		this.medication = medication;
 		this.dosisInMilligrams = dosisInMilligrams;
 		// this.validity = validity;

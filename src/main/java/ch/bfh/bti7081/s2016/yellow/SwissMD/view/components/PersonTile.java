@@ -4,12 +4,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
-
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
+
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 
 public class PersonTile extends CustomComponent {
 	private PersonDTO person;
@@ -21,8 +21,7 @@ public class PersonTile extends CustomComponent {
 
 		VerticalLayout contentLayout = new VerticalLayout();
 		contentLayout.addComponent(new Label("Name: " + person.getName()));
-		contentLayout.addComponent(new Label("Alter: "
-				+ getAge(new Date(), person.getBirthdate())));
+		contentLayout.addComponent(new Label("Alter: " + getAge(new Date(), person.getBirthdate())));
 		contentLayout.setMargin(true);
 
 		tile.setContent(contentLayout);

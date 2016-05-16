@@ -1,12 +1,12 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.NavigatorUI;
-
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.MenuBar;
+
+import ch.bfh.bti7081.s2016.yellow.SwissMD.NavigatorUI;
 
 /**
  * Diese Klasse stellt das Navigationsmenü dar und wird von allen Views
@@ -38,14 +38,12 @@ public class NavigationsMenu extends CustomComponent {
 	}
 
 	private Button createPersonSearchViewButton() {
-		Button button = new Button("PersonSearchView",
-				new Button.ClickListener() {
-					@Override
-					public void buttonClick(ClickEvent event) {
-						getUI().getNavigator().navigateTo(
-								NavigatorUI.PERSONSEARCHVIEW);
-					}
-				});
+		Button button = new Button("PersonSearchView", new Button.ClickListener() {
+			@Override
+			public void buttonClick(ClickEvent event) {
+				getUI().getNavigator().navigateTo(NavigatorUI.PERSONSEARCHVIEW);
+			}
+		});
 		return button;
 	}
 
@@ -60,14 +58,12 @@ public class NavigationsMenu extends CustomComponent {
 	}
 
 	private Button createPrescriptionViewButton() {
-		Button button = new Button("PrescriptionView",
-				new Button.ClickListener() {
-					@Override
-					public void buttonClick(ClickEvent event) {
-						getUI().getNavigator().navigateTo(
-								NavigatorUI.PRESCRIPTIONVIEW);
-					}
-				});
+		Button button = new Button("PrescriptionView", new Button.ClickListener() {
+			@Override
+			public void buttonClick(ClickEvent event) {
+				getUI().getNavigator().navigateTo(NavigatorUI.PRESCRIPTIONVIEW);
+			}
+		});
 		return button;
 	}
 
@@ -85,8 +81,7 @@ public class NavigationsMenu extends CustomComponent {
 		Button button = new Button("MeetingView", new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
-				getUI().getNavigator().navigateTo(
-						NavigatorUI.MEETINGVIEW + "/Hanpeter");
+				getUI().getNavigator().navigateTo(NavigatorUI.MEETINGVIEW + "/Hanspeter");
 			}
 		});
 		return button;

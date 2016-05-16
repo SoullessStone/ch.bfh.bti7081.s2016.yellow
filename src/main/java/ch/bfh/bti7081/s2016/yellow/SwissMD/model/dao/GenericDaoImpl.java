@@ -7,13 +7,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- * Implementation of the {@code GenericDao} interface. 
+ * Implementation of the {@code GenericDao} interface.
  * 
  * @author K.Suter
  * 
- * */
-public class GenericDaoImpl<T, PK extends Serializable> implements
-		GenericDao<T, PK> {
+ */
+public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T, PK> {
 
 	protected Class<T> entityClass;
 
@@ -21,10 +20,8 @@ public class GenericDaoImpl<T, PK extends Serializable> implements
 	protected EntityManager entityManager;
 
 	public GenericDaoImpl() {
-		ParameterizedType genericSuperclass = (ParameterizedType) getClass()
-				.getGenericSuperclass();
-		this.entityClass = (Class<T>) genericSuperclass
-				.getActualTypeArguments()[0];
+		ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
+		this.entityClass = (Class<T>) genericSuperclass.getActualTypeArguments()[0];
 	}
 
 	@Override

@@ -8,8 +8,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Person;
-
 public class HibernateTest {
 
 	public static void main(String[] args) {
@@ -25,7 +23,7 @@ public class HibernateTest {
 		entityManager.persist(new Patient("Sick Billy", new Date()));
 
 		entityManager.getTransaction().commit();
-		
+
 		Query q = entityManager.createQuery("From Person ");
 
 		List<Person> resultList = q.getResultList();

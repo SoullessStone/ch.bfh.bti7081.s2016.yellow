@@ -1,14 +1,14 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.WikiPresenter;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.WikiPresenter.ArtikelId;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.NavigationsMenu;
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
+
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.WikiPresenter;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.WikiPresenter.ArtikelId;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.NavigationsMenu;
 
 // Just do
 @SuppressWarnings("serial")
@@ -21,9 +21,7 @@ public class WikiView extends VerticalLayout implements View {
 		setSpacing(true);
 		addComponent(new NavigationsMenu());
 		addComponent(headingLabel());
-		wikiText = new Label(
-				wikiPresenter.getWikiText(ArtikelId.ANGSTZUSTAENDE),
-				ContentMode.HTML);
+		wikiText = new Label(wikiPresenter.getWikiText(ArtikelId.ANGSTZUSTAENDE), ContentMode.HTML);
 		addComponent(wikiText);
 	}
 

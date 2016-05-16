@@ -3,11 +3,11 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 import java.util.Date;
 
 /**
- * Data transfer object for a  {@code Person} entity. To use in the views.
+ * Data transfer object for a {@code Person} entity. To use in the views.
  * 
  * @author K.Suter
  * 
- * */
+ */
 public class PersonDTO {
 	private String name;
 	private Date birthdate;
