@@ -6,7 +6,6 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PrescriptionPresenter;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.NavigationsMenu;
 
 // Can change Perscriptions
 // Can create Perscriptions
@@ -18,7 +17,7 @@ public class PrescriptionView extends VerticalLayout implements View {
 	public PrescriptionView() {
 		setSizeFull();
 		setSpacing(true);
-		addComponent(new NavigationsMenu());
+		//addComponent(new NavigationsMenu());
 		addComponent(headingLabel());
 	}
 

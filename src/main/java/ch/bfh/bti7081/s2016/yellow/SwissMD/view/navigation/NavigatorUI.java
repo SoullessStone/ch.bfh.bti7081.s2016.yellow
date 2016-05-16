@@ -1,16 +1,8 @@
-package ch.bfh.bti7081.s2016.yellow.SwissMD;
+package ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation;
+
+import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
-
-import com.vaadin.annotations.Theme;
-import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.annotations.Widgetset;
-import com.vaadin.navigator.Navigator;
-import com.vaadin.navigator.Navigator.ComponentContainerViewDisplay;
-import com.vaadin.server.VaadinRequest;
-import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.LoginView;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.MeetingView;
@@ -19,6 +11,17 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonView;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PrescriptionView;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.WikiView;
 
+import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.annotations.Widgetset;
+import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.Navigator.ComponentContainerViewDisplay;
+import com.vaadin.navigator.View;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinServlet;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
+
 // https://github.com/degiere/vaadin-navigation-example
 
 @Theme("mytheme")
@@ -26,12 +29,10 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.WikiView;
 public class NavigatorUI extends UI {
 
 	public Navigator navigator;
+	
+	private List<View> views;
 
-	public static final String PERSONSEARCHVIEW = "PERSONSEARCH";
-	public static final String PERSONVIEW = "PERSONVIEW";
-	public static final String PRESCRIPTIONVIEW = "PRESCRIPTIONVIEW";
-	public static final String WIKIVIEW = "WIKIVIEW";
-	public static final String MEETINGVIEW = "MEETINGVIEW";
+
 
 	@Override
 	protected void init(VaadinRequest request) {
@@ -40,15 +41,29 @@ public class NavigatorUI extends UI {
 		layout.setMargin(true);
 		layout.setSpacing(true);
 		setContent(layout);
-		ComponentContainerViewDisplay viewDisplay = new ComponentContainerViewDisplay(layout);
+		ComponentContainerViewDisplay viewDisplay = new ComponentContainerViewDisplay(
+				layout);
+		
 		navigator = new Navigator(UI.getCurrent(), viewDisplay);
+		
+		for (NavigationIndex index : NavigationIndex.values()){
+			String navPath = index.getNavigationPath();
+			//View view = (View) index.getViewClass().newInstance();
+			navigator.addView(navPath, index.getViewClass());
+		}
+				
+		/*
 		navigator.addView("", new LoginView());
 		navigator.addView(PERSONSEARCHVIEW, new PersonSearchView());
 		navigator.addView(PERSONVIEW, new PersonView());
 		navigator.addView(PRESCRIPTIONVIEW, new PrescriptionView());
 		navigator.addView(WIKIVIEW, new WikiView());
-		navigator.addView(MEETINGVIEW, new MeetingView());
+		navigator.addView(MEETINGVIEW, new MeetingView());*/
 
+	}
+	
+	List<View> getViews(){
+		return views;
 	}
 
 	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

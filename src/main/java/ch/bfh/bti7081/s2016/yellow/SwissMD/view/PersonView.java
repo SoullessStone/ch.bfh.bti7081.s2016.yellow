@@ -19,7 +19,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MeetingTile;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.NavigationsMenu;
 
 @SuppressWarnings("serial")
 public class PersonView extends VerticalLayout implements View {
@@ -28,7 +27,7 @@ public class PersonView extends VerticalLayout implements View {
 	public PersonView() {
 		setSizeFull();
 		setSpacing(true);
-		addComponent(new NavigationsMenu());
+		//addComponent(new NavigationsMenu());
 		addComponent(headingLabel());
 
 		List<PrescriptionDTO> medis = new ArrayList();

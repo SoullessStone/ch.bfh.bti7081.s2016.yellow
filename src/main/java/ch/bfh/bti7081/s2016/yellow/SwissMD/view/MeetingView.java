@@ -1,12 +1,25 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PrescriptionTile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayout;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationsMenu;
+
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.shared.ui.datefield.Resolution;
+import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
@@ -15,46 +28,44 @@ import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.NavigationsMenu;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PrescriptionTile;
-
 @SuppressWarnings("serial")
-public class MeetingView extends VerticalLayout implements View {
+public class MeetingView extends CustomComponent implements View {
 	private MeetingPresenter meetingPresenter = new MeetingPresenter(this);
+	private BaseLayout layout;
 
 	public MeetingView() {
 		// Daten laden vom Presenter laden
-		this.addComponent(new NavigationsMenu());
-		this.addComponent(headingLabel());
-		this.addComponent(getSaveButton());
-		this.setSizeFull();
-		this.setSpacing(true);
+		setSizeFull();
+		
+		layout = TileLayoutFactory.getInstance().createLayout(3);
+		//layout.addComponent(headingLabel());
 
-		GridLayout grid = new GridLayout(3, 1);
-		grid.setSpacing(true);
-
-		VerticalLayout verticalLayoutLeft = new VerticalLayout();
-		verticalLayoutLeft.setSpacing(true);
-		verticalLayoutLeft.addComponent(getAppointmentTimeDateField());
+		Tile appointmentTile = new Tile();
+		appointmentTile.addComponent(getAppointmentTimeDateField());
+		layout.addComponent(appointmentTile);
 		// TODO: Durch richtige Daten erweitern
-		verticalLayoutLeft.addComponent(new PersonTile(meetingPresenter.getPatientForMeeting(4321), "Patient"));
 
-		verticalLayoutLeft.addComponent(new PersonTile(meetingPresenter.getDoctorForMeeting(4321), "Arzt"));
-		grid.addComponent(verticalLayoutLeft, 0, 0);
+		layout.addComponent(new PersonTile(meetingPresenter
+				.getPatientForMeeting(4321), "Patient"));
 
-		grid.addComponent(getNoteArea(), 1, 0);
+		layout.addComponent(new PersonTile(meetingPresenter
+				.getDoctorForMeeting(4321), "Arzt"));
 
-		VerticalLayout verticalLayoutRight = new VerticalLayout();
-		verticalLayoutRight.setSpacing(true);
-		verticalLayoutRight.addComponent(getAddPrescriptionButton());
-		verticalLayoutRight
-				.addComponent(new PrescriptionTile(meetingPresenter.getPerscriptionsForMeeting(4321).get(0)));
-		grid.addComponent(verticalLayoutRight, 2, 0);
 
-		this.addComponent(grid);
+		Tile meetingTile = new Tile();
+		meetingTile.addComponent(getNoteArea());
+		meetingTile.addComponent(getSaveButton());
+		layout.addComponent(meetingTile);
+		layout.createRowBrake();
+
+
+		Tile prescriptionTile = new PrescriptionTile(meetingPresenter
+				.getPerscriptionsForMeeting(4321).get(0));
+		
+		prescriptionTile.addComponent(getAddPrescriptionButton());
+		layout.addComponent(prescriptionTile);
+
+		setCompositionRoot(layout.toVaadinComponent());
 	}
 
 	private Button getAddPrescriptionButton() {
@@ -91,6 +102,8 @@ public class MeetingView extends VerticalLayout implements View {
 	private Component getNoteArea() {
 		TextArea area = new TextArea("Sitzungsnotizen");
 		area.setRows(15);
+		//area.setWidth(100, Unit.PERCENTAGE);
+		//area.setSizeFull();
 		area.setWidth(400, Unit.PIXELS);
 		return area;
 	}
