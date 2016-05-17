@@ -33,18 +33,15 @@ Current total: 85/90
 | 03.05.2016 | all | 4h | Course + CS 1 IDE Setup + CS1 Task 9: Preparation |
 | 09.05.2016 | all | 4h | Course + CS1 Task 9: Presentation + CS1 Task 10: Scrum Setup  |
 | 10.05.2016 | all | 4h | Course + CS1 Task 11: Start Development Phase Scrum Sprint 1 |
+| 17.05.2016 | all | 4h | Course + CS1 Task 11: Scrum Sprint 1 (Daily Scrum Meeting & Next Steps) |
 
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
-| CS1 Task 11: Sprint 1  | Session handling, enable navigation, Vaadin seup (ID 11)   | suter, utz | open | 14.05.2016 |
-| CS1 Task 11: Sprint 1  | Create DB tables (ID 11)   | halter | open | 15.05.2016 |
-| CS1 Task 11: Sprint 1  | Add mock data to DB (ID 11)   | zumstein | open | 15.05.2016 |
-| CS1 Task 11: Sprint 1  | Create base layout (ID 11) | tbd | open | 22.05.2016 |
-| CS1 Task 11: Sprint 1  | Create meeting notes view (ID 4) | tbd | open | 22.05.2016 |
+| CS1 Task 11: Sprint 1  | Create meeting notes view (ID 4) | zumstein, utz | open | 22.05.2016 |
 | CS1 Task 11: Sprint 1  | Create overview view (ID 1) | tbd | open | 22.05.2016 |
-| CS1 Task 11: Sprint 1  | Create meeting notes model (ID 4) | tbd | open | 22.05.2016 |
-| CS1 Task 11: Sprint 1  | Create meeting notes presenter (ID 4) | tbd | open | 22.05.2016 |
+| CS1 Task 11: Sprint 1  | Create meeting notes model (ID 4) | zumstein | open | 22.05.2016 |
+| CS1 Task 11: Sprint 1  | Create meeting notes presenter (ID 4) | zumstein | open | 22.05.2016 |
 | CS1 Task 11: Sprint 1  | Create patient model (ID 1) | tbd | open | 22.05.2016 |
 | CS1 Task 11: Sprint 1  | Create overview presenter (ID 1) | tbd | open | 22.05.2016 |
 
@@ -90,3 +87,7 @@ Current total: 85/90
 | CS1 Task 9: Software Architecture | Prepare presentation | zumstein | done |  09.05.2016 |
 | CS1 Task 10: Scrum setup | Define scrum project team, create product backlog and sprint backlog | alle | done |  09.05.2016 |
 | CS1 Task 10: Scrum setup | Presentation of Scrum setup | suter | done |  09.05.2016 |
+| CS1 Task 11: Sprint 1  | Session handling, enable navigation, Vaadin seup (ID 11)   | suter, utz | done | 14.05.2016 |
+| CS1 Task 11: Sprint 1  | Create DB tables (ID 11)   | halter | done | 15.05.2016 |
+| CS1 Task 11: Sprint 1  | Add mock data to DB (ID 11)   | zumstein | done | 15.05.2016 |
+| CS1 Task 11: Sprint 1  | Create base layout (ID 11) | nussbaum | done | 22.05.2016 |
