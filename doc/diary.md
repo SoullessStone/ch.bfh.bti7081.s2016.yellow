@@ -39,11 +39,11 @@ Current total: 85/90
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
 | CS1 Task 11: Sprint 1  | Create meeting notes view (ID 4) | zumstein, utz | open | 22.05.2016 |
-| CS1 Task 11: Sprint 1  | Create overview view (ID 1) | tbd | open | 22.05.2016 |
+| CS1 Task 11: Sprint 1  | Create overview view (ID 1) | schaad | open | 22.05.2016 |
 | CS1 Task 11: Sprint 1  | Create meeting notes model (ID 4) | zumstein | open | 22.05.2016 |
 | CS1 Task 11: Sprint 1  | Create meeting notes presenter (ID 4) | zumstein | open | 22.05.2016 |
-| CS1 Task 11: Sprint 1  | Create patient model (ID 1) | tbd | open | 22.05.2016 |
-| CS1 Task 11: Sprint 1  | Create overview presenter (ID 1) | tbd | open | 22.05.2016 |
+| CS1 Task 11: Sprint 1  | Create patient model (ID 1) | tbd | schaad | 22.05.2016 |
+| CS1 Task 11: Sprint 1  | Create overview presenter (ID 1) | schaad | open | 22.05.2016 |
 
 ### Completed Tasks
 | Name  | What | Assignee(s)  | Status (done) | Deadline  |
