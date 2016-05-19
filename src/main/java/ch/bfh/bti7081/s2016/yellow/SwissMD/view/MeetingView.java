@@ -1,7 +1,9 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.DrugTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PrescriptionTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
@@ -64,7 +66,7 @@ public class MeetingView extends CustomComponent implements View {
 		
 		prescriptionTile.addComponent(getAddPrescriptionButton());
 		layout.addComponent(prescriptionTile);
-
+		
 		setCompositionRoot(layout.toVaadinComponent());
 	}
 
@@ -75,7 +77,11 @@ public class MeetingView extends CustomComponent implements View {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				// TODO: DO IT!
-				Notification.show("TODO", Type.WARNING_MESSAGE);
+				//Notification.show("TODO", Type.WARNING_MESSAGE);				
+				Tile drugTile = new DrugTile(meetingPresenter
+						.getDrugForMeeting(4321), "Neues Medikament");
+				drugTile.addComponent(getNewDrugButton());
+				layout.addComponent(drugTile);
 			}
 		});
 		return b;
@@ -99,6 +105,25 @@ public class MeetingView extends CustomComponent implements View {
 		return b;
 	}
 
+	private Button getNewDrugButton() {
+		Button saveNewDrug = new Button("Verordnen");
+		saveNewDrug.addClickListener(new ClickListener() {
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				// TODO: call Presenter mit richtigen Daten
+				try {
+					// TODO: DO IT!
+					meetingPresenter.save();
+					Notification.show("TODO", Type.HUMANIZED_MESSAGE);
+				} catch (CouldNotSaveException e) {
+					Notification.show("Änderungen konnten nicht gespeichert werden", Type.ERROR_MESSAGE);
+				}
+			}
+		});
+		return saveNewDrug;
+	}
+	
 	private Component getNoteArea() {
 		TextArea area = new TextArea("Sitzungsnotizen");
 		area.setRows(15);

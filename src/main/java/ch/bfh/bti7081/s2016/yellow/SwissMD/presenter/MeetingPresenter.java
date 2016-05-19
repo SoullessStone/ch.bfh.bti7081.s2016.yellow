@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
@@ -34,6 +35,11 @@ public class MeetingPresenter {
 		return new PersonDTO("Dieter Dümmlich", new Date(9997564000L));
 	}
 
+	public DrugDTO getDrugForMeeting(int i) {
+		// TODO: Real Data
+		return new DrugDTO("Aspirin", "Acidum acetylsalicylicum","324 mg",  8);
+	}
+	
 	public List<PrescriptionDTO> getPerscriptionsForMeeting(int i) {
 		// TODO: Real Data
 		return Arrays.asList(new PrescriptionDTO("Aspirin", 1_000,

@@ -15,7 +15,7 @@ public enum NavigationIndex {
 	PRESCRIPTIONVIEW  ("PRESCRIPTIONVIEW", PrescriptionView.class),
 	WIKIVIEW ("WIKIVIEW",WikiView.class),
 	MEETINGVIEW ("MEETINGVIEW", MeetingView.class);
-	
+
 	private final String navigationPath;
 	private final Class viewClass;
 	
