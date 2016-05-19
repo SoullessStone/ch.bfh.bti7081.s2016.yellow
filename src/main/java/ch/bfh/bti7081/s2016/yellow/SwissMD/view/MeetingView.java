@@ -79,7 +79,7 @@ public class MeetingView extends CustomComponent implements View {
 				// TODO: DO IT!
 				//Notification.show("TODO", Type.WARNING_MESSAGE);				
 				Tile drugTile = new DrugTile(meetingPresenter
-						.getDrugForMeeting(4321), "Neues Medikament");
+						.getDrugForMeeting(4321).get(0));
 				drugTile.addComponent(getNewDrugButton());
 				layout.addComponent(drugTile);
 			}

@@ -35,9 +35,11 @@ public class MeetingPresenter {
 		return new PersonDTO("Dieter Dümmlich", new Date(9997564000L));
 	}
 
-	public DrugDTO getDrugForMeeting(int i) {
+	public List<DrugDTO> getDrugForMeeting(int i) {
 		// TODO: Real Data
-		return new DrugDTO("Aspirin", "Acidum acetylsalicylicum","324 mg",  8);
+		//return new DrugDTO("Aspirin", "Acidum acetylsalicylicum","324 mg",  8);
+		return Arrays.asList(new DrugDTO("Aspirin", "Acidum acetylsalicylicum","324 mg",  8),
+				new DrugDTO("Gracial", "Desogestrel; Ethinylestradiol","0,025 mg Desogestrel, 0,040 mg Ethinylestradiol",  1));
 	}
 	
 	public List<PrescriptionDTO> getPerscriptionsForMeeting(int i) {

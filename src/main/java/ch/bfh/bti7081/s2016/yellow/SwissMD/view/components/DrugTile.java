@@ -20,9 +20,8 @@ public class DrugTile extends Tile {
 	private DrugDTO drug;
 	private String currentDrug;
 
-	public DrugTile(DrugDTO drugDTO, String title) {
+	public DrugTile(DrugDTO drugDTO) {
 		this.drug = drugDTO;
-		setTitle(title);
 		// TO DO: reale Daten (Liste einlesen)
 		currentDrug = drug.getTradeName() + " " + drug.getSubstance() + " " + drug.getSubstanceQuantitiy() + " " + drug.getMaxDose() + " Tabletten";
 		ComboBox selectDrug = new ComboBox("Medikamente");
