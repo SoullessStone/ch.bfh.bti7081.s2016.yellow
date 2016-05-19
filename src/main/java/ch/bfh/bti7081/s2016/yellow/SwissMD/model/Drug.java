@@ -3,13 +3,10 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
-
 /**
- * Entity that represents a srug. To use in the data access layer.
+ * Entity that represents a drug. To use in the data access layer.
  * 
  * @author D. Halter
  * 

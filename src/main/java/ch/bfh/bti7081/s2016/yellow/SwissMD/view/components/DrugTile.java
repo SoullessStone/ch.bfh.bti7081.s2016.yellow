@@ -22,11 +22,13 @@ public class DrugTile extends Tile {
 
 	public DrugTile(DrugDTO drugDTO) {
 		this.drug = drugDTO;
+		setTitle("Neues Medikament verordnen");
 		// TO DO: reale Daten (Liste einlesen)
 		currentDrug = drug.getTradeName() + " " + drug.getSubstance() + " " + drug.getSubstanceQuantitiy() + " " + drug.getMaxDose() + " Tabletten";
 		ComboBox selectDrug = new ComboBox("Medikamente");
 		selectDrug.addItem(currentDrug);
 		addComponent(selectDrug);
+		contentLayout.setMargin(true);
 		System.out.println("drug tile created");
 	}
 
