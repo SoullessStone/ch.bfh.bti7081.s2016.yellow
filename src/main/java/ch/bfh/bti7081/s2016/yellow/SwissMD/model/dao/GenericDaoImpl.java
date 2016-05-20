@@ -2,6 +2,8 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author K.Suter
  * 
  */
-public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T, PK> {
+public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T, ID> {
 
 	protected Class<T> entityClass;
 
@@ -25,13 +27,13 @@ public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T,
 	}
 
 	@Override
-	public T create(T t) {
+	public T persist(T t) {
 		this.entityManager.persist(t);
 		return t;
 	}
 
 	@Override
-	public T read(PK id) {
+	public T findById(ID id) {
 		return this.entityManager.find(entityClass, id);
 	}
 
@@ -41,8 +43,28 @@ public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T,
 	}
 
 	@Override
-	public void delete(T t) {
+	public void remove(T t) {
 		t = this.entityManager.merge(t);
 		this.entityManager.remove(t);
+	}
+
+	@Override
+	public List<T> findByIds(List<ID> ids) {
+		if (ids == null || ids.isEmpty()) {
+			return new ArrayList<>();
+		}
+		
+		List<T> resultList = new ArrayList<T>(ids.size());
+		for (ID id:ids) {
+			resultList.add(findById(id));
+		}
+		
+		return null;
+	}
+
+	@Override
+	public T findByField(String fieldName, Object value) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
