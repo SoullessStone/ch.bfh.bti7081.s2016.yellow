@@ -7,7 +7,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
  * @author D. Halter
  * 
  */
-public class DrugDTO {
+public class DrugDTO extends GenericDTO {
 	private String tradeName;
 	private String substance;
 	private String SubstanceQuantitiy;
@@ -18,6 +18,10 @@ public class DrugDTO {
 		this.substance = substance;
 		this.SubstanceQuantitiy = SubstanceQuantitiy;
 		this.maxDose = maxDose;
+	}
+	
+	public DrugDTO(String tradeName) {
+		this.tradeName = tradeName;
 	}
 
 	public String getTradeName() {

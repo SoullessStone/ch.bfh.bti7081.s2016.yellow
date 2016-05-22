@@ -8,7 +8,7 @@ import java.util.Date;
  * @author K.Suter
  * 
  */
-public class PersonDTO {
+public class PersonDTO extends GenericDTO {
 	private String name;
 	private Date birthdate;
 

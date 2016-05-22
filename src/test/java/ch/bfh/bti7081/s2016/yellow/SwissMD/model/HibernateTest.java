@@ -8,6 +8,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Doctor;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
+
 public class HibernateTest {
 
 	public static void main(String[] args) {

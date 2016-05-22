@@ -5,17 +5,14 @@ import java.util.Date;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
-import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.VerticalLayout;
 
 public class PrescriptionTile extends Tile {
 	private PrescriptionDTO prescription;
 
 	public PrescriptionTile(PrescriptionDTO PrescriptionDTO) {
 		this.prescription = PrescriptionDTO;
-		setTitle(prescription.getMedication());
+		setTitle(prescription.getMedication().getTradeName());
 		
 		addComponent(new Label("Dosis: "
 				+ prescription.getDosisInMilligrams() + "mg"));

@@ -34,7 +34,7 @@ public class NavigationsMenu extends CustomComponent {
 		layout.addComponent(createViewButton(NavigationIndex.PERSONVIEW.getNavigationPath(),"Person"));
 		layout.addComponent(createViewButton(NavigationIndex.PRESCRIPTIONVIEW.getNavigationPath(),"Prescription"));
 		layout.addComponent(createViewButton(NavigationIndex.WIKIVIEW.getNavigationPath(),"PersonSearch"));
-		layout.addComponent(createViewButton(NavigationIndex.MEETINGVIEW.getNavigationPath()+ "/Hanpeter","Meeting"));
+		layout.addComponent(createViewButton(NavigationIndex.MEETINGVIEW.getNavigationPath()+ "/3","Meeting"));
 
 		layout.addComponent(logoutButton());
 		layout.setSizeUndefined();

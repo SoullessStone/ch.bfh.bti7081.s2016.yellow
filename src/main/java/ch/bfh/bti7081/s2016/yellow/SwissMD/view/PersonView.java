@@ -12,9 +12,15 @@ import com.vaadin.ui.VerticalLayout;
 // When navigated to from PersonSearch: Shows the chosen Person
 // Can show Person, Doctor and Patient
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Doctor;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Patient;
+
+
+
+
+
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
@@ -31,13 +37,13 @@ public class PersonView extends VerticalLayout implements View {
 		addComponent(headingLabel());
 
 		List<PrescriptionDTO> medis = new ArrayList();
-		medis.add(new PrescriptionDTO("Aspirin", 50,
+		medis.add(new PrescriptionDTO(new DrugDTO("Aspirin"), 50,
 				new DateRange(new Date(), new Date(new Date().getTime() + 1000000))));
-		medis.add(new PrescriptionDTO("Alcacyl", 50,
+		medis.add(new PrescriptionDTO(new DrugDTO("Alcacyl"), 50,
 				new DateRange(new Date(), new Date(new Date().getTime() + 1000000))));
-		medis.add(new PrescriptionDTO("Gift", 50, new DateRange(new Date(), new Date(new Date().getTime() + 1000000))));
-		addComponent(new MeetingTile(new MeetingDTO(new Patient("Franz Erl", new Date(-620438400000L)),
-				new Doctor("Doktor Who", new Date(335145600000L)), new Date(1457802000000L), medis)));
+		medis.add(new PrescriptionDTO(new DrugDTO("Gift"), 50, new DateRange(new Date(), new Date(new Date().getTime() + 1000000))));
+		addComponent(new MeetingTile(new MeetingDTO(new PatientDTO("Franz Erl", new Date(-620438400000L)),
+				new DoctorDTO("Doktor Who", new Date(335145600000L)), new Date(1457802000000L))));
 		setSizeFull();
 		setSpacing(true);
 	}

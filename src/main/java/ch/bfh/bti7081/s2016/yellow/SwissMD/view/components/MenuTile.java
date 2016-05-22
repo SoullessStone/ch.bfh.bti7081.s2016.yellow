@@ -16,7 +16,7 @@ public class MenuTile extends Tile {
 		addComponent(createViewButton(NavigationIndex.PERSONVIEW.getNavigationPath(),"Person"));
 		addComponent(createViewButton(NavigationIndex.PRESCRIPTIONVIEW.getNavigationPath(),"Prescription"));
 		addComponent(createViewButton(NavigationIndex.WIKIVIEW.getNavigationPath(),"PersonSearch"));
-		addComponent(createViewButton(NavigationIndex.MEETINGVIEW.getNavigationPath()+ "/Hanpeter","Meeting"));
+		addComponent(createViewButton(NavigationIndex.MEETINGVIEW.getNavigationPath()+ "/3","Meeting"));
 		
 		addComponent(logoutButton());
 

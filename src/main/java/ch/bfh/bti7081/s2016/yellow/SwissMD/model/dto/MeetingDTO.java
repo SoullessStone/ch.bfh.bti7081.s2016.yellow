@@ -5,9 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Doctor;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Patient;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Prescription;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Doctor;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
 
 /**
  * Data transfer object for a {@code Meeting} entity. To use in the views.
@@ -15,49 +15,40 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.Prescription;
  * @author K.Suter
  * 
  */
-public class MeetingDTO {
+public class MeetingDTO extends GenericDTO{
 
-	private Long id;
+	private PatientDTO patient;
 
-	// TODO: PatientDTO
-	private Patient patient;
-
-	// TODO: DoctorDTO
-	private Doctor doctor;
+	private DoctorDTO doctor;
 
 	// TODO: Gemäss classmodel muss das eine Liste von Sitzungseinträgen werden.
 	private String notes;
-
-	private List<PrescriptionDTO> prescriptions;
 
 	private Date appointmentTime;
 
 	// TODO: Braucht es noch eine Duration?
 
-	public MeetingDTO(Patient patient, Doctor doctor, Date appointmentTime) {
+	public MeetingDTO(PatientDTO patient, DoctorDTO doctor, Date appointmentTime) {
 		this.patient = patient;
 		this.doctor = doctor;
 		this.appointmentTime = appointmentTime;
 	}
 
-	public MeetingDTO(Patient patient, Doctor doctor, Date appointmentTime, List<PrescriptionDTO> prescriptions) {
-		this(patient, doctor, appointmentTime);
-		this.prescriptions = prescriptions;
-	}
+	public MeetingDTO(){}
 
-	public Patient getPatient() {
+	public PatientDTO getPatient() {
 		return patient;
 	}
 
-	public void setPatient(Patient patient) {
+	public void setPatient(PatientDTO patient) {
 		this.patient = patient;
 	}
 
-	public Doctor getDoctor() {
+	public DoctorDTO getDoctor() {
 		return doctor;
 	}
 
-	public void setDoctor(Doctor doctor) {
+	public void setDoctor(DoctorDTO doctor) {
 		this.doctor = doctor;
 	}
 
@@ -67,19 +58,6 @@ public class MeetingDTO {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
-	}
-
-	public List<PrescriptionDTO> getPrescriptions() {
-		// TODO: Copyof zurückgeben?
-		return prescriptions;
-	}
-
-	public void addPrescription(PrescriptionDTO prescription) {
-		this.prescriptions.add(prescription);
-	}
-
-	public void removePrescription(Prescription prescription) {
-		this.prescriptions.remove(prescription);
 	}
 
 	public Date getAppointmentTime() {
