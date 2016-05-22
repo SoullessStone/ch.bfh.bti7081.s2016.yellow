@@ -14,37 +14,44 @@ import com.vaadin.ui.VerticalLayout;
 public class Tile extends TileLayoutComponent {	
 
 	private String title;
-	protected Panel tile;
+	protected Panel tile= new Panel();
+
 	
 	protected AbstractOrderedLayout contentLayout;
 	
-	public Tile(){
-		tile = new Panel();
-		title="";
+	public Tile(String title){
+		setTitle(title);
+		setCompositionRoot(tile);
 		createDefaultLayout();
-		System.out.println("tile created");
+	}
+	
+	public Tile(){
+		this("");
 	}
 
 	protected void createDefaultLayout() {
 		contentLayout = new VerticalLayout();
+		contentLayout.setSpacing(true);
 		contentLayout.setMargin(true);
-	
 		tile.setContent(contentLayout);
-		setCompositionRoot(tile);
+		setWidth("100%");
+		setStdWidth(1);
 	}
 	
 	public void setTitle(String title){
+		this.title = title;
 		tile.setCaption(title);
+	}
+	
+	public String getTitle(){
+		return title;
 	}
 	
 	public void addComponent(Component c){
 		contentLayout.addComponent(c);
 	}
+	
 
-	@Override
-	public void applyWidth() {
-		setWidth(width, Unit.PIXELS);	
-	}
 	
 
 }

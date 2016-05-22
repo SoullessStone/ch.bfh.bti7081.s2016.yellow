@@ -10,27 +10,25 @@ import com.vaadin.ui.VerticalLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
-public class MeetingTile extends CustomComponent {
+public class MeetingTile extends Tile {
 	private MeetingDTO meeting;
 
 	public MeetingTile(MeetingDTO MeetingDTO) {
 		this.meeting = MeetingDTO;
 
-		Panel tile = new Panel(meeting.getAppointmentTimeString());
+		setTitle(meeting.getAppointmentTimeString());
 
-		VerticalLayout contentLayout = new VerticalLayout();
-		contentLayout.addComponent(new Label("Patient: " + meeting.getPatient().getName()));
-		contentLayout.addComponent(new Label("Arzt: " + meeting.getDoctor().getName()));
+		addComponent(new Label("Patient: " + meeting.getPatient().getName()));
+		addComponent(new Label("Arzt: " + meeting.getDoctor().getName()));
+		
 		List<PrescriptionDTO> prescriptions = meeting.getPatient().getPrescriptions();
+		
 		if (prescriptions != null && !prescriptions.isEmpty()) {
-			contentLayout.addComponent(new Label("Rezeptverschreibungen: " + prescriptions.size()));
+			addComponent(new Label("Rezeptverschreibungen: " + prescriptions.size()));
 		}
-		contentLayout.setMargin(true);
 
-		tile.setContent(contentLayout);
-		tile.setWidth(300, Unit.PIXELS);
-		setCompositionRoot(tile);
 	}
 
 }

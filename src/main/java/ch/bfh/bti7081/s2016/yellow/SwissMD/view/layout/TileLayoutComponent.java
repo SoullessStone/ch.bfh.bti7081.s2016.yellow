@@ -11,22 +11,21 @@ public abstract class TileLayoutComponent extends CustomComponent {
 	private static final long serialVersionUID = -6868160525557566767L;
 	
 	private int rowPos, colPos;
-	protected float width;
+	
+	private int stdWidth;
 	
 	public void setPos(int row, int col){
 		rowPos = row;
 		colPos = col;
 	}
 	
-	public void setWidth(int pixels){
-		width = pixels;
-		applyWidth();
+	public int getStdWidth(){
+		return stdWidth;
+	}
+
+	public void setStdWidth(int stdWidth) {
+		this.stdWidth = stdWidth;
 	}
 	
-	public float getWidth(){
-		return width;
-	}
-	
-	public abstract void applyWidth();
 
 }

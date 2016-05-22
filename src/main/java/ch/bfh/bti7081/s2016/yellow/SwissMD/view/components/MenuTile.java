@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
+import com.vaadin.server.Resource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
@@ -26,7 +27,7 @@ public class MenuTile extends Tile {
 	protected void createDefaultLayout() {
 		contentLayout = new HorizontalLayout();
 		contentLayout.setSizeUndefined();
-		//layout.setSpacing(true);
+		contentLayout.setSpacing(true);
 		tile.setContent(contentLayout);
 		setCompositionRoot(contentLayout);
 	}

@@ -10,24 +10,35 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PrescriptionTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.shared.ui.datefield.Resolution;
+import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.DateField;
+import com.vaadin.ui.GridLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextArea;
+import com.vaadin.ui.VerticalLayout;
 
 import java.text.MessageFormat;
+
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonAreaLayout;
 
 @SuppressWarnings("serial")
 public class MeetingView extends CustomComponent implements View {
@@ -49,6 +60,14 @@ public class MeetingView extends CustomComponent implements View {
 
 	public MeetingView() {
 		System.out.println("INIT");
+		try {
+			layout = LayoutFactory.getInstance(LayoutType.TILE_LAYOUT).createLayout(TileLayoutFactory.Arguments.ELEMENTS_PER_ROW.getName()+":3");
+		} catch (Exception e1) {
+			// TODO Go to error View
+			e1.printStackTrace();
+		}
+		
+		setCompositionRoot(layout);
 	}
 
 	private Button getAddPrescriptionButton() {
@@ -135,10 +154,7 @@ public class MeetingView extends CustomComponent implements View {
 	public void enter(ViewChangeEvent event) {
 		System.out.println("ENTER ");
 
-		setSizeFull();
 
-		layout = TileLayoutFactory.getInstance().createLayout(3);
-		// layout.addComponent(headingLabel());
 
 		System.out.println(event.getParameters());
 		String param = event.getParameters();
@@ -158,34 +174,49 @@ public class MeetingView extends CustomComponent implements View {
 
 				if (meetingDTO != null) {
 
-					Tile appointmentTile = new Tile();
+					Tile appointmentTile = new Tile("Sitzung");
+
 					DateField df = new DateField("Termin");
 					df.setWidth(200, Unit.PIXELS);
 					df.setDateFormat("dd.MM.yyyy HH:mm");
 					df.setResolution(Resolution.MINUTE);
 					this.dateField = df;
 					dateField.setValue(meetingDTO.getAppointmentTime());
+					
 					appointmentTile.addComponent(dateField);
 					layout.addComponent(appointmentTile);
+					
+					layout.addComponent(new PersonTile(meetingDTO.getPatient(),
+							"Patient"));
 
-					Tile meetingTile = new Tile();
+					layout.addComponent(new PersonTile(meetingDTO.getDoctor(),
+							"Arzt"));
 
-					TextArea area = new TextArea("Sitzungsnotizen");
+					Tile meetingTile = new Tile("Sitzungsnotizen");
+					meetingTile.setStdWidth(3);
+					TextArea area = new TextArea();
 					area.setRows(15);
-					// area.setWidth(100, Unit.PERCENTAGE);
-					// area.setSizeFull();
-					area.setWidth(400, Unit.PIXELS);
+					area.setWidth(100, Unit.PERCENTAGE);
 					area.setValue(meetingDTO.getNotes());
 					this.noteArea = area;
 
 					meetingTile.addComponent(this.noteArea);
-					meetingTile.addComponent(getUpdateButton());
-					meetingTile.addComponent(getDeleteButton());
+					HorizontalLayout buttonArea = new HorizontalLayout();
+					buttonArea.addComponent(getUpdateButton());
+					buttonArea.addComponent(getDeleteButton());
+					buttonArea.setSpacing(true);
+					meetingTile.addComponent(buttonArea);
 					layout.addComponent(meetingTile);
 					layout.createRowBrake();
 
 					List<PrescriptionDTO> prescriptions = meetingDTO
 							.getPatient().getPrescriptions();
+					if (prescriptions.isEmpty()){
+						Tile prescriptionTile = new Tile("Verschreibungen");
+						prescriptionTile
+								.addComponent(getAddPrescriptionButton());
+						layout.addComponent(prescriptionTile);
+					}
 					for (PrescriptionDTO prescriptionDTO : prescriptions) {
 						Tile prescriptionTile = new PrescriptionTile(
 								prescriptionDTO);
@@ -194,12 +225,7 @@ public class MeetingView extends CustomComponent implements View {
 						layout.addComponent(prescriptionTile);
 					}
 
-					layout.addComponent(new PersonTile(meetingDTO.getPatient(),
-							"Patient"));
-
-					layout.addComponent(new PersonTile(meetingDTO.getDoctor(),
-							"Arzt"));
-
+					
 				} else {
 					Notification.show(MessageFormat.format(
 							MEETING_WITH_ID_NOT_EXIST, param),
@@ -207,7 +233,7 @@ public class MeetingView extends CustomComponent implements View {
 				}
 			}
 		}
-		setCompositionRoot(layout.toVaadinComponent());
+		layout.finishLayout();
 	}
 
 	private Label headingLabel() {

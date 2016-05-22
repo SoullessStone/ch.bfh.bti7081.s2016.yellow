@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +9,7 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.collections.IteratorUtils;
 import org.apache.commons.collections.map.HashedMap;
 
 import com.google.gwt.dom.client.Element;
@@ -23,22 +26,34 @@ public class TileLayout extends BaseLayout{
 	
 	private VerticalLayout baseLayout;
 	
-	private Map<Integer,HorizontalLayout> rows;
+	private List<HorizontalLayout> rows;
 	
-	private Map<HorizontalLayout,TileLayoutComponent> tiles;
+	//private Map<HorizontalLayout,TileLayoutComponent> tiles;
 	
-	private int maxColumns;
+	private int maxElementsPerRow;
 	
-	public TileLayout(int maxColumns){
+	private boolean autoFill = true;
+	
+	boolean isAutoFill() {
+		return autoFill;
+	}
+
+	void setAutoFill(boolean autoFill) {
+		this.autoFill = autoFill;
+	}
+
+	TileLayout(int maxElementsPerRow){
 		baseLayout = new VerticalLayout();
-		rows = new HashedMap();
-		tiles = new HashedMap();
-		this.maxColumns = maxColumns;
+		//baseLayout.setSizeFull();
+		rows = new ArrayList<>();
+		//tiles = new HashedMap();
+		this.maxElementsPerRow = maxElementsPerRow;
+		setCompositionRoot(baseLayout);
 		createNewRow();
 	}
 	
 	int getDefaultColumNumber() {
-		return maxColumns;
+		return maxElementsPerRow;
 	}
 	
 	public VerticalLayout getBaseLayout(){
@@ -47,34 +62,82 @@ public class TileLayout extends BaseLayout{
 
 	void addRow(HorizontalLayout layout){
 		baseLayout.addComponent(layout);	
-		rows.put(rows.size(), layout);
+		rows.add(layout);
 	}
 	
 	private void addTile(TileLayoutComponent tile){
-		addTile(tile, maxColumns);
+		addTile(tile, maxElementsPerRow);
 	}
 	
-	private void addTile(TileLayoutComponent tile, int colPos){
-		HorizontalLayout currentRow = rows.get(rows.size()-1);
-		if (currentRow.getComponentCount() >= colPos){
+	private void addTile(TileLayoutComponent tile, int elementsPerRow){
+		HorizontalLayout currentRow = getCurrentRow();
+		int currentPos = currentRow.getComponentCount();
+		if (currentPos >= elementsPerRow){
 			createNewRow();
-			currentRow = rows.get(rows.size()-1);
-			colPos = 1;
+			currentRow = getCurrentRow();
+			currentPos = 1;
 		}
+		
+		if ((elementsPerRow - calculateUsedTileSpace(currentRow)) < tile.getStdWidth()){
+			createNewRow();
+			currentRow = getCurrentRow();
+		}
+		
 		currentRow.addComponent(tile);
-		tiles.put(currentRow, tile);
-		tile.setPos(rows.size()-1, colPos);
+		//tiles.put(currentRow, tile);
+		tile.setPos(rows.size()-1, currentPos);
+		System.out.println("set Tile pos to "+(rows.size()-1)+", "+currentPos);
 	}
 	
-	public void createNewRow(){
+	private void calculateElementExpansions(HorizontalLayout row){
+		int usedSize = 0;
+		int maxSize = maxElementsPerRow;
+
+		List<TileLayoutComponent> tiles = getRowElements(row);
+		for (TileLayoutComponent tile : tiles) {
+			if (usedSize >= maxSize){
+				createNewRowContainer();
+				usedSize = 0;
+			}
+			float expandRatio = ((float)tile.getStdWidth())/maxSize;
+			usedSize += tile.getStdWidth();			
+			if (tiles.indexOf(tile) == tiles.size()-1 && usedSize < maxSize){
+				expandRatio = (float)usedSize/maxSize;
+			}
+			row.setExpandRatio(tile, expandRatio);
+		}
+	}
+	
+	public void createNewRow(){	
+		if (!rows.isEmpty()){
+			calculateElementExpansions(getCurrentRow());
+		}
+		createNewRowContainer();
+	}
+	
+	private void createNewRowContainer(){
 		HorizontalLayout horizontalLayout = new HorizontalLayout();
+		horizontalLayout.setWidth("100%");
+		horizontalLayout.setSpacing(true);
 		addRow(horizontalLayout);
 	}
 	
-	/*public void addTile(TileLayoutComponent tile){
-		addRowElement(tile);
-	}*/
+	private HorizontalLayout getCurrentRow() {
+		return rows.get(rows.size()-1);
+	}
 	
+	private List<TileLayoutComponent> getRowElements(HorizontalLayout row){
+		return IteratorUtils.toList(row.iterator());
+	}
+	
+	private int calculateUsedTileSpace(HorizontalLayout row){
+		int usedSpace = 0;
+		for (TileLayoutComponent tile : getRowElements(row)) {
+			usedSpace += tile.getStdWidth();
+		}
+		return usedSpace;
+	}
+
 	@Override
 	public void addComponent(Component component) {
 		addTile((TileLayoutComponent) component);
@@ -82,38 +145,23 @@ public class TileLayout extends BaseLayout{
 
 	@Override
 	public List<Component> getComponents() {
-		return (List<Component>) tiles;
+		List<Component> components = new ArrayList<>();
+		for (HorizontalLayout row : rows) {
+			components.addAll(getRowElements(row));
+		}
+		return components;
 	}
 
 	@Override
 	public void createRowBrake() {
 		createNewRow();	
 	}
-	/*
-	@Override
-	public void replaceComponent(Component oldComponent, Component newComponent) {
-		List<Component> list = tiles.entrySet().stream().filter(c -> c.equals(oldComponent)).map(c -> c.getValue()).map(c -> (Component)c).collect(Collectors.toList());
-		int index = list.indexOf(oldComponent);
-			Component currentComponent = list.get(index);
-			currentComponent = newComponent;
-		//tiles.values().
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
-	public int getComponentCount() {
-		return tiles.size();
-	}
-
-	@Override
-	public Iterator<Component> iterator() {
-		return tiles.entrySet().stream().map(c -> (Component) c).iterator();
-	}*/
-
-	@Override
-	public Component toVaadinComponent() {
-		return getBaseLayout();
+	public void finishLayout() {
+		if (!rows.isEmpty()){
+			calculateElementExpansions(getCurrentRow());
+		}
 	}
 	
 }
