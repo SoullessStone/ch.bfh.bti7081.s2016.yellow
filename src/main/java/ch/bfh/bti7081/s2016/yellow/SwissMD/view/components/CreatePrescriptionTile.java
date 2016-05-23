@@ -38,7 +38,7 @@ public class CreatePrescriptionTile extends Tile {
 		// Combobox mit allen möglichen Medikamenten
 		ComboBox selectDrug = new ComboBox("Medikamente");
 		for (Drug drug : list) {
-			selectDrug.addItem(drug);
+			selectDrug.addItem(drug.getTradeName() + " / " + drug.getSubstance());
 		}
 		addComponent(selectDrug);
 		// Textfeld für die Dosis
