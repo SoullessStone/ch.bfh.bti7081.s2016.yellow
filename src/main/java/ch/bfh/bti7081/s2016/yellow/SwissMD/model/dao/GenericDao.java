@@ -30,7 +30,7 @@ public interface GenericDao<T, ID extends Serializable> {
 	List<T> readAll();
 
 	// find multiple entities in the database
-	List<T> read(List<ID> ids);
+	List<T> readList(List<ID> ids);
 
 	// find entities by field value
 	T readByField(String fieldName, Object value);

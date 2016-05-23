@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
+import java.util.Date;
+
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 
 /**
@@ -11,23 +13,16 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 public class PrescriptionDTO extends GenericDTO {
 	private DrugDTO medication;
 	private int dosisInMilligrams;
-
-	// TODO: CustomType implementieren oder in validFrom und ValidTo aufteilen
-	// private DateRange validity;
-	// private Date validFrom;
-	// private Date validTo;
+	private Date validFrom;
+	private Date validTo;
 
 	public PrescriptionDTO(DrugDTO medication, int dosisInMilligrams,
 			DateRange validity) {
 		this.medication = medication;
 		this.dosisInMilligrams = dosisInMilligrams;
-		// this.validity = validity;
+		this.setValidity(validity);
 	}
 
-	public PrescriptionDTO(DrugDTO medication, int dosisInMilligrams) {
-		this.medication = medication;
-		this.dosisInMilligrams = dosisInMilligrams;
-	}
 
 	public DrugDTO getMedication() {
 		return medication;
@@ -46,12 +41,12 @@ public class PrescriptionDTO extends GenericDTO {
 	}
 
 	public DateRange getValidity() {
-		// return validity;
-		return null;
+		return new DateRange(this.validFrom, this.validTo);
 	}
 
 	public void setValidity(DateRange validity) {
-		// this.validity = validity;
+		this.validFrom=validity.getFrom();
+		this.validTo=validity.getTo();
 	}
 
 	@Override

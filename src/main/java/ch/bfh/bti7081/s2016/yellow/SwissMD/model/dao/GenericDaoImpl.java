@@ -68,7 +68,7 @@ public abstract class GenericDaoImpl<T extends AbstractDatabaseObject, ID extend
 	}
 
 	@Override
-	public List<T> read(List<ID> ids) {
+	public List<T> readList(List<ID> ids) {
 		if (ids == null || ids.isEmpty()) {
 			return new ArrayList<>();
 		}

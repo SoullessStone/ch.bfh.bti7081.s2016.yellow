@@ -1,7 +1,11 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 
 /**
  * Entity that represents a drug. To use in the data access layer.
@@ -17,11 +21,6 @@ public class Drug extends AbstractDatabaseObject {
 	private String substance;
 	private String SubstanceQuantitiy;
 	private int maxDose;
-
-	// TODO: Hibernate custom type
-	// @OneToOne(fetch = FetchType.EAGER, mappedBy = "stock", cascade =
-	// CascadeType.ALL)
-	// private DateRange validity;
 
 	public Drug(String tradeName, String substance, String SubstanceQuantitiy,
 			int maxDose) {
@@ -62,13 +61,5 @@ public class Drug extends AbstractDatabaseObject {
 	public void setMaxDose(int maxDose) {
 		this.maxDose = maxDose;
 	}
-
-	// public DateRange getValidity() {
-	// return validity;
-	// }
-	//
-	// public void setValidity(DateRange validity) {
-	// this.validity = validity;
-	// }
 
 }

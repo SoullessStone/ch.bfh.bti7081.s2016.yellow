@@ -1,10 +1,12 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
 import com.vaadin.ui.Button;
@@ -68,7 +70,7 @@ public class CreatePrescriptionTile extends Tile {
 				}
 				// Zusammenstellen der gewünschten PrescriptionDTO
 				PrescriptionDTO prescriptionDTO = new PrescriptionDTO(
-						selectedDrug, selectedDosis);
+						selectedDrug, selectedDosis, new DateRange(new Date(), new Date()));
 				// Allen Observer Bescheid geben, dass eine Prescription
 				// erstellt wurde
 				for (CreationPrescriptiontileObserver observer : observer) {
