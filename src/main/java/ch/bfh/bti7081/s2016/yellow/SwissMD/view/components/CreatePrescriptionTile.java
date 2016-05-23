@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -33,11 +34,11 @@ public class CreatePrescriptionTile extends Tile {
 
 	List<CreationPrescriptiontileObserver> observer = new ArrayList<>();
 
-	public CreatePrescriptionTile(List<Drug> list) {
+	public CreatePrescriptionTile(List<DrugDTO> list) {
 		setTitle("Neues Medikament verordnen");
 		// Combobox mit allen möglichen Medikamenten
 		ComboBox selectDrug = new ComboBox("Medikamente");
-		for (Drug drug : list) {
+		for (DrugDTO drug : list) {
 			selectDrug.addItem(drug);
 		}
 		addComponent(selectDrug);
@@ -70,8 +71,9 @@ public class CreatePrescriptionTile extends Tile {
 					return;
 				}
 				// Zusammenstellen der gewünschten PrescriptionDTO
+				// TODO Exceptions müssen weiter geworfen werden.
 				PrescriptionDTO prescriptionDTO = new PrescriptionDTO(
-						selectedDrug, selectedDosis, new DateRange(new Date(), new Date()));
+						selectedDrug, selectedDosis, new DateRange(new Date(1L), new Date(10000L)));
 				// Allen Observer Bescheid geben, dass eine Prescription
 				// erstellt wurde
 				for (CreationPrescriptiontileObserver observer : observer) {

@@ -1,5 +1,9 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout;
 
+/**
+ * @author nussa2
+ *
+ */
 public abstract class LayoutFactory {
 
 	public enum LayoutType {

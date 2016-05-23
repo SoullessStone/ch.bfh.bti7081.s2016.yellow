@@ -51,6 +51,8 @@ public class MeetingView extends CustomComponent implements View,
 
 	private TextArea noteArea;
 	private DateField dateField;
+	
+	//private CreatePrescriptionTile createPrescriptionTile;
 
 	public MeetingView() {
 		try {
@@ -66,25 +68,18 @@ public class MeetingView extends CustomComponent implements View,
 		setCompositionRoot(layout);
 	}
 
-	private Button getAddPrescriptionButton() {
+	/*private Button getAddPrescriptionButton() {
 		Button b = new Button("Neues Medikament verschreiben");
 		b.addClickListener(new ClickListener() {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				// TODO Alex: Komisches Verhalten: Man muss etwa dreimal
-				// klicken, dann kommen drei Tiles auf einmal.
-				// Eine VerschreibungsTile wird erstellt und angezeigt. Weiter
-				// schreibt man sich als Observer ein, damit man mitbekommt,
-				// wenn ein Medikament verschrieben wurde.
-				CreatePrescriptionTile createPrescriptionTile = new CreatePrescriptionTile(
-						meetingPresenter.getPossibleDrugs());
-				createPrescriptionTile.addObserver(MeetingView.this);
-				layout.addComponent(createPrescriptionTile);
+				createPrescriptionTile();
 			}
+
 		});
 		return b;
-	}
+	}*/
 
 	private Button getSaveButton() {
 		Button b = new Button("Speichern");
@@ -196,18 +191,21 @@ public class MeetingView extends CustomComponent implements View,
 					List<PrescriptionDTO> prescriptions = meetingDTO
 							.getPatient().getPrescriptions();
 					if (prescriptions.isEmpty()) {
-						Tile prescriptionTile = new Tile("Verschreibungen");
-						prescriptionTile
-								.addComponent(getAddPrescriptionButton());
-						layout.addComponent(prescriptionTile);
+
+//						Tile prescriptionTile = new Tile("Verschreibungen");
+//						prescriptionTile
+//								.addComponent(getAddPrescriptionButton());
+//						layout.addComponent(prescriptionTile);
 					}
 					for (PrescriptionDTO prescriptionDTO : prescriptions) {
 						Tile prescriptionTile = new PrescriptionTile(
 								prescriptionDTO);
-						prescriptionTile
-								.addComponent(getAddPrescriptionButton());
+						//prescriptionTile.addComponent(getAddPrescriptionButton());
 						layout.addComponent(prescriptionTile);
+						layout.createRowBrake();
 					}
+					
+					createPrescriptionTile();
 
 				} else {
 					Notification.show(MessageFormat.format(
@@ -224,10 +222,19 @@ public class MeetingView extends CustomComponent implements View,
 	private Label headingLabel() {
 		return new Label("MeetingView");
 	}
+	
+	private void createPrescriptionTile() {	
+			CreatePrescriptionTile createPrescriptionTile = new CreatePrescriptionTile(
+					meetingPresenter.getPossibleDrugs());
+			createPrescriptionTile.addObserver(MeetingView.this);
+			layout.addComponent(createPrescriptionTile);
+			layout.createRowBrake();
+	}
 
 	@Override
 	public void perscriptionCreated(PrescriptionDTO prescriptionDTO) {
 		this.meetingDTO.getPatient().addPrescription(prescriptionDTO);
+		createPrescriptionTile();
 		System.out.println("Prescription created");
 	}
 

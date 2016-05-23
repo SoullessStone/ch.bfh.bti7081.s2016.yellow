@@ -32,8 +32,7 @@ public class TileLayoutFactory extends LayoutFactory {
 
 	}
 
-	public TileLayoutFactory() {
-		// TODO Auto-generated constructor stub
+	TileLayoutFactory() {
 	}
 
 	public TileLayout createLayout(int numberOfColumns) {

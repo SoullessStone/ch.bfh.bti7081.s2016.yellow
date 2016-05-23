@@ -3,6 +3,8 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.presenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.mapping.Array;
+
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.DrugDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
@@ -70,9 +72,13 @@ public class MeetingPresenter {
 	 * Returns a List of {@code Drug} or {@code null} if no drug could be found
 	 * 
 	 */
-	public List<Drug> getPossibleDrugs() {
+	public List<DrugDTO> getPossibleDrugs() {
 		List<Drug> drugs = drugDao.readAll();
-		return drugs;
+		List<DrugDTO> drugDTOs = new ArrayList<>();
+		for (Drug drug : drugs) {
+			drugDTOs.add(new DrugDTO(drug.getTradeName(), drug.getSubstance(), drug.getSubstanceQuantitiy(), drug.getMaxDose()));
+		}
+		return drugDTOs;
 	}
 	
 
