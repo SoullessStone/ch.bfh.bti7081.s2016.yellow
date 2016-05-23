@@ -58,6 +58,6 @@ public class DrugDTO extends GenericDTO {
 
 	@Override
 	public String toString() {
-		return "" + tradeName;
+		return "" + tradeName + " / " + substance;
 	}
 }
