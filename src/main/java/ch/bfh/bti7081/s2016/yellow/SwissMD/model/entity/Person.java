@@ -19,17 +19,31 @@ import javax.persistence.Table;
 @Table
 public class Person extends AbstractDatabaseObject {
 
+	private String dtype;
 	private String name;
 	private Date birthdate;
 
 	public Person(String name, Date birthdate) {
+		this(name, birthdate, "Person");
+	}
+
+	public Person(String name, Date birthdate, String dtype) {
+		this.dtype = dtype;
 		this.name = name;
 		this.birthdate = birthdate;
 	}
+	
+	public Person(){};
 
-	public Person() {
-	};
+	
+	public String getDtype() {
+		return dtype;
+	}
 
+	public void setDtype(String dtype) {
+		this.dtype = dtype;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -45,5 +59,8 @@ public class Person extends AbstractDatabaseObject {
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
-
+	@Override
+	public String toString(){
+		return "" + this.name + " / " + this.dtype;
+	}
 }

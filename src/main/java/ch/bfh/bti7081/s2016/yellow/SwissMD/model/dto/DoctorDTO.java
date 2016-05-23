@@ -5,7 +5,7 @@ import java.util.Date;
 public class DoctorDTO extends PersonDTO {
 
 	public DoctorDTO(String name, Date birthdate) {
-		super(name, birthdate);
+		super(name, birthdate, "Doctor");
 	}
 
 }
