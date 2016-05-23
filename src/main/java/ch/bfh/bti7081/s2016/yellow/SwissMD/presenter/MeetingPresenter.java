@@ -3,8 +3,6 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.presenter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.mapping.Array;
-
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
@@ -31,11 +29,13 @@ public class MeetingPresenter {
 			meetingDao.update(existingMeeting);
 		}
 	}
-	
+
 	/**
-	 * Returns a {@code MeetingDTO} or {@code null} if no meeting with this id could be found
+	 * Returns a {@code MeetingDTO} or {@code null} if no meeting with this id
+	 * could be found
 	 * 
-	 * @param id the technical key of the meeting in the database 
+	 * @param id
+	 *            the technical key of the meeting in the database
 	 * 
 	 */
 	public MeetingDTO findMeetingById(Long id) {
@@ -67,7 +67,7 @@ public class MeetingPresenter {
 		List<DrugDTO> result = new ArrayList<>();
 		result.add(new DrugDTO("Aspirin"));
 		result.add(new DrugDTO("Keflex"));
-		result.add(new DrugDTO("Wein"));		
+		result.add(new DrugDTO("Wein"));
 		return result;
 	}
 }

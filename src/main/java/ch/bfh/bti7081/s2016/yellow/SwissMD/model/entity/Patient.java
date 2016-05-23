@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 
 /**
@@ -26,14 +25,15 @@ public class Patient extends Person {
 
 	@OneToMany(mappedBy = "patient")
 	List<Meeting> meetings;
-	
+
 	@OneToMany(mappedBy = "patient")
 	List<Prescription> prescriptions;
 
 	DangerStateType dangerState;
-	
-	public Patient(){};
-	
+
+	public Patient() {
+	};
+
 	public Patient(String name, Date birthdate) {
 		super(name, birthdate);
 	}
@@ -45,7 +45,7 @@ public class Patient extends Person {
 	public void setDangerState(DangerStateType newState) {
 		this.dangerState = newState;
 	}
-	
+
 	public List<Prescription> getPrescriptions() {
 		if (prescriptions != null)
 			return Collections.unmodifiableList(prescriptions);

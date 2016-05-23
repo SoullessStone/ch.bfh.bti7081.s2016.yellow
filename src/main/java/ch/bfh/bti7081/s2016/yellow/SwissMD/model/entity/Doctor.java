@@ -18,18 +18,19 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Doctor extends Person {
-	
+
 	@OneToMany(mappedBy = "doctor")
 	List<Meeting> meetings;
 
 	Integer officeNumber;
-	
-	public Doctor(){};
-	
+
+	public Doctor() {
+	};
+
 	public Doctor(String name, Date birthdate) {
 		super(name, birthdate);
 	}
-	
+
 	public Integer getOfficeNumber() {
 		return this.officeNumber;
 	}

@@ -3,8 +3,6 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 //TODO: Erstellt von Michel (wegen Abhängigkeit von Meeting), muss noch implementiert werden
@@ -28,8 +26,9 @@ public class Person extends AbstractDatabaseObject {
 		this.name = name;
 		this.birthdate = birthdate;
 	}
-	
-	public Person(){};
+
+	public Person() {
+	};
 
 	public String getName() {
 		return name;

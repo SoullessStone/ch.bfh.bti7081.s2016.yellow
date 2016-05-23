@@ -11,10 +11,11 @@ import javax.persistence.Transient;
 
 @MappedSuperclass
 public abstract class AbstractDatabaseObject implements Serializable {
-	@Transient private static final long serialVersionUID = 9081632481841531354L;
+	@Transient
+	private static final long serialVersionUID = 9081632481841531354L;
 
 	@Id
-	@Column(unique=true, name="id")
+	@Column(unique = true, name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 

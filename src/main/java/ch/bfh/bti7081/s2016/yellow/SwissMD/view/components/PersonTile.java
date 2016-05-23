@@ -7,19 +7,17 @@ import java.util.GregorianCalendar;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
-import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.VerticalLayout;
 
 public class PersonTile extends Tile {
 	private PersonDTO person;
 
 	public PersonTile(PersonDTO person, String title) {
 		this.person = person;
-		setTitle(title);	
+		setTitle(title);
 		addComponent(new Label("Name: " + person.getName()));
-		addComponent(new Label("Alter: "+ getAge(new Date(), person.getBirthdate())));
+		addComponent(new Label("Alter: "
+				+ getAge(new Date(), person.getBirthdate())));
 		System.out.println("person tile created");
 	}
 

@@ -17,13 +17,14 @@ import javax.persistence.criteria.Root;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.AbstractDatabaseObject;
 
 /**
- * Implementation of the {@code GenericDao} interface. Abstract, must be extended.
+ * Implementation of the {@code GenericDao} interface. Abstract, must be
+ * extended.
  * 
  * @author K.Suter
  * 
  */
-public abstract class GenericDaoImpl<T extends AbstractDatabaseObject, ID extends Serializable> implements
-		GenericDao<T, ID> {
+public abstract class GenericDaoImpl<T extends AbstractDatabaseObject, ID extends Serializable>
+		implements GenericDao<T, ID> {
 
 	protected Class<T> mEntityClass;
 
@@ -60,7 +61,7 @@ public abstract class GenericDaoImpl<T extends AbstractDatabaseObject, ID extend
 		mEntityManager.remove(t);
 		commitTransaction();
 	}
-	
+
 	@Override
 	public T read(ID id) {
 		return mEntityManager.find(mEntityClass, id);
@@ -126,7 +127,7 @@ public abstract class GenericDaoImpl<T extends AbstractDatabaseObject, ID extend
 	private Class<T> getEntityClass() {
 		return mEntityClass;
 	}
-	
+
 	private void commitTransaction() {
 		mEntityManager.getTransaction().commit();
 	}

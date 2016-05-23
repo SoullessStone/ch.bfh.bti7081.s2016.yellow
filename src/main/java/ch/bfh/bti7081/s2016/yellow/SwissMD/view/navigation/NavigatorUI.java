@@ -4,13 +4,6 @@ import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.LoginView;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.MeetingView;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonSearchView;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonView;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PrescriptionView;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.WikiView;
-
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.annotations.Widgetset;
@@ -29,10 +22,8 @@ import com.vaadin.ui.VerticalLayout;
 public class NavigatorUI extends UI {
 
 	public Navigator navigator;
-	
+
 	private List<View> views;
-
-
 
 	@Override
 	protected void init(VaadinRequest request) {
@@ -43,26 +34,27 @@ public class NavigatorUI extends UI {
 		setContent(layout);
 		ComponentContainerViewDisplay viewDisplay = new ComponentContainerViewDisplay(
 				layout);
-		
+
 		navigator = new Navigator(UI.getCurrent(), viewDisplay);
-		
-		for (NavigationIndex index : NavigationIndex.values()){
+
+		for (NavigationIndex index : NavigationIndex.values()) {
 			String navPath = index.getNavigationPath();
-			//View view = (View) index.getViewClass().newInstance();
+			// View view = (View) index.getViewClass().newInstance();
 			navigator.addView(navPath, index.getViewClass());
 		}
-				
+
 		/*
-		navigator.addView("", new LoginView());
-		navigator.addView(PERSONSEARCHVIEW, new PersonSearchView());
-		navigator.addView(PERSONVIEW, new PersonView());
-		navigator.addView(PRESCRIPTIONVIEW, new PrescriptionView());
-		navigator.addView(WIKIVIEW, new WikiView());
-		navigator.addView(MEETINGVIEW, new MeetingView());*/
+		 * navigator.addView("", new LoginView());
+		 * navigator.addView(PERSONSEARCHVIEW, new PersonSearchView());
+		 * navigator.addView(PERSONVIEW, new PersonView());
+		 * navigator.addView(PRESCRIPTIONVIEW, new PrescriptionView());
+		 * navigator.addView(WIKIVIEW, new WikiView());
+		 * navigator.addView(MEETINGVIEW, new MeetingView());
+		 */
 
 	}
-	
-	List<View> getViews(){
+
+	List<View> getViews() {
 		return views;
 	}
 

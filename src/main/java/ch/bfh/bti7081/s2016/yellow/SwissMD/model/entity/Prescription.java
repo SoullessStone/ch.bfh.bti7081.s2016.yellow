@@ -1,10 +1,6 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -41,12 +37,13 @@ public class Prescription extends AbstractDatabaseObject {
 		this.patient = patient;
 	}
 
-	public Prescription(Drug medication, int dosisInMilligrams, DateRange validity) {
+	public Prescription(Drug medication, int dosisInMilligrams,
+			DateRange validity) {
 		this.medication = medication;
 		this.dosisInMilligrams = dosisInMilligrams;
-		//this.validity = validity;
+		// this.validity = validity;
 	}
-	
+
 	public Drug getMedication() {
 		return medication;
 	}
@@ -62,13 +59,13 @@ public class Prescription extends AbstractDatabaseObject {
 	public void setDosisInMilligrams(int dosisInMilligrams) {
 		this.dosisInMilligrams = dosisInMilligrams;
 	}
-	
+
 	public DateRange getValidity() {
-		//return validity;
+		// return validity;
 		return null;
 	}
-	
+
 	public void setValidity(DateRange validity) {
-		//this.validity = validity;
+		// this.validity = validity;
 	}
 }

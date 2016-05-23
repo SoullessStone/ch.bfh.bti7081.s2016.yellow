@@ -1,28 +1,34 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
-import com.vaadin.server.Resource;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.HorizontalLayout;
-
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.HorizontalLayout;
+
 public class MenuTile extends Tile {
-	
-	public MenuTile(){
-		
-		addComponent(createViewButton(NavigationIndex.PERSONSEARCHVIEW.getNavigationPath(),"PersonSearch"));
-		addComponent(createViewButton(NavigationIndex.PERSONVIEW.getNavigationPath(),"Person"));
-		addComponent(createViewButton(NavigationIndex.PRESCRIPTIONVIEW.getNavigationPath(),"Prescription"));
-		addComponent(createViewButton(NavigationIndex.WIKIVIEW.getNavigationPath(),"PersonSearch"));
-		addComponent(createViewButton(NavigationIndex.MEETINGVIEW.getNavigationPath()+ "/3","Meeting"));
-		
+
+	public MenuTile() {
+
+		addComponent(createViewButton(
+				NavigationIndex.PERSONSEARCHVIEW.getNavigationPath(),
+				"PersonSearch"));
+		addComponent(createViewButton(
+				NavigationIndex.PERSONVIEW.getNavigationPath(), "Person"));
+		addComponent(createViewButton(
+				NavigationIndex.PRESCRIPTIONVIEW.getNavigationPath(),
+				"Prescription"));
+		addComponent(createViewButton(
+				NavigationIndex.WIKIVIEW.getNavigationPath(), "PersonSearch"));
+		addComponent(createViewButton(
+				NavigationIndex.MEETINGVIEW.getNavigationPath() + "/3",
+				"Meeting"));
+
 		addComponent(logoutButton());
 
 	}
-	
+
 	@Override
 	protected void createDefaultLayout() {
 		contentLayout = new HorizontalLayout();
@@ -31,16 +37,14 @@ public class MenuTile extends Tile {
 		tile.setContent(contentLayout);
 		setCompositionRoot(contentLayout);
 	}
-	
+
 	private Button createViewButton(String viewName, String displayName) {
-		Button button = new Button(displayName,
-				new Button.ClickListener() {
-					@Override
-					public void buttonClick(ClickEvent event) {
-						getUI().getNavigator().navigateTo(
-								viewName);
-					}
-				});
+		Button button = new Button(displayName, new Button.ClickListener() {
+			@Override
+			public void buttonClick(ClickEvent event) {
+				getUI().getNavigator().navigateTo(viewName);
+			}
+		});
 		return button;
 	}
 

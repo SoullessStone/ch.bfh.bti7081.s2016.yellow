@@ -16,8 +16,10 @@ public class HibernateTest {
 
 	public static void main(String[] args) {
 
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("manager");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		EntityManagerFactory entityManagerFactory = Persistence
+				.createEntityManagerFactory("manager");
+		EntityManager entityManager = entityManagerFactory
+				.createEntityManager();
 
 		entityManager.getTransaction().begin();
 

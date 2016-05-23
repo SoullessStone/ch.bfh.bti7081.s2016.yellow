@@ -13,7 +13,7 @@ import javax.persistence.TypedQuery;
  * 
  */
 public interface GenericDao<T, ID extends Serializable> {
-	
+
 	// create a single entity in the database
 	T create(T t);
 
@@ -22,22 +22,22 @@ public interface GenericDao<T, ID extends Serializable> {
 
 	// delete a single entity in the database
 	void delete(T t);
-	
+
 	// read a single entity from the database
 	T read(ID id);
-	
+
 	// find all domain objects for an entity
 	List<T> readAll();
-	
+
 	// find multiple entities in the database
 	List<T> read(List<ID> ids);
-	
+
 	// find entities by field value
 	T readByField(String fieldName, Object value);
-	
+
 	// safely read entities with typed query
 	<T2> T2 getSingleResultSafeTypedQuery(TypedQuery<T2> query);
-	
+
 	// safely read entities with typed query
 	Object getSingleResultSafeQuery(Query query);
 

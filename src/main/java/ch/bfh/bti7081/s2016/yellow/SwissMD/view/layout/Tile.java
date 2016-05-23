@@ -1,31 +1,24 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout;
 
-import java.awt.image.TileObserver;
-import java.io.Serializable;
-
-import com.vaadin.server.Sizeable.Unit;
-import com.vaadin.ui.AbstractLayout;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-public class Tile extends TileLayoutComponent {	
+public class Tile extends TileLayoutComponent {
 
 	private String title;
-	protected Panel tile= new Panel();
+	protected Panel tile = new Panel();
 
-	
 	protected AbstractOrderedLayout contentLayout;
-	
-	public Tile(String title){
+
+	public Tile(String title) {
 		setTitle(title);
 		setCompositionRoot(tile);
 		createDefaultLayout();
 	}
-	
-	public Tile(){
+
+	public Tile() {
 		this("");
 	}
 
@@ -37,21 +30,18 @@ public class Tile extends TileLayoutComponent {
 		setWidth("100%");
 		setStdWidth(1);
 	}
-	
-	public void setTitle(String title){
+
+	public void setTitle(String title) {
 		this.title = title;
 		tile.setCaption(title);
 	}
-	
-	public String getTitle(){
+
+	public String getTitle() {
 		return title;
 	}
-	
-	public void addComponent(Component c){
+
+	public void addComponent(Component c) {
 		contentLayout.addComponent(c);
 	}
-	
-
-	
 
 }

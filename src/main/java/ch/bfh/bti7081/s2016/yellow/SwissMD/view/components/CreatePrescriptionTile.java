@@ -62,17 +62,20 @@ public class CreatePrescriptionTile extends Tile {
 					selectedDosis = Integer.valueOf(dosis.getValue());
 				} catch (NumberFormatException e) {
 					dosis.setValue("0");
-					Notification.show(DOSIS_MUST_BE_INT, Type.HUMANIZED_MESSAGE);
+					Notification
+							.show(DOSIS_MUST_BE_INT, Type.HUMANIZED_MESSAGE);
 					return;
 				}
 				// Zusammenstellen der gewünschten PrescriptionDTO
 				PrescriptionDTO prescriptionDTO = new PrescriptionDTO(
 						selectedDrug, selectedDosis);
-				// Allen Observer Bescheid geben, dass eine Prescription erstellt wurde
+				// Allen Observer Bescheid geben, dass eine Prescription
+				// erstellt wurde
 				for (CreationPrescriptiontileObserver observer : observer) {
 					observer.perscriptionCreated(prescriptionDTO);
 				}
-				// Die CreatePrescriptionTile gleich durch eine PrescriptionTile ersetzen.
+				// Die CreatePrescriptionTile gleich durch eine PrescriptionTile
+				// ersetzen.
 				Layout parent = (Layout) CreatePrescriptionTile.this
 						.getParent();
 				parent.replaceComponent(CreatePrescriptionTile.this,

@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Drug;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 
 /**
@@ -22,9 +21,9 @@ public class PrescriptionDTO extends GenericDTO {
 			DateRange validity) {
 		this.medication = medication;
 		this.dosisInMilligrams = dosisInMilligrams;
-		//this.validity = validity;
+		// this.validity = validity;
 	}
-	
+
 	public PrescriptionDTO(DrugDTO medication, int dosisInMilligrams) {
 		this.medication = medication;
 		this.dosisInMilligrams = dosisInMilligrams;
@@ -47,12 +46,12 @@ public class PrescriptionDTO extends GenericDTO {
 	}
 
 	public DateRange getValidity() {
-		//return validity;
+		// return validity;
 		return null;
 	}
 
 	public void setValidity(DateRange validity) {
-		//this.validity = validity;
+		// this.validity = validity;
 	}
 
 	@Override
@@ -60,5 +59,5 @@ public class PrescriptionDTO extends GenericDTO {
 		return "PrescriptionDTO [medication=" + medication
 				+ ", dosisInMilligrams=" + dosisInMilligrams + "]";
 	}
-	
+
 }

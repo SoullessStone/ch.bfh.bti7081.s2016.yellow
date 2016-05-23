@@ -3,11 +3,6 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Doctor;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
 
 /**
  * Data transfer object for a {@code Meeting} entity. To use in the views.
@@ -15,7 +10,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
  * @author K.Suter
  * 
  */
-public class MeetingDTO extends GenericDTO{
+public class MeetingDTO extends GenericDTO {
 
 	private PatientDTO patient;
 
@@ -34,7 +29,8 @@ public class MeetingDTO extends GenericDTO{
 		this.appointmentTime = appointmentTime;
 	}
 
-	public MeetingDTO(){}
+	public MeetingDTO() {
+	}
 
 	public PatientDTO getPatient() {
 		return patient;
