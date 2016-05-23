@@ -1,7 +1,13 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.presenter;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.mapping.Array;
+
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
@@ -54,5 +60,14 @@ public class MeetingPresenter {
 		if (existingMeeting != null) {
 			meetingDao.delete(existingMeeting);
 		}
+	}
+
+	public List<DrugDTO> getPossibleDrugs() {
+		// TODO DOMI: Hole alle Medis von der DB
+		List<DrugDTO> result = new ArrayList<>();
+		result.add(new DrugDTO("Aspirin"));
+		result.add(new DrugDTO("Keflex"));
+		result.add(new DrugDTO("Wein"));		
+		return result;
 	}
 }

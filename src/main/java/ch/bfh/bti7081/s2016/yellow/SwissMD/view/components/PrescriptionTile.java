@@ -16,12 +16,12 @@ public class PrescriptionTile extends Tile {
 		
 		addComponent(new Label("Dosis: "
 				+ prescription.getDosisInMilligrams() + "mg"));
-		addComponent(new Label("Gültigkeit: "
-				+ prescription.getValidity()));
+		//addComponent(new Label("Gültigkeit: "
+		//		+ prescription.getValidity()));
 		
-		if (new Date().after(prescription.getValidity().getTo())) {
-			addComponent(new Label("Abgelaufen"));
-		}
+		//if (new Date().after(prescription.getValidity().getTo())) {
+		//	addComponent(new Label("Abgelaufen"));
+		//}
 		contentLayout.setMargin(true);
 
 	}

@@ -24,6 +24,11 @@ public class PrescriptionDTO extends GenericDTO {
 		this.dosisInMilligrams = dosisInMilligrams;
 		//this.validity = validity;
 	}
+	
+	public PrescriptionDTO(DrugDTO medication, int dosisInMilligrams) {
+		this.medication = medication;
+		this.dosisInMilligrams = dosisInMilligrams;
+	}
 
 	public DrugDTO getMedication() {
 		return medication;
@@ -49,4 +54,11 @@ public class PrescriptionDTO extends GenericDTO {
 	public void setValidity(DateRange validity) {
 		//this.validity = validity;
 	}
+
+	@Override
+	public String toString() {
+		return "PrescriptionDTO [medication=" + medication
+				+ ", dosisInMilligrams=" + dosisInMilligrams + "]";
+	}
+	
 }

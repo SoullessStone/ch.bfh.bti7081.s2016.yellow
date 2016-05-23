@@ -5,12 +5,10 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.OneToMany;
 
 public class PatientDTO extends PersonDTO {
 
-	@OneToMany(mappedBy = "patient")
-	List<PrescriptionDTO> prescriptions;
+	List<PrescriptionDTO> prescriptions = new ArrayList<>();
 
 	public PatientDTO(String name, Date birthdate) {
 		super(name, birthdate);

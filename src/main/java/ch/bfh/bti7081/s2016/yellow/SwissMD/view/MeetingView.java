@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
@@ -7,41 +8,34 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreatePrescriptionTile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreationPrescriptiontileObserver;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PrescriptionTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.shared.ui.datefield.Resolution;
-import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.DateField;
-import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextArea;
-import com.vaadin.ui.VerticalLayout;
-
-import java.text.MessageFormat;
-
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonAreaLayout;
 
 @SuppressWarnings("serial")
-public class MeetingView extends CustomComponent implements View {
+public class MeetingView extends CustomComponent implements View,
+		CreationPrescriptiontileObserver {
 	private static final String COULD_NOT_READ_MEETING_ID = "Meeting-Id konnte nicht gelesen werden";
 	private static final String CHANGES_SAVED_SUCCESSFULLY = "Änderungen wurden gespeichert";
 	private static final String CHANGES_NOT_SAVED = "Änderungen konnten nicht gespeichert werden";
@@ -78,24 +72,28 @@ public class MeetingView extends CustomComponent implements View {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				// TODO: DO IT!
-				// Notification.show("TODO", Type.WARNING_MESSAGE);
-				// Tile drugTile = new DrugTile(meetingPresenter
-				// .getDrugForMeeting(4321).get(0));
-				// drugTile.addComponent(getNewDrugButton());
-				// layout.addComponent(drugTile);
+				// TODO Alex: Komisches Verhalten: Man muss etwa dreimal
+				// klicken, dann kommen drei Tiles auf einmal.
+				// Eine VerschreibungsTile wird erstellt und angezeigt. Weiter
+				// schreibt man sich als Observer ein, damit man mitbekommt,
+				// wenn ein Medikament verschrieben wurde.
+				CreatePrescriptionTile createPrescriptionTile = new CreatePrescriptionTile(
+						meetingPresenter.getPossibleDrugs());
+				createPrescriptionTile.addObserver(MeetingView.this);
+				layout.addComponent(createPrescriptionTile);
 			}
 		});
 		return b;
 	}
 
-	private Button getUpdateButton() {
+	private Button getSaveButton() {
 		Button b = new Button("Speichern");
 		b.addClickListener(new ClickListener() {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
 				try {
+					// TODO: Subscriptions auch updaten!
 					meetingDTO.setNotes(getNoteArea().getValue());
 					meetingDTO.setAppointmentTime(getAppointmentTimeDateField()
 							.getValue());
@@ -131,19 +129,6 @@ public class MeetingView extends CustomComponent implements View {
 		return b;
 	}
 
-	private Button getNewDrugButton() {
-		Button saveNewDrug = new Button("Verordnen");
-		saveNewDrug.addClickListener(new ClickListener() {
-
-			@Override
-			public void buttonClick(ClickEvent event) {
-				// TODO: DO IT!
-				Notification.show("TODO", Type.HUMANIZED_MESSAGE);
-			}
-		});
-		return saveNewDrug;
-	}
-
 	private TextArea getNoteArea() {
 		return noteArea;
 	}
@@ -154,9 +139,6 @@ public class MeetingView extends CustomComponent implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		System.out.println("ENTER ");
-
-		System.out.println(event.getParameters());
 		String param = event.getParameters();
 
 		if (param != null && !param.isEmpty()) {
@@ -170,10 +152,12 @@ public class MeetingView extends CustomComponent implements View {
 
 			if (meetingId != null) {
 
+				// Lese MeetingDTO
 				meetingDTO = meetingPresenter.findMeetingById(meetingId);
 
 				if (meetingDTO != null) {
 
+					// MeetingDTO angemessen abbilden
 					Tile appointmentTile = new Tile("Sitzung");
 
 					DateField df = new DateField("Termin");
@@ -202,7 +186,7 @@ public class MeetingView extends CustomComponent implements View {
 
 					meetingTile.addComponent(this.noteArea);
 					HorizontalLayout buttonArea = new HorizontalLayout();
-					buttonArea.addComponent(getUpdateButton());
+					buttonArea.addComponent(getSaveButton());
 					buttonArea.addComponent(getDeleteButton());
 					buttonArea.setSpacing(true);
 					meetingTile.addComponent(buttonArea);
@@ -239,6 +223,12 @@ public class MeetingView extends CustomComponent implements View {
 
 	private Label headingLabel() {
 		return new Label("MeetingView");
+	}
+
+	@Override
+	public void perscriptionCreated(PrescriptionDTO prescriptionDTO) {
+		this.meetingDTO.getPatient().addPrescription(prescriptionDTO);
+		System.out.println("Prescription created");
 	}
 
 }

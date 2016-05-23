@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
-
 /**
  * Data transfer object for a {@code Drug} entity. To use in the views.
  * 
@@ -13,13 +12,14 @@ public class DrugDTO extends GenericDTO {
 	private String SubstanceQuantitiy;
 	private int maxDose;
 
-	public DrugDTO(String tradeName, String substance, String SubstanceQuantitiy, int maxDose) {
+	public DrugDTO(String tradeName, String substance,
+			String SubstanceQuantitiy, int maxDose) {
 		this.tradeName = tradeName;
 		this.substance = substance;
 		this.SubstanceQuantitiy = SubstanceQuantitiy;
 		this.maxDose = maxDose;
 	}
-	
+
 	public DrugDTO(String tradeName) {
 		this.tradeName = tradeName;
 	}
@@ -55,7 +55,9 @@ public class DrugDTO extends GenericDTO {
 	public void setMaxDose(int maxDose) {
 		this.maxDose = maxDose;
 	}
-	
 
-
+	@Override
+	public String toString() {
+		return "" + tradeName;
+	}
 }
