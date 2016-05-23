@@ -6,6 +6,7 @@ import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Drug;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
@@ -32,11 +33,11 @@ public class CreatePrescriptionTile extends Tile {
 
 	List<CreationPrescriptiontileObserver> observer = new ArrayList<>();
 
-	public CreatePrescriptionTile(List<DrugDTO> possibleDrugs) {
+	public CreatePrescriptionTile(List<Drug> list) {
 		setTitle("Neues Medikament verordnen");
 		// Combobox mit allen möglichen Medikamenten
 		ComboBox selectDrug = new ComboBox("Medikamente");
-		for (DrugDTO drug : possibleDrugs) {
+		for (Drug drug : list) {
 			selectDrug.addItem(drug);
 		}
 		addComponent(selectDrug);

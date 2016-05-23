@@ -65,16 +65,11 @@ public class MeetingPresenter {
 			meetingDao.delete(existingMeeting);
 		}
 	}
-
-	public List<DrugDTO> getPossibleDrugsOld() {
-		// TODO DOMI: Hole alle Medis von der DB
-		List<DrugDTO> result = new ArrayList<>();
-		result.add(new DrugDTO("Aspirin"));
-		result.add(new DrugDTO("Keflex"));
-		result.add(new DrugDTO("Wein"));
-		return result;
-	}
 	
+	/**
+	 * Returns a List of {@code Drug} or {@code null} if no drug could be found
+	 * 
+	 */
 	public List<Drug> getPossibleDrugs() {
 		List<Drug> drugs = drugDao.readAll();
 		return drugs;

@@ -22,14 +22,6 @@ public class Drug extends AbstractDatabaseObject {
 	private String SubstanceQuantitiy;
 	private int maxDose;
 
-	public Drug(String tradeName, String substance, String SubstanceQuantitiy,
-			int maxDose) {
-		this.tradeName = tradeName;
-		this.substance = substance;
-		this.SubstanceQuantitiy = SubstanceQuantitiy;
-		this.maxDose = maxDose;
-	}
-
 	public String getTradeName() {
 		return tradeName;
 	}
