@@ -53,11 +53,5 @@ public class Drug extends AbstractDatabaseObject {
 	public void setMaxDose(int maxDose) {
 		this.maxDose = maxDose;
 	}
-
-	@Override
-	public String toString() {
-		return tradeName + " / "+ substance;
-	}
-
 	
 }
