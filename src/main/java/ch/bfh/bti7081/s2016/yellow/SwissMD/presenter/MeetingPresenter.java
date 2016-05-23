@@ -21,6 +21,7 @@ public class MeetingPresenter {
 		Meeting existingMeeting = meetingDao.read(meetingDTO.getId());
 		if (existingMeeting != null) {
 			existingMeeting.setNotes(meetingDTO.getNotes());
+			existingMeeting.setAppointmentTime(meetingDTO.getAppointmentTime());
 			meetingDao.update(existingMeeting);
 		}
 	}

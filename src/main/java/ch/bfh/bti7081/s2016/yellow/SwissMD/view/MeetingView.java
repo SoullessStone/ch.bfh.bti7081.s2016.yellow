@@ -59,14 +59,16 @@ public class MeetingView extends CustomComponent implements View {
 	private DateField dateField;
 
 	public MeetingView() {
-		System.out.println("INIT");
 		try {
-			layout = LayoutFactory.getInstance(LayoutType.TILE_LAYOUT).createLayout(TileLayoutFactory.Arguments.ELEMENTS_PER_ROW.getName()+":3");
+			layout = LayoutFactory.getInstance(LayoutType.TILE_LAYOUT)
+					.createLayout(
+							TileLayoutFactory.Arguments.ELEMENTS_PER_ROW
+									.getName() + ":3");
 		} catch (Exception e1) {
 			// TODO Go to error View
 			e1.printStackTrace();
 		}
-		
+
 		setCompositionRoot(layout);
 	}
 
@@ -154,8 +156,6 @@ public class MeetingView extends CustomComponent implements View {
 	public void enter(ViewChangeEvent event) {
 		System.out.println("ENTER ");
 
-
-
 		System.out.println(event.getParameters());
 		String param = event.getParameters();
 
@@ -182,10 +182,10 @@ public class MeetingView extends CustomComponent implements View {
 					df.setResolution(Resolution.MINUTE);
 					this.dateField = df;
 					dateField.setValue(meetingDTO.getAppointmentTime());
-					
+
 					appointmentTile.addComponent(dateField);
 					layout.addComponent(appointmentTile);
-					
+
 					layout.addComponent(new PersonTile(meetingDTO.getPatient(),
 							"Patient"));
 
@@ -211,7 +211,7 @@ public class MeetingView extends CustomComponent implements View {
 
 					List<PrescriptionDTO> prescriptions = meetingDTO
 							.getPatient().getPrescriptions();
-					if (prescriptions.isEmpty()){
+					if (prescriptions.isEmpty()) {
 						Tile prescriptionTile = new Tile("Verschreibungen");
 						prescriptionTile
 								.addComponent(getAddPrescriptionButton());
@@ -225,13 +225,14 @@ public class MeetingView extends CustomComponent implements View {
 						layout.addComponent(prescriptionTile);
 					}
 
-					
 				} else {
 					Notification.show(MessageFormat.format(
 							MEETING_WITH_ID_NOT_EXIST, param),
 							Type.HUMANIZED_MESSAGE);
 				}
 			}
+		} else {
+			// TODO: Neues Meeting erstellen. (Erreichbar über Personensuche)
 		}
 		layout.finishLayout();
 	}
