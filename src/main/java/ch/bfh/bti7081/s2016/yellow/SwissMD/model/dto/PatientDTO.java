@@ -10,7 +10,7 @@ public class PatientDTO extends PersonDTO {
 	List<PrescriptionDTO> prescriptions = new ArrayList<>();
 
 	public PatientDTO(String name, Date birthdate) {
-		super(name, birthdate);
+		super(name, birthdate,"Patient");
 	}
 
 	public List<PrescriptionDTO> getPrescriptions() {
