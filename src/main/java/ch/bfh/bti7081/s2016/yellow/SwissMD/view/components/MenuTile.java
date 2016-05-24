@@ -30,7 +30,7 @@ public class MenuTile extends Tile {
 				NavigationIndex.WIKIVIEW.getNavigationPath(), "Wiki","img/icons/books.png"));
 		addComponent(createViewButton(
 				NavigationIndex.MEETINGVIEW.getNavigationPath() + "/3",
-				"Meeting","img/icons/note.png"));
+				"Meeting","img/icons/calendar.png"));
 
 		addComponent(logoutButton());
 
