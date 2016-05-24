@@ -12941,17 +12941,6 @@ div.v-layout.v-horizontal.v-widget {
 	padding: 10px 15px 10px 15px;
 }
 
-.mytheme .icon {
-	font-family: VaadinIcons;
-	font-size: 16px;
-	speak: none;
-	font-weight: normal;
-	font-variant: normal;
-	font-style: normal;
-	text-transform: none;
-	line-height: 1;
-}
-
 .mytheme #uiContainer {
 	position: inherit !important;
 }
