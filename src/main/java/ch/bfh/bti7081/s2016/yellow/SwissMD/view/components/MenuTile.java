@@ -1,8 +1,13 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
+import java.io.File;
+
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
+import com.vaadin.server.FileResource;
+import com.vaadin.server.Resource;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.HorizontalLayout;
@@ -13,17 +18,17 @@ public class MenuTile extends Tile {
 
 		addComponent(createViewButton(
 				NavigationIndex.PERSONSEARCHVIEW.getNavigationPath(),
-				"PersonSearch"));
+				"PersonSearch","img/patients.png"));
 		addComponent(createViewButton(
-				NavigationIndex.PERSONVIEW.getNavigationPath(), "Person"));
+				NavigationIndex.PERSONVIEW.getNavigationPath(), "Person","img/patients.png"));
 		addComponent(createViewButton(
 				NavigationIndex.PRESCRIPTIONVIEW.getNavigationPath(),
-				"Prescription"));
+				"Prescription","img/medicine.png"));
 		addComponent(createViewButton(
-				NavigationIndex.WIKIVIEW.getNavigationPath(), "PersonSearch"));
+				NavigationIndex.WIKIVIEW.getNavigationPath(), "Wiki","img/library.png"));
 		addComponent(createViewButton(
 				NavigationIndex.MEETINGVIEW.getNavigationPath() + "/3",
-				"Meeting"));
+				"Meeting","img/note.png"));
 
 		addComponent(logoutButton());
 
@@ -38,13 +43,15 @@ public class MenuTile extends Tile {
 		setCompositionRoot(contentLayout);
 	}
 
-	private Button createViewButton(String viewName, String displayName) {
+	private Button createViewButton(String viewName, String displayName, String path) {
+		ThemeResource resource = new ThemeResource(path);
 		Button button = new Button(displayName, new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				getUI().getNavigator().navigateTo(viewName);
 			}
 		});
+		button.setIcon(resource);
 		return button;
 	}
 
