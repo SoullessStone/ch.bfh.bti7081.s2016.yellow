@@ -9,6 +9,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
@@ -23,7 +24,7 @@ public class LoginView extends VerticalLayout implements View {
 
 		Label label = new Label("Enter your information below to log in.");
 		TextField username = new TextField("Username");
-		TextField password = new TextField("Password");
+		PasswordField password = new PasswordField("Password");
 
 		addComponent(label);
 		addComponent(username);
