@@ -39,9 +39,6 @@ Current total: 85/90
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
-| CS1 Task 11: Sprint 1  | Create overview presenter (ID 1) | schaad | open | 22.05.2016 |
-| CS1 Task 11: Sprint 1  | Create drug presenter, tile and model (ID 14) | halter | open | 23.05.2016 |
-| CS1 Task 11: Sprint 1  | Create overview view (ID 1) | schaad | open | 22.05.2016 |
 
 ### Completed Tasks
 | Name  | What | Assignee(s)  | Status (done) | Deadline  |
@@ -93,3 +90,6 @@ Current total: 85/90
 | CS1 Task 11: Sprint 1  | Create meeting notes model (ID 4) | zumstein | done | 22.05.2016 |
 | CS1 Task 11: Sprint 1  | Create meeting notes presenter (ID 4) | zumstein | done | 22.05.2016 |
 | CS1 Task 11: Sprint 1  | Create patient model (ID 1) | schaad | done | 22.05.2016 |
+| CS1 Task 11: Sprint 1  | Create overview presenter (ID 1) | schaad | done | 22.05.2016 |
+| CS1 Task 11: Sprint 1  | Create drug presenter, tile and model (ID 14) | halter | done | 24.05.2016 |
+| CS1 Task 11: Sprint 1  | Create overview view (ID 1) | schaad | done | 22.05.2016 |
