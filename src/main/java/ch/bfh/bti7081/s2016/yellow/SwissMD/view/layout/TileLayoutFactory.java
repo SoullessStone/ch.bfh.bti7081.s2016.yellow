@@ -2,6 +2,12 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MenuTile;
 
+/**
+ * Factory for creating a new {@link TileLayout}.
+ * 
+ * @author nussa2
+ *
+ */
 public class TileLayoutFactory extends LayoutFactory {
 
 	private int numberOfElementsPerRow = 1;
@@ -35,7 +41,7 @@ public class TileLayoutFactory extends LayoutFactory {
 	TileLayoutFactory() {
 	}
 
-	public TileLayout createLayout(int numberOfColumns) {
+	TileLayout createLayout(int numberOfColumns) {
 		this.numberOfElementsPerRow = numberOfColumns;
 		createLayout();
 		return layout;

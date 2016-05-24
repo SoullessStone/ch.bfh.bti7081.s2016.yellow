@@ -5,6 +5,11 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * Standard implementation of {@link TileLayoutComponent}
+ * @author nussa2
+ *
+ */
 public class Tile extends TileLayoutComponent {
 
 	private String title;
@@ -22,6 +27,9 @@ public class Tile extends TileLayoutComponent {
 		this("");
 	}
 
+	/**
+	 * Override this method to customize the internal Layout of the tile.
+	 */
 	protected void createDefaultLayout() {
 		contentLayout = new VerticalLayout();
 		contentLayout.setSpacing(true);

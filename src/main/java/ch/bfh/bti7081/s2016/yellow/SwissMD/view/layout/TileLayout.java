@@ -9,17 +9,27 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * The TileLayout is a layout that consists of a number of horizontal containers (called rows) which are added sequently in a vertical layout container.
+ * All components added must be of type {@link TileLayoutComponent} and are added to last row. Generation of rows is generally handled automatically. 
+ * The maximal number of elements that can be added to a row is defined by {@link TileLayout#maxElementsPerRow}.
+ * If {@link TileLayout#createRowBrake()} is called then the last component within this row is expanded to the maximal available space if there is such.
+ * {@link TileLayout#finishLayout()} does essentially the same as create row break but no more elements can be added to the layout.
+ * 
+ * @author nussa2
+ *
+ */
 public class TileLayout extends BaseLayout {
 
 	private VerticalLayout baseLayout;
 
 	private List<HorizontalLayout> rows;
 
-	// private Map<HorizontalLayout,TileLayoutComponent> tiles;
-
 	private int maxElementsPerRow;
 
 	private boolean autoFill = true;
+	
+	private boolean finished = false;
 
 	boolean isAutoFill() {
 		return autoFill;
@@ -31,9 +41,7 @@ public class TileLayout extends BaseLayout {
 
 	TileLayout(int maxElementsPerRow) {
 		baseLayout = new VerticalLayout();
-		// baseLayout.setSizeFull();
 		rows = new ArrayList<>();
-		// tiles = new HashedMap();
 		this.maxElementsPerRow = maxElementsPerRow;
 		setCompositionRoot(baseLayout);
 		createNewRow();
@@ -43,7 +51,7 @@ public class TileLayout extends BaseLayout {
 		return maxElementsPerRow;
 	}
 
-	public VerticalLayout getBaseLayout() {
+	VerticalLayout getBaseLayout() {
 		return baseLayout;
 	}
 
@@ -97,7 +105,7 @@ public class TileLayout extends BaseLayout {
 		}
 	}
 
-	public void createNewRow() {
+	void createNewRow() {
 		if (!rows.isEmpty()) {
 			calculateElementExpansions(getCurrentRow());
 		}
@@ -148,6 +156,7 @@ public class TileLayout extends BaseLayout {
 
 	@Override
 	public void finishLayout() {
+		finished = true;
 		if (!rows.isEmpty()) {
 			calculateElementExpansions(getCurrentRow());
 		}
