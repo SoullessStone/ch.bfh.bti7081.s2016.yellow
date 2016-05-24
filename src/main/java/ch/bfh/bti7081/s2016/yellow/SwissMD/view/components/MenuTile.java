@@ -53,6 +53,7 @@ public class MenuTile extends Tile {
 			}
 		});
 		button.setIcon(new ThemeResource(path));
+		button.addStyleName("big");
 		return button;
 	}
 
@@ -65,6 +66,7 @@ public class MenuTile extends Tile {
 			}
 		});
 		button.setIcon(new ThemeResource("img/icons/exit.png"));
+		button.addStyleName("big");
 		return button;
 	}
 

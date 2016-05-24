@@ -50,7 +50,7 @@
 	/* Root Container */
 	.v-ui
 	{
-		background: url('img/doctor_bg.jpg');
+		background: url('img/doctor_bg_new.jpg');
 		background-size:cover;
 		background-position: center center;
 		
@@ -61,8 +61,13 @@
 	
 	/***** Control Bar *****/
 	
+	/* BIG white style */
 	
-	
+	.v-button-big{
+	    height: 60px;
+	  	padding: 1px 14px 0 8px;
+	}
+
 	/***** Login View *****/	
 	
 	#loginPanel

@@ -12949,6 +12949,11 @@ div.v-layout.v-horizontal.v-widget {
 	box-sizing: border-box;
 }
 
+.mytheme .v-button-big {
+	height: 60px;
+	padding: 1px 14px 0 8px;
+}
+
 .mytheme #loginPanel {
 	padding: 40px 35px 40px 35px;
 	background-color: white;
