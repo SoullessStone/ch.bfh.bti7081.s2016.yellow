@@ -12942,9 +12942,9 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-ui {
-	background: url('img/doctor_bg.jpg');
+	background: url('img/bg_doctor.jpg');
 	background-size: cover;
-	background-position: center center;
+	background-position: top center;
 	padding: 4vw;
 	box-sizing: border-box;
 }

@@ -40,7 +40,6 @@
 		Color: red;
 	}
 
-	
 	/****** UI Root ******/
 	
 	#uiContainer{
@@ -50,9 +49,9 @@
 	/* Root Container */
 	.v-ui
 	{
-		background: url('img/doctor_bg_new.jpg');
+		background: url('img/bg_doctor.jpg');
 		background-size:cover;
-		background-position: center center;
+		background-position: top center;
 		
 		padding: 4vw;
 		
