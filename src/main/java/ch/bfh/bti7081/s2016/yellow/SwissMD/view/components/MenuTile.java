@@ -6,11 +6,13 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
 import com.vaadin.server.FileResource;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Resource;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.themes.Reindeer;
 
 public class MenuTile extends Tile {
 
@@ -44,14 +46,14 @@ public class MenuTile extends Tile {
 	}
 
 	private Button createViewButton(String viewName, String displayName, String path) {
-		ThemeResource resource = new ThemeResource(path);
 		Button button = new Button(displayName, new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				getUI().getNavigator().navigateTo(viewName);
 			}
 		});
-		button.setIcon(resource);
+		//button.setIcon(new ThemeResource(path));
+		//button.setIcon(ThemeIcons);
 		return button;
 	}
 
