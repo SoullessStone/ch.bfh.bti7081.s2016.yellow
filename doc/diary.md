@@ -34,11 +34,15 @@ Current total: 85/90
 | 09.05.2016 | all | 4h | Course + CS1 Task 9: Presentation + CS1 Task 10: Scrum Setup  |
 | 10.05.2016 | all | 4h | Course + CS1 Task 11: Start Development Phase Scrum Sprint 1 |
 | 17.05.2016 | all | 4h | Course + CS1 Task 11: Scrum Sprint 1 (Daily Scrum Meeting & Next Steps) |
-| 23.05.2016 | all | 4h | CS1 Task 11: Scrum Sprint 1 (Daily Scrum Meeting & Next Steps) |
+| 23.05.2016 | all | 4h | CS1 Task 11: Scrum Sprint 1 (Daily Scrum Meeting) + CS1 Task 12: start full classs diagram + CS1 Task 13: start analyse of state pattern  |
+| 24.05.2016 | all | 4h | CS1 Task 11: Scrum Sprint 1 (Daily Scrum Meeting & Next Steps) + Start Scrum Sprint 2 |
 
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
+| CS1 Task 12: Class Diagram and Persistence | Create full class diagram | tbd | done | 29.05.2016  |
+| CS1 Task 12: Class Diagram and Persistence | Create presentation | tbd | done | 30.05.2016  |
+| CS1 Task 13: State Pattern | Implement a concrete feature of your application via the State Pattern | tbd | done | 30.05.2016  |
 
 ### Completed Tasks
 | Name  | What | Assignee(s)  | Status (done) | Deadline  |
