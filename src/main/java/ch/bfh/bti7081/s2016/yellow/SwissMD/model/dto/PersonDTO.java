@@ -2,6 +2,8 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
 import java.util.Date;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
+
 /**
  * Data transfer object for a {@code Person} entity. To use in the views.
  * 
