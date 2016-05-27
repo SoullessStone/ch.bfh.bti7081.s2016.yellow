@@ -7,6 +7,7 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * Standard implementation of {@link TileLayoutComponent}
+ * 
  * @author nussa2
  *
  */

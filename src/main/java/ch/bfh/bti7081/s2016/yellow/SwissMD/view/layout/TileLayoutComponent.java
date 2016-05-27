@@ -4,7 +4,8 @@ import com.vaadin.ui.CustomComponent;
 
 /**
  * Abstract base class for all elements that can be added to {@link TileLayout}.
- * TileLayoutComponents have a standardized width within the layout. This means that width of all tiles are a multiple of that standard width.
+ * TileLayoutComponents have a standardized width within the layout. This means
+ * that width of all tiles are a multiple of that standard width.
  * 
  * @author nussa2
  */
@@ -30,7 +31,9 @@ public abstract class TileLayoutComponent extends CustomComponent {
 	}
 
 	/**
-	 * Gets the number of standard units that this component is using within the layout.
+	 * Gets the number of standard units that this component is using within the
+	 * layout.
+	 * 
 	 * @return
 	 */
 	public int getStdWidth() {
@@ -38,7 +41,8 @@ public abstract class TileLayoutComponent extends CustomComponent {
 	}
 
 	/**
-	 * Set the number of standard units that this component should use within the layout.
+	 * Set the number of standard units that this component should use within
+	 * the layout.
 	 * 
 	 * @param stdWidth
 	 */

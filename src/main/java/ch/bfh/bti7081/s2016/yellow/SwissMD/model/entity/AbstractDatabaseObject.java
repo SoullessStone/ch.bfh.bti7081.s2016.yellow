@@ -10,8 +10,8 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
 /**
- * Base entity for entities in the application. Allows exact identification of a database object
- * via its unique database id.
+ * Base entity for entities in the application. Allows exact identification of a
+ * database object via its unique database id.
  * 
  * @author K.Suter
  * 

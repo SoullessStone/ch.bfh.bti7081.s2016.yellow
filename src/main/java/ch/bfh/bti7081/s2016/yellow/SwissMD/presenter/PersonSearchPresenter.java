@@ -1,20 +1,18 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.presenter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.time.DateUtils;
-
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.Notification.Type;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonSearchView;
+
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification.Type;
 
 public class PersonSearchPresenter {
 	// TODO: Knows the model

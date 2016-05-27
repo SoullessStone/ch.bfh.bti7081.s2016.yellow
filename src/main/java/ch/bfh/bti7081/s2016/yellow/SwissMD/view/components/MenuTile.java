@@ -1,18 +1,12 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
-import java.io.File;
-
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
-import com.vaadin.server.FileResource;
-import com.vaadin.server.FontAwesome;
-import com.vaadin.server.Resource;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.themes.Reindeer;
 
 public class MenuTile extends Tile {
 
@@ -20,17 +14,19 @@ public class MenuTile extends Tile {
 
 		addComponent(createViewButton(
 				NavigationIndex.PERSONSEARCHVIEW.getNavigationPath(),
-				"PersonSearch","img/icons/search.png"));
+				"PersonSearch", "img/icons/search.png"));
 		addComponent(createViewButton(
-				NavigationIndex.PERSONVIEW.getNavigationPath(), "Person","img/icons/users.png"));
+				NavigationIndex.PERSONVIEW.getNavigationPath(), "Person",
+				"img/icons/users.png"));
 		addComponent(createViewButton(
 				NavigationIndex.PRESCRIPTIONVIEW.getNavigationPath(),
-				"Prescription","img/icons/eyedropper.png"));
+				"Prescription", "img/icons/eyedropper.png"));
 		addComponent(createViewButton(
-				NavigationIndex.WIKIVIEW.getNavigationPath(), "Wiki","img/icons/books.png"));
+				NavigationIndex.WIKIVIEW.getNavigationPath(), "Wiki",
+				"img/icons/books.png"));
 		addComponent(createViewButton(
 				NavigationIndex.MEETINGVIEW.getNavigationPath() + "/3",
-				"Meeting","img/icons/calendar.png"));
+				"Meeting", "img/icons/calendar.png"));
 
 		addComponent(logoutButton());
 
@@ -45,7 +41,8 @@ public class MenuTile extends Tile {
 		setCompositionRoot(contentLayout);
 	}
 
-	private Button createViewButton(String viewName, String displayName, String path) {
+	private Button createViewButton(String viewName, String displayName,
+			String path) {
 		Button button = new Button(displayName, new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {

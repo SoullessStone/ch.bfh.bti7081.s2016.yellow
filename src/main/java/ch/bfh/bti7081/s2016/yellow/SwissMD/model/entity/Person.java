@@ -32,10 +32,10 @@ public class Person extends AbstractDatabaseObject {
 		this.name = name;
 		this.birthdate = birthdate;
 	}
-	
-	public Person(){};
 
-	
+	public Person() {
+	};
+
 	public String getDtype() {
 		return dtype;
 	}
@@ -43,7 +43,7 @@ public class Person extends AbstractDatabaseObject {
 	public void setDtype(String dtype) {
 		this.dtype = dtype;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -59,8 +59,9 @@ public class Person extends AbstractDatabaseObject {
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
+
 	@Override
-	public String toString(){
+	public String toString() {
 		return "" + this.name + " / " + this.dtype;
 	}
 }

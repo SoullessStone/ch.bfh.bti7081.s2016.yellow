@@ -3,9 +3,9 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.LoginPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
 import com.vaadin.navigator.View;
@@ -17,7 +17,6 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
 
 // TODO: Check User credentials
 @SuppressWarnings("serial")
@@ -47,7 +46,7 @@ public class LoginView extends CustomComponent implements View {
 			layout.createRowBrake();
 			layout.finishLayout();
 			setCompositionRoot(layout);
-			
+
 		} catch (Exception e1) {
 			// TODO Go to error View
 			e1.printStackTrace();

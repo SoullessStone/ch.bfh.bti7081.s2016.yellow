@@ -10,11 +10,16 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The TileLayout is a layout that consists of a number of horizontal containers (called rows) which are added sequently in a vertical layout container.
- * All components added must be of type {@link TileLayoutComponent} and are added to last row. Generation of rows is generally handled automatically. 
- * The maximal number of elements that can be added to a row is defined by {@link TileLayout#maxElementsPerRow}.
- * If {@link TileLayout#createRowBrake()} is called then the last component within this row is expanded to the maximal available space if there is such.
- * {@link TileLayout#finishLayout()} does essentially the same as create row break but no more elements can be added to the layout.
+ * The TileLayout is a layout that consists of a number of horizontal containers
+ * (called rows) which are added sequently in a vertical layout container. All
+ * components added must be of type {@link TileLayoutComponent} and are added to
+ * last row. Generation of rows is generally handled automatically. The maximal
+ * number of elements that can be added to a row is defined by
+ * {@link TileLayout#maxElementsPerRow}. If {@link TileLayout#createRowBrake()}
+ * is called then the last component within this row is expanded to the maximal
+ * available space if there is such. {@link TileLayout#finishLayout()} does
+ * essentially the same as create row break but no more elements can be added to
+ * the layout.
  * 
  * @author nussa2
  *
@@ -28,7 +33,7 @@ public class TileLayout extends BaseLayout {
 	private int maxElementsPerRow;
 
 	private boolean autoFill = true;
-	
+
 	private boolean finished = false;
 
 	boolean isAutoFill() {

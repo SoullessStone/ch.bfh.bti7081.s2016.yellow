@@ -64,7 +64,7 @@ public class Prescription extends AbstractDatabaseObject {
 	}
 
 	public void setValidity(DateRange validity) {
-		this.validFrom=validity.getFrom();
-		this.validTo=validity.getTo();
+		this.validFrom = validity.getFrom();
+		this.validTo = validity.getTo();
 	}
 }

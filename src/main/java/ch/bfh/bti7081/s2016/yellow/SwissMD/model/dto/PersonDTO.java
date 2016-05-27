@@ -14,18 +14,20 @@ public class PersonDTO extends GenericDTO {
 	private String dtype;
 	private String name;
 	private Date birthdate;
-	
+
 	// TODO implement in DB
 	private String address;
 	private String zip;
 	private String city;
 	private String mobile;
 	private String landline;
-//	private Integer dangerState;
-//	private Integer officeNumber;
+
+	// private Integer dangerState;
+	// private Integer officeNumber;
 
 	/**
 	 * "Change to PersonDTO(Person person)"
+	 * 
 	 * @param name
 	 * @param birthdate
 	 * @param dtype
@@ -36,7 +38,7 @@ public class PersonDTO extends GenericDTO {
 		this.birthdate = birthdate;
 		this.dtype = dtype;
 	}
-	
+
 	public PersonDTO(Person person) {
 		this.name = person.getName();
 		this.birthdate = person.getBirthdate();
@@ -103,31 +105,31 @@ public class PersonDTO extends GenericDTO {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	
+
 	public String getLandline() {
 		// TODO real data
 		return "031 390 90 90";
 	}
-	
+
 	public void setLandline(String landline) {
 		this.landline = landline;
 	}
 
-//	public Integer getDangerState() {
-//		return dangerState;
-//	}
-//
-//	public void setDangerState(Integer dangerState) {
-//		this.dangerState = dangerState;
-//	}
+	// public Integer getDangerState() {
+	// return dangerState;
+	// }
+	//
+	// public void setDangerState(Integer dangerState) {
+	// this.dangerState = dangerState;
+	// }
 
-//	public Integer getOfficeNumber() {
-//		return officeNumber;
-//	}
-//
-//	public void setOfficeNumber(Integer officeNumber) {
-//		this.officeNumber = officeNumber;
-//	}
+	// public Integer getOfficeNumber() {
+	// return officeNumber;
+	// }
+	//
+	// public void setOfficeNumber(Integer officeNumber) {
+	// this.officeNumber = officeNumber;
+	// }
 	@Override
 	public String toString() {
 		return "" + name + " / " + dtype;

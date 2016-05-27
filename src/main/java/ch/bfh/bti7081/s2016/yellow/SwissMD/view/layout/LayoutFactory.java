@@ -1,7 +1,8 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout;
 
 /**
- * LayoutFactory has to be used to get Instances of different concrete Layout Factories.
+ * LayoutFactory has to be used to get Instances of different concrete Layout
+ * Factories.
  * 
  * @author nussa2
  *
@@ -15,7 +16,8 @@ public abstract class LayoutFactory {
 	private static final LayoutFactory TILE_LAYOUT_INSTANCE = new TileLayoutFactory();
 
 	/**
-	 * Gets an instance of a concrete LayoutFactory specified by {@link LayoutType}.
+	 * Gets an instance of a concrete LayoutFactory specified by
+	 * {@link LayoutType}.
 	 * 
 	 * @param type
 	 * @return
@@ -39,7 +41,8 @@ public abstract class LayoutFactory {
 	 */
 
 	/**
-	 * Create Layout with specified arguments. Arguments are defined in the concrete Factory.
+	 * Create Layout with specified arguments. Arguments are defined in the
+	 * concrete Factory.
 	 * 
 	 * @param args
 	 * @return

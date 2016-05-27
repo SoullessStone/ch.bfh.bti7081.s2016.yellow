@@ -23,7 +23,6 @@ public class PrescriptionDTO extends GenericDTO {
 		this.setValidity(validity);
 	}
 
-
 	public DrugDTO getMedication() {
 		return medication;
 	}
@@ -45,8 +44,8 @@ public class PrescriptionDTO extends GenericDTO {
 	}
 
 	public void setValidity(DateRange validity) {
-		this.validFrom=validity.getFrom();
-		this.validTo=validity.getTo();
+		this.validFrom = validity.getFrom();
+		this.validTo = validity.getTo();
 	}
 
 	@Override

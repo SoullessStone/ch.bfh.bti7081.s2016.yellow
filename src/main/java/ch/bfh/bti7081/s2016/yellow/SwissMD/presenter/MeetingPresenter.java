@@ -1,10 +1,7 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.presenter;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import org.hibernate.mapping.Array;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.DrugDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDaoImpl;
