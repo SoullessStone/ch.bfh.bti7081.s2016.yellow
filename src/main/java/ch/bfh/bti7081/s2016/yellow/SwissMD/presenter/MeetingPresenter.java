@@ -16,6 +16,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.MeetingView;
 
 public class MeetingPresenter {
@@ -35,6 +36,7 @@ public class MeetingPresenter {
 		if (existingMeeting != null) {
 			existingMeeting.setNotes(meetingDTO.getNotes());
 			existingMeeting.setAppointmentTime(meetingDTO.getAppointmentTime());
+			existingMeeting.setStateType(meetingDTO.getMeetingState());
 			meetingDao.update(existingMeeting);
 		}
 	}
@@ -50,13 +52,11 @@ public class MeetingPresenter {
 	public MeetingDTO findMeetingById(Long id) {
 		Meeting meeting = meetingDao.read(id);
 		if (meeting != null) {
-			MeetingDTO meetingDTO = new MeetingDTO();
-			meetingDTO.setId(meeting.getId());
-			meetingDTO.setDoctor(new DoctorDTO(meeting.getDoctor()));
-			meetingDTO.setPatient(new PatientDTO(meeting.getPatient()));
-			meetingDTO.setAppointmentTime(meeting.getAppointmentTime());
-			meetingDTO.setNotes(meeting.getNotes());
-			return meetingDTO;
+			try {
+				return new MeetingDTO(meeting);
+			} catch (MeetingStateException e) {
+				// TODO should not happen here
+			}
 		}
 		return null;
 	}
@@ -68,7 +68,7 @@ public class MeetingPresenter {
 		}
 	}
 
-	public MeetingDTO create(MeetingDTO meetingDTO) {
+	public MeetingDTO create(MeetingDTO meetingDTO) throws MeetingStateException {
 		Meeting meeting = new Meeting();
 		meeting.setAppointmentTime(meetingDTO.getAppointmentTime());
 		// TODO: Doctor aus Session

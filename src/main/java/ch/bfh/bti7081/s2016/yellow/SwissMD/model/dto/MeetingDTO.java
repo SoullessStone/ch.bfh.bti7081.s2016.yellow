@@ -5,9 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
 
 /**
- * Data transfer object for a {@code Meeting} entity. To use in the views.
+ * Data transfer object for a {@link Meeting} entity. To use in the views.
  * 
  * @author K.Suter
  * 
@@ -18,6 +20,8 @@ public class MeetingDTO extends GenericDTO {
 
 	private DoctorDTO doctor;
 
+	private MeetingState state;
+
 	// TODO: Gemäss classmodel muss das eine Liste von Sitzungseinträgen werden.
 	private String notes;
 
@@ -25,21 +29,59 @@ public class MeetingDTO extends GenericDTO {
 
 	// TODO: Braucht es noch eine Duration?
 
-	public MeetingDTO(PatientDTO patient, DoctorDTO doctor, Date appointmentTime) {
+	public MeetingDTO(PatientDTO patient, DoctorDTO doctor, Date appointmentTime)
+			throws MeetingStateException {
 		this.patient = patient;
 		this.doctor = doctor;
+		this.appointmentTime = appointmentTime;
+		this.state = new MeetingStateNew();
+		this.state.planMeeting(this, appointmentTime);
 		this.appointmentTime = appointmentTime;
 	}
 
 	public MeetingDTO() {
 	}
 
-	public MeetingDTO(Meeting createdMeeting) {
-		this.appointmentTime = createdMeeting.getAppointmentTime();
+	public MeetingDTO(Meeting createdMeeting) throws MeetingStateException {
+		Date appointmentTime = createdMeeting.getAppointmentTime();
+		
+		MeetingStateType meetingState = createdMeeting.getStateType();
+		if (meetingState !=null) {
+			this.state = meetingState.getMeetingState();
+		} else {
+			this.state = new MeetingStateNew();
+		}
+		this.state.planMeeting(this, appointmentTime);
+		this.appointmentTime = appointmentTime;
 		this.doctor = new DoctorDTO(createdMeeting.getDoctor());
 		this.patient = new PatientDTO(createdMeeting.getPatient());
 		this.notes = createdMeeting.getNotes();
 		this.setId(createdMeeting.getId());
+	}
+
+	/**
+	 * This method must remain protected! It is not allowed to change the
+	 * meeting state from outside this package.
+	 **/
+	protected void changeMeetingState(MeetingState newMeetingState) {
+		this.state = newMeetingState;
+	}
+
+	public MeetingStateType getMeetingState() {
+		return this.state.getState();
+	}
+
+	public void cancelMeeting() throws MeetingStateException {
+		this.state.cancelMeeting(this);
+	}
+
+	public void postponeMeeting(Date newAppointmentTime)
+			throws MeetingStateException {
+		this.state.planMeeting(this, newAppointmentTime);
+	}
+
+	public void performMeeting() throws MeetingStateException {
+		this.state.performMeeting(this);
 	}
 
 	public PatientDTO getPatient() {

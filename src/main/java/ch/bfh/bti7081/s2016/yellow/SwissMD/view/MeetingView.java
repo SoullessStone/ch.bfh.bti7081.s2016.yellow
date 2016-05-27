@@ -10,6 +10,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreatePrescriptionTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreationPrescriptiontileObserver;
@@ -39,16 +40,16 @@ import com.vaadin.ui.TextArea;
 @SuppressWarnings("serial")
 public class MeetingView extends CustomComponent implements View,
 		CreationPrescriptiontileObserver {
+	private static final String REASON = " Grund: ";
 	private static final String NEW_MEETING_KEYWORD = "new";
-	private static final String COULD_NOT_READ_MEETING_ID = "Meeting-Id konnte nicht gelesen werden";
 	private static final String CHANGES_SAVED_SUCCESSFULLY = "Änderungen wurden gespeichert";
 	private static final String CHANGES_NOT_SAVED = "Änderungen konnten nicht gespeichert werden";
 	private static final String MEETING_DELETED_SUCCESSFULLY = "Das Meeting wurde gelöscht";
 	private static final String MEETING_NOT_DELETED = "Das Meeting konnte nicht gelöscht werden";
-	private static final String NO_MEETING_ID_PROVIDED = "Keine Meeting-Id zum Laden eines Meetings angegeben!";
 	private static final String MEETING_WITH_ID_NOT_EXIST = "Meeting mit der Id {0} existiert nicht!";
-	private static final String MEETING_ID_NOT_A_NUMBER = "Übergebener Parameter ist keine Zahl";
-	private static final String PATIENT_ID_NOT_A_NUMBER = "Übergebener Parameter ist keine Zahl";
+	private static final String MEETING_ID_NOT_A_NUMBER = "Übergebener Meeting-Parameter ist keine Zahl";
+	private static final String PATIENT_ID_NOT_A_NUMBER = "Übergebener Patient-Parameter ist keine Zahl";
+	private static final String MEETING_NOT_CREATED = "Meeting konnte nicht erstellt werden" ;
 	private MeetingPresenter meetingPresenter = new MeetingPresenter(this);
 	private BaseLayout layout;
 
@@ -139,18 +140,27 @@ public class MeetingView extends CustomComponent implements View,
 						PatientDTO patient = meetingPresenter
 								.getPatient(patientId);
 						// Meeting mit Patient erstellen
-						MeetingDTO meetingDTO = new MeetingDTO(patient,
-								new DoctorDTO("bla", new Date()), new Date());
-						MeetingDTO m = meetingPresenter.create(meetingDTO);
-						if (m != null) {
-							getUI().getNavigator().navigateTo(
-									NavigationIndex.MEETINGVIEW + "/"
-											+ m.getId());
-						} else {
-							getUI().getNavigator().navigateTo(
-									NavigationIndex.PERSONSEARCHVIEW
-											.getNavigationPath());
+						try {
+							MeetingDTO meetingDTO = new MeetingDTO(patient,
+									new DoctorDTO("bla", new Date()), new Date());
+							MeetingDTO m;
+							
+							m = meetingPresenter.create(meetingDTO);
+							
+							if (m != null) {
+								getUI().getNavigator().navigateTo(
+										NavigationIndex.MEETINGVIEW + "/"
+												+ m.getId());
+							} else {
+								getUI().getNavigator().navigateTo(
+										NavigationIndex.PERSONSEARCHVIEW
+												.getNavigationPath());
+							}
+						} catch (MeetingStateException e) {
+							Notification.show(MEETING_NOT_CREATED + REASON + e.getMessage() , Type.HUMANIZED_MESSAGE);
+							e.printStackTrace();
 						}
+						
 					} catch (NumberFormatException e) {
 						Notification.show(PATIENT_ID_NOT_A_NUMBER,
 								Type.HUMANIZED_MESSAGE);
