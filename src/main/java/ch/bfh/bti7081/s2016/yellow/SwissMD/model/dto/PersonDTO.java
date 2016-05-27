@@ -24,12 +24,26 @@ public class PersonDTO extends GenericDTO {
 //	private Integer dangerState;
 //	private Integer officeNumber;
 
+	/**
+	 * "Change to PersonDTO(Person person)"
+	 * @param name
+	 * @param birthdate
+	 * @param dtype
+	 */
+	@Deprecated
 	public PersonDTO(String name, Date birthdate, String dtype) {
 		this.name = name;
 		this.birthdate = birthdate;
 		this.dtype = dtype;
 	}
 	
+	public PersonDTO(Person person) {
+		this.name = person.getName();
+		this.birthdate = person.getBirthdate();
+		this.dtype = person.getDtype();
+		this.setId(person.getId());
+	}
+
 	public String getDtype() {
 		return dtype;
 	}

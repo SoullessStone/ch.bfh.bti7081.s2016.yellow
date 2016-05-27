@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
+
 /**
  * Data transfer object for a {@code Meeting} entity. To use in the views.
  * 
@@ -30,6 +32,14 @@ public class MeetingDTO extends GenericDTO {
 	}
 
 	public MeetingDTO() {
+	}
+
+	public MeetingDTO(Meeting createdMeeting) {
+		this.appointmentTime = createdMeeting.getAppointmentTime();
+		this.doctor = new DoctorDTO(createdMeeting.getDoctor());
+		this.patient = new PatientDTO(createdMeeting.getPatient());
+		this.notes = createdMeeting.getNotes();
+		this.setId(createdMeeting.getId());
 	}
 
 	public PatientDTO getPatient() {

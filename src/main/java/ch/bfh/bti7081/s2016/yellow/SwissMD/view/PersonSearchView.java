@@ -92,15 +92,14 @@ public class PersonSearchView extends CustomComponent implements View {
 		tile.addComponent(birthDateField);
 		tile.addComponent(searchButton);
 		layout.addComponent(tile);
-		this.resultTile = new MultiplePersonTile(Arrays.asList(new PersonDTO(
-				"name", new Date(), "dtype")));
+		this.resultTile = new MultiplePersonTile(null);
 		layout.addComponent(resultTile);
 		layout.finishLayout();
 	}
 
 	private void showSearchResults(List<PersonDTO> results) {
 		Notification.show(results.size() + FOUND_COUNT_RESULTS,
-				Type.HUMANIZED_MESSAGE);
+				Type.ASSISTIVE_NOTIFICATION);
 		this.resultTile.setPersons(results);
 	}
 
