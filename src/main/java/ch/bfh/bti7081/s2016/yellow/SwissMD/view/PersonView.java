@@ -1,11 +1,15 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.GridTile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MeetingTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
@@ -26,6 +30,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
+import com.vaadin.ui.VerticalLayout;
 
 @SuppressWarnings("serial")
 public class PersonView extends CustomComponent implements View {
@@ -58,9 +63,9 @@ public class PersonView extends CustomComponent implements View {
 		// Combobox mit allen möglichen Patienten
 		Tile selectPatientTile = new Tile("Patient auswählen");
 		HorizontalLayout selectPatientsArea = new HorizontalLayout();
-		List<Person> list = personPresenter.getPatients();
+		List<PersonDTO> list = personPresenter.getPatients();
 		ComboBox selectPatientCBox = new ComboBox();
-		for (Person patient : list) {
+		for (PersonDTO patient : list) {
 			System.out.println(patient.getId());
 			selectPatientCBox.addItem(patient);
 		}
@@ -135,7 +140,25 @@ public class PersonView extends CustomComponent implements View {
 					layout.createRowBrake();
 					layout.addComponent(actionsTile);
 
-					// TODO fill with meeting tiles that belong to patient
+					Tile historyTile = new Tile("Patientenhistory");
+					 // TODO: Sabine 
+					List<MeetingDTO> meetingDTOs = new ArrayList<MeetingDTO>();
+					try {						
+						meetingDTOs = personPresenter.getMeetingsForPatient(personDTO.getId());
+						//TODO: Sabine sortiere Meetings nach AppointTime
+						VerticalLayout verticalLayout = new VerticalLayout();
+						verticalLayout.setSpacing(true);
+						for (MeetingDTO m : meetingDTOs){
+							verticalLayout.addComponent(new MeetingTile(m));
+						}
+						historyTile.addComponent(verticalLayout);
+						layout.createRowBrake();
+						layout.addComponent(historyTile);
+						// TODO fill with meeting tiles that belong to patient
+					} catch (MeetingStateException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -148,7 +171,7 @@ public class PersonView extends CustomComponent implements View {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				Person person = (Person) personDTO.getValue();
+				PersonDTO person = (PersonDTO) personDTO.getValue();
 
 				try {
 					getUI().getNavigator().navigateTo(

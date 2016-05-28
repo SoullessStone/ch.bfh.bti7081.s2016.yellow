@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingState;
@@ -17,6 +18,10 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
  */
 @Entity
 @Table
+@NamedQuery(
+	    name="findMeetingsForPatient",
+	    query="SELECT m FROM Meeting m WHERE m.patient = :patient"
+	)
 public class Meeting extends AbstractDatabaseObject {
 
 	@ManyToOne

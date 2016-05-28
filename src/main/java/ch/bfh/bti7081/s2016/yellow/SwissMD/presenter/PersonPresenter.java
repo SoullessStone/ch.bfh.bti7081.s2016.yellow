@@ -1,20 +1,30 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.presenter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonView;
 
 public class PersonPresenter {
 	private PersonDaoImpl personDao;
+	private MeetingDaoImpl meetingDao;
 
 	public PersonPresenter(PersonView personView) {
 		System.out.println("init PersonPresenter");
 		this.personDao = new PersonDaoImpl();
+		this.meetingDao = new MeetingDaoImpl();
 	}
 
 	/**
@@ -28,11 +38,7 @@ public class PersonPresenter {
 	public PersonDTO findPersonById(Long id) {
 		Person person = personDao.read(id);
 		if (person != null) {
-			PersonDTO personDTO = new PersonDTO(person.getName(),
-					person.getBirthdate(), person.getDtype());
-			personDTO.setId(person.getId());
-
-			return personDTO;
+			return new PersonDTO(person);
 		}
 		return null;
 	}
@@ -49,14 +55,22 @@ public class PersonPresenter {
 	 * Returns a List of {@code Patients} or {@code null} if no patients could
 	 * be found
 	 */
-	public List<Person> getPatients() {
+	public List<PersonDTO> getPatients() {
 		List<Person> persons = personDao.readAll();
-		List<Person> patients = new ArrayList<Person>();
-		;
+		List<PersonDTO> patients = new ArrayList<PersonDTO>(persons.size());
 		for (Person person : persons) {
 			if (person.getDtype().equals("Patient"))
-				patients.add(person);
+				patients.add(new PersonDTO(person));
 		}
 		return patients;
+	}
+
+	public List<MeetingDTO> getMeetingsForPatient(Long id) throws MeetingStateException {
+		Patient patient = (Patient) personDao.read(id);
+		List<MeetingDTO> res = new ArrayList<>();
+		for (Meeting m : meetingDao.findMeetingForPerson(patient)) {
+			res.add(new MeetingDTO(m));
+		}
+		return res;
 	}
 }
