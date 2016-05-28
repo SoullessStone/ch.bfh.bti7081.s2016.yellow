@@ -26,23 +26,15 @@ import com.vaadin.ui.VerticalLayout;
  */
 public class TileLayout extends BaseLayout {
 
-	private VerticalLayout baseLayout;
+	VerticalLayout baseLayout;
 
 	private List<HorizontalLayout> rows;
 
-	private int maxElementsPerRow;
-
-	private boolean autoFill = true;
-
+	int maxElementsPerRow;
+	
+	/*
 	private boolean finished = false;
-
-	boolean isAutoFill() {
-		return autoFill;
-	}
-
-	void setAutoFill(boolean autoFill) {
-		this.autoFill = autoFill;
-	}
+ 	*/
 
 	TileLayout(int maxElementsPerRow) {
 		baseLayout = new VerticalLayout();
@@ -54,10 +46,6 @@ public class TileLayout extends BaseLayout {
 
 	int getDefaultColumNumber() {
 		return maxElementsPerRow;
-	}
-
-	VerticalLayout getBaseLayout() {
-		return baseLayout;
 	}
 
 	void addRow(HorizontalLayout layout) {
@@ -161,7 +149,7 @@ public class TileLayout extends BaseLayout {
 
 	@Override
 	public void finishLayout() {
-		finished = true;
+		//finished = true;
 		if (!rows.isEmpty()) {
 			calculateElementExpansions(getCurrentRow());
 		}

@@ -66,12 +66,13 @@ public class MeetingView extends CustomComponent implements View,
 					.createLayout(
 							TileLayoutFactory.Arguments.ELEMENTS_PER_ROW
 									.getName() + ":3");
+			setCompositionRoot(layout);
 		} catch (Exception e1) {
 			// TODO Go to error View
 			e1.printStackTrace();
 		}
 
-		setCompositionRoot(layout);
+
 	}
 
 	private Button getSaveButton() {
