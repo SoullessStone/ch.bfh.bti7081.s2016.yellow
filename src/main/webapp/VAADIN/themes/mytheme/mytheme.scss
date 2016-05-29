@@ -82,8 +82,33 @@ $v-shadow-opacity: 5%;
 	.v-button-big{
 	    height: 60px;
 	  	padding: 1px 14px 0 8px;
+	  	-webkit-box-shadow: 0 4px 4px #FFFFFF;
+		-moz-box-shadow: 0 4px 4px #FFFFFF;
+		box-shadow: 0 4px 4px #FFFFFF;
 	}
+	
+	.v-button-big:hover {
+		font-size: 18px;
+		font-style: bold;
+		border-color: #F5F5F5;
+        border-image: none;
+        border-left: 1px solid #F5F5F5;
+        border-radius: 3px 3px 3px 3px;
+        border-right: 1px solid #F5F5F5;
+        border-style: solid;
+        border-width: 1px;
+	 }
 
+	.v-button-big.v-pressed {
+		border-color: #F5F5F5;
+        border-image: none;
+        border-left: 1px solid #F5F5F5;
+        border-radius: 3px 3px 3px 3px;
+        border-right: 1px solid #F5F5F5;
+        border-style: solid;
+        border-width: 1px;
+	}
+	
 	/***** Login View *****/	
 	
 	#loginPanel
