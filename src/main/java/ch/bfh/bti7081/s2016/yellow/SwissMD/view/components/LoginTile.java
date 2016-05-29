@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
+import com.vaadin.server.Page;
+import com.vaadin.server.Page.Styles;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.PasswordField;
@@ -39,8 +41,8 @@ public class LoginTile extends Tile {
 		Button button = new Button("Log In", new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
-				getUI().getNavigator().navigateTo(
-						NavigationIndex.MEETINGVIEW.getNavigationPath());
+					getUI().getNavigator().navigateTo(
+							NavigationIndex.MEETINGVIEW.getNavigationPath());
 			}
 		});
 		return button;

@@ -45,6 +45,7 @@ public class LoginView extends CustomComponent implements View {
 		Notification.show("Welcome! Please log in.");
 		
 		Tile tile = new LoginTile();
+		tile.addStyleName("my-login");
 		layout.addComponent(tile);
 	}
 

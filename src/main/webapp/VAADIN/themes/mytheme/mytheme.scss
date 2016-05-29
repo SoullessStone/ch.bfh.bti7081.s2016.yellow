@@ -1,6 +1,12 @@
 // If you edit this file you need to compile the theme. See README.md for details.
 
 // Global variable overrides. Must be declared before importing Valo.
+// active global variables, dh
+$v-app-loading-text: "Loading Resources...";
+$v-gradient: v-linear 20%;
+$v-border: 1px solid (v-shade 0.7);
+$v-bevel-depth: 30%;
+$v-shadow-opacity: 5%;
 
 // Defines the plaintext font size, weight and family. Font size affects general component sizing.
 //$v-font-size: 16px;
@@ -8,7 +14,6 @@
 //$v-font-family: "Open Sans", sans-serif;
 
 // Defines the border used by all components.
-//$v-border: 1px solid (v-shade 0.7);
 //$v-border-radius: 4px;
 
 // Affects the color of some component elements, e.g Button, Panel title, etc
@@ -17,9 +22,6 @@
 //$v-app-background-color: $v-background-color;
 
 // Affects the visual appearance of all components
-//$v-gradient: v-linear 8%;
-//$v-bevel-depth: 30%;
-//$v-shadow-opacity: 5%;
 
 // Defines colors for indicating status (focus, success, failure)
 //$v-focus-color: valo-focus-color(); // Calculates a suitable color automatically
@@ -39,7 +41,22 @@
 	.saveMessageLabel{
 		Color: red;
 	}
+	
+	.v-panel {
+		-webkit-box-shadow: 0 18px 10px #777;
+		-moz-box-shadow: 0 18px 10px #777;
+		box-shadow: 0 18px 10px #777;
+	}
+	
+	.v-panel .v-panel-content {
+		background: white;
+	}
+	
+	v.panel .v-panel-caption {
+		background: #a4a4a4;
+	}
 
+	
 	/****** UI Root ******/
 	
 	#uiContainer{
@@ -50,9 +67,9 @@
 	.v-ui
 	{
 		background: url('img/bg_doctor.jpg');
-		background-size:cover;
+		background-size: cover;
 		background-position: top center;
-		
+		background-filter: contrast(0.6);
 		padding: 4vw;
 		
 		box-sizing: border-box; 
@@ -76,12 +93,16 @@
 		box-sizing: border-box;	
 	} 
 	
-
 	#loginTitle
 	{
 		font-size: 2rem;
 		margin-bottom: 10px;
 	}
 	
+	.my-login{
+		-webkit-box-shadow: 0 18px 10px #777;
+		-moz-box-shadow: 0 18px 10px #777;
+		box-shadow: 0 18px 10px #777;
+	}
 	
 }
