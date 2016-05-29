@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.IllegalDateRangeException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
@@ -38,7 +39,7 @@ public class CreatePrescriptionTile extends Tile {
 
 	List<CreationPrescriptiontileObserver> observer = new ArrayList<>();
 
-	public CreatePrescriptionTile(List<DrugDTO> list) {
+	public CreatePrescriptionTile(List<DrugDTO> list, PatientDTO patient) {
 		setTitleAndIcon("Neues Medikament verordnen",
 				"img/icons/eyedropper_small.png");
 		// Combobox mit allen möglichen Medikamenten
@@ -95,7 +96,7 @@ public class CreatePrescriptionTile extends Tile {
 
 				try {
 					prescriptionDTO = new PrescriptionDTO(selectedDrug,
-							selectedDosis, new DateRange(validFrom.getValue(), validUntil.getValue()));
+							selectedDosis, new DateRange(validFrom.getValue(), validUntil.getValue()), patient);
 					// Allen Observer Bescheid geben, dass eine Prescription
 					// erstellt wurde
 					for (CreationPrescriptiontileObserver observer : observer) {

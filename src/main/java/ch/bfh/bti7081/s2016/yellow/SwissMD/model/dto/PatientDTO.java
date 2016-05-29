@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Stream;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
 
 public class PatientDTO extends PersonDTO {
 
@@ -17,6 +19,9 @@ public class PatientDTO extends PersonDTO {
 
 	public PatientDTO(Patient patient) {
 		super(patient);
+		for (Prescription prescription : patient.getPrescriptions()) {
+			prescriptions.add(new PrescriptionDTO(prescription,this));
+		}
 	}
 
 	public List<PrescriptionDTO> getPrescriptions() {

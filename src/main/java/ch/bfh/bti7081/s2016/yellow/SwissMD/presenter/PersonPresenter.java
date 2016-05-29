@@ -14,6 +14,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonView;
 
@@ -50,6 +51,16 @@ public class PersonPresenter {
 			personDao.delete(existingPerson);
 		}
 	}
+	
+	/*public void update(PersonDTO personDTO) throws CouldNotSaveException {
+		Meeting existingMeeting = meetingDao.read(meetingDTO.getId());
+		if (existingMeeting != null) {
+			existingMeeting.setNotes(meetingDTO.getNotes());
+			existingMeeting.setAppointmentTime(meetingDTO.getAppointmentTime());
+			existingMeeting.setStateType(meetingDTO.getMeetingState());
+			meetingDao.update(existingMeeting);
+		}
+	}*/
 
 	/**
 	 * Returns a List of {@code Patients} or {@code null} if no patients could

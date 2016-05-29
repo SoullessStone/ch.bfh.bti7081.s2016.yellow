@@ -20,6 +20,7 @@ public class DrugDTO extends GenericDTO {
 		this.substance = substance;
 		this.SubstanceQuantitiy = SubstanceQuantitiy;
 		this.maxDose = maxDose;
+
 	}
 	
 	public DrugDTO(Drug drug) {
@@ -27,6 +28,7 @@ public class DrugDTO extends GenericDTO {
 		this.substance = drug.getSubstance();
 		this.SubstanceQuantitiy = drug.getSubstanceQuantitiy();
 		this.maxDose = drug.getMaxDose();
+		this.setId(drug.getId());
 	}
 
 	public DrugDTO(String tradeName) {

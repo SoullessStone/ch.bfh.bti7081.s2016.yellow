@@ -42,6 +42,9 @@ public class DateRange {
 	 * @return Validiert die Parameter und gibt deren Validität zurück
 	 */
 	private boolean validate(Date from, Date to) {
+		if (from == null || to == null){
+			return false;
+		}
 		if (to.after(from)) {
 			return true;
 		}

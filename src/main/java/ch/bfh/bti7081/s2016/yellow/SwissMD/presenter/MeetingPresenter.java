@@ -93,8 +93,7 @@ public class MeetingPresenter {
 		List<Drug> drugs = drugDao.readAll();
 		List<DrugDTO> drugDTOs = new ArrayList<>();
 		for (Drug drug : drugs) {
-			drugDTOs.add(new DrugDTO(drug.getTradeName(), drug.getSubstance(),
-					drug.getSubstanceQuantitiy(), drug.getMaxDose()));
+			drugDTOs.add(new DrugDTO(drug));
 		}
 		return drugDTOs;
 	}

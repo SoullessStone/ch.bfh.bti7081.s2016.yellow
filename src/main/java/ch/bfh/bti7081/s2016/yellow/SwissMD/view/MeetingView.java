@@ -244,13 +244,6 @@ public class MeetingView extends CustomComponent implements View,
 
 		List<PrescriptionDTO> prescriptions = meetingDTO.getPatient()
 				.getPrescriptions();
-		if (prescriptions.isEmpty()) {
-
-			// Tile prescriptionTile = new Tile("Verschreibungen");
-			// prescriptionTile
-			// .addComponent(getAddPrescriptionButton());
-			// layout.addComponent(prescriptionTile);
-		}
 		for (PrescriptionDTO prescriptionDTO : prescriptions) {
 			Tile prescriptionTile = new PrescriptionTile(prescriptionDTO);
 			// prescriptionTile.addComponent(getAddPrescriptionButton());
@@ -267,7 +260,7 @@ public class MeetingView extends CustomComponent implements View,
 
 	private void createPrescriptionTile() {
 		CreatePrescriptionTile createPrescriptionTile = new CreatePrescriptionTile(
-				meetingPresenter.getPossibleDrugs());
+				meetingPresenter.getPossibleDrugs(),meetingDTO.getPatient());
 		createPrescriptionTile.addObserver(MeetingView.this);
 		layout.addComponent(createPrescriptionTile);
 		layout.createRowBrake();
