@@ -29,13 +29,11 @@ public class GridTile extends Tile {
 		grid.addComponent(new Label("Diagnose: "));
 		grid.addComponent(new Label("Angehörige: "));
 		
-		Person legalAid = personDao.read(personDTO.getLegalAid());
 		grid.addComponent(new Label("Beistand: "
-				+ (legalAid != null ? legalAid.getName() : "---")));
+				+ (personDTO.getLegalAid() != null ? personDao.read(personDTO.getLegalAid()).getName() : "---")));
 		
-		Person familyDoctor = personDao.read(personDTO.getFamilyDoctor());
 		grid.addComponent(new Label("Hausarzt: "
-				+ (familyDoctor != null ? familyDoctor.getName() : "---")));
+				+ (personDTO.getFamilyDoctor() != null ? personDao.read(personDTO.getFamilyDoctor()).getName() : "---")));
 		
 		addComponent(grid);
 		contentLayout.setMargin(true);
