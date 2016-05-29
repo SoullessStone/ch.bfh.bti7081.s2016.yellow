@@ -14,7 +14,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
  * @author K.Suter
  * 
  */
-public class MeetingDTO extends GenericDTO {
+public class MeetingDTO extends GenericDTO implements Comparable<MeetingDTO> {
 
 	private PatientDTO patient;
 
@@ -119,5 +119,10 @@ public class MeetingDTO extends GenericDTO {
 
 	public void setAppointmentTime(Date appointmentTime) {
 		this.appointmentTime = appointmentTime;
+	}
+
+	@Override
+	public int compareTo(MeetingDTO o) {
+		return o.getAppointmentTime().compareTo(getAppointmentTime());
 	}
 }

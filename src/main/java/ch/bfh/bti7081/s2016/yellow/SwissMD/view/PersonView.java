@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
@@ -141,11 +142,10 @@ public class PersonView extends CustomComponent implements View {
 					layout.addComponent(actionsTile);
 
 					Tile historyTile = new Tile("Patientenhistory");
-					 // TODO: Sabine 
 					List<MeetingDTO> meetingDTOs = new ArrayList<MeetingDTO>();
 					try {						
 						meetingDTOs = personPresenter.getMeetingsForPatient(personDTO.getId());
-						//TODO: Sabine sortiere Meetings nach AppointTime
+						Collections.sort(meetingDTOs);
 						VerticalLayout verticalLayout = new VerticalLayout();
 						verticalLayout.setSpacing(true);
 						for (MeetingDTO m : meetingDTOs){
@@ -154,7 +154,6 @@ public class PersonView extends CustomComponent implements View {
 						historyTile.addComponent(verticalLayout);
 						layout.createRowBrake();
 						layout.addComponent(historyTile);
-						// TODO fill with meeting tiles that belong to patient
 					} catch (MeetingStateException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

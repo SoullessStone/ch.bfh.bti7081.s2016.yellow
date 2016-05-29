@@ -67,10 +67,10 @@ public class PersonPresenter {
 
 	public List<MeetingDTO> getMeetingsForPatient(Long id) throws MeetingStateException {
 		Patient patient = (Patient) personDao.read(id);
-		List<MeetingDTO> res = new ArrayList<>();
+		List<MeetingDTO> meetingList = new ArrayList<>();
 		for (Meeting m : meetingDao.findMeetingForPerson(patient)) {
-			res.add(new MeetingDTO(m));
+			meetingList.add(new MeetingDTO(m));
 		}
-		return res;
+		return meetingList;
 	}
 }
