@@ -207,7 +207,7 @@ public class MeetingView extends CustomComponent implements View,
 
 	private void showMeetingInView() {
 		// MeetingDTO angemessen abbilden
-		Tile appointmentTile = new Tile("Sitzung");
+		Tile appointmentTile = new Tile("Sitzung","img/icons/calendar_small.png");
 
 		DateField df = new DateField("Termin");
 		df.setWidth(200, Unit.PIXELS);
@@ -223,7 +223,7 @@ public class MeetingView extends CustomComponent implements View,
 
 		layout.addComponent(new PersonTile(meetingDTO.getDoctor(), "Arzt"));
 
-		Tile meetingTile = new Tile("Sitzungsnotizen");
+		Tile meetingTile = new Tile("Sitzungsnotizen","img/icons/list2_small.png");
 		meetingTile.setStdWidth(3);
 		TextArea area = new TextArea();
 		area.setRows(15);

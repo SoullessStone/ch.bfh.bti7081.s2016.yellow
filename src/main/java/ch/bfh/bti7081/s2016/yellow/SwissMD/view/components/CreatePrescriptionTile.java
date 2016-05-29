@@ -33,7 +33,7 @@ public class CreatePrescriptionTile extends Tile {
 	List<CreationPrescriptiontileObserver> observer = new ArrayList<>();
 
 	public CreatePrescriptionTile(List<DrugDTO> list) {
-		setTitle("Neues Medikament verordnen");
+		setTitleAndIcon("Neues Medikament verordnen", "img/icons/eyedropper_small.png");
 		// Combobox mit allen möglichen Medikamenten
 		ComboBox selectDrug = new ComboBox("Medikamente");
 		for (DrugDTO drug : list) {

@@ -10,7 +10,7 @@ public class PrescriptionTile extends Tile {
 
 	public PrescriptionTile(PrescriptionDTO PrescriptionDTO) {
 		this.prescription = PrescriptionDTO;
-		setTitle(prescription.getMedication().getTradeName());
+		setTitleAndIcon(prescription.getMedication().getTradeName(), "img/icons/eyedropper_small.png");
 
 		addComponent(new Label("Dosis: " + prescription.getDosisInMilligrams()
 				+ "mg"));

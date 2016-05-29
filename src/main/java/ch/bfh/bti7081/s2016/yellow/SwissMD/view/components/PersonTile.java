@@ -14,7 +14,7 @@ public class PersonTile extends Tile {
 
 	public PersonTile(PersonDTO person, String title) {
 		this.person = person;
-		setTitle(title);
+		setTitleAndIcon(title, "img/icons/users_small.png");
 		addComponent(new Label("Name: " + person.getName()));
 		addComponent(new Label("Alter: "
 				+ getAge(new Date(), person.getBirthdate())));

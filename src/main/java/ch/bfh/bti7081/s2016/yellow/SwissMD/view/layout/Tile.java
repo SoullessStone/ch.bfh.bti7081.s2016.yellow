@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout;
 
+import com.vaadin.server.Resource;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Panel;
@@ -23,7 +25,13 @@ public class Tile extends TileLayoutComponent {
 		setCompositionRoot(tile);
 		createDefaultLayout();
 	}
-
+	
+	public Tile(String title, String path) {
+		setTitleAndIcon(title, path);
+		setCompositionRoot(tile);
+		createDefaultLayout();
+	}
+	
 	public Tile() {
 		this("");
 	}
@@ -40,11 +48,17 @@ public class Tile extends TileLayoutComponent {
 		setStdWidth(1);
 	}
 
+	public void setTitleAndIcon(String title, String path) {
+		this.title = title;
+		tile.setIcon(new ThemeResource(path));
+		tile.setCaption(title);
+	}
+
 	public void setTitle(String title) {
 		this.title = title;
 		tile.setCaption(title);
 	}
-
+	
 	public String getTitle() {
 		return title;
 	}

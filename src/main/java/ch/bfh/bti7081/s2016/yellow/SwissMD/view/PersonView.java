@@ -61,7 +61,7 @@ public class PersonView extends CustomComponent implements View {
 		String param = event.getParameters();
 
 		// Combobox mit allen möglichen Patienten
-		Tile selectPatientTile = new Tile("Patient auswählen");
+		Tile selectPatientTile = new Tile("Patient auswählen","img/icons/users_small.png");
 		HorizontalLayout selectPatientsArea = new HorizontalLayout();
 		List<PersonDTO> list = personPresenter.getPatients();
 		ComboBox selectPatientCBox = new ComboBox();

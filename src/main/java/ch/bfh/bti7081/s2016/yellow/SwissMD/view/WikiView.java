@@ -46,7 +46,7 @@ public class WikiView extends CustomComponent implements View {
 	@Override
 	public void enter(ViewChangeEvent event) {
 
-		Tile wikiTile = new Tile("WikiView");
+		Tile wikiTile = new Tile("WikiView","img/icons/books_small.png");
 		wikiText = new Label(
 				wikiPresenter.getWikiText(ArtikelId.ANGSTZUSTAENDE),
 				ContentMode.HTML);
