@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
 import java.util.Date;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Doctor;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
 
 /**
@@ -15,12 +16,13 @@ public class PersonDTO extends GenericDTO {
 	private String name;
 	private Date birthdate;
 
-	// TODO implement in DB
 	private String address;
 	private String zip;
 	private String city;
 	private String mobile;
 	private String landline;
+	private Long legalAid;
+	private Long familyDoctor;
 
 	// private Integer dangerState;
 	// private Integer officeNumber;
@@ -43,6 +45,13 @@ public class PersonDTO extends GenericDTO {
 		this.name = person.getName();
 		this.birthdate = person.getBirthdate();
 		this.dtype = person.getDtype();
+		this.address = person.getAddress();
+		this.zip = person.getZip();
+		this.city = person.getCity();
+		this.mobile = person.getMobile();
+		this.landline = person.getLandline();
+		this.legalAid = person.getLegalAid();
+		this.familyDoctor = person.getFamilyDoctor();
 		this.setId(person.getId());
 	}
 
@@ -71,8 +80,7 @@ public class PersonDTO extends GenericDTO {
 	}
 
 	public String getAddress() {
-		// TODO real data
-		return "Bundesplatz 1a";
+		return address;
 	}
 
 	public void setAddress(String address) {
@@ -80,8 +88,7 @@ public class PersonDTO extends GenericDTO {
 	}
 
 	public String getZip() {
-		// TODO real data
-		return "3000";
+		return zip;
 	}
 
 	public void setZip(String zip) {
@@ -89,8 +96,7 @@ public class PersonDTO extends GenericDTO {
 	}
 
 	public String getCity() {
-		// TODO real data
-		return "Bern";
+		return city;
 	}
 
 	public void setCity(String city) {
@@ -98,8 +104,7 @@ public class PersonDTO extends GenericDTO {
 	}
 
 	public String getMobile() {
-		// TODO real data
-		return "079 666 66 66";
+		return mobile;
 	}
 
 	public void setMobile(String mobile) {
@@ -107,8 +112,7 @@ public class PersonDTO extends GenericDTO {
 	}
 
 	public String getLandline() {
-		// TODO real data
-		return "031 390 90 90";
+		return landline;
 	}
 
 	public void setLandline(String landline) {
@@ -122,6 +126,22 @@ public class PersonDTO extends GenericDTO {
 	// public void setDangerState(Integer dangerState) {
 	// this.dangerState = dangerState;
 	// }
+
+	public Long getLegalAid() {
+		return legalAid;
+	}
+
+	public void setLegalAid(Long legalAid) {
+		this.legalAid = legalAid;
+	}
+
+	public Long getFamilyDoctor() {
+		return familyDoctor;
+	}
+
+	public void setFamilyDoctor(Long familyDoctor) {
+		this.familyDoctor = familyDoctor;
+	}
 
 	// public Integer getOfficeNumber() {
 	// return officeNumber;

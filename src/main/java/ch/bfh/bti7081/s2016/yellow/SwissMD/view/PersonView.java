@@ -104,13 +104,14 @@ public class PersonView extends CustomComponent implements View {
 					grid.setSizeFull();
 					grid.addComponent(new Label("Name: " + personDTO.getName()));
 					grid.addComponent(new Label("Adresse: "
-							+ personDTO.getAddress()));
+							+ (personDTO.getAddress() != null ? personDTO.getAddress() : "---")));
 					grid.addComponent(new Label("PLZ / Ort: "
-							+ personDTO.getZip() + " " + personDTO.getCity()));
+							+ (personDTO.getZip() != null ? personDTO.getZip() + " " : "")
+							+ (personDTO.getCity() != null ? personDTO.getCity() : "---")));
 					grid.addComponent(new Label("Mobile: "
-							+ personDTO.getMobile()));
+							+ (personDTO.getMobile() != null ? personDTO.getMobile() : "---")));
 					grid.addComponent(new Label("Festnetz: "
-							+ personDTO.getLandline()));
+							+ (personDTO.getLandline() != null ? personDTO.getLandline() : "---")));
 
 					baseDataTile.addComponent(grid);
 					layout.addComponent(baseDataTile);
@@ -118,8 +119,7 @@ public class PersonView extends CustomComponent implements View {
 					// 2. tile: medical base data (data protection critical
 					// stuff)
 					// TODO fill with real data
-					GridTile medicalDataTile = new GridTile(
-							"Medzinische Grunddaten " + personDTO.getName());
+					GridTile medicalDataTile = new GridTile(personDTO);
 					layout.addComponent(medicalDataTile);
 
 					Button createMeetingButton = new Button(
