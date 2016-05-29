@@ -16,8 +16,7 @@ import com.vaadin.ui.Label;
 // if just clicked (not navigated to from Patient) this view could show all the Perscriptions of the current doctor)
 @SuppressWarnings("serial")
 public class PrescriptionView extends CustomComponent implements View {
-	private PrescriptionPresenter prescriptionPresenter = new PrescriptionPresenter(
-			this);
+	private PrescriptionPresenter prescriptionPresenter = new PrescriptionPresenter();
 
 	private BaseLayout layout;
 

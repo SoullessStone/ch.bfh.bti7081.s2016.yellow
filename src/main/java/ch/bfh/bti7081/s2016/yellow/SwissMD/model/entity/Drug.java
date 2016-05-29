@@ -3,6 +3,8 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
+
 /**
  * Entity that represents a drug. To use in the data access layer.
  * 
@@ -17,6 +19,15 @@ public class Drug extends AbstractDatabaseObject {
 	private String substance;
 	private String SubstanceQuantitiy;
 	private int maxDose;
+	
+	public Drug () {}
+	
+	public Drug(DrugDTO drugDTO) {
+		this.tradeName = drugDTO.getTradeName();
+		this.substance = drugDTO.getSubstance();
+		this.SubstanceQuantitiy = drugDTO.getSubstanceQuantitiy();
+		this.maxDose = drugDTO.getMaxDose();
+	}
 
 	public String getTradeName() {
 		return tradeName;

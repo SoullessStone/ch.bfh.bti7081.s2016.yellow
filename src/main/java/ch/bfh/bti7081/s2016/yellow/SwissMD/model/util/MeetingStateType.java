@@ -6,7 +6,12 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingStateNew;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingStatePerformed;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingStatePlanned;
 
-
+/**
+ * Indicates the state of a meeting. If used to save the state to the database.
+ * 
+ * @author K.Suter
+ * 
+ */
 public enum MeetingStateType {
 	NEW(new MeetingStateNew()),
 	PLANNED(new MeetingStatePlanned()),

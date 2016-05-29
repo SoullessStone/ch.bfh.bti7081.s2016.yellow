@@ -8,6 +8,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.IllegalDateRangeException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 
 public class DateRangeTest {
@@ -15,7 +16,7 @@ public class DateRangeTest {
 	public ExpectedException thrown = ExpectedException.none();
 
 	@Test
-	public void happy() {
+	public void happy() throws IllegalDateRangeException {
 		//
 		ExpectedException.none();
 		Date from = new Date();
@@ -27,9 +28,9 @@ public class DateRangeTest {
 	}
 
 	@Test
-	public void invalidConstructorParam() {
+	public void invalidConstructorParam() throws IllegalDateRangeException {
 		//
-		thrown.expect(IllegalArgumentException.class);
+		thrown.expect(IllegalDateRangeException.class);
 		Date from = new Date();
 		Date to = new Date(from.getTime() + 1000000);
 		// act

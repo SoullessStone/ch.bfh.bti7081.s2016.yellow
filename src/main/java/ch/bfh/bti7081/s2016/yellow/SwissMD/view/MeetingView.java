@@ -12,6 +12,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteExcepti
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PrescriptionPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreatePrescriptionTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreationPrescriptiontileObserver;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
@@ -51,6 +52,7 @@ public class MeetingView extends CustomComponent implements View,
 	private static final String PATIENT_ID_NOT_A_NUMBER = "Übergebener Patient-Parameter ist keine Zahl";
 	private static final String MEETING_NOT_CREATED = "Meeting konnte nicht erstellt werden" ;
 	private MeetingPresenter meetingPresenter = new MeetingPresenter(this);
+	private PrescriptionPresenter prescriptionPresenter = new PrescriptionPresenter();
 	private BaseLayout layout;
 
 	private MeetingDTO meetingDTO;
@@ -274,6 +276,7 @@ public class MeetingView extends CustomComponent implements View,
 	@Override
 	public void perscriptionCreated(PrescriptionDTO prescriptionDTO) {
 		this.meetingDTO.getPatient().addPrescription(prescriptionDTO);
+		this.prescriptionPresenter.savePrescription(prescriptionDTO);
 		createPrescriptionTile();
 		System.out.println("Prescription created");
 	}

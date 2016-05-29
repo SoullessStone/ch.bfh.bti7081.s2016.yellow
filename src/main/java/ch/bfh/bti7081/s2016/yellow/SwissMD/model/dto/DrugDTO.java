@@ -1,7 +1,9 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Drug;
+
 /**
- * Data transfer object for a {@code Drug} entity. To use in the views.
+ * Data transfer object for a {@code Medication} entity. To use in the views.
  * 
  * @author D. Halter
  * 
@@ -18,6 +20,13 @@ public class DrugDTO extends GenericDTO {
 		this.substance = substance;
 		this.SubstanceQuantitiy = SubstanceQuantitiy;
 		this.maxDose = maxDose;
+	}
+	
+	public DrugDTO(Drug drug) {
+		this.tradeName = drug.getTradeName();
+		this.substance = drug.getSubstance();
+		this.SubstanceQuantitiy = drug.getSubstanceQuantitiy();
+		this.maxDose = drug.getMaxDose();
 	}
 
 	public DrugDTO(String tradeName) {

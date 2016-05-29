@@ -1,13 +1,22 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.presenter;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PrescriptionView;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PrescriptionDaoImpl;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Drug;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
 
 public class PrescriptionPresenter {
-	// TODO: Knows the model
-	private PrescriptionView prescriptionView;
+	PrescriptionDaoImpl prescriptionDao;
 
-	public PrescriptionPresenter(PrescriptionView prescriptionView) {
-		System.out.println("init PrescriptionPresenter");
-		this.prescriptionView = prescriptionView;
+	public PrescriptionPresenter() {
+		this.prescriptionDao = new PrescriptionDaoImpl();
+	}
+	
+	public void savePrescription(PrescriptionDTO prescriptionDTO) {
+		Prescription prescription = new Prescription();
+		prescription.setDrug(new Drug(prescriptionDTO.getDrug()));
+		prescription.setDosisInMilligrams(prescriptionDTO.getDosisInMilligrams());
+		prescription.setValidity(prescriptionDTO.getValidity());
+		prescriptionDao.create(prescription);
 	}
 }

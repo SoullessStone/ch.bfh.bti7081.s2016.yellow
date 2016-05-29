@@ -2,11 +2,14 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.util;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.IllegalDateRangeException;
 
 /**
  * Definiert einen Zeitbereich anhand von Start- und Enddatum
@@ -21,9 +24,9 @@ public class DateRange {
 	private Date from;
 	private Date to;
 
-	public DateRange(Date from, Date to) {
+	public DateRange(Date from, Date to) throws IllegalDateRangeException {
 		if (!validate(from, to)) {
-			throw new IllegalArgumentException("Enddatum vor Startdatum!");
+			throw new IllegalDateRangeException("Enddatum vor Startdatum!");
 		}
 		this.from = from;
 		this.to = to;

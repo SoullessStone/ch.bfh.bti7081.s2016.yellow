@@ -1,17 +1,10 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
-import java.util.List;
-
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
-import com.vaadin.event.LayoutEvents.LayoutClickEvent;
-import com.vaadin.event.LayoutEvents.LayoutClickListener;
-import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Component.Event;
 import com.vaadin.ui.GridLayout;
 
 public class MeetingTile extends Tile {

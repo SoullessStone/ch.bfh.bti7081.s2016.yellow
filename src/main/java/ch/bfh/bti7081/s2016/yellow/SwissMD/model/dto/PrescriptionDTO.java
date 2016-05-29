@@ -11,24 +11,23 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
  * 
  */
 public class PrescriptionDTO extends GenericDTO {
-	private DrugDTO medication;
+	private DrugDTO drug;
 	private int dosisInMilligrams;
-	private Date validFrom;
-	private Date validTo;
+	private DateRange validity;
 
-	public PrescriptionDTO(DrugDTO medication, int dosisInMilligrams,
+	public PrescriptionDTO(DrugDTO drug, int dosisInMilligrams,
 			DateRange validity) {
-		this.medication = medication;
+		this.drug = drug;
 		this.dosisInMilligrams = dosisInMilligrams;
 		this.setValidity(validity);
 	}
 
-	public DrugDTO getMedication() {
-		return medication;
+	public DrugDTO getDrug() {
+		return drug;
 	}
 
-	public void setMedication(DrugDTO medication) {
-		this.medication = medication;
+	public void setDrug(DrugDTO drug) {
+		this.drug = drug;
 	}
 
 	public int getDosisInMilligrams() {
@@ -40,17 +39,16 @@ public class PrescriptionDTO extends GenericDTO {
 	}
 
 	public DateRange getValidity() {
-		return new DateRange(this.validFrom, this.validTo);
+		return validity;
 	}
 
 	public void setValidity(DateRange validity) {
-		this.validFrom = validity.getFrom();
-		this.validTo = validity.getTo();
+		this.validity = validity;
 	}
 
 	@Override
 	public String toString() {
-		return "PrescriptionDTO [medication=" + medication
+		return "PrescriptionDTO [medication=" + drug
 				+ ", dosisInMilligrams=" + dosisInMilligrams + "]";
 	}
 

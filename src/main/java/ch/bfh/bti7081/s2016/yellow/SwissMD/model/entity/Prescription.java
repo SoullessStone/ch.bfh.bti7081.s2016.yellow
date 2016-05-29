@@ -1,10 +1,13 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 
@@ -14,41 +17,40 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
  * @author K.Suter
  * 
  */
-// TODO: Erstellt von Michel (wegen Abhängigkeit von Meeting), muss noch
-// implementiert werden
 @Entity
 @Table
 public class Prescription extends AbstractDatabaseObject {
-
-	private Drug medication;
+	
+	@OneToOne
+	private Drug drug;
 	private int dosisInMilligrams;
+	//needed only for persistence
 	private Date validFrom;
+	//needed only for persistence
 	private Date validTo;
+	@Transient
+	private DateRange validity;
 
 	@ManyToOne
 	private Patient patient;
 
-	public Patient getPatient() {
-		return patient;
+	public Prescription() {
+		
 	}
 
-	public void setPatient(Patient patient) {
-		this.patient = patient;
-	}
-
-	public Prescription(Drug medication, int dosisInMilligrams,
+	public Prescription(Drug drug, int dosisInMilligrams,
 			DateRange validity) {
-		this.medication = medication;
+		this.drug = drug;
 		this.dosisInMilligrams = dosisInMilligrams;
 		this.setValidity(validity);
 	}
 
-	public Drug getMedication() {
-		return medication;
+	public Drug getDrug() {
+		return drug;
 	}
 
-	public void setMedication(Drug medication) {
-		this.medication = medication;
+	public void setDrug(Drug drug) {
+		this.drug = drug;
 	}
 
 	public int getDosisInMilligrams() {
@@ -58,12 +60,21 @@ public class Prescription extends AbstractDatabaseObject {
 	public void setDosisInMilligrams(int dosisInMilligrams) {
 		this.dosisInMilligrams = dosisInMilligrams;
 	}
+	
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 
 	public DateRange getValidity() {
-		return new DateRange(this.validFrom, this.validTo);
+		return validity;
 	}
 
 	public void setValidity(DateRange validity) {
+		this.validity = validity;
 		this.validFrom = validity.getFrom();
 		this.validTo = validity.getTo();
 	}
