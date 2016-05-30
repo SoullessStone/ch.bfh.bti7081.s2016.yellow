@@ -4,26 +4,6 @@ import java.text.MessageFormat;
 import java.util.Date;
 import java.util.List;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PrescriptionPresenter;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreatePrescriptionTile;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreationPrescriptiontileObserver;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PrescriptionTile;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.datefield.Resolution;
@@ -38,6 +18,28 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextArea;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.i18nHelper;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PrescriptionPresenter;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreatePrescriptionTile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreationPrescriptiontileObserver;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PrescriptionTile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
+
 @SuppressWarnings("serial")
 public class MeetingView extends CustomComponent implements View,
 		CreationPrescriptiontileObserver {
@@ -51,6 +53,12 @@ public class MeetingView extends CustomComponent implements View,
 	private static final String MEETING_ID_NOT_A_NUMBER = "Übergebener Meeting-Parameter ist keine Zahl";
 	private static final String PATIENT_ID_NOT_A_NUMBER = "Übergebener Patient-Parameter ist keine Zahl";
 	private static final String MEETING_NOT_CREATED = "Meeting konnte nicht erstellt werden" ;
+	
+	private static final String MEETING_CANCELLED_SUCCESSFULLY = "Meeting wurde abgesagt" ;
+	private static final String MEETING_PERFORMED_SUCCESSFULLY = "Meeting wurde durchgeführt" ;
+	private static final String MEETING_NOT_CANCELED = "Meeting konnte nicht abgesagt werden" ;
+	private static final String MEETING_NOT_PERFORMED = "Meeting konnte nicht durchgeführt werden" ;
+	
 	private MeetingPresenter meetingPresenter = new MeetingPresenter(this);
 	private PrescriptionPresenter prescriptionPresenter = new PrescriptionPresenter();
 	private BaseLayout layout;
@@ -114,6 +122,48 @@ public class MeetingView extends CustomComponent implements View,
 									+ meetingDTO.getPatient().getId());
 				} catch (CouldNotDeleteException e) {
 					Notification.show(MEETING_NOT_DELETED, Type.ERROR_MESSAGE);
+				}
+			}
+		});
+		return b;
+	}
+	
+	private Button getPerformButton() {
+		Button b = new Button("Durchführen");
+		b.addClickListener(new ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				try {
+					meetingPresenter.perform(meetingDTO);
+					Notification.show(MEETING_PERFORMED_SUCCESSFULLY,
+							Type.HUMANIZED_MESSAGE);
+					getUI().getNavigator().navigateTo(
+							NavigationIndex.PERSONVIEW + "/"
+									+ meetingDTO.getPatient().getId());
+				} catch (MeetingStateException e) {
+					Notification.show(MEETING_NOT_PERFORMED, Type.ERROR_MESSAGE);
+				}
+			}
+		});
+		return b;
+	}
+	
+	private Button getCancelButton() {
+		Button b = new Button("Absagen");
+		b.addClickListener(new ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				try {
+					meetingPresenter.cancel(meetingDTO);
+					Notification.show(MEETING_CANCELLED_SUCCESSFULLY,
+							Type.HUMANIZED_MESSAGE);
+					getUI().getNavigator().navigateTo(
+							NavigationIndex.PERSONVIEW + "/"
+									+ meetingDTO.getPatient().getId());
+				} catch (MeetingStateException e) {
+					Notification.show(MEETING_NOT_CANCELED, Type.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -209,7 +259,8 @@ public class MeetingView extends CustomComponent implements View,
 
 	private void showMeetingInView() {
 		// MeetingDTO angemessen abbilden
-		Tile appointmentTile = new Tile("Sitzung","img/icons/calendar_small.png");
+		String translatedMeetingString = i18nHelper.getMeetingStateTypeTranlation(meetingDTO.getMeetingState());
+		Tile appointmentTile = new Tile("Sitzung (" + translatedMeetingString + ")","img/icons/calendar_small.png");
 
 		DateField df = new DateField("Termin");
 		df.setWidth(200, Unit.PIXELS);
@@ -235,8 +286,17 @@ public class MeetingView extends CustomComponent implements View,
 
 		meetingTile.addComponent(this.noteArea);
 		HorizontalLayout buttonArea = new HorizontalLayout();
-		buttonArea.addComponent(getSaveButton());
-		buttonArea.addComponent(getDeleteButton());
+		// logical order of buttons depending on the current meetingState and time
+		// if the meeting is performed or canceled, it can't be edited anymore
+		if (meetingDTO.getMeetingState() == MeetingStateType.PLANNED){
+			buttonArea.addComponent(getSaveButton());
+			buttonArea.addComponent(getDeleteButton());
+			buttonArea.addComponent(getCancelButton());
+			// only allow perform if appointmentTime is not after today
+			if(!meetingDTO.getAppointmentTime().after(new Date())){
+				buttonArea.addComponent(getPerformButton());
+			}
+		}
 		buttonArea.setSpacing(true);
 		meetingTile.addComponent(buttonArea);
 		layout.addComponent(meetingTile);

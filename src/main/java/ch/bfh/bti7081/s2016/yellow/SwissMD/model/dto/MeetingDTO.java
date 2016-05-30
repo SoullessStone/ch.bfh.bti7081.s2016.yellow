@@ -50,8 +50,8 @@ public class MeetingDTO extends GenericDTO implements Comparable<MeetingDTO> {
 			this.state = meetingState.getMeetingState();
 		} else {
 			this.state = new MeetingStateNew();
+			this.state.planMeeting(this, appointmentTime);
 		}
-		this.state.planMeeting(this, appointmentTime);
 		this.appointmentTime = appointmentTime;
 		this.doctor = new DoctorDTO(createdMeeting.getDoctor());
 		this.patient = new PatientDTO(createdMeeting.getPatient());

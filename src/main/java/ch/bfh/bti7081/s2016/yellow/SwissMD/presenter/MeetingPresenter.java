@@ -6,7 +6,6 @@ import java.util.List;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.DrugDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
@@ -65,6 +64,24 @@ public class MeetingPresenter {
 		Meeting existingMeeting = meetingDao.read(meetingDTO.getId());
 		if (existingMeeting != null) {
 			meetingDao.delete(existingMeeting);
+		}
+	}
+	
+	public void cancel(MeetingDTO meetingDTO) throws MeetingStateException {
+		Meeting existingMeeting = meetingDao.read(meetingDTO.getId());
+		if (existingMeeting != null) {
+			meetingDTO.cancelMeeting();
+			existingMeeting.setStateType(meetingDTO.getMeetingState());
+			meetingDao.update(existingMeeting);
+		}
+	}
+	
+	public void perform(MeetingDTO meetingDTO) throws MeetingStateException {
+		Meeting existingMeeting = meetingDao.read(meetingDTO.getId());
+		if (existingMeeting != null) {
+			meetingDTO.performMeeting();
+			existingMeeting.setStateType(meetingDTO.getMeetingState());
+			meetingDao.update(existingMeeting);
 		}
 	}
 

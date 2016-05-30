@@ -1,11 +1,12 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
-
+import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.GridLayout;
+
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.i18nHelper;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
 public class MeetingTile extends Tile {
 	private MeetingDTO meeting;
@@ -19,7 +20,7 @@ public class MeetingTile extends Tile {
 
 		vertical.addComponent(new Label("Patient: " + meeting.getPatient().getName()));
 		vertical.addComponent(new Label("Arzt: " + meeting.getDoctor().getName()));
-		vertical.addComponent(new Label("Status: " + meeting.getMeetingState()));
+		vertical.addComponent(new Label("Status: " + i18nHelper.getMeetingStateTypeTranlation(meeting.getMeetingState())));
 
 		grid.addComponent(vertical, 0, 0);
 		Tile notes = new Tile("Sitzungsnotizen");
