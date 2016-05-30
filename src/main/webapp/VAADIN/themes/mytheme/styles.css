@@ -12996,6 +12996,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-button-big:hover {
+	cursor: pointer;
 	border-color: #F5F5F5;
 	border-image: none;
 	border-left: 1px solid #F5F5F5;
@@ -13005,13 +13006,8 @@ div.v-layout.v-horizontal.v-widget {
 	border-width: 1px;
 }
 
-.mytheme .v-icon {
-	filter: sepia(#{100%});
-	-moz-filter: sepia(#{100%});
-	-ms-filter: sepia(#{100%});
-	-o-filter: sepia(#{100%});
-	filter: sepia(#{gray});
-	-webkit-filter: sepia(1);
+.mytheme .v-button-big:hover .v-button-caption {
+	color: #0404B4;
 }
 
 .mytheme .v-button-big.v-pressed {

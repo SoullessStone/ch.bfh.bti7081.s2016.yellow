@@ -11,7 +11,7 @@ import com.vaadin.ui.HorizontalLayout;
 public class MenuTile extends Tile {
 
 	public MenuTile() {
-
+		
 		addComponent(createViewButton(
 				NavigationIndex.PERSONSEARCHVIEW.getNavigationPath(),
 				"PersonSearch", "img/icons/search.png"));
