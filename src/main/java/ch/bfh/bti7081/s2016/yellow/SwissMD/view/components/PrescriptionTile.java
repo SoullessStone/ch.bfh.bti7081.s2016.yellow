@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
@@ -10,6 +11,8 @@ import com.vaadin.ui.Label;
 @SuppressWarnings("serial")
 public class PrescriptionTile extends Tile {
 	private PrescriptionDTO prescription;
+	private final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+
 
 	public PrescriptionTile(PrescriptionDTO PrescriptionDTO) {
 		this.prescription = PrescriptionDTO;
@@ -17,8 +20,9 @@ public class PrescriptionTile extends Tile {
 
 		addComponent(new Label("Dosis: " + prescription.getDosisInMilligrams()
 				+ "mg"));
-		addComponent(new Label("Gültig von: " + prescription.getValidity().getFrom()));
-		addComponent(new Label("Gültig bis: " + prescription.getValidity().getTo()));
+	
+		addComponent(new Label("Gültig von: " + format.format(prescription.getValidity().getFrom())));
+		addComponent(new Label("Gültig bis: " + format.format(prescription.getValidity().getTo())));
 
 		contentLayout.setMargin(true);
 

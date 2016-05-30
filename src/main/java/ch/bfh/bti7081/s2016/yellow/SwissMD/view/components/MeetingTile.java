@@ -15,12 +15,13 @@ public class MeetingTile extends Tile {
 		this.meeting = MeetingDTO;
 		GridLayout grid = new GridLayout(2, 1);
 		VerticalLayout vertical = new VerticalLayout();
-
+		
 		setTitle("#" + meeting.getId() + " - " + meeting.getAppointmentTimeString());
 
 		vertical.addComponent(new Label("Patient: " + meeting.getPatient().getName()));
 		vertical.addComponent(new Label("Arzt: " + meeting.getDoctor().getName()));
 		vertical.addComponent(new Label("Status: " + i18nHelper.getMeetingStateTypeTranlation(meeting.getMeetingState())));
+		this.tile.addStyleName("noshadow");
 
 		grid.addComponent(vertical, 0, 0);
 		Tile notes = new Tile("Sitzungsnotizen");
@@ -31,6 +32,7 @@ public class MeetingTile extends Tile {
 		String notesField = meeting.getNotes().substring(0, end);
 		grid.addComponent(new Label(notesField), 1, 0);
 		grid.setSpacing(true);
+
 		this.addComponent(grid);
 	}
 

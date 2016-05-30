@@ -12954,6 +12954,18 @@ div.v-layout.v-horizontal.v-widget {
 	box-shadow: 0 18px 10px #777;
 }
 
+.mytheme .v-customcomponent-noshadow {
+	-webkit-box-shadow: 0 0px 0px #777;
+	-moz-box-shadow: 0 0px 0px #777;
+	box-shadow: 0 0px 0px #777;
+}
+
+.mytheme .v-panel-noshadow {
+	-webkit-box-shadow: 0 0px 0px #777;
+	-moz-box-shadow: 0 0px 0px #777;
+	box-shadow: 0 0px 0px #777;
+}
+
 .mytheme .v-panel .v-panel-content {
 	background: white;
 }
@@ -12984,8 +12996,6 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-button-big:hover {
-	font-size: 18px;
-	font-style: bold;
 	border-color: #F5F5F5;
 	border-image: none;
 	border-left: 1px solid #F5F5F5;
@@ -12993,6 +13003,15 @@ div.v-layout.v-horizontal.v-widget {
 	border-right: 1px solid #F5F5F5;
 	border-style: solid;
 	border-width: 1px;
+}
+
+.mytheme .v-icon {
+	filter: sepia(#{100%});
+	-moz-filter: sepia(#{100%});
+	-ms-filter: sepia(#{100%});
+	-o-filter: sepia(#{100%});
+	filter: sepia(#{gray});
+	-webkit-filter: sepia(1);
 }
 
 .mytheme .v-button-big.v-pressed {
