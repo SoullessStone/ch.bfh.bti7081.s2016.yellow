@@ -25,7 +25,7 @@ public class MenuTile extends Tile {
 				NavigationIndex.WIKIVIEW.getNavigationPath(), "Wiki",
 				"img/icons/books.png"));
 		addComponent(createViewButton(
-				NavigationIndex.MEETINGVIEW.getNavigationPath() + "/3",
+				NavigationIndex.MEETINGVIEW.getNavigationPath(),
 				"Meeting", "img/icons/calendar.png"));
 
 		addComponent(logoutButton());
