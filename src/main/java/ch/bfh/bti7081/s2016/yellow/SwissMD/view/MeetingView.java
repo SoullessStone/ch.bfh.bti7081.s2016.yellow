@@ -97,6 +97,8 @@ public class MeetingView extends CustomComponent implements View,
 					meetingDTO.setAppointmentTime(getAppointmentTimeDateField()
 							.getValue());
 					meetingPresenter.update(meetingDTO);
+					//update GUI
+					reloadMeetingView(meetingDTO.getId());
 					Notification.show(CHANGES_SAVED_SUCCESSFULLY,
 							Type.HUMANIZED_MESSAGE);
 				} catch (CouldNotSaveException e) {
@@ -138,9 +140,10 @@ public class MeetingView extends CustomComponent implements View,
 					meetingPresenter.perform(meetingDTO);
 					Notification.show(MEETING_PERFORMED_SUCCESSFULLY,
 							Type.HUMANIZED_MESSAGE);
-					getUI().getNavigator().navigateTo(
-							NavigationIndex.PERSONVIEW + "/"
-									+ meetingDTO.getPatient().getId());
+					// update GUI
+					reloadMeetingView(meetingDTO.getId());
+					Notification.show(MEETING_PERFORMED_SUCCESSFULLY,
+							Type.HUMANIZED_MESSAGE);
 				} catch (MeetingStateException e) {
 					Notification.show(MEETING_NOT_PERFORMED, Type.ERROR_MESSAGE);
 				}
@@ -157,11 +160,10 @@ public class MeetingView extends CustomComponent implements View,
 			public void buttonClick(ClickEvent event) {
 				try {
 					meetingPresenter.cancel(meetingDTO);
+					// update GUI
+					reloadMeetingView(meetingDTO.getId());
 					Notification.show(MEETING_CANCELLED_SUCCESSFULLY,
 							Type.HUMANIZED_MESSAGE);
-					getUI().getNavigator().navigateTo(
-							NavigationIndex.PERSONVIEW + "/"
-									+ meetingDTO.getPatient().getId());
 				} catch (MeetingStateException e) {
 					Notification.show(MEETING_NOT_CANCELED, Type.ERROR_MESSAGE);
 				}
@@ -176,6 +178,11 @@ public class MeetingView extends CustomComponent implements View,
 
 	private DateField getAppointmentTimeDateField() {
 		return dateField;
+	}
+	
+	private void reloadMeetingView(Long meetingId) {
+		getUI().getNavigator().navigateTo(
+				NavigationIndex.MEETINGVIEW + "/" + meetingId);
 	}
 
 	@Override
