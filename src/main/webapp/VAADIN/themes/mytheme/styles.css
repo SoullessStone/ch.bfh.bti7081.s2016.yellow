@@ -12988,7 +12988,8 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-button-big {
-	height: 60px;
+	height: 55px;
+	width: 173px;
 	padding: 1px 14px 0 8px;
 	-webkit-box-shadow: 0 4px 4px #FFFFFF;
 	-moz-box-shadow: 0 4px 4px #FFFFFF;

@@ -59,12 +59,12 @@ public class MultiplePersonTile extends Tile {
 			Image userPicture = new Image();
 			if ("Patient".equals(person.getDtype())) {
 				userPicture.setStyleName("gridBorder");
-				userPicture.setSource(new ThemeResource("img/icons/user.png"));
+				userPicture.setSource(new ThemeResource("img/icons/businessman.png"));
 			}
 			if ("Doctor".equals(person.getDtype())) {
 				userPicture.setStyleName("gridBorder");
 				userPicture.setSource(new ThemeResource(
-						"img/icons/eyedropper.png"));
+						"img/icons/surgeon.png"));
 			}
 			String name = person.getName();
 			String birthdate = format.format(person.getBirthdate());
