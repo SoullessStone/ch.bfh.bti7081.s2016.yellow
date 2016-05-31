@@ -28,7 +28,6 @@ public class PersonSearchPresenter {
 	}
 
 	public List<PersonDTO> searchForBirthdate(Date birthdate) {
-		Notification.show("searchForBirthdate", Type.HUMANIZED_MESSAGE);
 		List<PersonDTO> result = new ArrayList<>();
 		for (PersonDTO p : getAllPersons()) {
 			if (DateUtils.isSameDay(birthdate, p.getBirthdate())) {
@@ -44,7 +43,6 @@ public class PersonSearchPresenter {
 	}
 
 	public List<PersonDTO> searchForLastName(String lastname) {
-		Notification.show("searchForLastName", Type.HUMANIZED_MESSAGE);
 		List<PersonDTO> result = new ArrayList<>();
 		for (PersonDTO p : getAllPersons()) {
 			if (p.getName().toLowerCase().contains(lastname.toLowerCase())) {
@@ -60,8 +58,6 @@ public class PersonSearchPresenter {
 
 	public List<PersonDTO> searchForBirthdateAndLastname(Date birthdate,
 			String lastname) {
-		Notification.show("searchForBirthdateAndLastname",
-				Type.HUMANIZED_MESSAGE);
 		List<PersonDTO> result = new ArrayList<>();
 		for (PersonDTO p : getAllPersons()) {
 			if (p.getName().toLowerCase().contains(lastname.toLowerCase())
