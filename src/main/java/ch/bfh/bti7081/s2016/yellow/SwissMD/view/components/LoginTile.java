@@ -18,7 +18,7 @@ public class LoginTile extends Tile {
 	PasswordField password = new PasswordField("Password");
 	
 	public LoginTile() {
-		setTitleAndIcon("Login","img/icons/unlocked_small.png");
+		setTitleAndIcon("Login","img/icons/locked-2.png");
 		addComponent(username);
 		addComponent(password);
 		addComponent(loginButton());

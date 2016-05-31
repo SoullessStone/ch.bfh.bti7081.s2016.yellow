@@ -14,19 +14,19 @@ public class MenuTile extends Tile {
 		
 		addComponent(createViewButton(
 				NavigationIndex.PERSONSEARCHVIEW.getNavigationPath(),
-				"PersonSearch", "img/icons/search.png"));
+				"PersonSearch", "img/icons/magnifying-glass-2.png"));
 		addComponent(createViewButton(
 				NavigationIndex.PERSONVIEW.getNavigationPath(), "Person",
-				"img/icons/users.png"));
+				"img/icons/team.png"));
 		addComponent(createViewButton(
 				NavigationIndex.PRESCRIPTIONVIEW.getNavigationPath(),
-				"Prescription", "img/icons/eyedropper.png"));
+				"Prescription", "img/icons/pills-3.png"));
 		addComponent(createViewButton(
 				NavigationIndex.WIKIVIEW.getNavigationPath(), "Wiki",
-				"img/icons/books.png"));
+				"img/icons/books-2.png"));
 		addComponent(createViewButton(
 				NavigationIndex.MEETINGVIEW.getNavigationPath(),
-				"Meeting", "img/icons/calendar.png"));
+				"Meeting", "img/icons/calendar-2.png"));
 
 		addComponent(logoutButton());
 
@@ -62,7 +62,7 @@ public class MenuTile extends Tile {
 				getUI().getPage().setLocation(getLogoutPath());
 			}
 		});
-		button.setIcon(new ThemeResource("img/icons/exit.png"));
+		button.setIcon(new ThemeResource("img/icons/exit-2.png"));
 		button.addStyleName("big");
 		return button;
 	}
