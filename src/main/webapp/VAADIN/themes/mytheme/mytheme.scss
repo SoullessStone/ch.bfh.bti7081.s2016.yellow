@@ -60,7 +60,6 @@ $v-shadow-opacity: 5%;
 		box-shadow: 0 0px 0px #777;
 	}
 	
-	
 	.v-panel .v-panel-content {
 		background: white;
 	}
@@ -69,6 +68,10 @@ $v-shadow-opacity: 5%;
 		background: #a4a4a4;
 	}
 
+	.v-label-highrisk {
+		color: red;
+		font-weight: bold;
+	}
 	
 	/****** UI Root ******/
 	

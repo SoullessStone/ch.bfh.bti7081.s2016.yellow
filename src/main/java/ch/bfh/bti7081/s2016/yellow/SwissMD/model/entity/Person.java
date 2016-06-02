@@ -29,6 +29,7 @@ public class Person extends AbstractDatabaseObject {
 	private String landline;
 	private Long legalAid;
 	private Long familyDoctor;
+	private Integer dangerState;
 
 	public Person(String name, Date birthdate) {
 		this(name, birthdate, "Person");
@@ -121,6 +122,14 @@ public class Person extends AbstractDatabaseObject {
 
 	public void setFamilyDoctor(Long familyDoctor) {
 		this.familyDoctor = familyDoctor;
+	}
+
+	public Integer getDangerState() {
+		return dangerState;
+	}
+
+	public void setDangerState(Integer dangerState) {
+		this.dangerState = dangerState;
 	}
 
 	@Override

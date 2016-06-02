@@ -29,7 +29,7 @@ public class Patient extends Person {
 	@OneToMany(mappedBy = "patient")
 	List<Prescription> prescriptions;
 
-	DangerStateType dangerState;
+	//DangerStateType dangerState;
 
 	public Patient() {
 	};
@@ -37,14 +37,14 @@ public class Patient extends Person {
 	public Patient(String name, Date birthdate) {
 		super(name, birthdate);
 	}
-
+/*
 	public DangerStateType getDangerState() {
 		return this.dangerState;
 	}
 
 	public void setDangerState(DangerStateType newState) {
 		this.dangerState = newState;
-	}
+	}*/
 
 	public List<Prescription> getPrescriptions() {
 		if (prescriptions != null)

@@ -12974,6 +12974,11 @@ div.v-layout.v-horizontal.v-widget {
 	background: #a4a4a4;
 }
 
+.mytheme .v-label-highrisk {
+	color: red;
+	font-weight: bold;
+}
+
 .mytheme #uiContainer {
 	position: inherit !important;
 }

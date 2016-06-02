@@ -24,7 +24,7 @@ public class PersonDTO extends GenericDTO {
 	private Long legalAid;
 	private Long familyDoctor;
 
-	// private Integer dangerState;
+	private Integer dangerState;
 	// private Integer officeNumber;
 
 	/**
@@ -119,13 +119,13 @@ public class PersonDTO extends GenericDTO {
 		this.landline = landline;
 	}
 
-	// public Integer getDangerState() {
-	// return dangerState;
-	// }
-	//
-	// public void setDangerState(Integer dangerState) {
-	// this.dangerState = dangerState;
-	// }
+	public Integer getDangerState() {
+		return dangerState;
+	}
+
+	public void setDangerState(Integer dangerState) {
+		this.dangerState = dangerState;
+	}
 
 	public Long getLegalAid() {
 		return legalAid;

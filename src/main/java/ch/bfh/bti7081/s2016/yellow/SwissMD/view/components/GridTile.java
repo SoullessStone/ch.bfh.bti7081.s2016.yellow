@@ -34,6 +34,20 @@ public class GridTile extends Tile {
 		
 		grid.addComponent(new Label("Hausarzt: "
 				+ (personDTO.getFamilyDoctor() != null ? personDao.read(personDTO.getFamilyDoctor()).getName() : "---")));
+	
+		Label escalation = 	new Label();
+		if (personDTO.getDangerState().equals("1")){
+			escalation.setValue("Gefährdung: Krise");
+		}
+		else if (personDTO.getDangerState().equals("2")){
+			escalation.setValue("Gefährdung: Selbstgefährdung");
+		}
+		else if(personDTO.getDangerState().equals("3")){
+			escalation.setValue("Gefährdung: Fremdgefährdung");
+			escalation.addStyleName("highrisk");
+		}
+
+		grid.addComponent(escalation);
 		
 		addComponent(grid);
 		contentLayout.setMargin(true);
