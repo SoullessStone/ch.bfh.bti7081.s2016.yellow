@@ -27,9 +27,6 @@ public class Person extends AbstractDatabaseObject {
 	private String city;
 	private String mobile;
 	private String landline;
-	private Long legalAid;
-	private Long familyDoctor;
-	private Integer dangerState;
 
 	public Person(String name, Date birthdate) {
 		this(name, birthdate, "Person");
@@ -107,31 +104,6 @@ public class Person extends AbstractDatabaseObject {
 	public void setLandline(String landline) {
 		this.landline = landline;
 	}
-
-	public Long getLegalAid() {
-		return legalAid;
-	}
-
-	public void setLegalAid(Long legalAid) {
-		this.legalAid = legalAid;
-	}
-
-	public Long getFamilyDoctor() {
-		return familyDoctor;
-	}
-
-	public void setFamilyDoctor(Long familyDoctor) {
-		this.familyDoctor = familyDoctor;
-	}
-
-	public Integer getDangerState() {
-		return dangerState;
-	}
-
-	public void setDangerState(Integer dangerState) {
-		this.dangerState = dangerState;
-	}
-
 	@Override
 	public String toString() {
 		return "" + this.name + " / " + this.dtype;

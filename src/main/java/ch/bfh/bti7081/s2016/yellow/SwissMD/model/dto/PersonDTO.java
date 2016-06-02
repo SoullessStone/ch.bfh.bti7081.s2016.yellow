@@ -21,10 +21,6 @@ public class PersonDTO extends GenericDTO {
 	private String city;
 	private String mobile;
 	private String landline;
-	private Long legalAid;
-	private Long familyDoctor;
-
-	private Integer dangerState;
 	// private Integer officeNumber;
 
 	/**
@@ -50,8 +46,6 @@ public class PersonDTO extends GenericDTO {
 		this.city = person.getCity();
 		this.mobile = person.getMobile();
 		this.landline = person.getLandline();
-		this.legalAid = person.getLegalAid();
-		this.familyDoctor = person.getFamilyDoctor();
 		this.setId(person.getId());
 	}
 
@@ -117,30 +111,6 @@ public class PersonDTO extends GenericDTO {
 
 	public void setLandline(String landline) {
 		this.landline = landline;
-	}
-
-	public Integer getDangerState() {
-		return dangerState;
-	}
-
-	public void setDangerState(Integer dangerState) {
-		this.dangerState = dangerState;
-	}
-
-	public Long getLegalAid() {
-		return legalAid;
-	}
-
-	public void setLegalAid(Long legalAid) {
-		this.legalAid = legalAid;
-	}
-
-	public Long getFamilyDoctor() {
-		return familyDoctor;
-	}
-
-	public void setFamilyDoctor(Long familyDoctor) {
-		this.familyDoctor = familyDoctor;
 	}
 
 	// public Integer getOfficeNumber() {

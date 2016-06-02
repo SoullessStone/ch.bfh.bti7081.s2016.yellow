@@ -12,6 +12,10 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
 public class PatientDTO extends PersonDTO {
 
 	List<PrescriptionDTO> prescriptions = new ArrayList<>();
+	
+	private Long legalAid;
+	private Long familyDoctor;
+	private Integer dangerState;
 
 	public PatientDTO(String name, Date birthdate) {
 		super(name, birthdate, "Patient");
@@ -37,5 +41,32 @@ public class PatientDTO extends PersonDTO {
 	public void removePrescription(PrescriptionDTO prescription) {
 		this.prescriptions.remove(prescription);
 	}
+	
+	public Integer getDangerState() {
+		return dangerState;
+	}
+
+	public void setDangerState(Integer dangerState) {
+		this.dangerState = dangerState;
+	}
+
+	public Long getLegalAid() {
+		return legalAid;
+	}
+
+	public void setLegalAid(Long legalAid) {
+		this.legalAid = legalAid;
+	}
+
+	public Long getFamilyDoctor() {
+		return familyDoctor;
+	}
+
+	public void setFamilyDoctor(Long familyDoctor) {
+		this.familyDoctor = familyDoctor;
+	}
+
+	
+	
 
 }

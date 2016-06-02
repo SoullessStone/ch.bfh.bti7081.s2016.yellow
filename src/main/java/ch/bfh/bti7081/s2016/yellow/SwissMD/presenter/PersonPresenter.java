@@ -37,9 +37,9 @@ public class PersonPresenter {
 	 * 
 	 */
 	public PersonDTO findPersonById(Long id) {
-		Person person = personDao.read(id);
+		Patient person = (Patient) personDao.read(id);
 		if (person != null) {
-			return new PersonDTO(person);
+			return new PatientDTO(person);
 		}
 		return null;
 	}

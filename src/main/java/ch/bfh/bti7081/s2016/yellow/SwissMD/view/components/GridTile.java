@@ -4,6 +4,7 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
@@ -18,10 +19,10 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 public class GridTile extends Tile {
 	private PersonDaoImpl personDao;
 	
-	public GridTile(PersonDTO personDTO) {
+	public GridTile(PatientDTO patientDTO) {
 		personDao = new PersonDaoImpl();
 		
-		setTitle("Medzinische Grunddaten " + personDTO.getName());
+		setTitle("Medzinische Grunddaten " + patientDTO.getName());
 		setStdWidth(3);
 
 		GridLayout grid = new GridLayout(2, 4);
@@ -30,19 +31,19 @@ public class GridTile extends Tile {
 		grid.addComponent(new Label("Angehörige: "));
 		
 		grid.addComponent(new Label("Beistand: "
-				+ (personDTO.getLegalAid() != null ? personDao.read(personDTO.getLegalAid()).getName() : "---")));
+				+ (patientDTO.getLegalAid() != null ? personDao.read(patientDTO.getLegalAid()).getName() : "---")));
 		
 		grid.addComponent(new Label("Hausarzt: "
-				+ (personDTO.getFamilyDoctor() != null ? personDao.read(personDTO.getFamilyDoctor()).getName() : "---")));
+				+ (patientDTO.getFamilyDoctor() != null ? personDao.read(patientDTO.getFamilyDoctor()).getName() : "---")));
 	
 		Label escalation = 	new Label();
-		if (personDTO.getDangerState().equals("1")){
+		if (patientDTO.getDangerState().equals("1")){
 			escalation.setValue("Gefährdung: Krise");
 		}
-		else if (personDTO.getDangerState().equals("2")){
+		else if (patientDTO.getDangerState().equals("2")){
 			escalation.setValue("Gefährdung: Selbstgefährdung");
 		}
-		else if(personDTO.getDangerState().equals("3")){
+		else if(patientDTO.getDangerState().equals("3")){
 			escalation.setValue("Gefährdung: Fremdgefährdung");
 			escalation.addStyleName("highrisk");
 		}

@@ -17,8 +17,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
  * @author K.Suter
  * 
  */
-// TODO: Erstellt von Michel (wegen Abhängigkeit von Meeting), muss noch
-// implementiert werden
 @Entity
 @Table
 public class Patient extends Person {
@@ -29,7 +27,9 @@ public class Patient extends Person {
 	@OneToMany(mappedBy = "patient")
 	List<Prescription> prescriptions;
 
-	//DangerStateType dangerState;
+	private Long legalAid;
+	private Long familyDoctor;
+	private DangerStateType dangerState;
 
 	public Patient() {
 	};
@@ -37,14 +37,30 @@ public class Patient extends Person {
 	public Patient(String name, Date birthdate) {
 		super(name, birthdate);
 	}
-/*
+
 	public DangerStateType getDangerState() {
 		return this.dangerState;
 	}
 
+	public Long getLegalAid() {
+		return legalAid;
+	}
+
+	public void setLegalAid(Long legalAid) {
+		this.legalAid = legalAid;
+	}
+
+	public Long getFamilyDoctor() {
+		return familyDoctor;
+	}
+
+	public void setFamilyDoctor(Long familyDoctor) {
+		this.familyDoctor = familyDoctor;
+	}
+
 	public void setDangerState(DangerStateType newState) {
 		this.dangerState = newState;
-	}*/
+	}
 
 	public List<Prescription> getPrescriptions() {
 		if (prescriptions != null)
