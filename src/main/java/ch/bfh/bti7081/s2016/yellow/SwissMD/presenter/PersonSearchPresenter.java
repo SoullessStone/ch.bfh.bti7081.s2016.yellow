@@ -15,7 +15,6 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 
 public class PersonSearchPresenter {
-	// TODO: Knows the model
 	private PersonSearchView personSearchView;
 
 	private PersonDaoImpl personDao;

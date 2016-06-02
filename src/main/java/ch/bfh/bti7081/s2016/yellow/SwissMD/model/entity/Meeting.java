@@ -30,14 +30,11 @@ public class Meeting extends AbstractDatabaseObject {
 	@ManyToOne
 	private Doctor doctor;
 
-	// TODO: Gemäss classmodel muss das eine Liste von Sitzungseinträgen werden.
 	private String notes;
 
 	private Date appointmentTime;
 
 	private MeetingStateType state;
-
-	// TODO: Braucht es noch eine Duration?
 
 	public Patient getPatient() {
 		return patient;

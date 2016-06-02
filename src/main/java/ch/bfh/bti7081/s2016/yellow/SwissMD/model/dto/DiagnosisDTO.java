@@ -12,7 +12,7 @@ public class DiagnosisDTO extends GenericDTO{
 	private String notes;
 	private Date date;
 	
-	// TODO: "Entity-Constructor"
+	// TODO: Alex "Entity-Constructor"
 	@Deprecated
 	public DiagnosisDTO(IllnessDTO illnessDTO, String notes, Date date){
 		this.illness = illnessDTO;

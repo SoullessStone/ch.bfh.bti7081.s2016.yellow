@@ -20,7 +20,6 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 
-// TODO: Check User credentials
 @SuppressWarnings("serial")
 public class LoginView extends CustomComponent implements View {
 	private LoginPresenter loginPresenter = new LoginPresenter(this);

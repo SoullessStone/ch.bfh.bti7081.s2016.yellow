@@ -57,7 +57,7 @@ public class WikiView extends CustomComponent implements View {
 
 			if (illnessId != null) {
 				// Lese IllnessDTO
-				illnessToShow = wikiPresenter.findMeetingById(illnessId);
+				illnessToShow = wikiPresenter.findIllnessById(illnessId);
 
 				if (illnessToShow != null) {
 					Tile wikiTile = new Tile("WikiView", "img/icons/books_small.png");
@@ -91,7 +91,7 @@ public class WikiView extends CustomComponent implements View {
 	}
 
 	private void showIllnessInView() {
-		// TODO Auto-generated method stub
+		// TODO Michel Auto-generated method stub
 		
 	}
 

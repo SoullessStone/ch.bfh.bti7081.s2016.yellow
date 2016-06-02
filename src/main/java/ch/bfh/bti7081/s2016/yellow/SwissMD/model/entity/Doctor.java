@@ -13,8 +13,6 @@ import javax.persistence.Table;
  * @author K.Suter
  * 
  */
-// TODO: Erstellt von Michel (wegen Abhängigkeit von Meeting), muss noch
-// implementiert werden
 @Entity
 @Table
 public class Doctor extends Person {

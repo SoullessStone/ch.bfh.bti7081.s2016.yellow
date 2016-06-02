@@ -22,12 +22,9 @@ public class MeetingDTO extends GenericDTO implements Comparable<MeetingDTO> {
 
 	private MeetingState state;
 
-	// TODO: Gemäss classmodel muss das eine Liste von Sitzungseinträgen werden.
 	private String notes;
 
 	private Date appointmentTime;
-
-	// TODO: Braucht es noch eine Duration?
 
 	public MeetingDTO(PatientDTO patient, DoctorDTO doctor, Date appointmentTime)
 			throws MeetingStateException {

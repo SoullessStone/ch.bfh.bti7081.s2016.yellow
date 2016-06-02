@@ -4,7 +4,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.WikiView;
 
 public class WikiPresenter {
-	// TODO: Knows the model
 	private WikiView wikiView;
 
 	public WikiPresenter(WikiView wikiView) {
@@ -12,8 +11,8 @@ public class WikiPresenter {
 		this.wikiView = wikiView;
 	}
 
-	public IllnessDTO findMeetingById(Long illnessId) {
-		// TODO Implement
+	public IllnessDTO findIllnessById(Long illnessId) {
+		// TODO Alex Implement
 		return new IllnessDTO("CODE", "DESCRIPTION");
 	}
 }

@@ -5,8 +5,6 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-//TODO: Erstellt von Michel (wegen Abhängigkeit von Meeting), muss noch implementiert werden
-// TODO: Erweitere PersonTile, wenn nötig
 
 /**
  * Entity that represents a person. Can be a doctor or a patient. To use in the

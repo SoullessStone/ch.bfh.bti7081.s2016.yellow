@@ -120,7 +120,6 @@ public class PersonView extends CustomComponent implements View {
 
 					// 2. tile: medical base data (data protection critical
 					// stuff)
-					// TODO fill with real data
 					GridTile medicalDataTile = new GridTile(patientDTO);
 					layout.addComponent(medicalDataTile);
 
@@ -156,7 +155,7 @@ public class PersonView extends CustomComponent implements View {
 						layout.createRowBrake();
 						layout.addComponent(historyTile);
 					} catch (MeetingStateException e) {
-						// TODO Auto-generated catch block
+						// TODO ? Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
