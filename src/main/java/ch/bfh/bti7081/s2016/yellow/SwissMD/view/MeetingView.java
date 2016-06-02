@@ -31,6 +31,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PrescriptionPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreatePrescriptionTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreationPrescriptiontileObserver;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.EscalationTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PrescriptionTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
@@ -307,6 +308,9 @@ public class MeetingView extends CustomComponent implements View,
 		buttonArea.setSpacing(true);
 		meetingTile.addComponent(buttonArea);
 		layout.addComponent(meetingTile);
+		layout.createRowBrake();
+		
+		layout.addComponent(new EscalationTile(meetingDTO));
 		layout.createRowBrake();
 
 		List<PrescriptionDTO> prescriptions = meetingDTO.getPatient()
