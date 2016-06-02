@@ -15,30 +15,30 @@ import javax.persistence.TypedQuery;
 public interface GenericDao<T, ID extends Serializable> {
 
 	// create a single entity in the database
-	T create(T t);
+	public T create(T t);
 
 	// update a single entity in the database
-	T update(T t);
+	public T update(T t);
 
 	// delete a single entity in the database
-	void delete(T t);
+	public void delete(T t);
 
 	// read a single entity from the database
-	T read(ID id);
+	public T read(ID id);
 
 	// find all domain objects for an entity
-	List<T> readAll();
+	public List<T> readAll();
 
 	// find multiple entities in the database
-	List<T> readList(List<ID> ids);
+	public List<T> readList(List<ID> ids);
 
 	// find entities by field value
-	T readByField(String fieldName, Object value);
+	public T readByField(String fieldName, Object value);
 
 	// safely read entities with typed query
-	<T2> T2 getSingleResultSafeTypedQuery(TypedQuery<T2> query);
+	public <T2> T2 getSingleResultSafeTypedQuery(TypedQuery<T2> query);
 
 	// safely read entities with typed query
-	Object getSingleResultSafeQuery(Query query);
+	public Object getSingleResultSafeQuery(Query query);
 
 }

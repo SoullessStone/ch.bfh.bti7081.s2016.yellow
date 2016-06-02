@@ -17,13 +17,12 @@ import javax.persistence.criteria.Root;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.AbstractDatabaseObject;
 
 /**
- * Implementation of the {@code GenericDao} interface. Abstract, must be
- * extended.
+ * Implementation of the {@code GenericDao} interface.
  * 
  * @author K.Suter
  * 
  */
-public abstract class GenericDaoImpl<T extends AbstractDatabaseObject, ID extends Serializable>
+public class GenericDaoImpl<T extends AbstractDatabaseObject, ID extends Serializable>
 		implements GenericDao<T, ID> {
 
 	protected Class<T> mEntityClass;
