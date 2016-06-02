@@ -22,7 +22,7 @@ public class MenuTile extends Tile {
 				NavigationIndex.PRESCRIPTIONVIEW.getNavigationPath(),
 				"Prescription", "img/icons/pills-3.png"));
 		addComponent(createViewButton(
-				NavigationIndex.WIKIVIEW.getNavigationPath(), "Wiki",
+				NavigationIndex.WIKIVIEW.getNavigationPath() + "/1", "Wiki",
 				"img/icons/books-2.png"));
 		addComponent(createViewButton(
 				NavigationIndex.MEETINGVIEW.getNavigationPath(),

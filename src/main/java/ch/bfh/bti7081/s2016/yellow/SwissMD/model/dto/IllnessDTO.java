@@ -8,7 +8,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Illness;
  * @author K. Suter
  * 
  */
-public class IllnessDTO {
+public class IllnessDTO extends GenericDTO{
 	
 	/** The ICD-10 Code **/
 	private String code;
