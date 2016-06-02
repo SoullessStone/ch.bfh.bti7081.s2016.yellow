@@ -36,13 +36,12 @@ Current total: 85/90
 | 17.05.2016 | all | 4h | Course + CS1 Task 11: Scrum Sprint 1 (Daily Scrum Meeting & Next Steps) |
 | 23.05.2016 | all | 4h | CS1 Task 11: Scrum Sprint 1 (Daily Scrum Meeting) + CS1 Task 12: start full classs diagram + CS1 Task 13: start analyse of state pattern  |
 | 24.05.2016 | all | 4h | CS1 Task 11: Scrum Sprint 1 (Daily Scrum Meeting & Next Steps) + Start Scrum Sprint 2 |
+| 30.05.2016 | all | 4h | Backlog Grooming, End of Sprint 2 |
+| 31.05.2016 | all | 4h | Sprint 2 Review, Daily, Planning and Start of Sprint 3 |
 
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
 | --- | --- | --- | --- | --- |
-| CS1 Task 12: Class Diagram and Persistence | Create full class diagram | tbd | done | 29.05.2016  |
-| CS1 Task 12: Class Diagram and Persistence | Create presentation | tbd | done | 30.05.2016  |
-| CS1 Task 13: State Pattern | Implement a concrete feature of your application via the State Pattern | tbd | done | 30.05.2016  |
 
 ### Completed Tasks
 | Name  | What | Assignee(s)  | Status (done) | Deadline  |
@@ -97,3 +96,6 @@ Current total: 85/90
 | CS1 Task 11: Sprint 1  | Create overview presenter (ID 1) | schaad | done | 22.05.2016 |
 | CS1 Task 11: Sprint 1  | Create drug presenter, tile and model (ID 14) | halter | done | 24.05.2016 |
 | CS1 Task 11: Sprint 1  | Create overview view (ID 1) | schaad | done | 22.05.2016 |
+| CS1 Task 12: Class Diagram and Persistence | Create full class diagram | tbd | done | 29.05.2016  |
+| CS1 Task 12: Class Diagram and Persistence | Create presentation | tbd | done | 30.05.2016  |
+| CS1 Task 13: State Pattern | Implement a concrete feature of your application via the State Pattern | tbd | done | 30.05.2016  |
