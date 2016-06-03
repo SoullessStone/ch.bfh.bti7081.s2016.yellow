@@ -13,6 +13,8 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.ExternalResource;
+import com.vaadin.ui.BrowserFrame;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -60,7 +62,7 @@ public class WikiView extends CustomComponent implements View {
 				illnessToShow = wikiPresenter.findIllnessById(illnessId);
 
 				if (illnessToShow != null) {
-					Tile wikiTile = new Tile("WikiView", "img/icons/books_small.png");
+					Tile wikiTile = new Tile(illnessToShow.getCode() + " - " + illnessToShow.getDescription(), "img/icons/books_small.png");
 					Button createDiagnose = new Button(
 							"Für aktuellen Patienten diagnostizieren");
 					createDiagnose.addClickListener(new ClickListener() {
@@ -78,6 +80,29 @@ public class WikiView extends CustomComponent implements View {
 						}
 					});
 					wikiTile.addComponent(createDiagnose);
+					Button showIllnessFrame = new Button(
+							"Krankheit anzeigen");
+					showIllnessFrame.addClickListener(new ClickListener() {
+
+						@SuppressWarnings("static-access")
+						@Override
+						public void buttonClick(ClickEvent event) {
+							final Window window = new Window("Krankheit");
+					        window.setWidth(1000.0f, Unit.PIXELS);
+					        window.center();
+					        window.setModal(true);
+					        window.setResizable(false);
+					        String search = illnessToShow.getCode().substring(0, 3);
+					        BrowserFrame browser = new BrowserFrame("Browser",
+					        	    new ExternalResource("http://www.icd-code.de/suche/icd/code/" + search + ".-.html"));
+					        	browser.setWidth("1000px");
+					        	browser.setHeight("700px");
+					        window.setContent(browser);
+					        getUI().getCurrent().addWindow(window);
+						}
+					});
+					wikiTile.addComponent(showIllnessFrame);
+					
 					layout.addComponent(wikiTile);
 					// Zeige die Illness an
 					showIllnessInView();

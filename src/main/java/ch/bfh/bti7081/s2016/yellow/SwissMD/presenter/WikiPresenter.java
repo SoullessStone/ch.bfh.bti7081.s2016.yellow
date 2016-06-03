@@ -19,7 +19,7 @@ public class WikiPresenter {
 
 	public IllnessDTO findIllnessById(Long illnessId) {
 		// TODO Alex Implement
-		return new IllnessDTO("CODE", "DESCRIPTION");
+		return new IllnessDTO("A821", "Urban rabies");
 	}
 	
 	public List<IllnessDTO> searchIllness (String searchString) {
