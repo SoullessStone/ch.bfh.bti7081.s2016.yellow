@@ -18,12 +18,12 @@ public class IllnessDaoImpl extends GenericDaoImpl<Illness, Long> implements Ill
 	}
 
 	@Override
-	public List<Illness> findByCodeOrDescription(String searchString) {
+	public List<Illness> findByCodeOrName(String searchString) {
 		 @SuppressWarnings("unchecked")
 		 List<Illness> resultList = (List<Illness>)
-		 mEntityManager.createQuery("SELECT m FROM Illness m WHERE m.code LIKE :code OR m.description LIKE :description")
+		 mEntityManager.createQuery("SELECT m FROM Illness m WHERE m.code LIKE :code OR m.name LIKE :name")
 		 .setParameter("code", "%" + searchString + "%")
-		 .setParameter("description", "%" + searchString + "%")
+		 .setParameter("name", "%" + searchString + "%")
 		 .getResultList();
 		 return resultList;
 	}

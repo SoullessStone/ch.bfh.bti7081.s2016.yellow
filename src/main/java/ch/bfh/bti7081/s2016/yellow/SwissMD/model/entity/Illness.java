@@ -17,17 +17,18 @@ public class Illness extends AbstractDatabaseObject {
 
 	/** The ICD-10 Code **/
 	private String code;
-
-	private String description;
 	
-	public Illness(String code, String description){
+	/** The name of the illness **/
+	private String name;
+	
+	public Illness(String code, String name){
 		this.code = code;
-		this.description = description;
+		this.name = name;
 	}
 	
 	public Illness(IllnessDTO ilnessDTO) {
 		this.code = ilnessDTO.getCode();
-		this.description = ilnessDTO.getDescription();
+		this.name = ilnessDTO.getName();
 	}
 	
 	public String getCode() {
@@ -38,12 +39,12 @@ public class Illness extends AbstractDatabaseObject {
 		this.code = code;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getName() {
+		return name;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

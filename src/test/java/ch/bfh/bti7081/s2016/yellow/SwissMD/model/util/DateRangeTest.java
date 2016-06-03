@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2016.yellow.SwissMD.model;
+package ch.bfh.bti7081.s2016.yellow.SwissMD.model.util;
 
 import static org.junit.Assert.assertNotNull;
 

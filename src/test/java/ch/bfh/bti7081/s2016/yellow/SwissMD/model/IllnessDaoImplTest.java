@@ -23,28 +23,28 @@ public class IllnessDaoImplTest {
 	
 	@Test
 	public void findByCodeExact() {
-		List<Illness> found = illnessDao.findByCodeOrDescription("F20.1");
+		List<Illness> found = illnessDao.findByCodeOrName("F20.1");
 		Illness illness = found.get(0);
 		assertNotNull(illness);
 	}
 	
 	@Test
 	public void findByCodePart() {
-		List<Illness> found = illnessDao.findByCodeOrDescription("20.1");
+		List<Illness> found = illnessDao.findByCodeOrName("20.1");
 		Illness illness = found.get(0);
 		assertNotNull(illness);
 	}
 	
 	@Test
 	public void findByNameExact() {
-		List<Illness> found = illnessDao.findByCodeOrDescription("Hebephrene Schizophrenie");
+		List<Illness> found = illnessDao.findByCodeOrName("Hebephrene Schizophrenie");
 		Illness illness = found.get(0);
 		assertNotNull(illness);
 	}
 	
 	@Test
 	public void findByNamePart() {
-		List<Illness> found = illnessDao.findByCodeOrDescription("Schizophrenie");
+		List<Illness> found = illnessDao.findByCodeOrName("Schizophrenie");
 		Illness illness = found.get(0);
 		assertNotNull(illness);
 	}

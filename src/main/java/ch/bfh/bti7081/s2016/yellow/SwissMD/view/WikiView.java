@@ -62,7 +62,7 @@ public class WikiView extends CustomComponent implements View {
 				illnessToShow = wikiPresenter.findIllnessById(illnessId);
 
 				if (illnessToShow != null) {
-					Tile wikiTile = new Tile(illnessToShow.getCode() + " - " + illnessToShow.getDescription(), "img/icons/books_small.png");
+					Tile wikiTile = new Tile(illnessToShow.getCode() + " - " + illnessToShow.getName(), "img/icons/books_small.png");
 					Button createDiagnose = new Button(
 							"Für aktuellen Patienten diagnostizieren");
 					createDiagnose.addClickListener(new ClickListener() {

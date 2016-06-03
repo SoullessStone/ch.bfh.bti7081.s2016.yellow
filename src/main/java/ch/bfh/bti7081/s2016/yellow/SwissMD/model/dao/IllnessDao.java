@@ -11,5 +11,5 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Illness;
  * 
  */
 public interface IllnessDao extends GenericDao<Illness, Long> {
-	public List<Illness> findByCodeOrDescription(String searchString);
+	public List<Illness> findByCodeOrName(String searchString);
 }

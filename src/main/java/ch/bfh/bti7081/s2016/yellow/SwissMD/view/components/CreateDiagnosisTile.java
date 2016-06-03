@@ -25,7 +25,7 @@ public class CreateDiagnosisTile extends Tile {
 	public CreateDiagnosisTile(IllnessDTO illnessDTO, Window window) {
 		this.illnessDTO = illnessDTO;
 		addComponent(new Label(illnessDTO.getCode() + " - "
-				+ illnessDTO.getDescription()));
+				+ illnessDTO.getName()));
 		addComponent(noteArea);
 		Button addDiagnosis = new Button("Erstelle Diagnose");
 		addDiagnosis.addClickListener(new ClickListener() {

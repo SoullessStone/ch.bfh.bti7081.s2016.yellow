@@ -12,17 +12,18 @@ public class IllnessDTO extends GenericDTO{
 	
 	/** The ICD-10 Code **/
 	private String code;
+	
+	/** The name of the illness **/
+	private String name;
 
-	private String description;
-
-	public IllnessDTO(String code, String description){
+	public IllnessDTO(String code, String name){
 		this.code = code;
-		this.description = description;
+		this.name = name;
 	}
 	
 	public IllnessDTO(Illness illness) {
 		this.code = illness.getCode();
-		this.description = illness.getDescription();
+		this.name = illness.getName();
 	}
 	
 	public String getCode() {
@@ -33,12 +34,12 @@ public class IllnessDTO extends GenericDTO{
 		this.code = code;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getName() {
+		return name;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }
