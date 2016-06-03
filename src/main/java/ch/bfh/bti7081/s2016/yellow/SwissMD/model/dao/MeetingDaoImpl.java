@@ -15,7 +15,7 @@ public class MeetingDaoImpl extends GenericDaoImpl<Meeting, Long> implements Mee
 
 	public List<Meeting> findMeetingForPerson(Patient patient) {
 		@SuppressWarnings("unchecked")
-		List<Meeting> resultList = (List<Meeting>) mEntityManager.createNamedQuery("SELECT m FROM Meeting m WHERE m.patient = :patient")
+		List<Meeting> resultList = (List<Meeting>) mEntityManager.createQuery("SELECT m FROM Meeting m WHERE m.patient = :patient")
 	    .setParameter("patient", patient)
 	    .getResultList();
 		return resultList;

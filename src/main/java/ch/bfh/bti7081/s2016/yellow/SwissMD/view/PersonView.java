@@ -176,6 +176,7 @@ public class PersonView extends CustomComponent implements View {
 					getUI().getNavigator().navigateTo(
 							NavigationIndex.PERSONVIEW + "/" + person.getId());
 				} catch (Exception e) {
+					e.printStackTrace();
 					Notification.show(PERSON_NOT_FOUND, Type.ERROR_MESSAGE);
 				}
 			}

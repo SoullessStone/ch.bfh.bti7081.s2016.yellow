@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 
 public class PatientDTO extends PersonDTO {
 
@@ -15,7 +16,7 @@ public class PatientDTO extends PersonDTO {
 	
 	private Long legalAid;
 	private Long familyDoctor;
-	private Integer dangerState;
+	private DangerStateType dangerState;
 
 	public PatientDTO(String name, Date birthdate) {
 		super(name, birthdate, "Patient");
@@ -42,11 +43,11 @@ public class PatientDTO extends PersonDTO {
 		this.prescriptions.remove(prescription);
 	}
 	
-	public Integer getDangerState() {
+	public DangerStateType getDangerState() {
 		return dangerState;
 	}
 
-	public void setDangerState(Integer dangerState) {
+	public void setDangerState(DangerStateType dangerState) {
 		this.dangerState = dangerState;
 	}
 

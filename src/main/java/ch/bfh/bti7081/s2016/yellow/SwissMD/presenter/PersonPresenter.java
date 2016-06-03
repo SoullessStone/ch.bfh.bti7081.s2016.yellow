@@ -78,6 +78,7 @@ public class PersonPresenter {
 
 	public List<MeetingDTO> getMeetingsForPatient(Long id) throws MeetingStateException {
 		Patient patient = (Patient) personDao.read(id);
+		System.out.println(patient);
 		List<MeetingDTO> meetingList = new ArrayList<>();
 		for (Meeting m : meetingDao.findMeetingForPerson(patient)) {
 			meetingList.add(new MeetingDTO(m));
