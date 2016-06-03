@@ -13,17 +13,19 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
  */
 public class IllnessDaoImpl extends GenericDaoImpl<Illness, Long> implements IllnessDao {
 
+	public IllnessDaoImpl(EntityManagerProvider emp) {
+		super(emp);
+	}
+
 	@Override
 	public List<Illness> findByCodeOrDescription(String searchString) {
-		// TODO Finish method and test it with JUnit
-		// @SuppressWarnings("unchecked")
-		// List<Illness> resultList = (List<Illness>)
-		// mEntityManager.createQuery("SELECT m FROM Illness m WHERE m.code LIKE ':code' OR m.description LIKE '%:description%'")
-		// .setParameter("code", searchString)
-		// .setParameter("description", searchString)
-		// .getResultList();
-		// return resultList;
-		return null;
+		 @SuppressWarnings("unchecked")
+		 List<Illness> resultList = (List<Illness>)
+		 mEntityManager.createQuery("SELECT m FROM Illness m WHERE m.code LIKE :code OR m.description LIKE :description")
+		 .setParameter("code", "%" + searchString + "%")
+		 .setParameter("description", "%" + searchString + "%")
+		 .getResultList();
+		 return resultList;
 	}
 
 }

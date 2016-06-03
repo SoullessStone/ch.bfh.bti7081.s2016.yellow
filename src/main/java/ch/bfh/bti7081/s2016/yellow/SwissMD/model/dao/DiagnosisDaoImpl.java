@@ -5,4 +5,8 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Drug;
 
 public class DiagnosisDaoImpl extends GenericDaoImpl<Diagnosis, Long> {
 
+	public DiagnosisDaoImpl(EntityManagerProvider emp) {
+		super(emp);
+	}
+
 }

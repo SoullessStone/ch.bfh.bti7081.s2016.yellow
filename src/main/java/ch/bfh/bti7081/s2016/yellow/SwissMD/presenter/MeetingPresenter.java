@@ -9,6 +9,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
@@ -28,9 +29,9 @@ public class MeetingPresenter {
 
 	public MeetingPresenter(MeetingView meetingView) {
 		System.out.println("init MeetingPresenter");
-		this.meetingDao = new MeetingDaoImpl();
-		this.drugDao = new DrugDaoImpl();
-		this.personDao = new PersonDaoImpl();
+		this.meetingDao = new MeetingDaoImpl(new WebEntityManagerProvider());
+		this.drugDao = new DrugDaoImpl(new WebEntityManagerProvider());
+		this.personDao = new PersonDaoImpl(new WebEntityManagerProvider());
 	}
 
 	public void update(MeetingDTO meetingDTO) throws CouldNotSaveException {

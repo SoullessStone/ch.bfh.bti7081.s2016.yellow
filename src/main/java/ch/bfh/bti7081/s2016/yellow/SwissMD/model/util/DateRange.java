@@ -14,12 +14,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.IllegalDateRangeExcep
 /**
  * Definiert einen Zeitbereich anhand von Start- und Enddatum
  */
-@Entity
 public class DateRange {
-
-	@Id
-	@GeneratedValue
-	private Long id;
 
 	private Date from;
 	private Date to;

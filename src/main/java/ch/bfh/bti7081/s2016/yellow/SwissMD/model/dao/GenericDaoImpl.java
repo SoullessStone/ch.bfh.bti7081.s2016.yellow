@@ -30,12 +30,12 @@ public class GenericDaoImpl<T extends AbstractDatabaseObject, ID extends Seriali
 	protected EntityManager mEntityManager;
 
 	@SuppressWarnings("unchecked")
-	public GenericDaoImpl() {
+	public GenericDaoImpl(EntityManagerProvider emp) {
 		ParameterizedType genericSuperclass = (ParameterizedType) getClass()
 				.getGenericSuperclass();
 		this.mEntityClass = (Class<T>) genericSuperclass
 				.getActualTypeArguments()[0];
-		this.mEntityManager = EntityManagerProvider.createEntityManager();
+		this.mEntityManager = emp.createEntityManager();
 	}
 
 	@Override

@@ -8,7 +8,11 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 
-public interface EntityManagerProvider {
-	public EntityManager createEntityManager();
+public class TestEntityManagerProvider implements EntityManagerProvider {
+
+	public EntityManager createEntityManager() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		return emf.createEntityManager();
+	}
 
 }

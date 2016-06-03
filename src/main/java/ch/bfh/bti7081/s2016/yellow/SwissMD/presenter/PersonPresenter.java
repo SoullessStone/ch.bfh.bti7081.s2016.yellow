@@ -8,6 +8,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
@@ -26,8 +27,8 @@ public class PersonPresenter {
 
 	public PersonPresenter(PersonView personView) {
 		System.out.println("init PersonPresenter");
-		this.personDao = new PersonDaoImpl();
-		this.meetingDao = new MeetingDaoImpl();
+		this.personDao = new PersonDaoImpl(new WebEntityManagerProvider());
+		this.meetingDao = new MeetingDaoImpl(new WebEntityManagerProvider());
 	}
 
 	/**

@@ -8,6 +8,7 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonSearchView;
@@ -24,7 +25,7 @@ public class PersonSearchPresenter {
 	public PersonSearchPresenter(PersonSearchView personSearchView) {
 		System.out.println("init PersonSearchPresenter");
 		this.personSearchView = personSearchView;
-		this.personDao = new PersonDaoImpl();
+		this.personDao = new PersonDaoImpl(new WebEntityManagerProvider());
 	}
 
 	public List<PersonDTO> searchForBirthdate(Date birthdate) {

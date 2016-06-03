@@ -1,12 +1,13 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.presenter;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.DiagnosisDaoImpl;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DiagnosisDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Illness;
 
 public class CreateDiagnosisTilePresenter {
-	private DiagnosisDaoImpl diagnosisDao = new DiagnosisDaoImpl();
+	private DiagnosisDaoImpl diagnosisDao = new DiagnosisDaoImpl(new WebEntityManagerProvider());
 
 	public void createDiagnosis(DiagnosisDTO diagnosisDTO) {
 		// TODO Michel

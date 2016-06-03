@@ -6,6 +6,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PrescriptionDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PrescriptionDaoImpl;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Drug;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
@@ -17,9 +18,9 @@ public class PrescriptionPresenter {
 	PersonDao personDao;
 	
 	public PrescriptionPresenter() {
-		this.prescriptionDao = new PrescriptionDaoImpl();
-		this.drugDao = new DrugDaoImpl();
-		this.personDao = new PersonDaoImpl();
+		this.prescriptionDao = new PrescriptionDaoImpl(new WebEntityManagerProvider());
+		this.drugDao = new DrugDaoImpl(new WebEntityManagerProvider());
+		this.personDao = new PersonDaoImpl(new WebEntityManagerProvider());
 		
 	}
 	

@@ -64,10 +64,6 @@ public class MeetingDTO extends GenericDTO implements Comparable<MeetingDTO> {
 		this.state = newMeetingState;
 	}
 
-	public MeetingStateType getMeetingState() {
-		return this.state.getState();
-	}
-
 	public void cancelMeeting() throws MeetingStateException {
 		this.state.cancelMeeting(this);
 	}
@@ -99,6 +95,10 @@ public class MeetingDTO extends GenericDTO implements Comparable<MeetingDTO> {
 
 	public String getNotes() {
 		return notes;
+	}
+	
+	public MeetingStateType getMeetingState() {
+		return this.state.getState();
 	}
 
 	public void setNotes(String notes) {

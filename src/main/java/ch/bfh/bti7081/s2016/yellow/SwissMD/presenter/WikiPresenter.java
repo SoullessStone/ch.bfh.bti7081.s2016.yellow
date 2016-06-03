@@ -4,6 +4,7 @@ import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.IllnessDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.IllnessDaoImpl;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.WikiView;
 
@@ -14,7 +15,7 @@ public class WikiPresenter {
 	public WikiPresenter(WikiView wikiView) {
 		System.out.println("init WikiPresenter");
 		this.wikiView = wikiView;
-		this.illnessDao = new IllnessDaoImpl();
+		this.illnessDao = new IllnessDaoImpl(new WebEntityManagerProvider());
 	}
 
 	public IllnessDTO findIllnessById(Long illnessId) {

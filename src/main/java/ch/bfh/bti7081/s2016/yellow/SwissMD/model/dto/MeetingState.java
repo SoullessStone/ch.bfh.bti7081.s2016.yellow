@@ -13,8 +13,12 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
  * 
  */
 public abstract class MeetingState {
-	abstract void cancelMeeting(MeetingDTO meeting) throws MeetingStateException;
-	protected void planMeeting(MeetingDTO meeting, Date appointmentTime) throws MeetingStateException {
+
+	abstract void cancelMeeting(MeetingDTO meeting)
+			throws MeetingStateException;
+
+	protected void planMeeting(MeetingDTO meeting, Date appointmentTime)
+			throws MeetingStateException {
 		if (appointmentTime.after(new Date())) {
 			meeting.changeMeetingState(new MeetingStatePlanned());
 		} else {
@@ -22,6 +26,9 @@ public abstract class MeetingState {
 		}
 		meeting.setAppointmentTime(appointmentTime);
 	};
-	abstract void performMeeting(MeetingDTO meeting) throws MeetingStateException;
+
+	abstract void performMeeting(MeetingDTO meeting)
+			throws MeetingStateException;
+
 	abstract MeetingStateType getState();
 }

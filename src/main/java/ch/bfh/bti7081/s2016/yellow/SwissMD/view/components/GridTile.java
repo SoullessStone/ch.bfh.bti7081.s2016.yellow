@@ -4,6 +4,7 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
@@ -20,7 +21,7 @@ public class GridTile extends Tile {
 	private PersonDaoImpl personDao;
 	
 	public GridTile(PatientDTO patientDTO) {
-		personDao = new PersonDaoImpl();
+		personDao = new PersonDaoImpl(new WebEntityManagerProvider());
 		
 		setTitle("Medzinische Grunddaten " + patientDTO.getName());
 		setStdWidth(3);
