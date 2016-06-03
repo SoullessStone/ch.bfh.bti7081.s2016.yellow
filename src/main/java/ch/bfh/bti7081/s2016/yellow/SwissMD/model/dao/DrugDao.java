@@ -1,11 +1,5 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Drug;
 
 /**

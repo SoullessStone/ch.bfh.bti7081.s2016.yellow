@@ -3,8 +3,11 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.presenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.DrugDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.DrugDaoImpl;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDaoImpl;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
@@ -19,9 +22,9 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.MeetingView;
 
 public class MeetingPresenter {
-	private MeetingDaoImpl meetingDao;
-	private DrugDaoImpl drugDao;
-	private PersonDaoImpl personDao;
+	private MeetingDao meetingDao;
+	private DrugDao drugDao;
+	private PersonDao personDao;
 
 	public MeetingPresenter(MeetingView meetingView) {
 		System.out.println("init MeetingPresenter");

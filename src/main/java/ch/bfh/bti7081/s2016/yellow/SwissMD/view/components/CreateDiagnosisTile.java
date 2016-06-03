@@ -1,11 +1,9 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DiagnosisDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.CreateDiagnosisTilePresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 

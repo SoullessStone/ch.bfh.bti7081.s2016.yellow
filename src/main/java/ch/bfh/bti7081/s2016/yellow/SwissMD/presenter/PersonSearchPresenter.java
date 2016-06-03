@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.time.DateUtils;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
@@ -17,7 +18,7 @@ import com.vaadin.ui.Notification.Type;
 public class PersonSearchPresenter {
 	private PersonSearchView personSearchView;
 
-	private PersonDaoImpl personDao;
+	private PersonDao personDao;
 	private List<PersonDTO> cachedPersons;
 
 	public PersonSearchPresenter(PersonSearchView personSearchView) {
@@ -34,6 +35,7 @@ public class PersonSearchPresenter {
 			}
 		}
 		return result;
+		// TODO Remove or finish 
 		/*
 		 * Not working... return getAllPersons();.stream() .filter(p ->
 		 * DateUtils.isSameDay(birthdate, p.getBirthdate()))

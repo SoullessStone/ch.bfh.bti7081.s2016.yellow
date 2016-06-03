@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDaoImpl;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
@@ -19,8 +21,8 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonView;
 
 public class PersonPresenter {
-	private PersonDaoImpl personDao;
-	private MeetingDaoImpl meetingDao;
+	private PersonDao personDao;
+	private MeetingDao meetingDao;
 
 	public PersonPresenter(PersonView personView) {
 		System.out.println("init PersonPresenter");
@@ -78,7 +80,6 @@ public class PersonPresenter {
 
 	public List<MeetingDTO> getMeetingsForPatient(Long id) throws MeetingStateException {
 		Patient patient = (Patient) personDao.read(id);
-		System.out.println(patient);
 		List<MeetingDTO> meetingList = new ArrayList<>();
 		for (Meeting m : meetingDao.findMeetingForPerson(patient)) {
 			meetingList.add(new MeetingDTO(m));
