@@ -68,7 +68,7 @@ public class WikiView extends CustomComponent implements View {
 						@SuppressWarnings("static-access")
 						@Override
 						public void buttonClick(ClickEvent event) {
-							final Window window = new Window("Window");
+							final Window window = new Window("Diagnose erstellen");
 					        window.setWidth(300.0f, Unit.PIXELS);
 					        window.center();
 					        window.setModal(true);
