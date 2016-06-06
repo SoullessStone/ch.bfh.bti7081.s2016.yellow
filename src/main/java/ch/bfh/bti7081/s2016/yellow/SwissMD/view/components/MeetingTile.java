@@ -12,7 +12,6 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.i18nHelper;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
@@ -32,7 +31,7 @@ public class MeetingTile extends Tile {
 		
 		vertical.addComponent(new Label("Patient: " + meeting.getPatient().getName()));
 		vertical.addComponent(new Label("Arzt: " + meeting.getDoctor().getName()));
-		vertical.addComponent(new Label("Status: " + i18nHelper.getMeetingStateTypeTranlation(meeting.getMeetingState())));
+		vertical.addComponent(new Label("Status: " + meeting.getMeetingState().getLocalization()));
 		vertical.addComponent(meetingLink);
 		this.tile.addStyleName("noshadow");
 

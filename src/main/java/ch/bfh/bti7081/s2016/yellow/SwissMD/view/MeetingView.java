@@ -26,7 +26,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteExcepti
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.i18nHelper;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PrescriptionPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreatePrescriptionTile;
@@ -267,7 +266,7 @@ public class MeetingView extends CustomComponent implements View,
 
 	private void showMeetingInView() {
 		// MeetingDTO angemessen abbilden
-		String translatedMeetingString = i18nHelper.getMeetingStateTypeTranlation(meetingDTO.getMeetingState());
+		String translatedMeetingString = meetingDTO.getMeetingState().getLocalization();
 		Tile appointmentTile = new Tile("Sitzung (" + translatedMeetingString + ")","img/icons/calendar_small.png");
 
 		DateField df = new DateField("Termin");
