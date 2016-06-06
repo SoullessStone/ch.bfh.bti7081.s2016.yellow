@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>128</y>
+      <w>128</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>GenericDTO
+--
++getId():Long
++setId(id: Long):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>264</y>
+      <w>208</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>MeetingDTO
+--
+- patient: PatientDTO
+- doctor: DoctorDTO
+- state: MeetingState
+- notes: String
+- appointementTime: Date
+--
++cancelMeeting():void
++postponeMeeting(date:Date):void
++performMeeting():void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>544</x>
+      <y>48</y>
+      <w>184</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>PersonDTO
+--
+- name : String
+- birthdate : Date
+- address : String
+- zip : String
+- city : String
+- mobile : String
+- landline : String
+- legalAid : Long
+- familyDoctor : Long</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>216</x>
+      <y>176</y>
+      <w>24</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>248</y>
+      <w>256</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>PatientDTO
+--
++ getPrescriptions(): List&lt;PrescriptionDTO&gt;
++ addPrescription(PrescriptionDTO): void
++ removePrescription(PrescriptionDTO): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>248</y>
+      <w>112</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>DoctorDTO</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>472</x>
+      <y>192</y>
+      <w>176</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>200.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>640</x>
+      <y>192</y>
+      <w>128</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>128</x>
+      <y>448</y>
+      <w>144</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>PrescriptionDTO
+--
+- drug: DrugDTO
+- patient: PatientDTO
+- dosisInMilligrams: int
+- validity: DateRange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>128</x>
+      <y>592</y>
+      <w>144</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>DrugDTO
+--
+- tradeName: String
+- substance: String
+- substanceQuantity: String
+- maxDose: int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>184</x>
+      <y>520</y>
+      <w>24</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>264</x>
+      <y>320</y>
+      <w>264</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;
+m1=1
+m2=n</panel_attributes>
+    <additional_attributes>310.0;10.0;310.0;210.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>192</x>
+      <y>384</y>
+      <w>24</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>288</y>
+      <w>160</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>180.0;50.0;180.0;100.0;70.0;100.0;70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>296</x>
+      <y>280</y>
+      <w>424</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>510.0;10.0;510.0;170.0;10.0;170.0;10.0;140.0</additional_attributes>
+  </element>
+</diagram>

@@ -1,0 +1,101 @@
+<diagram program="umletino" version="14.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>1300</x><y>624</y><w>230</w><h>240</h></coordinates><panel_attributes>Drug
+--
+-tradeName: String
+-substance: String
+-substanceQuantity: String
+-maxDose: int
+--
++getTradeName(): String
++setTradeName(substance: String): void
++getSubstance(): String
++setSubstance(substance: String): void
++getSubstanceQuantity(): String
++setSubstanceQuantity(quantity: String):void
++getMaxDose(): int
++setMaxDose(dose: int): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>450</x><y>244</y><w>270</w><h>220</h></coordinates><panel_attributes>Person
+--
+-dtype: String
+-name: String
+-birthdate: Date
+-address: String
+-zip: String
+-city: String
+-mobile: String
+-landline: String
+-legalAid: Long
+-familyDoctor: Long
+--
++setName(number: int): void
++getName(): String
++setBirthdate(birthdate: Date): void
++getBirthdate(): Date
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>790</x><y>244</y><w>340</w><h>150</h></coordinates><panel_attributes>Patient
+--
+-dangerState: DangerState
+-meetings: List&lt;Meeting&gt;
+-prescriptions: List&lt;Prescription&gt;
+--
++getDangerState(): DangerStateType
++setDangerState(state: DangerStateType): void
++getPrescriptions(): Prescription
++addPrescription(prescription: Prescription)
++removePrescription(prescription: Prescription)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1360</x><y>314</y><w>130</w><h>180</h></coordinates><panel_attributes>Prescription
+--
+-drug: Drug
+-dosisInMilligrams: int
+-validFrom: Date
+-validTo: Date
+-validity: DateRange
+--
++getPatient(): Patient
++setPatient(patient: Patient): void
++getDrug(): Drug
++setDrug(drug: Drug): void
++setDosisInMilligrams(dosis: int): void
++getDosisInMilligrams(): int
++getValidity(): DateRange
++setValidity(dateRange: DateRange): void
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1440</x><y>484</y><w>30</w><h>160</h></coordinates><panel_attributes>lt=-&gt;</panel_attributes><additional_attributes>10;10;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>1090</x><y>384</y><w>80</w><h>70</h></coordinates><panel_attributes>nimmt teil</panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>600</x><y>524</y><w>270</w><h>90</h></coordinates><panel_attributes>Doctor
+--
+-officeNumber:int
+--
++setOfficeNumber(number: int): void
++getOfficeNumber(): int
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>710</x><y>304</y><w>100</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;80;10</additional_attributes></element><element><id>Relation</id><coordinates><x>680</x><y>454</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>1120</x><y>324</y><w>260</w><h>50</h></coordinates><panel_attributes>m1=0..n
+m2=1
+hat verschrieben</panel_attributes><additional_attributes>240;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1280</x><y>484</y><w>200</w><h>110</h></coordinates><panel_attributes>m1=0..n
+m2=1
+wurden verschrieben</panel_attributes><additional_attributes>90;10;50;80;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1010</x><y>434</y><w>280</w><h>230</h></coordinates><panel_attributes>Meeting
+--
+-patient: Patient
+-doctor: Doctor
+-notes: String
+-appointmentTime: Date
+-meetingState: MeetingState
+--
++getPatient(): Patient
++setPatient(patient: Patient): void
++getDoctor(): Doctor
++setDoctor(doctor: Doctor): void
++getNotes(): String
++setNotes(notes: String): void
++getAppointmentTime(): Date
++setAppointmentTime(date: Date): void
++getMeetingState(): MeetingState
++setMeetingState(state: MeetingState): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>880</x><y>724</y><w>220</w><h>80</h></coordinates><panel_attributes>/MeetingState/
+--
+/-cancelMeeting(meeting: MeetingDTO)/
+/#planMeeting(meeting: MeetingDTO)/
+/-performMeeting(meeting: MeetingDTO)/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1180</x><y>754</y><w>100</w><h>30</h></coordinates><panel_attributes>MeetingStateNew</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>900</x><y>854</y><w>140</w><h>30</h></coordinates><panel_attributes>MeetingStateOverdue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1130</x><y>824</y><w>140</w><h>30</h></coordinates><panel_attributes>MeetingStatePerformed
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1110</x><y>894</y><w>140</w><h>30</h></coordinates><panel_attributes>MeetingStatePlanned</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>860</x><y>894</y><w>240</w><h>30</h></coordinates><panel_attributes>MeetingStateCanceled
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1010</x><y>794</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>1090</x><y>774</y><w>70</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;50;50</additional_attributes></element><element><id>Relation</id><coordinates><x>860</x><y>524</y><w>170</w><h>50</h></coordinates><panel_attributes>m1=0..n
+m2=1
+leitet</panel_attributes><additional_attributes>150;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1040</x><y>654</y><w>50</w><h>90</h></coordinates><panel_attributes>m1=1
+m2=1
+hat</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>1040</x><y>794</y><w>30</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>1070</x><y>794</y><w>80</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;60;100</additional_attributes></element><element><id>Relation</id><coordinates><x>1090</x><y>754</y><w>110</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>394</y><w>170</w><h>120</h></coordinates><panel_attributes>m1=1
+m2=0..1
+hat Hausarzt</panel_attributes><additional_attributes>100;10;10;10;10;100;130;100;130;70</additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>184</y><w>130</w><h>100</h></coordinates><panel_attributes>m1=1
+m2=0..1
+hat Beistand</panel_attributes><additional_attributes>100;60;100;20;10;20;10;70;60;70</additional_attributes></element></diagram>
