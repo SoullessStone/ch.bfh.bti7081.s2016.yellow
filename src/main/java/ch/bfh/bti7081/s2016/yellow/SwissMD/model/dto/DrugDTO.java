@@ -11,14 +11,14 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Drug;
 public class DrugDTO extends GenericDTO {
 	private String tradeName;
 	private String substance;
-	private String SubstanceQuantitiy;
+	private String substanceQuantitiy;
 	private int maxDose;
 
 	public DrugDTO(String tradeName, String substance,
-			String SubstanceQuantitiy, int maxDose) {
+			String substanceQuantitiy, int maxDose) {
 		this.tradeName = tradeName;
 		this.substance = substance;
-		this.SubstanceQuantitiy = SubstanceQuantitiy;
+		this.substanceQuantitiy = substanceQuantitiy;
 		this.maxDose = maxDose;
 
 	}
@@ -26,7 +26,7 @@ public class DrugDTO extends GenericDTO {
 	public DrugDTO(Drug drug) {
 		this.tradeName = drug.getTradeName();
 		this.substance = drug.getSubstance();
-		this.SubstanceQuantitiy = drug.getSubstanceQuantitiy();
+		this.substanceQuantitiy = drug.getSubstanceQuantitiy();
 		this.maxDose = drug.getMaxDose();
 		this.setId(drug.getId());
 	}
@@ -52,11 +52,11 @@ public class DrugDTO extends GenericDTO {
 	}
 
 	public String getSubstanceQuantitiy() {
-		return SubstanceQuantitiy;
+		return substanceQuantitiy;
 	}
 
 	public void setSubstanceQuantitiy(String substanceQuantitiy) {
-		SubstanceQuantitiy = substanceQuantitiy;
+		this.substanceQuantitiy = substanceQuantitiy;
 	}
 
 	public int getMaxDose() {

@@ -23,8 +23,6 @@ public class NavigatorUI extends UI {
 
 	public Navigator navigator;
 
-	private List<View> views;
-
 	@Override
 	protected void init(VaadinRequest request) {
 
@@ -43,19 +41,6 @@ public class NavigatorUI extends UI {
 			navigator.addView(navPath, index.getViewClass());
 		}
 
-		/*
-		 * navigator.addView("", new LoginView());
-		 * navigator.addView(PERSONSEARCHVIEW, new PersonSearchView());
-		 * navigator.addView(PERSONVIEW, new PersonView());
-		 * navigator.addView(PRESCRIPTIONVIEW, new PrescriptionView());
-		 * navigator.addView(WIKIVIEW, new WikiView());
-		 * navigator.addView(MEETINGVIEW, new MeetingView());
-		 */
-
-	}
-
-	List<View> getViews() {
-		return views;
 	}
 
 	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

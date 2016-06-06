@@ -84,6 +84,7 @@ public class PersonSearchPresenter {
 		for (Person p : persons) {
 			personDTOs.add(new PersonDTO(p));
 		}
-		return personDTOs;
+		cachedPersons = personDTOs;
+		return cachedPersons;
 	}
 }

@@ -142,8 +142,8 @@ public class PersonView extends CustomComponent implements View {
 					layout.addComponent(actionsTile);
 
 					Tile historyTile = new Tile("Patientenhistory");
-					List<MeetingDTO> meetingDTOs = new ArrayList<MeetingDTO>();
-					try {						
+					try {	
+						List<MeetingDTO> meetingDTOs = new ArrayList<MeetingDTO>();
 						meetingDTOs = personPresenter.getMeetingsForPatient(patientDTO.getId());
 						Collections.sort(meetingDTOs);
 						VerticalLayout verticalLayout = new VerticalLayout();

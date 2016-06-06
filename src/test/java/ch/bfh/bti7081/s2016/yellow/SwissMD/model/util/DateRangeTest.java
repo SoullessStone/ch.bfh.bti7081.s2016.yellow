@@ -27,13 +27,13 @@ public class DateRangeTest {
 		assertNotNull(sut);
 	}
 
-	@Test
+	@Test(expected=IllegalDateRangeException.class)
 	public void invalidConstructorParam() throws IllegalDateRangeException {
 		//
 		thrown.expect(IllegalDateRangeException.class);
 		Date from = new Date();
 		Date to = new Date(from.getTime() + 1000000);
 		// act
-		DateRange sut = new DateRange(to, from);
+		new DateRange(to, from);
 	}
 }

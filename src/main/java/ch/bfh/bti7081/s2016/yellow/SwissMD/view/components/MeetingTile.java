@@ -37,7 +37,6 @@ public class MeetingTile extends Tile {
 		this.tile.addStyleName("noshadow");
 
 		grid.addComponent(vertical, 0, 0);
-		Tile notes = new Tile("Sitzungsnotizen");
 		int end = meeting.getNotes().length();
 		if (end > 100) {
 			end = 100;
