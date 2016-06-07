@@ -21,7 +21,8 @@ public class Illness extends AbstractDatabaseObject {
 	/** The name of the illness **/
 	private String name;
 	
-	private Illness(){}
+	public Illness() {	
+	}
 	
 	public Illness(String code, String name){
 		this.code = code;

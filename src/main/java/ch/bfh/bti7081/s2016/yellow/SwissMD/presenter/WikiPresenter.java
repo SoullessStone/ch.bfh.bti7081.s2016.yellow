@@ -1,11 +1,13 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.presenter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.IllnessDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.IllnessDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Illness;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.WikiView;
 
 public class WikiPresenter {
@@ -19,13 +21,16 @@ public class WikiPresenter {
 	}
 
 	public IllnessDTO findIllnessById(Long illnessId) {
-		return new IllnessDTO(illnessDao.read(131L));
 		// TODO Alex Implement
+		return new IllnessDTO("A821", "Urban rabies");
 	}
 	
-	public List<IllnessDTO> searchIllness (String searchString) {
-		//TODO implement method
-		return null;
+	public List<IllnessDTO> searchIllnesses(String searchString) {
+		List<Illness> searchResult = illnessDao.findByCodeOrName(searchString);
+		List<IllnessDTO> illnessDTOs = new ArrayList<>();
+		for(Illness illness : searchResult) {
+			illnessDTOs.add(new IllnessDTO(illness));
+		}
+		return illnessDTOs;
 	}
-
 }

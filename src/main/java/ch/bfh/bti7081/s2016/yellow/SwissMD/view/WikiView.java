@@ -1,9 +1,12 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.WikiPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreateDiagnosisTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.LoginTile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MultipleIllnessTile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MultiplePersonTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;
@@ -11,6 +14,9 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
+import java.util.List;
+
+import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
@@ -18,24 +24,27 @@ import com.vaadin.ui.BrowserFrame;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Notification.Type;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.Window;
 
 // Just do
 @SuppressWarnings("serial")
 public class WikiView extends CustomComponent implements View {
+	private static final String FOUND_COUNT_RESULTS = "Suchergebnisse wurden gefunden";
 	private WikiPresenter wikiPresenter = new WikiPresenter(this);
-	private IllnessDTO illnessToShow;
 	private BaseLayout layout;
+	private TextField searchField;
+	private MultipleIllnessTile resultTile;
 
 	public WikiView() {
 		try {
 			layout = LayoutFactory.getInstance(LayoutType.TILE_LAYOUT)
-					.createLayout(
-							TileLayoutFactory.Arguments.ELEMENTS_PER_ROW
-									.getName() + ":3");
+					.createLayout(TileLayoutFactory.Arguments.ELEMENTS_PER_ROW.getName() + ":3");
 		} catch (Exception e1) {
 			// TODO Go to error View
 			e1.printStackTrace();
@@ -45,83 +54,36 @@ public class WikiView extends CustomComponent implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		String param = event.getParameters();
-		// param nicht leer
-		if (param != null && !param.isEmpty()) {
-			// Try to get an illnessId of param
-			Long illnessId = null;
-			try {
-				illnessId = Long.valueOf(param);
-			} catch (NumberFormatException e) {
-				getUI().getNavigator().navigateTo(
-						NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
-			}
-
-			if (illnessId != null) {
-				// Lese IllnessDTO
-				illnessToShow = wikiPresenter.findIllnessById(illnessId);
-
-				if (illnessToShow != null) {
-					Tile wikiTile = new Tile(illnessToShow.getCode() + " - " + illnessToShow.getName(), "img/icons/books_small.png");
-					Button createDiagnose = new Button(
-							"Für aktuellen Patienten diagnostizieren");
-					createDiagnose.addClickListener(new ClickListener() {
-
-						@SuppressWarnings("static-access")
-						@Override
-						public void buttonClick(ClickEvent event) {
-							final Window window = new Window("Diagnose erstellen");
-					        window.setWidth(300.0f, Unit.PIXELS);
-					        window.center();
-					        window.setModal(true);
-					        window.setResizable(false);
-					        window.setContent(new CreateDiagnosisTile(illnessToShow, window));
-					        getUI().getCurrent().addWindow(window);
-						}
-					});
-					wikiTile.addComponent(createDiagnose);
-					Button showIllnessFrame = new Button(
-							"Krankheit anzeigen");
-					showIllnessFrame.addClickListener(new ClickListener() {
-
-						@SuppressWarnings("static-access")
-						@Override
-						public void buttonClick(ClickEvent event) {
-							final Window window = new Window("Krankheit");
-					        window.setWidth(1000.0f, Unit.PIXELS);
-					        window.center();
-					        window.setModal(true);
-					        window.setResizable(false);
-					        String search = illnessToShow.getCode().substring(0, 3);
-					        BrowserFrame browser = new BrowserFrame("Browser",
-					        	    new ExternalResource("http://www.icd-code.de/suche/icd/code/" + search + ".-.html"));
-					        	browser.setWidth("1000px");
-					        	browser.setHeight("700px");
-					        window.setContent(browser);
-					        getUI().getCurrent().addWindow(window);
-						}
-					});
-					wikiTile.addComponent(showIllnessFrame);
-					
-					layout.addComponent(wikiTile);
-					// Zeige die Illness an
-					showIllnessInView();
-				} else {
+		Tile tile = new Tile();
+		searchField = new TextField("Suchbegriff");
+		Button searchButton = new Button("Suchen");
+		searchButton.addClickListener(new ClickListener() {
+			@Override
+			public void buttonClick(ClickEvent event) {
+				if (!searchField.isEmpty()) {
+					List<IllnessDTO> results = wikiPresenter.searchIllnesses(searchField.getValue());
+					if(results != null && !results.isEmpty()) {
+						showSearchResults(results);
+					}
 				}
-			} else {
-				getUI().getNavigator().navigateTo(
-						NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
 			}
-		}
+		});
+		searchButton.setClickShortcut(KeyCode.ENTER);
+		tile.addComponent(searchField);
+		tile.addComponent(searchButton);
+		layout.addComponent(tile);
+		this.resultTile = new MultipleIllnessTile(null);
+		layout.addComponent(resultTile);
+		layout.finishLayout();
 	}
 
-	private void showIllnessInView() {
-		// TODO Michel Auto-generated method stub
-		
+	private void showSearchResults(List<IllnessDTO> results) {
+		Notification.show(results.size() + FOUND_COUNT_RESULTS, Type.ASSISTIVE_NOTIFICATION);
+		this.resultTile.setIllnesses(results);
 	}
 
 	private Label headingLabel() {
-		return new Label("WikiView");
+		return new Label("WikiSearchView");
 	}
 
 }
