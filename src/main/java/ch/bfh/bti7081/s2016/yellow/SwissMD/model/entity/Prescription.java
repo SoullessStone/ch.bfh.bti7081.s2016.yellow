@@ -22,6 +22,8 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 @Table
 public class Prescription extends AbstractDatabaseObject {
 	
+	private static final long serialVersionUID = -3986983045008977241L;
+	
 	@OneToOne
 	private Drug drug;
 	private int dosisInMilligrams;
@@ -29,6 +31,7 @@ public class Prescription extends AbstractDatabaseObject {
 	private Date validFrom;
 	//needed only for persistence
 	private Date validTo;
+	
 	@Transient
 	private DateRange validity;
 

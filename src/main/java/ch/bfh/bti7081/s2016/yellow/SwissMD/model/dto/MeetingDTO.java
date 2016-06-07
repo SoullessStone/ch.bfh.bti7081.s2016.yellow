@@ -30,7 +30,7 @@ public class MeetingDTO extends GenericDTO implements Comparable<MeetingDTO> {
 			throws MeetingStateException {
 		this.patient = patient;
 		this.doctor = doctor;
-		this.appointmentTime = appointmentTime;
+		this.appointmentTime = new Date(appointmentTime.getTime());
 		this.state = new MeetingStateNew();
 		this.state.planMeeting(this, appointmentTime);
 		this.appointmentTime = appointmentTime;
@@ -106,7 +106,7 @@ public class MeetingDTO extends GenericDTO implements Comparable<MeetingDTO> {
 	}
 
 	public Date getAppointmentTime() {
-		return appointmentTime;
+		return new Date(appointmentTime.getTime());
 	}
 
 	public String getAppointmentTimeString() {
@@ -115,7 +115,7 @@ public class MeetingDTO extends GenericDTO implements Comparable<MeetingDTO> {
 	}
 
 	public void setAppointmentTime(Date appointmentTime) {
-		this.appointmentTime = appointmentTime;
+		this.appointmentTime = new Date(appointmentTime.getTime());
 	}
 
 	@Override

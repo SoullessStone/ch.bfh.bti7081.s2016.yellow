@@ -23,8 +23,8 @@ public class DateRange {
 		if (!validate(from, to)) {
 			throw new IllegalDateRangeException("Enddatum vor Startdatum!");
 		}
-		this.from = from;
-		this.to = to;
+		this.from = new Date(from.getTime());
+		this.to = new Date(to.getTime());
 
 	}
 
@@ -47,11 +47,11 @@ public class DateRange {
 	}
 
 	public Date getFrom() {
-		return from;
+		return new Date(from.getTime());
 	}
 
 	public Date getTo() {
-		return to;
+		return new Date(to.getTime());
 	}
 
 	@Override

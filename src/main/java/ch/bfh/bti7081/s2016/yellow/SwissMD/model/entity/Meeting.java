@@ -57,11 +57,11 @@ public class Meeting extends AbstractDatabaseObject {
 	}
 
 	public Date getAppointmentTime() {
-		return appointmentTime;
+		return new Date(appointmentTime.getTime());
 	}
 
 	public void setAppointmentTime(Date appointmentTime) {
-		this.appointmentTime = appointmentTime;
+		this.appointmentTime = new Date(appointmentTime.getTime());
 	}
 
 	public MeetingStateType getStateType() {

@@ -23,20 +23,9 @@ public class PersonDTO extends GenericDTO {
 	private String landline;
 	// private Integer officeNumber;
 
-	/**
-	 * "Change to PersonDTO(Person person)"
-	 * 
-	 * @param name
-	 * @param birthdate
-	 * @param dtype
-	 */
-	@Deprecated
-	public PersonDTO(String name, Date birthdate, String dtype) {
-		this.name = name;
-		this.birthdate = birthdate;
-		this.dtype = dtype;
+	public PersonDTO() {
 	}
-
+	
 	public PersonDTO(Person person) {
 		this.name = person.getName();
 		this.birthdate = person.getBirthdate();
@@ -66,11 +55,11 @@ public class PersonDTO extends GenericDTO {
 	}
 
 	public Date getBirthdate() {
-		return birthdate;
+		return new Date(birthdate.getTime());
 	}
 
 	public void setBirthdate(Date birthdate) {
-		this.birthdate = birthdate;
+		this.birthdate = new Date(birthdate.getTime());
 	}
 
 	public String getAddress() {

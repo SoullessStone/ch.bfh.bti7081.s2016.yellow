@@ -33,7 +33,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
  */
 public class EscalationTile extends Tile {
 	
-	private final String COULD_NOT_SEND_MAIL = "E-Mail konnte nicht gesendet werden";
+	private final static String COULD_NOT_SEND_MAIL = "E-Mail konnte nicht gesendet werden";
 	private MeetingDTO meetingDTO;
 	private List<String> dangerStates;
 	private ComboBox dangerStatesCBox;

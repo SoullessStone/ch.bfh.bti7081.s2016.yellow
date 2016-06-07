@@ -19,7 +19,9 @@ public class PatientDTO extends PersonDTO {
 	private DangerStateType dangerState;
 
 	public PatientDTO(String name, Date birthdate) {
-		super(name, birthdate, "Patient");
+		setName(name);
+		setBirthdate(birthdate);
+		setDtype("Patient");
 	}
 
 	public PatientDTO(Patient patient) {
