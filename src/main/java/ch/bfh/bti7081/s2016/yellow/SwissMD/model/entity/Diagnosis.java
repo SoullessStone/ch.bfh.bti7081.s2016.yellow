@@ -2,24 +2,27 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DiagnosisDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 
+@Entity
+@Table
 public class Diagnosis extends AbstractDatabaseObject{
 
+	@OneToOne
 	private Illness illness;
 	private String notes;
 	private Date date;
+	
+	@OneToOne
 	private Patient patient;
 	
-	public Diagnosis(){
-	}
-	
-	public Diagnosis(DiagnosisDTO diagnosisDTO){
-		this.date = diagnosisDTO.getDate();
-		this.id = diagnosisDTO.getId();
-		this.notes = diagnosisDTO.getNotes();
-	}
 	
 	public Illness getIllness() {
 		return illness;

@@ -19,8 +19,8 @@ public class WikiPresenter {
 	}
 
 	public IllnessDTO findIllnessById(Long illnessId) {
+		return new IllnessDTO(illnessDao.read(131L));
 		// TODO Alex Implement
-		return new IllnessDTO("A821", "Urban rabies");
 	}
 	
 	public List<IllnessDTO> searchIllness (String searchString) {

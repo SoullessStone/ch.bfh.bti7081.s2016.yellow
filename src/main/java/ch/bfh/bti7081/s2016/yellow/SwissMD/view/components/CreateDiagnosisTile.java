@@ -4,6 +4,8 @@ import java.util.Date;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DiagnosisDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.CreateDiagnosisTilePresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
@@ -33,8 +35,13 @@ public class CreateDiagnosisTile extends Tile {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				DiagnosisDTO diagnosisDTO = new DiagnosisDTO(illnessDTO,
-						noteArea.getValue(), new Date());
-				createDiagnosisTilePresenter.createDiagnosis(diagnosisDTO);
+						noteArea.getValue(), new Date(), createDiagnosisTilePresenter.loadPatient());
+				try {
+					createDiagnosisTilePresenter.createDiagnosis(diagnosisDTO);
+				} catch (CouldNotSaveException e) {
+					// TODO Go to error page
+					e.printStackTrace();
+				}
 				window.close();
 			}
 		});

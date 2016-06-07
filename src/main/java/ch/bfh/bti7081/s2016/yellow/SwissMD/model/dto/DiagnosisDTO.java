@@ -2,6 +2,8 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
 import java.util.Date;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
+
 /**
  * DTO for Diagnosis. To be used in the views
  * @author SoullessStone
@@ -11,13 +13,25 @@ public class DiagnosisDTO extends GenericDTO{
 	private IllnessDTO illness;
 	private String notes;
 	private Date date;
+	private PatientDTO patient;
 	
-	// TODO: Alex "Entity-Constructor"
-	@Deprecated
-	public DiagnosisDTO(IllnessDTO illnessDTO, String notes, Date date){
-		this.illness = illnessDTO;
+	
+	
+	public DiagnosisDTO(IllnessDTO illness, String notes, Date date,
+			PatientDTO patient) {
+		super();
+		this.illness = illness;
 		this.notes = notes;
 		this.date = date;
+		this.patient = patient;
+	}
+
+	public DiagnosisDTO(Diagnosis diagnosis){
+		this.illness = new IllnessDTO(diagnosis.getIllness());
+		this.notes = diagnosis.getNotes();
+		this.date = diagnosis.getDate();
+		this.patient = new PatientDTO(diagnosis.getPatient());
+		setId(diagnosis.getId());
 	}
 	
 	public IllnessDTO getIllness() {
@@ -43,6 +57,14 @@ public class DiagnosisDTO extends GenericDTO{
 	public String toString() {
 		return "DiagnosisDTO [illness=" + illness + ", notes=" + notes
 				+ ", date=" + date + "]";
+	}
+
+	public PatientDTO getPatient() {
+		return patient;
+	}
+
+	public void setPatient(PatientDTO patient) {
+		this.patient = patient;
 	}
 
 }

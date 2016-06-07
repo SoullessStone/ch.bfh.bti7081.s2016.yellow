@@ -16,14 +16,10 @@ public class IllnessDTO extends GenericDTO{
 	/** The name of the illness **/
 	private String name;
 
-	public IllnessDTO(String code, String name){
-		this.code = code;
-		this.name = name;
-	}
-	
 	public IllnessDTO(Illness illness) {
 		this.code = illness.getCode();
 		this.name = illness.getName();
+		setId(illness.getId());
 	}
 	
 	public String getCode() {
