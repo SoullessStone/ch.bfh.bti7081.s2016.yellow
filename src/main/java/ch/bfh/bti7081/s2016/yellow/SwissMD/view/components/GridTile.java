@@ -8,6 +8,8 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
 /**
@@ -37,8 +39,12 @@ public class GridTile extends Tile {
 		grid.addComponent(new Label("Hausarzt: "
 				+ (patientDTO.getFamilyDoctor() != null ? personDao.read(patientDTO.getFamilyDoctor()).getName() : "---")));
 	
-		Label escalation = 	new Label("Gefährdung: Fremdgefährdung");
-		escalation.addStyleName("highrisk");
+		Label escalation = 	new Label("Gefährdung: " +(patientDTO.getDangerState()));
+		if (patientDTO.getDangerState() == DangerStateType.DANGER_TO_OTHERS || 
+				patientDTO.getDangerState() == DangerStateType.DANGER_TO_HIMSELF){
+			escalation.addStyleName("highrisk");
+		}
+		System.out.println("Aktueller Danger State: "+patientDTO.getDangerState());
 		grid.addComponent(escalation);
 		
 		

@@ -16,7 +16,7 @@ public class PatientDTO extends PersonDTO {
 	
 	private Long legalAid;
 	private Long familyDoctor;
-	private DangerStateType dangerState;
+	private DangerState dangerState;
 
 	public PatientDTO(String name, Date birthdate) {
 		setName(name);
@@ -46,11 +46,11 @@ public class PatientDTO extends PersonDTO {
 	}
 	
 	public DangerStateType getDangerState() {
-		return dangerState;
+		return dangerState.getState();
 	}
 
-	public void setDangerState(DangerStateType dangerState) {
-		this.dangerState = dangerState;
+	public void setDangerState(DangerState newDangerState) {
+		this.dangerState = newDangerState;
 	}
 
 	public Long getLegalAid() {
