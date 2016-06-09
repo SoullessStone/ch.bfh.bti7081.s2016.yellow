@@ -82,8 +82,5 @@ public class WikiView extends CustomComponent implements View {
 		this.resultTile.setIllnesses(results);
 	}
 
-	private Label headingLabel() {
-		return new Label("WikiSearchView");
-	}
 
 }

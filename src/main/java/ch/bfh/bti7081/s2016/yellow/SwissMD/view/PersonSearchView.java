@@ -97,8 +97,4 @@ public class PersonSearchView extends CustomComponent implements View {
 		this.resultTile.setPersons(results);
 	}
 
-	private Label headingLabel() {
-		return new Label("PersonSearchView");
-	}
-
 }

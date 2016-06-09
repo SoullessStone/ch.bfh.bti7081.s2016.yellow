@@ -52,8 +52,4 @@ public class PrescriptionView extends CustomComponent implements View {
 		layout.addComponent(new MultiplePrescriptionTile(prescriptions));
 	}
 
-	private Label headingLabel() {
-		return new Label("PrescriptionView");
-	}
-
 }

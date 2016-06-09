@@ -324,10 +324,6 @@ public class MeetingView extends CustomComponent implements View,
 		createPrescriptionTile();
 	}
 
-	private Label headingLabel() {
-		return new Label("MeetingView");
-	}
-
 	private void createPrescriptionTile() {
 		CreatePrescriptionTile createPrescriptionTile = new CreatePrescriptionTile(
 				meetingPresenter.getPossibleDrugs(),meetingDTO.getPatient());

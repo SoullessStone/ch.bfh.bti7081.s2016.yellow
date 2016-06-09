@@ -21,7 +21,7 @@ public class WikiPresenter {
 	}
 
 	public IllnessDTO findIllnessById(Long illnessId) {
-		return new IllnessDTO(illnessDao.read(131L));
+		return new IllnessDTO(illnessDao.read(illnessId));
 	}
 	
 	public List<IllnessDTO> searchIllnesses(String searchString) {

@@ -33,7 +33,7 @@ public class Person extends AbstractDatabaseObject {
 	public Person(String name, Date birthdate, String dtype) {
 		this.dtype = dtype;
 		this.name = name;
-		this.birthdate = birthdate;
+		this.birthdate = new Date(birthdate.getTime());
 	}
 
 	public Person() {

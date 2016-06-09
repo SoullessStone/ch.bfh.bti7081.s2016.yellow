@@ -184,8 +184,4 @@ public class PersonView extends CustomComponent implements View {
 		return b;
 	}
 
-	private Label headingLabel() {
-		return new Label("PersonView");
-	}
-
 }

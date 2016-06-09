@@ -17,7 +17,7 @@ public class Drug extends AbstractDatabaseObject {
 
 	private String tradeName;
 	private String substance;
-	private String SubstanceQuantitiy;
+	private String substanceQuantitiy;
 	private int maxDose;
 	
 	public Drug () {}
@@ -25,7 +25,7 @@ public class Drug extends AbstractDatabaseObject {
 	public Drug(DrugDTO drugDTO) {
 		this.tradeName = drugDTO.getTradeName();
 		this.substance = drugDTO.getSubstance();
-		this.SubstanceQuantitiy = drugDTO.getSubstanceQuantitiy();
+		this.substanceQuantitiy = drugDTO.getSubstanceQuantitiy();
 		this.maxDose = drugDTO.getMaxDose();
 	}
 
@@ -46,11 +46,11 @@ public class Drug extends AbstractDatabaseObject {
 	}
 
 	public String getSubstanceQuantitiy() {
-		return SubstanceQuantitiy;
+		return substanceQuantitiy;
 	}
 
 	public void setSubstanceQuantitiy(String substanceQuantitiy) {
-		SubstanceQuantitiy = substanceQuantitiy;
+		this.substanceQuantitiy = substanceQuantitiy;
 	}
 
 	public int getMaxDose() {
