@@ -11,6 +11,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
  * @author K. Suter
  * 
  */
+@SuppressWarnings("serial")
 @Entity
 @Table
 public class Illness extends AbstractDatabaseObject {

@@ -2,22 +2,15 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
-
-import com.vaadin.server.ExternalResource;
-import com.vaadin.server.ThemeResource;
-import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Link;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 
+@SuppressWarnings("serial")
 public class MultiplePrescriptionTile extends Tile {
 	private List<PrescriptionDTO> prescriptions;
 	private VerticalLayout layout;

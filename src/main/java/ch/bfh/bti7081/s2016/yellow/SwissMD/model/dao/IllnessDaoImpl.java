@@ -3,7 +3,6 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao;
 import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Illness;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
 
 /**
  * Implementation of the {@code Illness} specific database operations.

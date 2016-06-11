@@ -2,7 +2,6 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -17,6 +16,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
  * @author K.Suter
  * 
  */
+@SuppressWarnings("serial")
 @Entity
 @Table
 public class Patient extends Person {

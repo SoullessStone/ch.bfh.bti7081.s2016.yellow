@@ -7,6 +7,14 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+/**
+ * Implementation of the {@code EntityManagerProvider}.
+ * 
+ * For the use in the web application.
+ * 
+ * @author K.Suter
+ * 
+ */
 @WebListener
 public class WebEntityManagerProvider implements ServletContextListener, EntityManagerProvider {
 

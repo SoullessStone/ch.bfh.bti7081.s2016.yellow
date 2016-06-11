@@ -13,6 +13,7 @@ import javax.persistence.Table;
  * @author K.Suter
  * 
  */
+@SuppressWarnings("serial")
 @Entity
 @Table
 public class Person extends AbstractDatabaseObject {

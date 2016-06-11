@@ -4,7 +4,6 @@ import java.util.Date;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 
 /**
  * DTO for Diagnosis. To be used in the views

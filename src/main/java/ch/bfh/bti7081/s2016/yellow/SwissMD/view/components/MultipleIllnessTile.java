@@ -28,6 +28,7 @@ import com.vaadin.ui.Window;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 
+@SuppressWarnings("serial")
 public class MultipleIllnessTile extends Tile {
 	private List<IllnessDTO> illnesses;
 	private VerticalLayout layout;

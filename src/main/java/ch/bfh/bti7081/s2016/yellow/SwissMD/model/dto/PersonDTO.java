@@ -2,7 +2,6 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
 import java.util.Date;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Doctor;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
 
 /**
@@ -21,7 +20,6 @@ public class PersonDTO extends GenericDTO {
 	private String city;
 	private String mobile;
 	private String landline;
-	// private Integer officeNumber;
 
 	public PersonDTO() {
 	}

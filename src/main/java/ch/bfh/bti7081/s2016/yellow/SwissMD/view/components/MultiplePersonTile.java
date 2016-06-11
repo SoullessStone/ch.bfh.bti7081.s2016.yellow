@@ -21,6 +21,7 @@ import com.vaadin.ui.Table;
 import com.vaadin.ui.Table.ColumnGenerator;
 import com.vaadin.ui.VerticalLayout;
 
+@SuppressWarnings("serial")
 public class MultiplePersonTile extends Tile {
 	private List<PersonDTO> persons;
 	private VerticalLayout layout;

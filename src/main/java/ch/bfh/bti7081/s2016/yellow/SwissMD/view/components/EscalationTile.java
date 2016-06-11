@@ -7,23 +7,15 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
 import com.vaadin.server.Page;
-import com.vaadin.server.Page.Styles;
-import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.shared.Position;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.PasswordField;
-import com.vaadin.ui.PopupView;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Notification.Type;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
 /**
  * 

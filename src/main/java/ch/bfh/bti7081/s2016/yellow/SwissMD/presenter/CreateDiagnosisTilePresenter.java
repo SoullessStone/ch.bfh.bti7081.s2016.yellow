@@ -9,11 +9,8 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DiagnosisDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Illness;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 
 public class CreateDiagnosisTilePresenter {
 	private DiagnosisDaoImpl diagnosisDao = new DiagnosisDaoImpl(new WebEntityManagerProvider());

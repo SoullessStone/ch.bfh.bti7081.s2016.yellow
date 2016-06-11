@@ -11,6 +11,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
  * @author D. Halter
  * 
  */
+@SuppressWarnings("serial")
 @Entity
 @Table
 public class Drug extends AbstractDatabaseObject {

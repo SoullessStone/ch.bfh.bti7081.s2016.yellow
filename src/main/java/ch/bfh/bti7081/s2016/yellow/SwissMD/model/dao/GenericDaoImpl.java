@@ -19,6 +19,8 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.AbstractDatabaseObject;
 /**
  * Implementation of the {@code GenericDao} interface.
  * 
+ * The entity manager must be provided as constructor argument.
+ * 
  * @author K.Suter
  * 
  */

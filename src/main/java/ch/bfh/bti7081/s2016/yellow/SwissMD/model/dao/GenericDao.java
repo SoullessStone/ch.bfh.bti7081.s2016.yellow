@@ -7,7 +7,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
- * Interface for the standard CRUD database operations.
+ * Interface for the standard CRUD (create,read,update,delete) database operations.
  * 
  * @author K.Suter
  * 

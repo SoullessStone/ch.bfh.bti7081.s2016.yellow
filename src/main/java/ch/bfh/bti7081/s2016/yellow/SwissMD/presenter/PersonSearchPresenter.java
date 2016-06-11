@@ -13,9 +13,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonSearchView;
 
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.Notification.Type;
-
 public class PersonSearchPresenter {
 	private PersonSearchView personSearchView;
 

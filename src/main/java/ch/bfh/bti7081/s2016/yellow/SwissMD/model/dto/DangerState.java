@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 
 /**

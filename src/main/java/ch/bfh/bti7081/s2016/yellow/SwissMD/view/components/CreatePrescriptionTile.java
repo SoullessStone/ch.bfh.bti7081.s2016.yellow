@@ -1,8 +1,6 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
@@ -12,7 +10,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.IllegalDateRangeExcep
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
-import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.shared.ui.datefield.Resolution;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;

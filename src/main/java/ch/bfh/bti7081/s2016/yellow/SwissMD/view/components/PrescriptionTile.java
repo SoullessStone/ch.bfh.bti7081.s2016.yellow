@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;

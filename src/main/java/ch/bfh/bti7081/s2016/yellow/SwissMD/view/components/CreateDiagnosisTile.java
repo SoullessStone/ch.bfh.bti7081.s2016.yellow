@@ -4,9 +4,7 @@ import java.util.Date;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DiagnosisDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.CreateDiagnosisTilePresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 

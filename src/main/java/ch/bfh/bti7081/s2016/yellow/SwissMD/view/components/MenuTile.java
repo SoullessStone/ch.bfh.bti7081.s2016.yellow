@@ -8,6 +8,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.HorizontalLayout;
 
+@SuppressWarnings("serial")
 public class MenuTile extends Tile {
 
 	public MenuTile() {

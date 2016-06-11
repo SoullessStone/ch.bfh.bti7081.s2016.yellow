@@ -6,6 +6,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception;
  * @author K.Suter
  * 
  */
+@SuppressWarnings("serial")
 public class CouldNotSaveException extends Exception {
 
 	public CouldNotSaveException(String string) {

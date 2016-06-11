@@ -12,7 +12,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PrescriptionDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Drug;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;

@@ -2,12 +2,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.util;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.IllegalDateRangeException;
 

@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Stream;
-
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
 
 public class PatientDTO extends PersonDTO {
 

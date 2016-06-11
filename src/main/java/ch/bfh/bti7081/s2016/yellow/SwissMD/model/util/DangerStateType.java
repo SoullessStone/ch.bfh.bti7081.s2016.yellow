@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.util;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DangerState;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingState;
 
 /**
  * Indicates how dangerous a patient is.
