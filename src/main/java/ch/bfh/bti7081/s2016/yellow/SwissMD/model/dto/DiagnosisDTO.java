@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 import java.util.Date;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 
 /**
@@ -27,7 +28,7 @@ public class DiagnosisDTO extends GenericDTO{
 		this.patient = patient;
 	}
 
-	public DiagnosisDTO(Diagnosis diagnosis) throws MeetingStateException{
+	public DiagnosisDTO(Diagnosis diagnosis) throws DangerStateException{
 		this.illness = new IllnessDTO(diagnosis.getIllness());
 		this.notes = diagnosis.getNotes();
 		this.date = diagnosis.getDate();

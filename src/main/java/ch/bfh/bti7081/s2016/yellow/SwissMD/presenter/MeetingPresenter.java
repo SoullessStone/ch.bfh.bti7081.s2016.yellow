@@ -19,6 +19,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.MeetingView;
 
@@ -55,11 +56,7 @@ public class MeetingPresenter {
 	public MeetingDTO findMeetingById(Long id) {
 		Meeting meeting = meetingDao.read(id);
 		if (meeting != null) {
-			try {
-				return new MeetingDTO(meeting);
-			} catch (MeetingStateException e) {
-				// TODO should not happen here
-			}
+			return new MeetingDTO(meeting);
 		}
 		return null;
 	}

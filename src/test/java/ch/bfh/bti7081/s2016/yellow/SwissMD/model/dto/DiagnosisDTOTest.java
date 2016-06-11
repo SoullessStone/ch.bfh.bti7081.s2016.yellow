@@ -3,16 +3,24 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 import org.junit.Test;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 
 public class DiagnosisDTOTest extends DtoTest{
 
 	@Test
-	public void testConstructor(){
+	public void testConstructor() {
 		// Arrange
 		Diagnosis diagnosis = super.createTestDiagnosis();
 		
 		// Act
-		DiagnosisDTO sut = new DiagnosisDTO(diagnosis);
+		DiagnosisDTO sut = null;
+		try {
+			sut = new DiagnosisDTO(diagnosis);
+		} catch (DangerStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		// Assert
 		super.validateDiagnosis(sut);

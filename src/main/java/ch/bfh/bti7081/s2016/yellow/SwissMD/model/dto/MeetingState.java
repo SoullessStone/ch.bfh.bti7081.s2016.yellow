@@ -17,15 +17,8 @@ public abstract class MeetingState {
 	abstract void cancelMeeting(MeetingDTO meeting)
 			throws MeetingStateException;
 
-	protected void planMeeting(MeetingDTO meeting, Date appointmentTime)
-			throws MeetingStateException {
-		if (appointmentTime.after(new Date())) {
-			meeting.changeMeetingState(new MeetingStatePlanned());
-		} else {
-			meeting.changeMeetingState(new MeetingStateOverdue());
-		}
-		meeting.setAppointmentTime(appointmentTime);
-	};
+	abstract void planMeeting(MeetingDTO meeting, Date appointmentTime) throws MeetingStateException;
+
 
 	abstract void performMeeting(MeetingDTO meeting)
 			throws MeetingStateException;

@@ -36,13 +36,8 @@ public class CreateDiagnosisTile extends Tile {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				DiagnosisDTO diagnosisDTO = null;
-				try {
-					diagnosisDTO = new DiagnosisDTO(illnessDTO,
-							noteArea.getValue(), new Date(), createDiagnosisTilePresenter.loadPatient());
-				} catch (MeetingStateException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				diagnosisDTO = new DiagnosisDTO(illnessDTO,
+						noteArea.getValue(), new Date(), createDiagnosisTilePresenter.loadPatient());
 				try {
 					createDiagnosisTilePresenter.createDiagnosis(diagnosisDTO);
 				} catch (CouldNotSaveException e) {

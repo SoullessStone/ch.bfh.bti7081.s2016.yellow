@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 import java.util.Date;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 
@@ -27,7 +28,7 @@ public class PrescriptionDTO extends GenericDTO {
 		this.setValidity(validity);
 	}
 	
-	public PrescriptionDTO(Prescription prescription) throws MeetingStateException {
+	public PrescriptionDTO(Prescription prescription) {
 		this.patient = new PatientDTO(prescription.getPatient());
 		this.drug = new DrugDTO(prescription.getDrug());
 		this.dosisInMilligrams = prescription.getDosisInMilligrams();

@@ -10,6 +10,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Drug;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Illness;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.IllegalDateRangeException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;

@@ -12,6 +12,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Illness;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 
 public class CreateDiagnosisTilePresenter {
@@ -35,7 +36,7 @@ public class CreateDiagnosisTilePresenter {
 	}
 	
 	//TODO remove when ready
-	public PatientDTO loadPatient() throws MeetingStateException{
+	public PatientDTO loadPatient(){
 		return new PatientDTO((Patient) personDao.read(11L));
 	}
 }

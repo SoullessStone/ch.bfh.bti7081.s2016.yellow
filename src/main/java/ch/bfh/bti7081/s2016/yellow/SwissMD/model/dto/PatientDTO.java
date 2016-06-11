@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
@@ -27,7 +28,7 @@ public class PatientDTO extends PersonDTO {
 		setDtype("Patient");
 	}
 
-	public PatientDTO(Patient patient) throws MeetingStateException {
+	public PatientDTO(Patient patient) {
 		super(patient);
 		this.legalAid = patient.getLegalAid();
 		this.familyDoctor = patient.getFamilyDoctor();
@@ -35,14 +36,37 @@ public class PatientDTO extends PersonDTO {
 		if (checkDangerState !=null) {
 			this.dangerState = checkDangerState.getDangerState();
 		} else {
-			this.dangerState = new DangerStateNew();
-			this.dangerState.changeDangerState(this);
+			this.dangerState = new DangerStateHarmless();
 		}
 		
 		for (Prescription prescription : patient.getPrescriptions()) {
 			prescriptions.add(new PrescriptionDTO(prescription,this));
 		}
 	}
+	
+	/**
+	 * This method must remain protected! It is not allowed to change the
+	 * danger state from outside this package.
+	 **/
+	protected void changeDangerState(DangerState newDangerState) {
+		this.dangerState = newDangerState;
+	}
+	
+	public void setDangerStateHarmless() throws DangerStateException{
+		this.dangerState.setDangerStateHarmless(this);
+	};
+	
+	public void setDangerStateCrisis() throws DangerStateException{
+		this.dangerState.setDangerStateCrisis(this);
+	};
+	
+	public void setDangerStateDangerToHimself() throws DangerStateException{
+		this.dangerState.setDangerStateDangerToHimself(this);
+	};
+	
+	public void setDangerStateDangerToOthers() throws DangerStateException{
+		this.dangerState.setDangerStateDangerToOthers(this);
+	};
 	
 	public List<PrescriptionDTO> getPrescriptions() {
 		if (prescriptions != null)
