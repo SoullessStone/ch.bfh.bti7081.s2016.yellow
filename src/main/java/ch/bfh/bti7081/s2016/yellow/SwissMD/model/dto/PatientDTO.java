@@ -26,6 +26,8 @@ public class PatientDTO extends PersonDTO {
 
 	public PatientDTO(Patient patient) {
 		super(patient);
+		this.legalAid = patient.getLegalAid();
+		this.familyDoctor = patient.getFamilyDoctor();
 		for (Prescription prescription : patient.getPrescriptions()) {
 			prescriptions.add(new PrescriptionDTO(prescription,this));
 		}

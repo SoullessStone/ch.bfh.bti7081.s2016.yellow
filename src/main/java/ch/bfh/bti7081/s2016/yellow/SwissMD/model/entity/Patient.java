@@ -31,13 +31,6 @@ public class Patient extends Person {
 	private Long familyDoctor;
 	private DangerStateType dangerState;
 
-	public Patient() {
-	};
-
-	public Patient(String name, Date birthdate) {
-		super(name, birthdate);
-	}
-
 	public DangerStateType getDangerState() {
 		return this.dangerState;
 	}
