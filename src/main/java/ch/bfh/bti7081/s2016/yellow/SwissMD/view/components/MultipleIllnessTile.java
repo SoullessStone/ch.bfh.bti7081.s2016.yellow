@@ -47,7 +47,7 @@ public class MultipleIllnessTile extends Tile {
 			layout.addComponent(new Label("Keine Krankheiten gefunden!"));
 			return;
 		}
-		
+
 		// TODO: Clean-up or implement
 		/*
 		 * illnesses.sort(new Comparator<IllnessDTO>() {
@@ -65,7 +65,12 @@ public class MultipleIllnessTile extends Tile {
 		for (IllnessDTO illness : this.illnesses) {
 
 			String code = illness.getCode();
-			String name = illness.getName();
+			String name = "";
+			if (illness.getName().length() > 47) {
+				name = illness.getName().substring(0, 47);
+			} else {
+				name = illness.getName();
+			}
 
 			Button descriptionButton = new Button("Mehr...");
 			descriptionButton.addClickListener(getClickListenerForIllnessDescription(illness));

@@ -25,6 +25,10 @@ public class IllnessDaoImpl extends GenericDaoImpl<Illness, Long> implements Ill
 		 .setParameter("code", "%" + searchString + "%")
 		 .setParameter("name", "%" + searchString + "%")
 		 .getResultList();
+		 if(resultList.size() > 100)
+		 {
+			 return resultList.subList(0, 100);
+		 }
 		 return resultList;
 	}
 

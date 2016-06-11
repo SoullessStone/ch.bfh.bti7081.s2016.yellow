@@ -35,7 +35,8 @@ import com.vaadin.ui.Window;
 // Just do
 @SuppressWarnings("serial")
 public class WikiView extends CustomComponent implements View {
-	private static final String FOUND_COUNT_RESULTS = "Suchergebnisse wurden gefunden";
+	private static final String FOUND_COUNT_RESULTS = " Suchergebnisse wurden gefunden";
+	private static final String FOUND_TOO_MANY_RESULTS = "Zu viele Treffer. Nur 100 werden angezeigt";
 	private WikiPresenter wikiPresenter = new WikiPresenter(this);
 	private BaseLayout layout;
 	private TextField searchField;
@@ -78,8 +79,11 @@ public class WikiView extends CustomComponent implements View {
 	}
 
 	private void showSearchResults(List<IllnessDTO> results) {
-		Notification.show(results.size() + FOUND_COUNT_RESULTS, Type.ASSISTIVE_NOTIFICATION);
-		this.resultTile.setIllnesses(results);
+		if(results.size() <= 100) {
+			Notification.show(results.size() + FOUND_COUNT_RESULTS, Type.HUMANIZED_MESSAGE);
+		}
+		Notification.show(FOUND_TOO_MANY_RESULTS, Type.HUMANIZED_MESSAGE);
+		this.resultTile.setIllnesses(results);	
 	}
 
 
