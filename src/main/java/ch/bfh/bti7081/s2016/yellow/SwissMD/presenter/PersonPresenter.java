@@ -37,9 +37,10 @@ public class PersonPresenter {
 	 * 
 	 * @param id
 	 *            the technical key of the person in the database
+	 * @throws MeetingStateException 
 	 * 
 	 */
-	public PersonDTO findPersonById(Long id) {
+	public PersonDTO findPersonById(Long id) throws MeetingStateException {
 		Patient person = (Patient) personDao.read(id);
 		if (person != null) {
 			return new PatientDTO(person);

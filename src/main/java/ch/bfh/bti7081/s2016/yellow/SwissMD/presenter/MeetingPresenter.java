@@ -119,7 +119,7 @@ public class MeetingPresenter {
 		return drugDTOs;
 	}
 
-	public PatientDTO getPatient(Long patientId) {
+	public PatientDTO getPatient(Long patientId) throws MeetingStateException {
 		Patient p = (Patient) personDao.read(patientId);
 		if (p == null) {
 			throw new IllegalArgumentException("patientId not valid");

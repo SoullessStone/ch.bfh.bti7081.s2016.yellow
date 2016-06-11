@@ -224,6 +224,9 @@ public class MeetingView extends CustomComponent implements View,
 					} catch (NumberFormatException e) {
 						Notification.show(PATIENT_ID_NOT_A_NUMBER,
 								Type.HUMANIZED_MESSAGE);
+					} catch (MeetingStateException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 
 				}

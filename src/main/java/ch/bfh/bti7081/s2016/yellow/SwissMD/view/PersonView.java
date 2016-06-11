@@ -88,7 +88,12 @@ public class PersonView extends CustomComponent implements View {
 			}
 
 			if (personId != null) {
-				patientDTO = (PatientDTO) personPresenter.findPersonById(personId);
+				try {
+					patientDTO = (PatientDTO) personPresenter.findPersonById(personId);
+				} catch (MeetingStateException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				String personType = patientDTO.getDtype();
 
 				if (personType.equals("Person") || personType.equals("Doctor")) {

@@ -14,11 +14,14 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
  * 
  */
 public abstract class DangerState {
-
-	protected void changeDangerState(PatientDTO patient, DangerState newState)
+	
+	abstract void cancelDangerState(PatientDTO patient)
+			throws MeetingStateException;
+	
+	protected void changeDangerState(PatientDTO patient)
 			throws MeetingStateException {
-			patient.setDangerState(newState);;
+			patient.setDangerState(new DangerStateNew());;
 	};
-
+	
 	abstract DangerStateType getState();
 }

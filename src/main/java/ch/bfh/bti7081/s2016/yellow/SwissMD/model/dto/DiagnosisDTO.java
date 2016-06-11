@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 import java.util.Date;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 
 /**
  * DTO for Diagnosis. To be used in the views
@@ -26,7 +27,7 @@ public class DiagnosisDTO extends GenericDTO{
 		this.patient = patient;
 	}
 
-	public DiagnosisDTO(Diagnosis diagnosis){
+	public DiagnosisDTO(Diagnosis diagnosis) throws MeetingStateException{
 		this.illness = new IllnessDTO(diagnosis.getIllness());
 		this.notes = diagnosis.getNotes();
 		this.date = diagnosis.getDate();

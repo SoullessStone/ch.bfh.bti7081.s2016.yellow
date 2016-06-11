@@ -8,7 +8,9 @@ import java.util.stream.Stream;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
 
 public class PatientDTO extends PersonDTO {
 
@@ -18,21 +20,30 @@ public class PatientDTO extends PersonDTO {
 	private Long familyDoctor;
 	private DangerState dangerState;
 
-	public PatientDTO(String name, Date birthdate) {
+	public PatientDTO(String name, Date birthdate, DangerState dangeState) {
 		setName(name);
 		setBirthdate(birthdate);
+		setDangerState(dangerState);
 		setDtype("Patient");
 	}
 
-	public PatientDTO(Patient patient) {
+	public PatientDTO(Patient patient) throws MeetingStateException {
 		super(patient);
 		this.legalAid = patient.getLegalAid();
 		this.familyDoctor = patient.getFamilyDoctor();
+		DangerStateType checkDangerState = patient.getDangerState();
+		if (checkDangerState !=null) {
+			this.dangerState = checkDangerState.getDangerState();
+		} else {
+			this.dangerState = new DangerStateNew();
+			this.dangerState.changeDangerState(this);
+		}
+		
 		for (Prescription prescription : patient.getPrescriptions()) {
 			prescriptions.add(new PrescriptionDTO(prescription,this));
 		}
 	}
-
+	
 	public List<PrescriptionDTO> getPrescriptions() {
 		if (prescriptions != null)
 			return Collections.unmodifiableList(prescriptions);
@@ -48,7 +59,7 @@ public class PatientDTO extends PersonDTO {
 	}
 	
 	public DangerStateType getDangerState() {
-		return dangerState.getState();
+		return this.dangerState.getState();
 	}
 
 	public void setDangerState(DangerState newDangerState) {

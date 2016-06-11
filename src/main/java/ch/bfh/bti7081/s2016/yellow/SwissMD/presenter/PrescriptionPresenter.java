@@ -17,6 +17,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Drug;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 
 public class PrescriptionPresenter {
 	PrescriptionDao prescriptionDao;
@@ -43,12 +44,12 @@ public class PrescriptionPresenter {
 	}
 
 	// TODO: Remove when ready with session
-	public PatientDTO loadPatient() {
+	public PatientDTO loadPatient() throws MeetingStateException {
 		return new PatientDTO((Patient) personDao.read(11L));
 	}
 
 	public List<PrescriptionDTO> getPrescriptionsForPatient(
-			PatientDTO patientDTO) {
+			PatientDTO patientDTO) throws MeetingStateException {
 		Patient patient = (Patient) personDao.read(patientDTO.getId());
 		List<Prescription> prescriptions = prescriptionDao
 				.readPrescriptionForPatient(patient);

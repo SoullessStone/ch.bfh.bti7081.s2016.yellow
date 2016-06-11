@@ -4,6 +4,7 @@ import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PrescriptionPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreatePrescriptionTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MultiplePrescriptionTile;
@@ -27,7 +28,7 @@ public class PrescriptionView extends CustomComponent implements View {
 	private PatientDTO patientInSession;
 	private BaseLayout layout;
 
-	public PrescriptionView() {
+	public PrescriptionView() throws MeetingStateException {
 		try {
 			layout = LayoutFactory.getInstance(LayoutType.TILE_LAYOUT)
 					.createLayout(
@@ -43,12 +44,19 @@ public class PrescriptionView extends CustomComponent implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
+		
 		if (patientInSession == null) {
 			getUI().getNavigator().navigateTo(
 					NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
 		}
-		List<PrescriptionDTO> prescriptions = prescriptionPresenter
-				.getPrescriptionsForPatient(patientInSession);
+		List<PrescriptionDTO> prescriptions = null;
+		try {
+			prescriptions = prescriptionPresenter
+					.getPrescriptionsForPatient(patientInSession);
+		} catch (MeetingStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		layout.addComponent(new MultiplePrescriptionTile(prescriptions));
 	}
 
