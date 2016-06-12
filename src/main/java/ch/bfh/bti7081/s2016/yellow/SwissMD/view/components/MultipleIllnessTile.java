@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
@@ -122,7 +123,13 @@ public class MultipleIllnessTile extends Tile {
 				window.center();
 				window.setModal(true);
 				window.setResizable(false);
-				window.setContent(new CreateDiagnosisTile(illnessToShow, window));
+				PatientDTO patientInSession = (PatientDTO) getUI().getSession()
+						.getAttribute("currentPatient");
+				if (patientInSession == null) {
+					getUI().getNavigator().navigateTo(
+							NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
+				}
+				window.setContent(new CreateDiagnosisTile(illnessToShow, patientInSession, window));
 				getUI().getCurrent().addWindow(window);
 
 			}

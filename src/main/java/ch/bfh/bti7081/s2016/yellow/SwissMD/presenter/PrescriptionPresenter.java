@@ -42,11 +42,6 @@ public class PrescriptionPresenter {
 		prescriptionDao.create(prescription);
 	}
 
-	// TODO: Remove when ready with session
-	public PatientDTO loadPatient() throws MeetingStateException {
-		return new PatientDTO((Patient) personDao.read(11L));
-	}
-
 	public List<PrescriptionDTO> getPrescriptionsForPatient(
 			PatientDTO patientDTO) throws MeetingStateException {
 		Patient patient = (Patient) personDao.read(patientDTO.getId());

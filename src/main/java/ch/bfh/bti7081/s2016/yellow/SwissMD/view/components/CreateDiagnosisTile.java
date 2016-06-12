@@ -4,9 +4,11 @@ import java.util.Date;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DiagnosisDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.CreateDiagnosisTilePresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
@@ -20,13 +22,18 @@ public class CreateDiagnosisTile extends Tile {
 	private CreateDiagnosisTilePresenter createDiagnosisTilePresenter = new CreateDiagnosisTilePresenter();
 
 	private IllnessDTO illnessDTO;
+	private PatientDTO patient;
 
 	private TextArea noteArea = new TextArea("Kommentar");
 
-	public CreateDiagnosisTile(IllnessDTO illnessDTO, Window window) {
+	public CreateDiagnosisTile(IllnessDTO illnessDTO, PatientDTO patient, Window window) {
+
+		this.patient = patient;
+		
 		this.illnessDTO = illnessDTO;
 		addComponent(new Label(illnessDTO.getCode() + " - "
 				+ illnessDTO.getName()));
+		addComponent(new Label(patient.getName()));
 		addComponent(noteArea);
 		Button addDiagnosis = new Button("Erstelle Diagnose");
 		addDiagnosis.addClickListener(new ClickListener() {
@@ -35,7 +42,7 @@ public class CreateDiagnosisTile extends Tile {
 			public void buttonClick(ClickEvent event) {
 				DiagnosisDTO diagnosisDTO = null;
 				diagnosisDTO = new DiagnosisDTO(illnessDTO,
-						noteArea.getValue(), new Date(), createDiagnosisTilePresenter.loadPatient());
+						noteArea.getValue(), new Date(), patient);
 				try {
 					createDiagnosisTilePresenter.createDiagnosis(diagnosisDTO);
 				} catch (CouldNotSaveException e) {

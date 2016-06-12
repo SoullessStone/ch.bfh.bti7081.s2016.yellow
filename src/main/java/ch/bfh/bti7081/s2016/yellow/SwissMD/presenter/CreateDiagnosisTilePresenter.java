@@ -31,9 +31,4 @@ public class CreateDiagnosisTilePresenter {
 		diagnosisDao.create(diagnosis);
 		System.out.println("create: " + diagnosisDTO);
 	}
-	
-	//TODO remove when ready
-	public PatientDTO loadPatient(){
-		return new PatientDTO((Patient) personDao.read(11L));
-	}
 }

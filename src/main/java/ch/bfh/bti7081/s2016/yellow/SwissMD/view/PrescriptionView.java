@@ -25,7 +25,6 @@ import com.vaadin.ui.Label;
 public class PrescriptionView extends CustomComponent implements View {
 	private PrescriptionPresenter prescriptionPresenter = new PrescriptionPresenter();
 
-	private PatientDTO patientInSession;
 	private BaseLayout layout;
 
 	public PrescriptionView() throws MeetingStateException {
@@ -39,18 +38,20 @@ public class PrescriptionView extends CustomComponent implements View {
 			e1.printStackTrace();
 		}
 		setCompositionRoot(layout);
-		patientInSession = prescriptionPresenter.loadPatient();
 	}
 
 	@Override
 	public void enter(ViewChangeEvent event) {
+
 		
-		if (patientInSession == null) {
-			getUI().getNavigator().navigateTo(
-					NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
-		}
 		List<PrescriptionDTO> prescriptions = null;
 		try {
+			PatientDTO patientInSession = (PatientDTO) getUI().getSession()
+					.getAttribute("currentPatient");
+			if (patientInSession == null) {
+				getUI().getNavigator().navigateTo(
+						NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
+			}
 			prescriptions = prescriptionPresenter
 					.getPrescriptionsForPatient(patientInSession);
 		} catch (MeetingStateException e) {
