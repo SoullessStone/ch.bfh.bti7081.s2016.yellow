@@ -17,6 +17,7 @@ import com.vaadin.ui.VerticalLayout;
  * @author Zumstein
  *
  */
+@SuppressWarnings("serial")
 public class MeetingTile extends Tile {
 	private MeetingDTO meeting;
 

@@ -49,7 +49,7 @@ public class MultiplePrescriptionTile extends Tile {
 
 		Table table = new Table();
 		table.addContainerProperty("Medikament", String.class, null);
-		table.addContainerProperty("Dosis", String.class, null);
+		table.addContainerProperty("Dosis (mg)", String.class, null);
 		table.addContainerProperty("Gültig von", String.class, null);
 		table.addContainerProperty("Gültig bis", String.class, null);
 

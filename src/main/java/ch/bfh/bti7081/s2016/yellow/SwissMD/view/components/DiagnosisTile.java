@@ -13,10 +13,7 @@ import com.vaadin.ui.Label;
  */
 @SuppressWarnings("serial")
 public class DiagnosisTile extends Tile {
-	private DiagnosisDTO diagnosis;
-
 	public DiagnosisTile(DiagnosisDTO diagnosis, String title) {
-		this.diagnosis = diagnosis;
 		setTitleAndIcon(title, "img/icons/users_small.png");
 		addComponent(new Label("Krankheit: "
 				+ diagnosis.getIllness().toString()));

@@ -17,7 +17,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
  * @author K.Suter
  * 
  */
-@SuppressWarnings("unused")
 @Entity
 @Table
 public class Prescription extends AbstractDatabaseObject {

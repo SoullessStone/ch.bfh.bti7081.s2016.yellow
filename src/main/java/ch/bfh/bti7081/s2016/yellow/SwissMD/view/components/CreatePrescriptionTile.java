@@ -28,6 +28,7 @@ import com.vaadin.ui.TextField;
  * 
  */
 
+@SuppressWarnings("serial")
 public class CreatePrescriptionTile extends Tile {
 	private static final String ILLEGAL_DATE_RANGE = "Gültig von Datum ist nach gültig bis Datum.";
 	private static final String EMPTY_DOSIS = "Konnte die Verschreibung nicht verordnen, da die Dosis leer ist.";
@@ -47,7 +48,7 @@ public class CreatePrescriptionTile extends Tile {
 		}
 		addComponent(selectDrug);
 		// Textfeld für die Dosis
-		TextField dosis = new TextField("Dosis");
+		TextField dosis = new TextField("Dosis (mg)");
 		addComponent(dosis);
 
 		// DatePicker für Gültig von und bis

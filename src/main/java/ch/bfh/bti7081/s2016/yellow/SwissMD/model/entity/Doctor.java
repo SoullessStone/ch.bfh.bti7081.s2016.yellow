@@ -21,8 +21,7 @@ public class Doctor extends Person {
 	@OneToMany(mappedBy = "doctor")
 	List<Meeting> meetings;
 
-	// TODO: change to string (office R.207)
-	Integer officeNumber;
+	String officeNumber;
 
 	public Doctor() {
 	};
@@ -31,11 +30,11 @@ public class Doctor extends Person {
 		super(name, birthdate);
 	}
 
-	public Integer getOfficeNumber() {
+	public String getOfficeNumber() {
 		return this.officeNumber;
 	}
 
-	public void setOfficeNumber(Integer officeNumber) {
+	public void setOfficeNumber(String officeNumber) {
 		this.officeNumber = officeNumber;
 	}
 }

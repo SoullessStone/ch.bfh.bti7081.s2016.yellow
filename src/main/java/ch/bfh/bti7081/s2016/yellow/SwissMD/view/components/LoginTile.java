@@ -9,6 +9,7 @@ import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
+@SuppressWarnings("serial")
 public class LoginTile extends Tile {
 
 	TextField username = new TextField("Username");

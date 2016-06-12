@@ -2,7 +2,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Illness;
 
-public class IllnessDTOTest extends DtoTest {
+public class IllnessDTOTest extends DTOTest {
 
 	@Override
 	public void testConstructor() {

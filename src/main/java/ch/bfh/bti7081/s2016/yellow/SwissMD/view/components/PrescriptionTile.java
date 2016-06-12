@@ -23,7 +23,7 @@ public class PrescriptionTile extends Tile {
 		setTitleAndIcon(prescription.getDrug().getTradeName(),
 				"img/icons/eyedropper_small.png");
 
-		addComponent(new Label("Dosis: " + prescription.getDosisInMilligrams()
+		addComponent(new Label("Dosis (mg): " + prescription.getDosisInMilligrams()
 				+ "mg"));
 
 		addComponent(new Label("Gültig von: "

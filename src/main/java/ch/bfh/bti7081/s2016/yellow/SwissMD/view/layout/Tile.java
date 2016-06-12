@@ -12,6 +12,7 @@ import com.vaadin.ui.VerticalLayout;
  * @author nussa2
  *
  */
+@SuppressWarnings("serial")
 public class Tile extends TileLayoutComponent {
 
 	private String title;

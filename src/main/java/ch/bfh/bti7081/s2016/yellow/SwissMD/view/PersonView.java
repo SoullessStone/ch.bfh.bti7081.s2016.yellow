@@ -139,7 +139,6 @@ public class PersonView extends CustomComponent implements View {
 
 	private void createHistoryTile(PatientDTO patientDTO) {
 		Tile historyTile = new Tile(PATIENT_HISTORY);
-		try {
 			List<MeetingDTO> meetingDTOs = new ArrayList<MeetingDTO>();
 			meetingDTOs = personPresenter.getMeetingsForPatient(patientDTO
 					.getId());
@@ -152,10 +151,6 @@ public class PersonView extends CustomComponent implements View {
 			historyTile.addComponent(verticalLayout);
 			layout.createRowBrake();
 			layout.addComponent(historyTile);
-		} catch (MeetingStateException e) {
-			// TODO ? Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	private void createActionTile(PatientDTO patientDTO) {

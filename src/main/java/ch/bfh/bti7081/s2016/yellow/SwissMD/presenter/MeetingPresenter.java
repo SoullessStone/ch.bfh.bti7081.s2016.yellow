@@ -95,7 +95,6 @@ public class MeetingPresenter {
 			throws MeetingStateException {
 		Meeting meeting = new Meeting();
 		meeting.setAppointmentTime(meetingDTO.getAppointmentTime());
-		// TODO: Doctor aus Session
 		meeting.setDoctor((Doctor) personDao.read(6L));
 		meeting.setNotes("Automatisch Generiert, weil session fehlt");
 		Patient patient = (Patient) personDao.read(meetingDTO.getPatient()

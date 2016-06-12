@@ -39,12 +39,6 @@ public class PersonSearchPresenter {
 			}
 		}
 		return result;
-		// TODO Remove or finish
-		/*
-		 * Not working... return getAllPersons();.stream() .filter(p ->
-		 * DateUtils.isSameDay(birthdate, p.getBirthdate()))
-		 * .collect(Collectors.toList());
-		 */
 	}
 
 	public List<PersonDTO> searchForLastName(String lastname) {
@@ -55,10 +49,6 @@ public class PersonSearchPresenter {
 			}
 		}
 		return result;
-		/*
-		 * return getAllPersons().stream() .filter(p ->
-		 * p.getName().equals(lastname)) .collect(Collectors.toList());
-		 */
 	}
 
 	public List<PersonDTO> searchForBirthdateAndLastname(Date birthdate,
@@ -71,11 +61,6 @@ public class PersonSearchPresenter {
 			}
 		}
 		return result;
-		/*
-		 * .stream() .filter(p -> p.getName().equals(lastname) &&
-		 * DateUtils.isSameDay(birthdate, p.getBirthdate()))
-		 * .collect(Collectors.toList());
-		 */
 	}
 
 	public List<PersonDTO> getAllPersons() {

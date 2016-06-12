@@ -26,17 +26,11 @@ import com.vaadin.ui.Window;
 public class CreateDiagnosisTile extends Tile {
 	private CreateDiagnosisTilePresenter createDiagnosisTilePresenter = new CreateDiagnosisTilePresenter();
 
-	private IllnessDTO illnessDTO;
-	private PatientDTO patient;
-
 	private TextArea noteArea = new TextArea("Kommentar");
 
 	public CreateDiagnosisTile(IllnessDTO illnessDTO, PatientDTO patient,
 			Window window) {
 
-		this.patient = patient;
-
-		this.illnessDTO = illnessDTO;
 		addComponent(new Label(illnessDTO.getCode() + " - "
 				+ illnessDTO.getName()));
 		addComponent(new Label(patient.getName()));
@@ -52,7 +46,7 @@ public class CreateDiagnosisTile extends Tile {
 				try {
 					createDiagnosisTilePresenter.createDiagnosis(diagnosisDTO);
 				} catch (CouldNotSaveException e) {
-					// TODO Go to error page
+					// TODO Go to error view
 					e.printStackTrace();
 				}
 				window.close();

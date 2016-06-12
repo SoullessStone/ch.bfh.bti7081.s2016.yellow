@@ -3,7 +3,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 
-public class DiagnosisDTOTest extends DtoTest {
+public class DiagnosisDTOTest extends DTOTest {
 
 	@Override
 	public void testConstructor() {

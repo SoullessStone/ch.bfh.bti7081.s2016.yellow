@@ -84,7 +84,7 @@ public class MultiplePersonTile extends Tile {
 			String name = person.getName();
 			String birthdate = format.format(person.getBirthdate());
 
-			Button profileButton = new Button("Benutzerprofil");
+			Button profileButton = new Button("Person auswählen");
 			profileButton.setStyleName("link");
 
 			Button meetingButton = null;

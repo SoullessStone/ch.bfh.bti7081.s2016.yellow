@@ -74,8 +74,6 @@ public class MeetingView extends CustomComponent implements View,
 	private TextArea noteArea;
 	private DateField dateField;
 
-	// private CreatePrescriptionTile createPrescriptionTile;
-
 	public MeetingView() {
 		try {
 			layout = LayoutFactory.getInstance(LayoutType.TILE_LAYOUT)
@@ -97,7 +95,7 @@ public class MeetingView extends CustomComponent implements View,
 			@Override
 			public void buttonClick(ClickEvent event) {
 				try {
-					// TODO: Subscriptions auch updaten!
+					this.notifyAll();
 					meetingDTO.setNotes(getNoteArea().getValue());
 					meetingDTO.setAppointmentTime(getAppointmentTimeDateField()
 							.getValue());

@@ -15,6 +15,7 @@ import com.vaadin.ui.Label;
  * 
  */
 
+@SuppressWarnings("serial")
 public class GridTile extends Tile {
 	private PersonDaoImpl personDao;
 

@@ -24,6 +24,7 @@ import com.vaadin.ui.Notification.Type;
  * @author Dominique Halter
  *
  */
+@SuppressWarnings("serial")
 public class EscalationTile extends Tile {
 
 	private final static String COULD_NOT_SEND_MAIL = "E-Mail konnte nicht gesendet werden";

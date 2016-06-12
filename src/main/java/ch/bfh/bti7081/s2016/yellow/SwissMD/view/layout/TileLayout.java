@@ -24,6 +24,7 @@ import com.vaadin.ui.VerticalLayout;
  * @author nussa2
  *
  */
+@SuppressWarnings("serial")
 public class TileLayout extends BaseLayout {
 
 	VerticalLayout baseLayout;

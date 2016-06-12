@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
@@ -28,8 +27,7 @@ import com.vaadin.ui.Window;
 public class MultipleIllnessTile extends Tile {
 	private List<IllnessDTO> illnesses;
 	private VerticalLayout layout;
-	private final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-
+	
 	public MultipleIllnessTile(List<IllnessDTO> illnesses) {
 		this.illnesses = illnesses;
 		layout = new VerticalLayout();
@@ -44,14 +42,6 @@ public class MultipleIllnessTile extends Tile {
 			layout.addComponent(new Label("Keine Krankheiten gefunden!"));
 			return;
 		}
-
-		// TODO: Clean-up or implement
-		/*
-		 * illnesses.sort(new Comparator<IllnessDTO>() {
-		 * 
-		 * @Override public int compare(PersonDTO o1, PersonDTO o2) { return
-		 * o2.getDtype().compareTo(o1.getDtype()); } });
-		 */
 
 		Table table = new Table();
 		table.addContainerProperty("Code", String.class, null);
