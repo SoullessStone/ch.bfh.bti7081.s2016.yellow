@@ -4,18 +4,16 @@ import java.util.List;
 
 import org.apache.commons.collections.IteratorUtils;
 
-import com.google.gwt.layout.client.Layout;
-import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
 
 public class SimpleLayout extends BaseLayout {
-	
+
 	VerticalLayout baseLayout;
-	
+
 	Alignment alignment;
-	
+
 	public SimpleLayout() {
 		baseLayout = new VerticalLayout();
 		setCompositionRoot(baseLayout);

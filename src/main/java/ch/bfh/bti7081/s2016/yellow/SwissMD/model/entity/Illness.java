@@ -18,23 +18,23 @@ public class Illness extends AbstractDatabaseObject {
 
 	/** The ICD-10 Code **/
 	private String code;
-	
+
 	/** The name of the illness **/
 	private String name;
-	
-	public Illness() {	
+
+	public Illness() {
 	}
-	
-	public Illness(String code, String name){
+
+	public Illness(String code, String name) {
 		this.code = code;
 		this.name = name;
 	}
-	
+
 	public Illness(IllnessDTO ilnessDTO) {
 		this.code = ilnessDTO.getCode();
 		this.name = ilnessDTO.getName();
 	}
-	
+
 	public String getCode() {
 		return code;
 	}

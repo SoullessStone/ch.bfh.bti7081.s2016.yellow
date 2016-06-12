@@ -4,19 +4,6 @@ import java.text.MessageFormat;
 import java.util.Date;
 import java.util.List;
 
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.shared.ui.datefield.Resolution;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.CustomComponent;
-import com.vaadin.ui.DateField;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.Notification.Type;
-import com.vaadin.ui.TextArea;
-
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
@@ -39,6 +26,25 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.shared.ui.datefield.Resolution;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.CustomComponent;
+import com.vaadin.ui.DateField;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification.Type;
+import com.vaadin.ui.TextArea;
+
+/**
+ * Hier werden Meetings erfasst, geändert und angeschaut
+ * 
+ * @author SoullessStone
+ *
+ */
 @SuppressWarnings("serial")
 public class MeetingView extends CustomComponent implements View,
 		CreationPrescriptiontileObserver {
@@ -51,14 +57,14 @@ public class MeetingView extends CustomComponent implements View,
 	private static final String MEETING_WITH_ID_NOT_EXIST = "Meeting mit der Id {0} existiert nicht!";
 	private static final String MEETING_ID_NOT_A_NUMBER = "Übergebener Meeting-Parameter ist keine Zahl";
 	private static final String PATIENT_ID_NOT_A_NUMBER = "Übergebener Patient-Parameter ist keine Zahl";
-	private static final String MEETING_NOT_CREATED = "Meeting konnte nicht erstellt werden" ;
-	
-	private static final String MEETING_CANCELLED_SUCCESSFULLY = "Meeting wurde abgesagt" ;
-	private static final String MEETING_PERFORMED_SUCCESSFULLY = "Meeting wurde durchgeführt" ;
-	private static final String MEETING_NOT_CANCELED = "Meeting konnte nicht abgesagt werden" ;
-	private static final String MEETING_NOT_PERFORMED = "Meeting konnte nicht durchgeführt werden" ;
-	private static final String NO_PATIENT_IN_SESSION = "Kein Patient ausgewählt" ;
-	
+	private static final String MEETING_NOT_CREATED = "Meeting konnte nicht erstellt werden";
+
+	private static final String MEETING_CANCELLED_SUCCESSFULLY = "Meeting wurde abgesagt";
+	private static final String MEETING_PERFORMED_SUCCESSFULLY = "Meeting wurde durchgeführt";
+	private static final String MEETING_NOT_CANCELED = "Meeting konnte nicht abgesagt werden";
+	private static final String MEETING_NOT_PERFORMED = "Meeting konnte nicht durchgeführt werden";
+	private static final String NO_PATIENT_IN_SESSION = "Kein Patient ausgewählt";
+
 	private MeetingPresenter meetingPresenter = new MeetingPresenter(this);
 	private PrescriptionPresenter prescriptionPresenter = new PrescriptionPresenter();
 	private BaseLayout layout;
@@ -82,7 +88,6 @@ public class MeetingView extends CustomComponent implements View,
 			e1.printStackTrace();
 		}
 
-
 	}
 
 	private Button getSaveButton() {
@@ -97,7 +102,7 @@ public class MeetingView extends CustomComponent implements View,
 					meetingDTO.setAppointmentTime(getAppointmentTimeDateField()
 							.getValue());
 					meetingPresenter.update(meetingDTO);
-					//update GUI
+					// update GUI
 					reloadMeetingView(meetingDTO.getId());
 					Notification.show(CHANGES_SAVED_SUCCESSFULLY,
 							Type.HUMANIZED_MESSAGE);
@@ -129,11 +134,11 @@ public class MeetingView extends CustomComponent implements View,
 		});
 		return b;
 	}
-	
+
 	private Button getPerformButton() {
 		Button b = new Button("Durchführen");
 		b.addClickListener(new ClickListener() {
-			
+
 			@Override
 			public void buttonClick(ClickEvent event) {
 				try {
@@ -145,17 +150,18 @@ public class MeetingView extends CustomComponent implements View,
 					Notification.show(MEETING_PERFORMED_SUCCESSFULLY,
 							Type.HUMANIZED_MESSAGE);
 				} catch (MeetingStateException e) {
-					Notification.show(MEETING_NOT_PERFORMED, Type.ERROR_MESSAGE);
+					Notification
+							.show(MEETING_NOT_PERFORMED, Type.ERROR_MESSAGE);
 				}
 			}
 		});
 		return b;
 	}
-	
+
 	private Button getCancelButton() {
 		Button b = new Button("Absagen");
 		b.addClickListener(new ClickListener() {
-			
+
 			@Override
 			public void buttonClick(ClickEvent event) {
 				try {
@@ -179,7 +185,7 @@ public class MeetingView extends CustomComponent implements View,
 	private DateField getAppointmentTimeDateField() {
 		return dateField;
 	}
-	
+
 	private void reloadMeetingView(Long meetingId) {
 		getUI().getNavigator().navigateTo(
 				NavigationIndex.MEETINGVIEW + "/" + meetingId);
@@ -187,11 +193,12 @@ public class MeetingView extends CustomComponent implements View,
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		PatientDTO patientDTO = (PatientDTO) getUI().getSession().getAttribute("currentPatient");
+		PatientDTO patientDTO = (PatientDTO) getUI().getSession().getAttribute(
+				"currentPatient");
 		// SessionPatient muss gesetzt sein
-		if (patientDTO != null){
+		if (patientDTO != null) {
 			String param = event.getParameters();
-			
+
 			// wenn ein neues Meeting erstellt werden soll, kommt das if zum Zug
 			if (param != null && param.contains(NEW_MEETING_KEYWORD)) {
 				String[] splitted = param.split("=");
@@ -204,11 +211,12 @@ public class MeetingView extends CustomComponent implements View,
 						// Meeting mit Patient erstellen
 						try {
 							MeetingDTO meetingDTO = new MeetingDTO(patient,
-									new DoctorDTO("bla", new Date()), new Date());
+									new DoctorDTO("bla", new Date()),
+									new Date());
 							MeetingDTO m;
-							
+
 							m = meetingPresenter.create(meetingDTO);
-							
+
 							if (m != null) {
 								getUI().getNavigator().navigateTo(
 										NavigationIndex.MEETINGVIEW + "/"
@@ -219,10 +227,13 @@ public class MeetingView extends CustomComponent implements View,
 												.getNavigationPath());
 							}
 						} catch (MeetingStateException e) {
-							Notification.show(MEETING_NOT_CREATED + REASON + e.getMessage() , Type.HUMANIZED_MESSAGE);
+							Notification.show(
+									MEETING_NOT_CREATED + REASON
+											+ e.getMessage(),
+									Type.HUMANIZED_MESSAGE);
 							e.printStackTrace();
 						}
-						
+
 					} catch (NumberFormatException e) {
 						Notification.show(PATIENT_ID_NOT_A_NUMBER,
 								Type.HUMANIZED_MESSAGE);
@@ -233,9 +244,10 @@ public class MeetingView extends CustomComponent implements View,
 
 				}
 			} else {
-				// Meeting soll angezeigt werden; entweder die mitgegebene Id oder dann das jüngste Meeting des sessionPatients
+				// Meeting soll angezeigt werden; entweder die mitgegebene Id
+				// oder dann das jüngste Meeting des sessionPatients
 				Long meetingId = null;
-				if(param != null && !param.isEmpty()){
+				if (param != null && !param.isEmpty()) {
 					try {
 						meetingId = Long.valueOf(param);
 					} catch (NumberFormatException e) {
@@ -243,11 +255,12 @@ public class MeetingView extends CustomComponent implements View,
 								Type.HUMANIZED_MESSAGE);
 						getUI().getNavigator().navigateTo(
 								NavigationIndex.PERSONSEARCHVIEW
-								.getNavigationPath());
+										.getNavigationPath());
 					}
-				} else{
+				} else {
 					try {
-						meetingId = meetingPresenter.getNewestMeetingForPatient(patientDTO.getId());
+						meetingId = meetingPresenter
+								.getNewestMeetingForPatient(patientDTO.getId());
 					} catch (MeetingStateException e) {
 						e.printStackTrace();
 					}
@@ -266,22 +279,24 @@ public class MeetingView extends CustomComponent implements View,
 					}
 				} else {
 					getUI().getNavigator().navigateTo(
-							NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
+							NavigationIndex.PERSONSEARCHVIEW
+									.getNavigationPath());
 				}
-			} 
-		}else {
+			}
+		} else {
 			getUI().getNavigator().navigateTo(
 					NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
-			Notification.show(
-					NO_PATIENT_IN_SESSION, Type.HUMANIZED_MESSAGE);
+			Notification.show(NO_PATIENT_IN_SESSION, Type.HUMANIZED_MESSAGE);
 		}
 		layout.finishLayout();
 	}
 
 	private void showMeetingInView() {
 		// MeetingDTO angemessen abbilden
-		String translatedMeetingString = meetingDTO.getMeetingState().getLocalization();
-		Tile appointmentTile = new Tile("Sitzung (" + translatedMeetingString + ")","img/icons/calendar_small.png");
+		String translatedMeetingString = meetingDTO.getMeetingState()
+				.getLocalization();
+		Tile appointmentTile = new Tile("Sitzung (" + translatedMeetingString
+				+ ")", "img/icons/calendar_small.png");
 
 		DateField df = new DateField("Termin");
 		df.setWidth(200, Unit.PIXELS);
@@ -297,7 +312,8 @@ public class MeetingView extends CustomComponent implements View,
 
 		layout.addComponent(new PersonTile(meetingDTO.getDoctor(), "Arzt"));
 
-		Tile meetingTile = new Tile("Sitzungsnotizen","img/icons/list2_small.png");
+		Tile meetingTile = new Tile("Sitzungsnotizen",
+				"img/icons/list2_small.png");
 		meetingTile.setStdWidth(3);
 		TextArea area = new TextArea();
 		area.setRows(15);
@@ -307,14 +323,15 @@ public class MeetingView extends CustomComponent implements View,
 
 		meetingTile.addComponent(this.noteArea);
 		HorizontalLayout buttonArea = new HorizontalLayout();
-		// logical order of buttons depending on the current meetingState and time
+		// logical order of buttons depending on the current meetingState and
+		// time
 		// if the meeting is performed or canceled, it can't be edited anymore
-		if (meetingDTO.getMeetingState() == MeetingStateType.PLANNED){
+		if (meetingDTO.getMeetingState() == MeetingStateType.PLANNED) {
 			buttonArea.addComponent(getSaveButton());
 			buttonArea.addComponent(getDeleteButton());
 			buttonArea.addComponent(getCancelButton());
 			// only allow perform if appointmentTime is not after today
-			if(!meetingDTO.getAppointmentTime().after(new Date())){
+			if (!meetingDTO.getAppointmentTime().after(new Date())) {
 				buttonArea.addComponent(getPerformButton());
 			}
 		}
@@ -322,7 +339,7 @@ public class MeetingView extends CustomComponent implements View,
 		meetingTile.addComponent(buttonArea);
 		layout.addComponent(meetingTile);
 		layout.createRowBrake();
-		
+
 		layout.addComponent(new EscalationTile(meetingDTO));
 		layout.createRowBrake();
 
@@ -340,7 +357,8 @@ public class MeetingView extends CustomComponent implements View,
 
 	private void createPrescriptionTile() {
 		CreatePrescriptionTile createPrescriptionTile = new CreatePrescriptionTile(
-				meetingPresenter.getPossibleDrugs(),meetingDTO.getPatient(), true);
+				meetingPresenter.getPossibleDrugs(), meetingDTO.getPatient(),
+				true);
 		createPrescriptionTile.addObserver(MeetingView.this);
 		layout.addComponent(createPrescriptionTile);
 		layout.createRowBrake();

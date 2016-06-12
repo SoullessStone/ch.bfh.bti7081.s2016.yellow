@@ -21,7 +21,7 @@ public class Doctor extends Person {
 	@OneToMany(mappedBy = "doctor")
 	List<Meeting> meetings;
 
-	//TODO: change to string (office R.207)
+	// TODO: change to string (office R.207)
 	Integer officeNumber;
 
 	public Doctor() {

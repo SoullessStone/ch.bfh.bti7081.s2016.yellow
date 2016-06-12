@@ -8,6 +8,8 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.IllegalDateRangeExcep
 
 /**
  * Definiert einen Zeitbereich anhand von Start- und Enddatum
+ * 
+ * @author Mutz
  */
 public class DateRange {
 
@@ -32,7 +34,7 @@ public class DateRange {
 	 * @return Validiert die Parameter und gibt deren Validität zurück
 	 */
 	private boolean validate(Date from, Date to) {
-		if (from == null || to == null){
+		if (from == null || to == null) {
 			return false;
 		}
 		if (to.after(from)) {

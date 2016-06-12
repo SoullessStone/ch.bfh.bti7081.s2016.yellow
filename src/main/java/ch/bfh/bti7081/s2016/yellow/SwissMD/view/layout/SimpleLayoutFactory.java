@@ -2,13 +2,11 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout;
 
 import com.vaadin.ui.Alignment;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory.Arguments;
-
 public class SimpleLayoutFactory extends LayoutFactory {
 
 	private Alignment componentsAlignment;
-	
-	public enum Arguments implements LayoutArguments{
+
+	public enum Arguments implements LayoutArguments {
 		COMPONENTS_ALIGNMENT("componentsAlignment");
 
 		private String name;
@@ -31,7 +29,6 @@ public class SimpleLayoutFactory extends LayoutFactory {
 		}
 	}
 
-
 	@Override
 	LayoutArguments getArgument(String argumentName) {
 		return SimpleLayoutFactory.Arguments.getArgumentByName(argumentName);
@@ -39,7 +36,7 @@ public class SimpleLayoutFactory extends LayoutFactory {
 
 	@Override
 	BaseLayout createLayout() {
-		
+
 		SimpleLayout layout = new SimpleLayout();
 		layout.setSizeFull();
 		layout.baseLayout.setSizeFull();
@@ -50,7 +47,7 @@ public class SimpleLayoutFactory extends LayoutFactory {
 
 	@Override
 	void setArgument(LayoutArguments argument, String value) throws Exception {
-		switch ((Arguments)argument) {
+		switch ((Arguments) argument) {
 		case COMPONENTS_ALIGNMENT:
 			switch (value) {
 			case "left":
@@ -63,13 +60,14 @@ public class SimpleLayoutFactory extends LayoutFactory {
 				componentsAlignment = Alignment.MIDDLE_CENTER;
 				break;
 			default:
-				throw new Exception("unknown value '"+value+"' for argument '"+argument.getName()+"'");
+				throw new Exception("unknown value '" + value
+						+ "' for argument '" + argument.getName() + "'");
 			}
 			break;
 		default:
-			throw new Exception("unknown Argument '"+argument.getName()+"'");
+			throw new Exception("unknown Argument '" + argument.getName() + "'");
 		}
-		
+
 	}
 
 }

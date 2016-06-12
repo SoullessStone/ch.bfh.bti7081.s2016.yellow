@@ -10,7 +10,8 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Illness;
  * @author K.Suter
  * 
  */
-public class IllnessDaoImpl extends GenericDaoImpl<Illness, Long> implements IllnessDao {
+public class IllnessDaoImpl extends GenericDaoImpl<Illness, Long> implements
+		IllnessDao {
 
 	public IllnessDaoImpl(EntityManagerProvider emp) {
 		super(emp);
@@ -18,17 +19,16 @@ public class IllnessDaoImpl extends GenericDaoImpl<Illness, Long> implements Ill
 
 	@Override
 	public List<Illness> findByCodeOrName(String searchString) {
-		 @SuppressWarnings("unchecked")
-		 List<Illness> resultList = (List<Illness>)
-		 mEntityManager.createQuery("SELECT m FROM Illness m WHERE m.code LIKE :code OR m.name LIKE :name")
-		 .setParameter("code", "%" + searchString + "%")
-		 .setParameter("name", "%" + searchString + "%")
-		 .getResultList();
-		 if(resultList.size() > 100)
-		 {
-			 return resultList.subList(0, 100);
-		 }
-		 return resultList;
+		@SuppressWarnings("unchecked")
+		List<Illness> resultList = (List<Illness>) mEntityManager
+				.createQuery(
+						"SELECT m FROM Illness m WHERE m.code LIKE :code OR m.name LIKE :name")
+				.setParameter("code", "%" + searchString + "%")
+				.setParameter("name", "%" + searchString + "%").getResultList();
+		if (resultList.size() > 100) {
+			return resultList.subList(0, 100);
+		}
+		return resultList;
 	}
 
 }

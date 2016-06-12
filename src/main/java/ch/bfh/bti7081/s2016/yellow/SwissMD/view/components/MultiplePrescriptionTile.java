@@ -6,10 +6,17 @@ import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
+
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * Stellt eine Liste von PrescriptionDTOs dar
+ * 
+ * @author SoullessStone
+ *
+ */
 @SuppressWarnings("serial")
 public class MultiplePrescriptionTile extends Tile {
 	private List<PrescriptionDTO> prescriptions;
@@ -50,7 +57,8 @@ public class MultiplePrescriptionTile extends Tile {
 
 			String drug = prescription.getDrug().getTradeName();
 			String dosis = prescription.getDosisInMilligrams() + " mg";
-			String validFrom = format.format(prescription.getValidity().getFrom());
+			String validFrom = format.format(prescription.getValidity()
+					.getFrom());
 			String validTo = format.format(prescription.getValidity().getTo());
 			table.addItem(new Object[] { drug, dosis, validFrom, validTo },
 					prescriptions.indexOf(prescription) + 1);

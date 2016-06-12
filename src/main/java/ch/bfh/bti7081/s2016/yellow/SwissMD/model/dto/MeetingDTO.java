@@ -33,7 +33,7 @@ public class MeetingDTO extends GenericDTO implements Comparable<MeetingDTO> {
 		this.appointmentTime = new Date(appointmentTime.getTime());
 		this.state = new MeetingStateNew();
 		this.state.planMeeting(this, appointmentTime);
-		this.appointmentTime = new Date (appointmentTime.getTime());
+		this.appointmentTime = new Date(appointmentTime.getTime());
 	}
 
 	public MeetingDTO() {
@@ -41,9 +41,9 @@ public class MeetingDTO extends GenericDTO implements Comparable<MeetingDTO> {
 
 	public MeetingDTO(Meeting createdMeeting) {
 		Date appointmentTime = createdMeeting.getAppointmentTime();
-		
+
 		MeetingStateType meetingState = createdMeeting.getStateType();
-		if (meetingState !=null) {
+		if (meetingState != null) {
 			this.state = meetingState.getMeetingState();
 		} else {
 			this.state = new MeetingStateNew();
@@ -100,7 +100,7 @@ public class MeetingDTO extends GenericDTO implements Comparable<MeetingDTO> {
 	public String getNotes() {
 		return notes;
 	}
-	
+
 	public MeetingStateType getMeetingState() {
 		return this.state.getState();
 	}
@@ -176,6 +176,5 @@ public class MeetingDTO extends GenericDTO implements Comparable<MeetingDTO> {
 			return false;
 		return true;
 	}
-	
-	
+
 }

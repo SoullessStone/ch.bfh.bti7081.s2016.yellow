@@ -20,9 +20,10 @@ public class Drug extends AbstractDatabaseObject {
 	private String substance;
 	private String substanceQuantitiy;
 	private int maxDose;
-	
-	public Drug () {}
-	
+
+	public Drug() {
+	}
+
 	public Drug(DrugDTO drugDTO) {
 		this.tradeName = drugDTO.getTradeName();
 		this.substance = drugDTO.getSubstance();

@@ -4,16 +4,16 @@ import org.junit.Test;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 
-public class PatientDTOTest extends DtoTest{
+public class PatientDTOTest extends DtoTest {
 
 	@Test
 	public void testConstructor() {
 		// Arrange
 		Patient patient = super.createTestPatient();
-		
+
 		// Act
 		PatientDTO sut = new PatientDTO(patient);
-		
+
 		// Assert
 		super.validatePatient(sut);
 	}

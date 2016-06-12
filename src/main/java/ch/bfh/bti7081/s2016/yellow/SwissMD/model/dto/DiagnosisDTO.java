@@ -7,23 +7,22 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 
 /**
  * DTO for Diagnosis. To be used in the views
+ * 
  * @author SoullessStone
  *
  */
-public class DiagnosisDTO extends GenericDTO{
+public class DiagnosisDTO extends GenericDTO {
 	private IllnessDTO illness;
 	private String notes;
 	private Date date;
 	private PatientDTO patient;
-	
-	
-	
+
 	public DiagnosisDTO(IllnessDTO illness, String notes, Date date,
 			PatientDTO patient) {
 		super();
 		this.illness = illness;
 		this.notes = notes;
-		this.date = new Date (date.getTime());
+		this.date = new Date(date.getTime());
 		this.patient = patient;
 	}
 
@@ -34,23 +33,27 @@ public class DiagnosisDTO extends GenericDTO{
 		this.patient = new PatientDTO(diagnosis.getPatient());
 		setId(diagnosis.getId());
 	}
-	
+
 	public IllnessDTO getIllness() {
 		return illness;
 	}
+
 	public void setIllness(IllnessDTO illness) {
 		this.illness = illness;
 	}
+
 	public String getNotes() {
 		return notes;
 	}
+
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
+
 	public Date getDate() {
 		return new Date(date.getTime());
 	}
-	
+
 	public void setDate(Date date) {
 		this.date = new Date(date.getTime());
 	}

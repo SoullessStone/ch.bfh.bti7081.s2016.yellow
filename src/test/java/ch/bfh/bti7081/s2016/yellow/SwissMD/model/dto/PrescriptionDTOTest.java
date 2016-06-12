@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.IllegalDateRangeException;
 
 public class PrescriptionDTOTest extends DtoTest {
@@ -11,7 +10,7 @@ public class PrescriptionDTOTest extends DtoTest {
 		// Arrange
 		Prescription prescription = null;
 		PrescriptionDTO sut = null;
-		
+
 		try {
 			// Act
 			prescription = super.createTestPrescription();

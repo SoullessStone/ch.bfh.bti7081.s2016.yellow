@@ -18,6 +18,12 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 
+/**
+ * Presenter für die PrescriptionView
+ * 
+ * @author Mutz
+ *
+ */
 public class PrescriptionPresenter {
 	PrescriptionDao prescriptionDao;
 	DrugDao drugDao;
@@ -44,7 +50,7 @@ public class PrescriptionPresenter {
 
 	public List<PrescriptionDTO> getPrescriptionsForPatient(
 			PatientDTO patientDTO) throws MeetingStateException {
-		if (patientDTO == null){
+		if (patientDTO == null) {
 			throw new IllegalArgumentException("Patient was null");
 		}
 		Patient patient = (Patient) personDao.read(patientDTO.getId());
@@ -57,7 +63,7 @@ public class PrescriptionPresenter {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Returns a List of {@code Drug} or {@code null} if no drug could be found
 	 * 

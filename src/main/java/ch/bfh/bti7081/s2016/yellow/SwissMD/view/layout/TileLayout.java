@@ -31,10 +31,10 @@ public class TileLayout extends BaseLayout {
 	private List<HorizontalLayout> rows;
 
 	int maxElementsPerRow;
-	
+
 	/*
-	private boolean finished = false;
- 	*/
+	 * private boolean finished = false;
+	 */
 
 	TileLayout(int maxElementsPerRow) {
 		baseLayout = new VerticalLayout();
@@ -149,7 +149,7 @@ public class TileLayout extends BaseLayout {
 
 	@Override
 	public void finishLayout() {
-		//finished = true;
+		// finished = true;
 		if (!rows.isEmpty()) {
 			calculateElementExpansions(getCurrentRow());
 		}

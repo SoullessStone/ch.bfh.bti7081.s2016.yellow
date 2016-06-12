@@ -8,15 +8,20 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.CreateDiagnosisTilePresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextArea;
-import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Window;
 
+/**
+ * Tile zum Erstellen von Diagnosen
+ * 
+ * @author SoullessStone
+ *
+ */
 @SuppressWarnings("serial")
 public class CreateDiagnosisTile extends Tile {
 	private CreateDiagnosisTilePresenter createDiagnosisTilePresenter = new CreateDiagnosisTilePresenter();
@@ -26,10 +31,11 @@ public class CreateDiagnosisTile extends Tile {
 
 	private TextArea noteArea = new TextArea("Kommentar");
 
-	public CreateDiagnosisTile(IllnessDTO illnessDTO, PatientDTO patient, Window window) {
+	public CreateDiagnosisTile(IllnessDTO illnessDTO, PatientDTO patient,
+			Window window) {
 
 		this.patient = patient;
-		
+
 		this.illnessDTO = illnessDTO;
 		addComponent(new Label(illnessDTO.getCode() + " - "
 				+ illnessDTO.getName()));

@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -22,17 +21,17 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 @Entity
 @Table
 public class Prescription extends AbstractDatabaseObject {
-	
+
 	private static final long serialVersionUID = -3986983045008977241L;
-	
+
 	@OneToOne
 	private Drug drug;
 	private int dosisInMilligrams;
-	//needed only for persistence
+	// needed only for persistence
 	private Date validFrom;
-	//needed only for persistence
+	// needed only for persistence
 	private Date validTo;
-	
+
 	@Transient
 	private DateRange validity;
 
@@ -40,11 +39,10 @@ public class Prescription extends AbstractDatabaseObject {
 	private Patient patient;
 
 	public Prescription() {
-		
+
 	}
 
-	public Prescription(Drug drug, int dosisInMilligrams,
-			DateRange validity) {
+	public Prescription(Drug drug, int dosisInMilligrams, DateRange validity) {
 		this.drug = drug;
 		this.dosisInMilligrams = dosisInMilligrams;
 		this.validFrom = validity.getFrom();
@@ -67,7 +65,7 @@ public class Prescription extends AbstractDatabaseObject {
 	public void setDosisInMilligrams(int dosisInMilligrams) {
 		this.dosisInMilligrams = dosisInMilligrams;
 	}
-	
+
 	public Patient getPatient() {
 		return patient;
 	}
@@ -77,11 +75,11 @@ public class Prescription extends AbstractDatabaseObject {
 	}
 
 	public DateRange getValidity() {
-		if (validity == null){
+		if (validity == null) {
 			try {
 				validity = new DateRange(validFrom, validTo);
 			} catch (IllegalDateRangeException e) {
-				//Should not happen here..
+				// Should not happen here..
 			}
 		}
 		return validity;

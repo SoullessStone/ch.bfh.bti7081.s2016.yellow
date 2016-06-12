@@ -8,7 +8,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DiagnosisDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
@@ -28,15 +27,19 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * Hier werden Personen dargestellt
+ * 
+ * @author Schaad
+ *
+ */
 @SuppressWarnings("serial")
 public class PersonView extends CustomComponent implements View {
 	private static final String DIAGNOSIS = "Diagnosen";
@@ -54,7 +57,6 @@ public class PersonView extends CustomComponent implements View {
 	private static final String ID_NOT_A_PATIENT = "Die gesuchte Person ist kein Patient";
 	private static final String PERSON_NOT_FOUND = "Die gewünschte Person konnte nicht gefunden werden";
 	private static final String NO_PERSON_IN_SESSION = "Keine Person ausgewählt";
-	
 
 	private PersonPresenter personPresenter = new PersonPresenter(this);
 	private BaseLayout layout;
@@ -92,9 +94,8 @@ public class PersonView extends CustomComponent implements View {
 			GridTile medicalDataTile = new GridTile(patientDTO);
 			layout.addComponent(medicalDataTile);
 
-			
 			createDiagnosisContainer(patientDTO);
-			
+
 			createActionTile(patientDTO);
 
 			createHistoryTile(patientDTO);
@@ -106,26 +107,31 @@ public class PersonView extends CustomComponent implements View {
 	}
 
 	private void createBaseDataTile(PatientDTO patientDTO) {
-		Tile baseDataTile = new Tile(ALLGEMEINE_GRUNDDATEN+" "
+		Tile baseDataTile = new Tile(ALLGEMEINE_GRUNDDATEN + " "
 				+ patientDTO.getName());
 		baseDataTile.setStdWidth(3);
 		GridLayout grid = new GridLayout(2, 4);
 		grid.setSizeFull();
-		grid.addComponent(new Label(NAME+": " + patientDTO.getName()));
-		grid.addComponent(new Label(ADDRESS+": "
-				+ (patientDTO.getAddress() != null ? patientDTO
-						.getAddress() : "---")));
-		grid.addComponent(new Label(ZIP_PLACE+": "
-				+ (patientDTO.getZip() != null ? patientDTO.getZip() + " "
-						: "")
-				+ (patientDTO.getCity() != null ? patientDTO.getCity()
+		grid.addComponent(new Label(NAME + ": " + patientDTO.getName()));
+		grid.addComponent(new Label(ADDRESS
+				+ ": "
+				+ (patientDTO.getAddress() != null ? patientDTO.getAddress()
 						: "---")));
-		grid.addComponent(new Label(MOBILE+": "
+		grid.addComponent(new Label(
+				ZIP_PLACE
+						+ ": "
+						+ (patientDTO.getZip() != null ? patientDTO.getZip()
+								+ " " : "")
+						+ (patientDTO.getCity() != null ? patientDTO.getCity()
+								: "---")));
+		grid.addComponent(new Label(MOBILE
+				+ ": "
 				+ (patientDTO.getMobile() != null ? patientDTO.getMobile()
 						: "---")));
-		grid.addComponent(new Label(TELEPHONE+": "
-				+ (patientDTO.getLandline() != null ? patientDTO
-						.getLandline() : "---")));
+		grid.addComponent(new Label(TELEPHONE
+				+ ": "
+				+ (patientDTO.getLandline() != null ? patientDTO.getLandline()
+						: "---")));
 
 		baseDataTile.addComponent(grid);
 		layout.addComponent(baseDataTile);
@@ -153,8 +159,7 @@ public class PersonView extends CustomComponent implements View {
 	}
 
 	private void createActionTile(PatientDTO patientDTO) {
-		Button createMeetingButton = new Button(
-				NEW_MEETING_WITH_PATIENT);
+		Button createMeetingButton = new Button(NEW_MEETING_WITH_PATIENT);
 		createMeetingButton.addClickListener(new ClickListener() {
 
 			@Override

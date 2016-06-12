@@ -9,6 +9,12 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
 import com.vaadin.ui.Label;
 
+/**
+ * Stellt eine Person dar
+ * 
+ * @author SoullessStone
+ *
+ */
 @SuppressWarnings("serial")
 public class PersonTile extends Tile {
 	private PersonDTO person;

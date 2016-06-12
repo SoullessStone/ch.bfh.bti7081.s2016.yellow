@@ -12,7 +12,7 @@ public class TileLayoutFactory extends LayoutFactory {
 
 	private int numberOfElementsPerRow = 1;
 
-	public enum Arguments implements LayoutArguments{
+	public enum Arguments implements LayoutArguments {
 		ELEMENTS_PER_ROW("elementsPerRow");
 
 		private String name;
@@ -37,17 +37,14 @@ public class TileLayoutFactory extends LayoutFactory {
 
 	TileLayoutFactory() {
 	}
-	
-	
 
 	@Override
 	LayoutArguments getArgument(String argumentName) {
 		return TileLayoutFactory.Arguments.getArgumentByName(argumentName);
 	}
-	
 
 	TileLayout createLayout(int numberOfColumns) {
-		this.numberOfElementsPerRow = numberOfColumns;		
+		this.numberOfElementsPerRow = numberOfColumns;
 		return createLayout();
 	}
 
@@ -65,15 +62,14 @@ public class TileLayoutFactory extends LayoutFactory {
 		return layout;
 	}
 
-
 	@Override
-	void setArgument(LayoutArguments argument, String value) throws Exception{
-		switch ((Arguments)argument) {
+	void setArgument(LayoutArguments argument, String value) throws Exception {
+		switch ((Arguments) argument) {
 		case ELEMENTS_PER_ROW:
 			numberOfElementsPerRow = Integer.parseInt(value);
 			break;
 		default:
-			throw new Exception("unknown Argument '"+argument.getName()+"'");
+			throw new Exception("unknown Argument '" + argument.getName() + "'");
 		}
 	}
 

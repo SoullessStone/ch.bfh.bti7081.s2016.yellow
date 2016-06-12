@@ -22,7 +22,7 @@ public class DrugDTO extends GenericDTO {
 		this.maxDose = maxDose;
 
 	}
-	
+
 	public DrugDTO(Drug drug) {
 		this.tradeName = drug.getTradeName();
 		this.substance = drug.getSubstance();

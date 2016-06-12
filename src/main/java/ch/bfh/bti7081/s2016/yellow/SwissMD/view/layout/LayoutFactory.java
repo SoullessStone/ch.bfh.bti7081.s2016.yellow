@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout;
 
-import com.vaadin.ui.VerticalLayout;
 
 /**
  * LayoutFactory has to be used to get Instances of different concrete Layout
@@ -37,26 +36,25 @@ public abstract class LayoutFactory {
 		}
 	}
 
-
-	 public final BaseLayout createLayout(String ... args) throws Exception{ 
+	public final BaseLayout createLayout(String... args) throws Exception {
 		for (String string : args) {
 			String arg[] = string.split(":");
 			if (arg.length == 2) {
 				String key = arg[0];
 				String value = arg[1];
 				LayoutArguments argument = getArgument(key);
-				if (argument != null){
+				if (argument != null) {
 					setArgument(argument, value);
 				} else {
-					throw new Exception("unknown argument: "+key);
+					throw new Exception("unknown argument: " + key);
 				}
 			} else {
-				throw new Exception("wrong argument format: "+string+" (must be 'key:value')");
+				throw new Exception("wrong argument format: " + string
+						+ " (must be 'key:value')");
 			}
 		}
-		 return createLayout(); 
-	 } 
-	
+		return createLayout();
+	}
 
 	/**
 	 * Create Layout with specified arguments. Arguments are defined in the
@@ -66,9 +64,10 @@ public abstract class LayoutFactory {
 	 * @return
 	 */
 	abstract BaseLayout createLayout();
-	
+
 	abstract LayoutArguments getArgument(String argumentName);
-	
-	abstract void setArgument(LayoutArguments argument, String value) throws Exception;
+
+	abstract void setArgument(LayoutArguments argument, String value)
+			throws Exception;
 
 }

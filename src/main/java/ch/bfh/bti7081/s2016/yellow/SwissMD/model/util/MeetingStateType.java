@@ -13,24 +13,23 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingStatePlanned;
  * 
  */
 public enum MeetingStateType {
-	NEW(new MeetingStateNew(),"neu"),
-	PLANNED(new MeetingStatePlanned(),"geplant"),
-	CANCELED(new MeetingStateCanceled(),"abgesagt"),
-	PERFORMED(new MeetingStatePerformed(),"abgeschlossen");
-	
+	NEW(new MeetingStateNew(), "neu"), PLANNED(new MeetingStatePlanned(),
+			"geplant"), CANCELED(new MeetingStateCanceled(), "abgesagt"), PERFORMED(
+			new MeetingStatePerformed(), "abgeschlossen");
+
 	private MeetingState state;
 	private String localization;
-	
+
 	MeetingStateType(MeetingState ms, String localization) {
 		this.state = ms;
 		this.localization = localization;
 	}
-	
-	public String getLocalization(){
+
+	public String getLocalization() {
 		return localization;
 	}
-	
-	public MeetingState getMeetingState(){
+
+	public MeetingState getMeetingState() {
 		return this.state;
 	}
 }

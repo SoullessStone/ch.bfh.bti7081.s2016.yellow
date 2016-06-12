@@ -23,6 +23,12 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonView;
 
+/**
+ * Presenter für die Personview
+ * 
+ * @author Schaad
+ *
+ */
 public class PersonPresenter {
 	private PersonDao personDao;
 	private MeetingDao meetingDao;
@@ -41,7 +47,7 @@ public class PersonPresenter {
 	 * 
 	 * @param id
 	 *            the technical key of the person in the database
-	 * @throws MeetingStateException 
+	 * @throws MeetingStateException
 	 * 
 	 */
 	public PersonDTO findPersonById(Long id) throws MeetingStateException {
@@ -59,16 +65,16 @@ public class PersonPresenter {
 			personDao.delete(existingPerson);
 		}
 	}
-	
-	/*public void update(PersonDTO personDTO) throws CouldNotSaveException {
-		Meeting existingMeeting = meetingDao.read(meetingDTO.getId());
-		if (existingMeeting != null) {
-			existingMeeting.setNotes(meetingDTO.getNotes());
-			existingMeeting.setAppointmentTime(meetingDTO.getAppointmentTime());
-			existingMeeting.setStateType(meetingDTO.getMeetingState());
-			meetingDao.update(existingMeeting);
-		}
-	}*/
+
+	/*
+	 * public void update(PersonDTO personDTO) throws CouldNotSaveException {
+	 * Meeting existingMeeting = meetingDao.read(meetingDTO.getId()); if
+	 * (existingMeeting != null) {
+	 * existingMeeting.setNotes(meetingDTO.getNotes());
+	 * existingMeeting.setAppointmentTime(meetingDTO.getAppointmentTime());
+	 * existingMeeting.setStateType(meetingDTO.getMeetingState());
+	 * meetingDao.update(existingMeeting); } }
+	 */
 
 	/**
 	 * Returns a List of {@code Patients} or {@code null} if no patients could
@@ -79,12 +85,13 @@ public class PersonPresenter {
 		List<PatientDTO> patients = new ArrayList<PatientDTO>(persons.size());
 		for (Person person : persons) {
 			if (person.getDtype().equals("Patient"))
-				patients.add(new PatientDTO((Patient)person));
+				patients.add(new PatientDTO((Patient) person));
 		}
 		return patients;
 	}
 
-	public List<MeetingDTO> getMeetingsForPatient(Long id) throws MeetingStateException {
+	public List<MeetingDTO> getMeetingsForPatient(Long id)
+			throws MeetingStateException {
 		Patient patient = (Patient) personDao.read(id);
 		List<MeetingDTO> meetingList = new ArrayList<>();
 		for (Meeting m : meetingDao.findMeetingForPerson(patient)) {
@@ -93,7 +100,8 @@ public class PersonPresenter {
 		return meetingList;
 	}
 
-	public List<DiagnosisDTO> getDiagnosisForPatient(Long id) throws DangerStateException {
+	public List<DiagnosisDTO> getDiagnosisForPatient(Long id)
+			throws DangerStateException {
 		Patient patient = (Patient) personDao.read(id);
 		List<DiagnosisDTO> diagnosisList = new ArrayList<>();
 		for (Diagnosis d : diagnosisDao.findDiagnosisForPerson(patient)) {

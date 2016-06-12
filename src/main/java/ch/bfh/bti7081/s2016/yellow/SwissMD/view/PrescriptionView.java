@@ -19,6 +19,12 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.CustomComponent;
 
+/**
+ * Hier werden Verschreibungen angezeigt
+ * 
+ * @author SoullessStone
+ *
+ */
 @SuppressWarnings("serial")
 public class PrescriptionView extends CustomComponent implements View,
 		CreationPrescriptiontileObserver {
@@ -53,15 +59,16 @@ public class PrescriptionView extends CustomComponent implements View,
 						NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
 			} else {
 				CreatePrescriptionTile createPrescriptionTile = new CreatePrescriptionTile(
-						prescriptionPresenter.getPossibleDrugs(), patientInSession,
-						false);
+						prescriptionPresenter.getPossibleDrugs(),
+						patientInSession, false);
 				createPrescriptionTile.addObserver(this);
 				layout.addComponent(createPrescriptionTile);
-			
+
 				this.prescriptions = prescriptionPresenter
 						.getPrescriptionsForPatient(patientInSession);
-				
-				this.multiPrescriptionTile = new MultiplePrescriptionTile(this.prescriptions);
+
+				this.multiPrescriptionTile = new MultiplePrescriptionTile(
+						this.prescriptions);
 				layout.addComponent(multiPrescriptionTile);
 			}
 		} catch (MeetingStateException e) {

@@ -22,6 +22,12 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.MeetingView;
 
+/**
+ * Presenter für die MeetingView
+ * 
+ * @author Mutz
+ *
+ */
 public class MeetingPresenter {
 	private MeetingDao meetingDao;
 	private DrugDao drugDao;
@@ -66,7 +72,7 @@ public class MeetingPresenter {
 			meetingDao.delete(existingMeeting);
 		}
 	}
-	
+
 	public void cancel(MeetingDTO meetingDTO) throws MeetingStateException {
 		Meeting existingMeeting = meetingDao.read(meetingDTO.getId());
 		if (existingMeeting != null) {
@@ -75,7 +81,7 @@ public class MeetingPresenter {
 			meetingDao.update(existingMeeting);
 		}
 	}
-	
+
 	public void perform(MeetingDTO meetingDTO) throws MeetingStateException {
 		Meeting existingMeeting = meetingDao.read(meetingDTO.getId());
 		if (existingMeeting != null) {
@@ -85,7 +91,8 @@ public class MeetingPresenter {
 		}
 	}
 
-	public MeetingDTO create(MeetingDTO meetingDTO) throws MeetingStateException {
+	public MeetingDTO create(MeetingDTO meetingDTO)
+			throws MeetingStateException {
 		Meeting meeting = new Meeting();
 		meeting.setAppointmentTime(meetingDTO.getAppointmentTime());
 		// TODO: Doctor aus Session
@@ -114,19 +121,24 @@ public class MeetingPresenter {
 		}
 		return drugDTOs;
 	}
+
 	/**
 	 * Returns the newest meeting for a patient
 	 * 
 	 */
-	public Long getNewestMeetingForPatient(Long id) throws MeetingStateException {
+	public Long getNewestMeetingForPatient(Long id)
+			throws MeetingStateException {
 		Patient patient = (Patient) personDao.read(id);
 		List<MeetingDTO> meetingList = new ArrayList<>();
 		for (Meeting m : meetingDao.findMeetingForPerson(patient)) {
 			meetingList.add(new MeetingDTO(m));
 		}
-		if(meetingList != null) return meetingList.get(meetingList.size()-1).getId();
-		else return null;
+		if (meetingList != null)
+			return meetingList.get(meetingList.size() - 1).getId();
+		else
+			return null;
 	}
+
 	public PatientDTO getPatient(Long patientId) throws MeetingStateException {
 		Patient p = (Patient) personDao.read(patientId);
 		if (p == null) {

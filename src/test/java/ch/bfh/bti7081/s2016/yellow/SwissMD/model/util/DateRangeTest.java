@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.IllegalDateRangeException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 
 public class DateRangeTest {
 	@Rule

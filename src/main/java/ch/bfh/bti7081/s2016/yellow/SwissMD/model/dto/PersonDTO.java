@@ -23,7 +23,7 @@ public class PersonDTO extends GenericDTO {
 
 	public PersonDTO() {
 	}
-	
+
 	public PersonDTO(Person person) {
 		this.name = person.getName();
 		this.birthdate = person.getBirthdate();

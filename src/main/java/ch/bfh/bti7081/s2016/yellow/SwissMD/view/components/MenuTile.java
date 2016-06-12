@@ -1,7 +1,5 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.PatientInSessionManager;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
@@ -10,8 +8,13 @@ import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 
+/**
+ * Stellt das Menü dar
+ * 
+ * @author Nussbaum
+ *
+ */
 @SuppressWarnings("serial")
 public class MenuTile extends Tile {
 	private static PatientInSessionTile patientInSessionTile;

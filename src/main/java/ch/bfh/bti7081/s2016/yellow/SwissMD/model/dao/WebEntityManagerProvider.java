@@ -16,7 +16,8 @@ import javax.servlet.annotation.WebListener;
  * 
  */
 @WebListener
-public class WebEntityManagerProvider implements ServletContextListener, EntityManagerProvider {
+public class WebEntityManagerProvider implements ServletContextListener,
+		EntityManagerProvider {
 
 	private static EntityManagerFactory emf;
 

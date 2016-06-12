@@ -4,7 +4,6 @@ import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonSearchPresenter;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MenuTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MultiplePersonTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
@@ -20,12 +19,16 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.DateField;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextField;
 
-// Just do
+/**
+ * Hier werden Personen gesucht
+ * 
+ * @author SoullessStone
+ *
+ */
 @SuppressWarnings("serial")
 public class PersonSearchView extends CustomComponent implements View {
 	protected static final String NO_SEARCH_CRITERIA = "Weder ein Name noch ein Geburtsdatum für die Suche ausgewählt";

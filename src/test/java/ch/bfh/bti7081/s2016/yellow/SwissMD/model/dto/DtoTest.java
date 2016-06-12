@@ -12,7 +12,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Illness;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.IllegalDateRangeException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
@@ -22,7 +21,6 @@ public abstract class DtoTest {
 	public static String ILLNESS_CODE = "ilness-code";
 	public static Long ILLNESS_ID = 1898L;
 	public static String ILLNESS_NAME = "ilness-name";
-
 	public static Long DRUG_ID = 12312L;
 	private static final int DRUG_MAXDOSE = 1232135;
 	private static final String DRUG_SUBSTANCE = "Sand und Schmerz";
@@ -53,6 +51,10 @@ public abstract class DtoTest {
 	private static final Date MEETING_DATE = new Date(757389061);
 	private static final MeetingStateType MEETING_STATE = MeetingStateType.PERFORMED;
 
+	/**
+	 * Testet, ob beim DTO(Entity)-Konstruktor alle Attribute korrekt übernommen
+	 * werden
+	 */
 	@Test
 	public abstract void testConstructor();
 
@@ -121,8 +123,8 @@ public abstract class DtoTest {
 		doctor.setCity(PATIENT_CITY);
 		doctor.setMobile(PATIENT_MOBILE);
 		doctor.setLandline(PATIENT_LANDLINE);
-		//OfficeNumber not included, as it is not used in DoctorDTO
-		//TODO: add Meetings
+		// OfficeNumber not included, as it is not used in DoctorDTO
+		// TODO: add Meetings
 		return doctor;
 	}
 
@@ -137,7 +139,7 @@ public abstract class DtoTest {
 		Assert.assertEquals(PATIENT_MOBILE, sut.getMobile());
 		Assert.assertEquals(PATIENT_LANDLINE, sut.getLandline());
 	}
-	
+
 	public Illness createTestIllness() {
 		Illness illness = new Illness();
 		illness.setId(ILLNESS_ID);
@@ -162,8 +164,8 @@ public abstract class DtoTest {
 		prescription.setPatient(createTestPatient());
 		return prescription;
 	}
-	
-	public void validatePrescription(PrescriptionDTO sut){
+
+	public void validatePrescription(PrescriptionDTO sut) {
 		Assert.assertEquals(PRESCRIPTION_ID, sut.getId());
 		Assert.assertEquals(PRESCRIPTION_DOSIS, sut.getDosisInMilligrams());
 		validateDrug(sut.getDrug());
@@ -180,15 +182,15 @@ public abstract class DtoTest {
 		drug.setTradeName(DRUG_TRADENAME);
 		return drug;
 	}
-	
-	public void validateDrug(DrugDTO sut){
+
+	public void validateDrug(DrugDTO sut) {
 		Assert.assertEquals(DRUG_ID, sut.getId());
 		Assert.assertEquals(DRUG_MAXDOSE, sut.getMaxDose());
 		Assert.assertEquals(DRUG_SUBSTANCE, sut.getSubstance());
 		Assert.assertEquals(DRUG_SUBSTANCEQUANTITY, sut.getSubstanceQuantitiy());
 		Assert.assertEquals(DRUG_TRADENAME, sut.getTradeName());
 	}
-	
+
 	public Meeting createTestMeeting() {
 		Meeting meeting = new Meeting();
 		meeting.setId(MEETING_ID);

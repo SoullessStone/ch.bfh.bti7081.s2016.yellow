@@ -8,10 +8,10 @@ public class IllnessDTOTest extends DtoTest {
 	public void testConstructor() {
 		// Arrange
 		Illness illness = super.createTestIllness();
-		
+
 		// Act
 		IllnessDTO sut = new IllnessDTO(illness);
-		
+
 		// Assert
 		super.validateIllness(sut);
 	}

@@ -2,6 +2,12 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.util;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 
+/**
+ * Verbindet das MenuTile mit der Session.
+ * 
+ * @author Mutz
+ *
+ */
 public class PatientInSessionManager {
 	private static PatientInSessionManager manager;
 	private PatientDTO patientInSession;

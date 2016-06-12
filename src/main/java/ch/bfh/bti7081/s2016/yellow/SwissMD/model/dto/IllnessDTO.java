@@ -8,11 +8,11 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Illness;
  * @author K. Suter
  * 
  */
-public class IllnessDTO extends GenericDTO{
-	
+public class IllnessDTO extends GenericDTO {
+
 	/** The ICD-10 Code **/
 	private String code;
-	
+
 	/** The name of the illness **/
 	private String name;
 
@@ -21,7 +21,7 @@ public class IllnessDTO extends GenericDTO{
 		this.name = illness.getName();
 		setId(illness.getId());
 	}
-	
+
 	public String getCode() {
 		return code;
 	}
@@ -42,5 +42,5 @@ public class IllnessDTO extends GenericDTO{
 	public String toString() {
 		return code + " - " + name;
 	}
-	
+
 }

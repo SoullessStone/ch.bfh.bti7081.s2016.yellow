@@ -3,7 +3,6 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao;
 import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 
 /**
@@ -12,7 +11,8 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
  * @author K.Suter
  * 
  */
-public class DiagnosisDaoImpl extends GenericDaoImpl<Diagnosis, Long> implements DiagnosisDao{
+public class DiagnosisDaoImpl extends GenericDaoImpl<Diagnosis, Long> implements
+		DiagnosisDao {
 
 	public DiagnosisDaoImpl(EntityManagerProvider emp) {
 		super(emp);

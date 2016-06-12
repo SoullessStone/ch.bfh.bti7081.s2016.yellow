@@ -12,10 +12,17 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
  */
 public abstract class DangerState {
 
-	protected abstract void setDangerStateHarmless(PatientDTO patient) throws DangerStateException;
-	protected abstract void setDangerStateCrisis(PatientDTO patient) throws DangerStateException;
-	protected abstract void setDangerStateDangerToHimself(PatientDTO patient) throws DangerStateException;
-	protected abstract void setDangerStateDangerToOthers(PatientDTO patient) throws DangerStateException;
-	
+	protected abstract void setDangerStateHarmless(PatientDTO patient)
+			throws DangerStateException;
+
+	protected abstract void setDangerStateCrisis(PatientDTO patient)
+			throws DangerStateException;
+
+	protected abstract void setDangerStateDangerToHimself(PatientDTO patient)
+			throws DangerStateException;
+
+	protected abstract void setDangerStateDangerToOthers(PatientDTO patient)
+			throws DangerStateException;
+
 	abstract DangerStateType getState();
 }

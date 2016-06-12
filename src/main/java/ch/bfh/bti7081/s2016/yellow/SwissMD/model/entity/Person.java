@@ -5,7 +5,6 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-
 /**
  * Entity that represents a person. Can be a doctor or a patient. To use in the
  * data access layer.
@@ -103,6 +102,7 @@ public class Person extends AbstractDatabaseObject {
 	public void setLandline(String landline) {
 		this.landline = landline;
 	}
+
 	@Override
 	public String toString() {
 		return "" + this.name + " / " + this.dtype;

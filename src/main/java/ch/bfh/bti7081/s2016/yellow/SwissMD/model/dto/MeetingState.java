@@ -17,8 +17,8 @@ public abstract class MeetingState {
 	abstract void cancelMeeting(MeetingDTO meeting)
 			throws MeetingStateException;
 
-	abstract void planMeeting(MeetingDTO meeting, Date appointmentTime) throws MeetingStateException;
-
+	abstract void planMeeting(MeetingDTO meeting, Date appointmentTime)
+			throws MeetingStateException;
 
 	abstract void performMeeting(MeetingDTO meeting)
 			throws MeetingStateException;

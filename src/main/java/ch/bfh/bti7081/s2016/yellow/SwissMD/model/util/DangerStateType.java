@@ -10,10 +10,10 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DangerState;
  */
 public enum DangerStateType {
 	HARMLESS, CRISIS, DANGER_TO_HIMSELF, DANGER_TO_OTHERS;
-	
+
 	private DangerState dangerState;
-	
-	public String getString(DangerStateType t){
+
+	public String getString(DangerStateType t) {
 		switch (t) {
 		case HARMLESS:
 			return "Harmlos";
@@ -28,9 +28,9 @@ public enum DangerStateType {
 		}
 		return null;
 	}
-	
-	public DangerState getDangerState(){
+
+	public DangerState getDangerState() {
 		return this.dangerState;
 	}
-	
+
 }

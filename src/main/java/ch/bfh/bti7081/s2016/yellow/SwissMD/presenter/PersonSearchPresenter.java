@@ -13,6 +13,12 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonSearchView;
 
+/**
+ * Presenter für die PersonSearchView
+ * 
+ * @author SoullessStone
+ *
+ */
 public class PersonSearchPresenter {
 	private PersonSearchView personSearchView;
 
@@ -33,7 +39,7 @@ public class PersonSearchPresenter {
 			}
 		}
 		return result;
-		// TODO Remove or finish 
+		// TODO Remove or finish
 		/*
 		 * Not working... return getAllPersons();.stream() .filter(p ->
 		 * DateUtils.isSameDay(birthdate, p.getBirthdate()))

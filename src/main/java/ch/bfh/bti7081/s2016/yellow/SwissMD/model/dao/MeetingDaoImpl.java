@@ -11,7 +11,8 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
  * @author S.Zumstein
  * 
  */
-public class MeetingDaoImpl extends GenericDaoImpl<Meeting, Long> implements MeetingDao {
+public class MeetingDaoImpl extends GenericDaoImpl<Meeting, Long> implements
+		MeetingDao {
 
 	public MeetingDaoImpl(EntityManagerProvider emp) {
 		super(emp);
@@ -19,11 +20,11 @@ public class MeetingDaoImpl extends GenericDaoImpl<Meeting, Long> implements Mee
 
 	public List<Meeting> findMeetingForPerson(Patient patient) {
 		@SuppressWarnings("unchecked")
-		List<Meeting> resultList = (List<Meeting>) mEntityManager.createQuery("SELECT m FROM Meeting m WHERE m.patient = :patient")
-	    .setParameter("patient", patient)
-	    .getResultList();
+		List<Meeting> resultList = (List<Meeting>) mEntityManager
+				.createQuery(
+						"SELECT m FROM Meeting m WHERE m.patient = :patient")
+				.setParameter("patient", patient).getResultList();
 		return resultList;
 	}
-	
-	
+
 }

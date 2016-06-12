@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
@@ -12,7 +13,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 public class PatientDTO extends PersonDTO {
 
 	List<PrescriptionDTO> prescriptions = new ArrayList<>();
-	
+
 	private Long legalAid;
 	private Long familyDoctor;
 	private DangerState dangerState;
@@ -29,41 +30,41 @@ public class PatientDTO extends PersonDTO {
 		this.legalAid = patient.getLegalAid();
 		this.familyDoctor = patient.getFamilyDoctor();
 		DangerStateType checkDangerState = patient.getDangerState();
-		if (checkDangerState !=null) {
+		if (checkDangerState != null) {
 			this.dangerState = checkDangerState.getDangerState();
 		} else {
 			this.dangerState = new DangerStateHarmless();
 		}
-		
+
 		for (Prescription prescription : patient.getPrescriptions()) {
-			prescriptions.add(new PrescriptionDTO(prescription,this));
+			prescriptions.add(new PrescriptionDTO(prescription, this));
 		}
 	}
-	
+
 	/**
-	 * This method must remain protected! It is not allowed to change the
-	 * danger state from outside this package.
+	 * This method must remain protected! It is not allowed to change the danger
+	 * state from outside this package.
 	 **/
 	protected void changeDangerState(DangerState newDangerState) {
 		this.dangerState = newDangerState;
 	}
-	
-	public void setDangerStateHarmless() throws DangerStateException{
+
+	public void setDangerStateHarmless() throws DangerStateException {
 		this.dangerState.setDangerStateHarmless(this);
 	};
-	
-	public void setDangerStateCrisis() throws DangerStateException{
+
+	public void setDangerStateCrisis() throws DangerStateException {
 		this.dangerState.setDangerStateCrisis(this);
 	};
-	
-	public void setDangerStateDangerToHimself() throws DangerStateException{
+
+	public void setDangerStateDangerToHimself() throws DangerStateException {
 		this.dangerState.setDangerStateDangerToHimself(this);
 	};
-	
-	public void setDangerStateDangerToOthers() throws DangerStateException{
+
+	public void setDangerStateDangerToOthers() throws DangerStateException {
 		this.dangerState.setDangerStateDangerToOthers(this);
 	};
-	
+
 	public List<PrescriptionDTO> getPrescriptions() {
 		if (prescriptions != null)
 			return Collections.unmodifiableList(prescriptions);
@@ -77,7 +78,7 @@ public class PatientDTO extends PersonDTO {
 	public void removePrescription(PrescriptionDTO prescription) {
 		this.prescriptions.remove(prescription);
 	}
-	
+
 	public DangerStateType getDangerState() {
 		return this.dangerState.getState();
 	}
@@ -101,8 +102,5 @@ public class PatientDTO extends PersonDTO {
 	public void setFamilyDoctor(Long familyDoctor) {
 		this.familyDoctor = familyDoctor;
 	}
-
-	
-	
 
 }
