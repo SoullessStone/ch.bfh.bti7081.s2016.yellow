@@ -8,29 +8,25 @@ public class DangerStateDangerToOthers extends DangerState {
 	@Override
 	protected void setDangerStateHarmless(PatientDTO patient)
 			throws DangerStateException {
-		// TODO Auto-generated method stub
-
+		patient.changeDangerState(new DangerStateHarmless());
 	}
 
 	@Override
 	protected void setDangerStateCrisis(PatientDTO patient)
 			throws DangerStateException {
-		// TODO Auto-generated method stub
-
+		patient.changeDangerState(new DangerStateCrisis());
 	}
 
 	@Override
 	protected void setDangerStateDangerToHimself(PatientDTO patient)
 			throws DangerStateException {
-		// TODO Auto-generated method stub
-
+		patient.changeDangerState(new DangerStateDangerToHimself());
 	}
 
 	@Override
 	protected void setDangerStateDangerToOthers(PatientDTO patient)
 			throws DangerStateException {
-		// TODO Auto-generated method stub
-
+		patient.changeDangerState(new DangerStateDangerToOthers());
 	}
 
 	@Override
