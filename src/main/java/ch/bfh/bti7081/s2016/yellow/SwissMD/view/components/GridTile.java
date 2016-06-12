@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
 import com.vaadin.ui.GridLayout;
@@ -37,25 +38,11 @@ public class GridTile extends Tile {
 				+ (patientDTO.getFamilyDoctor() != null ? personDao.read(
 						patientDTO.getFamilyDoctor()).getName() : "---")));
 
-		System.out.println( patientDTO.getDangerState());
-		Label escalation = new Label("Gefährdung: ");
-		// if (patientDTO.getDangerState() == DangerStateType.DANGER_TO_OTHERS
-		// ||
-		// patientDTO.getDangerState() == DangerStateType.DANGER_TO_HIMSELF){
-		// escalation.addStyleName("highrisk");
-		// }
-		// System.out.println("Aktueller Danger State: "+patientDTO.getDangerState());
+		Label escalation = new Label("Gefährdung: " + patientDTO.getDangerState().getDangerStateTitle());
+		if (patientDTO.getDangerState() == DangerStateType.DANGER_TO_OTHERS || patientDTO.getDangerState() == DangerStateType.DANGER_TO_HIMSELF){
+			escalation.addStyleName("highrisk");
+		}
 		grid.addComponent(escalation);
-
-		// if (patientDTO.getDangerState().equals("1")){
-		// escalation.setValue("Gefährdung: Krise");
-		// }
-		// else if (patientDTO.getDangerState().equals("2")){
-		// escalation.setValue("Gefährdung: Selbstgefährdung");
-		// }
-		// else if(patientDTO.getDangerState().equals("3")){
-		// escalation.setValue();
-		// }
 
 		addComponent(grid);
 		contentLayout.setMargin(true);
