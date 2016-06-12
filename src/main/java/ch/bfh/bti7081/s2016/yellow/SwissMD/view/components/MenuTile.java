@@ -1,5 +1,8 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.PatientInSessionManager;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
@@ -7,12 +10,14 @@ import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 
 @SuppressWarnings("serial")
 public class MenuTile extends Tile {
+	private static PatientInSessionTile patientInSessionTile;
 
 	public MenuTile() {
-		
+
 		addComponent(createViewButton(
 				NavigationIndex.PERSONSEARCHVIEW.getNavigationPath(),
 				"PersonSearch", "img/icons/magnifying-glass-2.png"));
@@ -26,10 +31,15 @@ public class MenuTile extends Tile {
 				NavigationIndex.WIKIVIEW.getNavigationPath() + "/1", "Wiki",
 				"img/icons/books-2.png"));
 		addComponent(createViewButton(
-				NavigationIndex.MEETINGVIEW.getNavigationPath(),
-				"Meeting", "img/icons/calendar-2.png"));
+				NavigationIndex.MEETINGVIEW.getNavigationPath(), "Meeting",
+				"img/icons/calendar-2.png"));
 
 		addComponent(logoutButton());
+
+		MenuTile.patientInSessionTile = new PatientInSessionTile(
+				PatientInSessionManager.getInstance().getPatientInSession());
+		addComponent(MenuTile.patientInSessionTile);
+		System.out.println("MenuTile created");
 
 	}
 
