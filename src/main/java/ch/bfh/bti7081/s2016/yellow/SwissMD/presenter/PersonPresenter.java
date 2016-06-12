@@ -3,29 +3,36 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.presenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.DiagnosisDao;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.DiagnosisDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DiagnosisDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonView;
 
 public class PersonPresenter {
 	private PersonDao personDao;
 	private MeetingDao meetingDao;
+	private DiagnosisDao diagnosisDao;
 
 	public PersonPresenter(PersonView personView) {
 		System.out.println("init PersonPresenter");
 		this.personDao = new PersonDaoImpl(new WebEntityManagerProvider());
 		this.meetingDao = new MeetingDaoImpl(new WebEntityManagerProvider());
+		this.diagnosisDao = new DiagnosisDaoImpl(new WebEntityManagerProvider());
 	}
 
 	/**
@@ -84,5 +91,14 @@ public class PersonPresenter {
 			meetingList.add(new MeetingDTO(m));
 		}
 		return meetingList;
+	}
+
+	public List<DiagnosisDTO> getDiagnosisForPatient(Long id) throws DangerStateException {
+		Patient patient = (Patient) personDao.read(id);
+		List<DiagnosisDTO> diagnosisList = new ArrayList<>();
+		for (Diagnosis d : diagnosisDao.findDiagnosisForPerson(patient)) {
+			diagnosisList.add(new DiagnosisDTO(d));
+		}
+		return diagnosisList;
 	}
 }

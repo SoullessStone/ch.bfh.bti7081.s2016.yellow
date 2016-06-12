@@ -37,5 +37,10 @@ public class IllnessDTO extends GenericDTO{
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return code + " - " + name;
+	}
 	
 }

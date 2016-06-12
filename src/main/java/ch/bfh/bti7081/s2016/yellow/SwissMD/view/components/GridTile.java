@@ -27,7 +27,6 @@ public class GridTile extends Tile {
 
 		GridLayout grid = new GridLayout(2, 4);
 		grid.setSizeFull();
-		grid.addComponent(new Label("Diagnose: "));
 		grid.addComponent(new Label("Angehörige: "));
 		
 		grid.addComponent(new Label("Beistand: "

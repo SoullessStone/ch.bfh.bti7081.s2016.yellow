@@ -27,7 +27,7 @@ public class DiagnosisDTO extends GenericDTO{
 		this.patient = patient;
 	}
 
-	public DiagnosisDTO(Diagnosis diagnosis) throws DangerStateException{
+	public DiagnosisDTO(Diagnosis diagnosis) throws DangerStateException {
 		this.illness = new IllnessDTO(diagnosis.getIllness());
 		this.notes = diagnosis.getNotes();
 		this.date = diagnosis.getDate();
