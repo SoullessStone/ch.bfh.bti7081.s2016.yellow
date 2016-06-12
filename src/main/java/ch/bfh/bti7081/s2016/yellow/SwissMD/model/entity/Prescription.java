@@ -26,9 +26,13 @@ public class Prescription extends AbstractDatabaseObject {
 	@OneToOne
 	private Drug drug;
 	private int dosisInMilligrams;
-	// needed only for persistence
+	/**
+	 * separation of validFrom and validTo only needed for persistence
+	 **/
 	private Date validFrom;
-	// needed only for persistence
+	/**
+	 * separation of validFrom and validTo only needed for persistence
+	 **/
 	private Date validTo;
 
 	@Transient
