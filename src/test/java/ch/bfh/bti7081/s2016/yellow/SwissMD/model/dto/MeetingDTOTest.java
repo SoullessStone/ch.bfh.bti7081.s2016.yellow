@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 
 public class MeetingDTOTest extends DTOTest {
 
@@ -9,7 +10,13 @@ public class MeetingDTOTest extends DTOTest {
 		// Arrange
 		Meeting meeting = super.createTestMeeting();
 		// Act
-		MeetingDTO sut = new MeetingDTO(meeting);
+		MeetingDTO sut = null;
+		try {
+			sut = new MeetingDTO(meeting);
+		} catch (DangerStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// Assert
 		super.validateMeeting(sut);
 	}

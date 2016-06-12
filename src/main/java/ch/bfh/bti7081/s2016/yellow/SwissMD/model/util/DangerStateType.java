@@ -13,6 +13,22 @@ public enum DangerStateType {
 
 	private DangerState dangerState;
 
+	public String getString() {
+		switch (this) {
+		case HARMLESS:
+			return "Harmlos";
+		case CRISIS:
+			return "Krise";
+		case DANGER_TO_HIMSELF:
+			return "Eigengefaehrdung";
+		case DANGER_TO_OTHERS:
+			return "Fremdgefaehrdung";
+		default:
+			break;
+		}
+		return null;
+	}
+	
 	public String getString(DangerStateType t) {
 		switch (t) {
 		case HARMLESS:

@@ -35,7 +35,6 @@ public class DangerStateDangerToOthers extends DangerState {
 
 	@Override
 	DangerStateType getState() {
-		// TODO Auto-generated method stub
 		return DangerStateType.DANGER_TO_OTHERS;
 	}
 

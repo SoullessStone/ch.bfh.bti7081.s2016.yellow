@@ -37,9 +37,8 @@ public class GridTile extends Tile {
 				+ (patientDTO.getFamilyDoctor() != null ? personDao.read(
 						patientDTO.getFamilyDoctor()).getName() : "---")));
 
+		System.out.println( patientDTO.getDangerState());
 		Label escalation = new Label("Gefährdung: ");
-		// Label escalation = new Label("Gefährdung: "
-		// +(patientDTO.getDangerState()));
 		// if (patientDTO.getDangerState() == DangerStateType.DANGER_TO_OTHERS
 		// ||
 		// patientDTO.getDangerState() == DangerStateType.DANGER_TO_HIMSELF){

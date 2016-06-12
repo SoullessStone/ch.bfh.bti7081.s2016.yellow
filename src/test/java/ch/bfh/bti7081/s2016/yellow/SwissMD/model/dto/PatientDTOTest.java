@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 import org.junit.Test;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 
 public class PatientDTOTest extends DTOTest {
 
@@ -12,7 +13,13 @@ public class PatientDTOTest extends DTOTest {
 		Patient patient = super.createTestPatient();
 
 		// Act
-		PatientDTO sut = new PatientDTO(patient);
+		PatientDTO sut = null;
+		try {
+			sut = new PatientDTO(patient);
+		} catch (DangerStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		// Assert
 		super.validatePatient(sut);
