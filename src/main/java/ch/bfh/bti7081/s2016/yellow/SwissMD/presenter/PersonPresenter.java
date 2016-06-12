@@ -67,12 +67,12 @@ public class PersonPresenter {
 	 * Returns a List of {@code Patients} or {@code null} if no patients could
 	 * be found
 	 */
-	public List<PersonDTO> getPatients() {
+	public List<PatientDTO> getPatients() {
 		List<Person> persons = personDao.readAll();
-		List<PersonDTO> patients = new ArrayList<PersonDTO>(persons.size());
+		List<PatientDTO> patients = new ArrayList<PatientDTO>(persons.size());
 		for (Person person : persons) {
 			if (person.getDtype().equals("Patient"))
-				patients.add(new PersonDTO(person));
+				patients.add(new PatientDTO((Patient)person));
 		}
 		return patients;
 	}

@@ -114,7 +114,19 @@ public class MeetingPresenter {
 		}
 		return drugDTOs;
 	}
-
+	/**
+	 * Returns the newest meeting for a patient
+	 * 
+	 */
+	public Long getNewestMeetingForPatient(Long id) throws MeetingStateException {
+		Patient patient = (Patient) personDao.read(id);
+		List<MeetingDTO> meetingList = new ArrayList<>();
+		for (Meeting m : meetingDao.findMeetingForPerson(patient)) {
+			meetingList.add(new MeetingDTO(m));
+		}
+		if(meetingList != null) return meetingList.get(meetingList.size()-1).getId();
+		else return null;
+	}
 	public PatientDTO getPatient(Long patientId) throws MeetingStateException {
 		Patient p = (Patient) personDao.read(patientId);
 		if (p == null) {

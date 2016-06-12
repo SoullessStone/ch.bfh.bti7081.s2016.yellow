@@ -13,7 +13,6 @@ import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextArea;
@@ -58,6 +57,7 @@ public class MeetingView extends CustomComponent implements View,
 	private static final String MEETING_PERFORMED_SUCCESSFULLY = "Meeting wurde durchgeführt" ;
 	private static final String MEETING_NOT_CANCELED = "Meeting konnte nicht abgesagt werden" ;
 	private static final String MEETING_NOT_PERFORMED = "Meeting konnte nicht durchgeführt werden" ;
+	private static final String NO_PATIENT_IN_SESSION = "Kein Patient ausgewählt" ;
 	
 	private MeetingPresenter meetingPresenter = new MeetingPresenter(this);
 	private PrescriptionPresenter prescriptionPresenter = new PrescriptionPresenter();
@@ -187,9 +187,11 @@ public class MeetingView extends CustomComponent implements View,
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		String param = event.getParameters();
-		// param nicht leer
-		if (param != null && !param.isEmpty()) {
+		PatientDTO patientDTO = (PatientDTO) getUI().getSession().getAttribute("currentPatient");
+		// SessionPatient muss gesetzt sein
+		if (patientDTO != null){
+			String param = event.getParameters();
+			
 			// wenn ein neues Meeting erstellt werden soll, kommt das if zum Zug
 			if (param.contains(NEW_MEETING_KEYWORD)) {
 				String[] splitted = param.split("=");
@@ -231,16 +233,24 @@ public class MeetingView extends CustomComponent implements View,
 
 				}
 			} else {
-				// Meeting soll angezeigt werden
+				// Meeting soll angezeigt werden; entweder die mitgegebene Id oder dann das jüngste Meeting des sessionPatients
 				Long meetingId = null;
-				try {
-					meetingId = Long.valueOf(param);
-				} catch (NumberFormatException e) {
-					Notification.show(MEETING_ID_NOT_A_NUMBER,
-							Type.HUMANIZED_MESSAGE);
-					getUI().getNavigator().navigateTo(
-							NavigationIndex.PERSONSEARCHVIEW
-									.getNavigationPath());
+				if(param != null && !param.isEmpty()){
+					try {
+						meetingId = Long.valueOf(param);
+					} catch (NumberFormatException e) {
+						Notification.show(MEETING_ID_NOT_A_NUMBER,
+								Type.HUMANIZED_MESSAGE);
+						getUI().getNavigator().navigateTo(
+								NavigationIndex.PERSONSEARCHVIEW
+								.getNavigationPath());
+					}
+				} else{
+					try {
+						meetingId = meetingPresenter.getNewestMeetingForPatient(patientDTO.getId());
+					} catch (MeetingStateException e) {
+						e.printStackTrace();
+					}
 				}
 
 				if (meetingId != null) {
@@ -256,13 +266,14 @@ public class MeetingView extends CustomComponent implements View,
 					}
 				} else {
 					getUI().getNavigator().navigateTo(
-							NavigationIndex.PERSONSEARCHVIEW
-									.getNavigationPath());
+							NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
 				}
-			}
-		} else {
+			} 
+		}else {
 			getUI().getNavigator().navigateTo(
 					NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
+			Notification.show(
+					NO_PATIENT_IN_SESSION, Type.HUMANIZED_MESSAGE);
 		}
 		layout.finishLayout();
 	}

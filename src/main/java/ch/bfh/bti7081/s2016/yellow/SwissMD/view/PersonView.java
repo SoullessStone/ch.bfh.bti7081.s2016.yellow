@@ -40,6 +40,7 @@ public class PersonView extends CustomComponent implements View {
 	private final String ID_NOT_A_NUMBER = "Übergebener Parameter ist keine Zahl";
 	private final String ID_NOT_A_PATIENT = "Die gesuchte Person ist kein Patient";
 	private final String PERSON_NOT_FOUND = "Die gewünschte Person konnte nicht gefunden werden";
+	private final String NO_PERSON_IN_SESSION = "Keine Person ausgewählt";
 
 	private PersonPresenter personPresenter = new PersonPresenter(this);
 	private PatientDTO patientDTO;
@@ -60,133 +61,117 @@ public class PersonView extends CustomComponent implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		String param = event.getParameters();
+		PatientDTO patientDTO = (PatientDTO) getUI().getSession().getAttribute("currentPatient");
+		PersonDTO sessionPersonDTO = (PersonDTO) getUI().getSession().getAttribute("currentPerson");
 
 		// Combobox mit allen möglichen Patienten
-		Tile selectPatientTile = new Tile("Patient auswählen","img/icons/users_small.png");
-		HorizontalLayout selectPatientsArea = new HorizontalLayout();
-		List<PersonDTO> list = personPresenter.getPatients();
-		ComboBox selectPatientCBox = new ComboBox();
-		for (PersonDTO patient : list) {
-			System.out.println(patient.getId());
-			selectPatientCBox.addItem(patient);
+//		Tile selectPatientTile = new Tile("Patient auswählen","img/icons/users_small.png");
+//		HorizontalLayout selectPatientsArea = new HorizontalLayout();
+//		List<PatientDTO> list = personPresenter.getPatients();
+//		ComboBox selectPatientCBox = new ComboBox();
+//		for (PatientDTO patient : list) {
+//			selectPatientCBox.addItem(patient);
+//		}
+//		selectPatientsArea.addComponent(selectPatientCBox);
+//		selectPatientsArea
+//				.addComponent(getSelectPatientButton(selectPatientCBox));
+//		selectPatientsArea.setSpacing(true);
+//		selectPatientTile.addComponent(selectPatientsArea);
+//		layout.addComponent(selectPatientTile);
+//		layout.createRowBrake();
+
+		// if person is a not a patient
+		if (sessionPersonDTO != null) {
+			layout.addComponent(new PersonTile(sessionPersonDTO, sessionPersonDTO.getDtype()));
 		}
-		selectPatientsArea.addComponent(selectPatientCBox);
-		selectPatientsArea
-				.addComponent(getSelectPatientButton(selectPatientCBox));
-		selectPatientsArea.setSpacing(true);
-		selectPatientTile.addComponent(selectPatientsArea);
-		layout.addComponent(selectPatientTile);
-		layout.createRowBrake();
+		// patientDTO is in session
+		else if (patientDTO != null) {
 
-		if (param != null && !param.isEmpty()) {
-			Long personId = null;
-			try {
-				personId = Long.valueOf(param);
-			} catch (Exception e) {
-				Notification.show(ID_NOT_A_NUMBER, Type.HUMANIZED_MESSAGE);
-			}
+			// 1. tile: base data
+			Tile baseDataTile = new Tile("Allgemeine Grunddaten "
+					+ patientDTO.getName());
+			baseDataTile.setStdWidth(3);
+			GridLayout grid = new GridLayout(2, 4);
+			grid.setSizeFull();
+			grid.addComponent(new Label("Name: " + patientDTO.getName()));
+			grid.addComponent(new Label("Adresse: "
+					+ (patientDTO.getAddress() != null ? patientDTO.getAddress() : "---")));
+			grid.addComponent(new Label("PLZ / Ort: "
+					+ (patientDTO.getZip() != null ? patientDTO.getZip() + " " : "")
+					+ (patientDTO.getCity() != null ? patientDTO.getCity() : "---")));
+			grid.addComponent(new Label("Mobile: "
+					+ (patientDTO.getMobile() != null ? patientDTO.getMobile() : "---")));
+			grid.addComponent(new Label("Festnetz: "
+					+ (patientDTO.getLandline() != null ? patientDTO.getLandline() : "---")));
 
-			if (personId != null) {
-				try {
-					patientDTO = (PatientDTO) personPresenter.findPersonById(personId);
-				} catch (MeetingStateException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				String personType = patientDTO.getDtype();
+			baseDataTile.addComponent(grid);
+			layout.addComponent(baseDataTile);
 
-				if (personType.equals("Person") || personType.equals("Doctor")) {
-					// if person is a Person or Doctor
-					Notification.show(ID_NOT_A_PATIENT, Type.HUMANIZED_MESSAGE);
-					layout.addComponent(new PersonTile(patientDTO, personType));
-				} else {
-					// if person is a Patient
+			// 2. tile: medical base data (data protection critical stuff)
+			GridTile medicalDataTile = new GridTile(patientDTO);
+			layout.addComponent(medicalDataTile);
 
-					// 1. tile: base data
-					Tile baseDataTile = new Tile("Allgemeine Grunddaten "
-							+ patientDTO.getName());
-					baseDataTile.setStdWidth(3);
-					GridLayout grid = new GridLayout(2, 4);
-					grid.setSizeFull();
-					grid.addComponent(new Label("Name: " + patientDTO.getName()));
-					grid.addComponent(new Label("Adresse: "
-							+ (patientDTO.getAddress() != null ? patientDTO.getAddress() : "---")));
-					grid.addComponent(new Label("PLZ / Ort: "
-							+ (patientDTO.getZip() != null ? patientDTO.getZip() + " " : "")
-							+ (patientDTO.getCity() != null ? patientDTO.getCity() : "---")));
-					grid.addComponent(new Label("Mobile: "
-							+ (patientDTO.getMobile() != null ? patientDTO.getMobile() : "---")));
-					grid.addComponent(new Label("Festnetz: "
-							+ (patientDTO.getLandline() != null ? patientDTO.getLandline() : "---")));
+			Button createMeetingButton = new Button(
+					"Neues Meeting mit diesem Patient");
+			createMeetingButton.addClickListener(new ClickListener() {
 
-					baseDataTile.addComponent(grid);
-					layout.addComponent(baseDataTile);
-
-					// 2. tile: medical base data (data protection critical
-					// stuff)
-					GridTile medicalDataTile = new GridTile(patientDTO);
-					layout.addComponent(medicalDataTile);
-
-					Button createMeetingButton = new Button(
-							"Neues Meeting mit diesem Patient");
-					createMeetingButton.addClickListener(new ClickListener() {
-
-						@Override
-						public void buttonClick(ClickEvent event) {
-							getUI().getNavigator().navigateTo(
-									NavigationIndex.MEETINGVIEW
-											.getNavigationPath()
-											+ "/new="
-											+ patientDTO.getId());
-						}
-					});
-					Tile actionsTile = new Tile("Aktionen");
-					actionsTile.addComponent(createMeetingButton);
-					layout.createRowBrake();
-					layout.addComponent(actionsTile);
-
-					Tile historyTile = new Tile("Patientenhistory");
-					try {	
-						List<MeetingDTO> meetingDTOs = new ArrayList<MeetingDTO>();
-						meetingDTOs = personPresenter.getMeetingsForPatient(patientDTO.getId());
-						Collections.sort(meetingDTOs);
-						VerticalLayout verticalLayout = new VerticalLayout();
-						verticalLayout.setSpacing(true);
-						for (MeetingDTO m : meetingDTOs){
-							verticalLayout.addComponent(new MeetingTile(m));
-						}
-						historyTile.addComponent(verticalLayout);
-						layout.createRowBrake();
-						layout.addComponent(historyTile);
-					} catch (MeetingStateException e) {
-						// TODO ? Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-
-	}
-
-	private Button getSelectPatientButton(ComboBox personDTO) {
-		Button b = new Button("Patient auswählen");
-		b.addClickListener(new ClickListener() {
-
-			@Override
-			public void buttonClick(ClickEvent event) {
-				PersonDTO person = (PersonDTO) personDTO.getValue();
-
-				try {
+				@Override
+				public void buttonClick(ClickEvent event) {
 					getUI().getNavigator().navigateTo(
-							NavigationIndex.PERSONVIEW + "/" + person.getId());
-				} catch (Exception e) {
-					e.printStackTrace();
-					Notification.show(PERSON_NOT_FOUND, Type.ERROR_MESSAGE);
+							NavigationIndex.MEETINGVIEW
+									.getNavigationPath()
+									+ "/new="
+									+ patientDTO.getId());
 				}
+			});
+			Tile actionsTile = new Tile("Aktionen");
+			actionsTile.addComponent(createMeetingButton);
+			layout.createRowBrake();
+			layout.addComponent(actionsTile);
+
+			Tile historyTile = new Tile("Patientenhistory");
+			try {	
+				List<MeetingDTO> meetingDTOs = new ArrayList<MeetingDTO>();
+				meetingDTOs = personPresenter.getMeetingsForPatient(patientDTO.getId());
+				Collections.sort(meetingDTOs);
+				VerticalLayout verticalLayout = new VerticalLayout();
+				verticalLayout.setSpacing(true);
+				for (MeetingDTO m : meetingDTOs){
+					verticalLayout.addComponent(new MeetingTile(m));
+				}
+				historyTile.addComponent(verticalLayout);
+				layout.createRowBrake();
+				layout.addComponent(historyTile);
+			} catch (MeetingStateException e) {
+				// TODO ? Auto-generated catch block
+				e.printStackTrace();
 			}
-		});
-		return b;
+		} else {
+			getUI().getNavigator().navigateTo(
+					NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
+			Notification.show(
+					NO_PERSON_IN_SESSION, Type.HUMANIZED_MESSAGE);
+		}
 	}
+
+//	private Button getSelectPatientButton(ComboBox patientDTO) {
+//		Button b = new Button("Patient auswählen");
+//		b.addClickListener(new ClickListener() {
+//
+//			@Override
+//			public void buttonClick(ClickEvent event) {
+//				PatientDTO patient = (PatientDTO) patientDTO.getValue();
+//				getUI().getSession().setAttribute("currentPatient", patient);
+//				try {
+//					getUI().getNavigator().navigateTo(
+//							NavigationIndex.PERSONVIEW.getNavigationPath());
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//					Notification.show(PERSON_NOT_FOUND, Type.ERROR_MESSAGE);
+//				}
+//			}
+//		});
+//		return b;
+//	}
 
 }
