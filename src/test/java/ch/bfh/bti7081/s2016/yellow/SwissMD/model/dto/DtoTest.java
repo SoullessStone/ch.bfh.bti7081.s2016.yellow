@@ -6,21 +6,24 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Doctor;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Drug;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Illness;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.IllegalDateRangeException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
 
 public abstract class DtoTest {
-	public static final String ILLNESS_CODE = "ilness-code";
-	public static final Long ILLNESS_ID = 1898L;
-	public static final String ILLNESS_NAME = "ilness-name";
+	public static String ILLNESS_CODE = "ilness-code";
+	public static Long ILLNESS_ID = 1898L;
+	public static String ILLNESS_NAME = "ilness-name";
 
-	public static final Long DRUG_ID = 12312L;
+	public static Long DRUG_ID = 12312L;
 	private static final int DRUG_MAXDOSE = 1232135;
 	private static final String DRUG_SUBSTANCE = "Sand und Schmerz";
 	private static final String DRUG_SUBSTANCEQUANTITY = "quantity";
@@ -44,6 +47,11 @@ public abstract class DtoTest {
 	private static final Long DIAGNOSIS_ID = 68483882L;
 	private static final Date DIAGNOSIS_DATE = new Date();
 	private static final String DIAGNOSIS_NOTES = "Notizen Diagnose";
+	private static final Long MEETING_ID = 432188L;
+	private static final String DOCTOR_DTYPE = "Doctor";
+	private static final String MEETING_NOTES = "Der Patient ist nervös.";
+	private static final Date MEETING_DATE = new Date(757389061);
+	private static final MeetingStateType MEETING_STATE = MeetingStateType.PERFORMED;
 
 	@Test
 	public abstract void testConstructor();
@@ -66,7 +74,7 @@ public abstract class DtoTest {
 		validatePatient(sut.getPatient());
 	}
 
-	private Patient createTestPatient() {
+	public Patient createTestPatient() {
 		Patient patient = new Patient();
 		patient.setId(PATIENT_ID);
 		patient.setDtype(PATIENT_DTYPE);
@@ -102,6 +110,34 @@ public abstract class DtoTest {
 		// TODO test prescriptions
 	}
 
+	public Doctor createTestDoctor() {
+		Doctor doctor = new Doctor();
+		doctor.setId(PATIENT_ID);
+		doctor.setDtype(DOCTOR_DTYPE);
+		doctor.setName(PATIENT_NAME);
+		doctor.setBirthdate(PATIENT_BIRTHDATE);
+		doctor.setAddress(PATIENT_ADDRESS);
+		doctor.setZip(PATIENT_ZIP);
+		doctor.setCity(PATIENT_CITY);
+		doctor.setMobile(PATIENT_MOBILE);
+		doctor.setLandline(PATIENT_LANDLINE);
+		//OfficeNumber not included, as it is not used in DoctorDTO
+		//TODO: add Meetings
+		return doctor;
+	}
+
+	public void validateDoctor(DoctorDTO sut) {
+		Assert.assertEquals(PATIENT_ID, sut.getId());
+		Assert.assertEquals(DOCTOR_DTYPE, sut.getDtype());
+		Assert.assertEquals(PATIENT_NAME, sut.getName());
+		Assert.assertEquals(PATIENT_BIRTHDATE, sut.getBirthdate());
+		Assert.assertEquals(PATIENT_ADDRESS, sut.getAddress());
+		Assert.assertEquals(PATIENT_ZIP, sut.getZip());
+		Assert.assertEquals(PATIENT_CITY, sut.getCity());
+		Assert.assertEquals(PATIENT_MOBILE, sut.getMobile());
+		Assert.assertEquals(PATIENT_LANDLINE, sut.getLandline());
+	}
+	
 	public Illness createTestIllness() {
 		Illness illness = new Illness();
 		illness.setId(ILLNESS_ID);
@@ -151,6 +187,26 @@ public abstract class DtoTest {
 		Assert.assertEquals(DRUG_SUBSTANCE, sut.getSubstance());
 		Assert.assertEquals(DRUG_SUBSTANCEQUANTITY, sut.getSubstanceQuantitiy());
 		Assert.assertEquals(DRUG_TRADENAME, sut.getTradeName());
+	}
+	
+	public Meeting createTestMeeting() {
+		Meeting meeting = new Meeting();
+		meeting.setId(MEETING_ID);
+		meeting.setPatient(createTestPatient());
+		meeting.setDoctor(createTestDoctor());
+		meeting.setNotes(MEETING_NOTES);
+		meeting.setAppointmentTime(MEETING_DATE);
+		meeting.setStateType(MEETING_STATE);
+		return meeting;
+	}
+
+	public void validateMeeting(MeetingDTO sut) {
+		Assert.assertEquals(MEETING_ID, sut.getId());
+		validatePatient(sut.getPatient());
+		validateDoctor(sut.getDoctor());
+		Assert.assertEquals(MEETING_NOTES, sut.getNotes());
+		Assert.assertEquals(MEETING_DATE, sut.getAppointmentTime());
+		Assert.assertEquals(MEETING_STATE, sut.getMeetingState());
 	}
 
 	public DateRange createTestDateRange() throws IllegalDateRangeException {
