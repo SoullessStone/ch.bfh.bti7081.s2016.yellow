@@ -99,12 +99,9 @@ public class MultiplePersonTile extends Tile {
 						} catch (MeetingStateException e) {
 							e.printStackTrace();
 						}
-						getUI().getSession().setAttribute("currentPatient",
-								patient);
 						PatientInSessionManager.getInstance()
-								.setPatientInSession(patient);
-						getUI().getSession()
-								.setAttribute("currentPerson", null);
+								.setPatientInSession(patient, null,
+										getUI().getSession());
 						// Label sessionPatientLabel = (Label)
 						// MenuTile.findComponentById(getUI(),
 						// "sessionPatientLabel", patient.getName());
@@ -122,12 +119,9 @@ public class MultiplePersonTile extends Tile {
 						System.out.println("MEETINGVIEW!!!");
 						try {
 							patient = findPersonById(person.getId());
-							getUI().getSession().setAttribute("currentPatient",
-									patient);
 							PatientInSessionManager.getInstance()
-									.setPatientInSession(patient);
-							getUI().getSession().setAttribute("currentPerson",
-									null);
+							.setPatientInSession(patient, null,
+									getUI().getSession());
 							// Label sessionPatientLabel = (Label)
 							// MenuTile.findComponentById(getUI(),
 							// "sessionPatientLabel");
@@ -139,12 +133,9 @@ public class MultiplePersonTile extends Tile {
 						} catch (MeetingStateException e) {
 							e.printStackTrace();
 						}
-						getUI().getSession().setAttribute("currentPatient",
-								patient);
 						PatientInSessionManager.getInstance()
-								.setPatientInSession(patient);
-						getUI().getSession()
-								.setAttribute("currentPerson", null);
+						.setPatientInSession(patient, null,
+								getUI().getSession());
 						// Label sessionPatientLabel = (Label)
 						// MenuTile.findComponentById(getUI(),
 						// "sessionPatientLabel");
@@ -160,12 +151,9 @@ public class MultiplePersonTile extends Tile {
 					public void buttonClick(ClickEvent event) {
 						// set patient to null, we now have saved a
 						// non-patient-person to the session
-						getUI().getSession().setAttribute("currentPatient",
-								null);
 						PatientInSessionManager.getInstance()
-								.setPatientInSession(null);
-						getUI().getSession().setAttribute("currentPerson",
-								person);
+						.setPatientInSession(null, person,
+								getUI().getSession());
 						getUI().getNavigator().navigateTo(
 								NavigationIndex.PERSONVIEW.getNavigationPath());
 					}
