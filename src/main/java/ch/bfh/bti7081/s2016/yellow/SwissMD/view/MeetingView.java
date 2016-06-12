@@ -340,7 +340,7 @@ public class MeetingView extends CustomComponent implements View,
 
 	private void createPrescriptionTile() {
 		CreatePrescriptionTile createPrescriptionTile = new CreatePrescriptionTile(
-				meetingPresenter.getPossibleDrugs(),meetingDTO.getPatient());
+				meetingPresenter.getPossibleDrugs(),meetingDTO.getPatient(), true);
 		createPrescriptionTile.addObserver(MeetingView.this);
 		layout.addComponent(createPrescriptionTile);
 		layout.createRowBrake();

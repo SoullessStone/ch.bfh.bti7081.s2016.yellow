@@ -44,6 +44,9 @@ public class PrescriptionPresenter {
 
 	public List<PrescriptionDTO> getPrescriptionsForPatient(
 			PatientDTO patientDTO) throws MeetingStateException {
+		if (patientDTO == null){
+			throw new IllegalArgumentException("Patient was null");
+		}
 		Patient patient = (Patient) personDao.read(patientDTO.getId());
 		List<Prescription> prescriptions = prescriptionDao
 				.readPrescriptionForPatient(patient);

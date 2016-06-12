@@ -7,25 +7,27 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PrescriptionPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreatePrescriptionTile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreationPrescriptiontileObserver;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MultiplePrescriptionTile;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PrescriptionTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.CustomComponent;
-import com.vaadin.ui.Label;
 
 @SuppressWarnings("serial")
-public class PrescriptionView extends CustomComponent implements View {
+public class PrescriptionView extends CustomComponent implements View,
+		CreationPrescriptiontileObserver {
 	private PrescriptionPresenter prescriptionPresenter = new PrescriptionPresenter();
 
+	private List<PrescriptionDTO> prescriptions;
 	private BaseLayout layout;
+
+	private MultiplePrescriptionTile multiPrescriptionTile;
 
 	public PrescriptionView() throws MeetingStateException {
 		try {
@@ -43,8 +45,6 @@ public class PrescriptionView extends CustomComponent implements View {
 	@Override
 	public void enter(ViewChangeEvent event) {
 
-		
-		List<PrescriptionDTO> prescriptions = null;
 		try {
 			PatientDTO patientInSession = (PatientDTO) getUI().getSession()
 					.getAttribute("currentPatient");
@@ -52,13 +52,32 @@ public class PrescriptionView extends CustomComponent implements View {
 				getUI().getNavigator().navigateTo(
 						NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
 			}
-			prescriptions = prescriptionPresenter
+
+			CreatePrescriptionTile createPrescriptionTile = new CreatePrescriptionTile(
+					prescriptionPresenter.getPossibleDrugs(), patientInSession,
+					false);
+			createPrescriptionTile.addObserver(this);
+			layout.addComponent(createPrescriptionTile);
+
+			try{
+			this.prescriptions = prescriptionPresenter
 					.getPrescriptionsForPatient(patientInSession);
+			}catch (IllegalArgumentException e){
+				
+			}
+			this.multiPrescriptionTile = new MultiplePrescriptionTile(this.prescriptions);
+			layout.addComponent(multiPrescriptionTile);
 		} catch (MeetingStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		layout.addComponent(new MultiplePrescriptionTile(prescriptions));
+	}
+
+	@Override
+	public void perscriptionCreated(PrescriptionDTO prescriptionDTO) {
+		prescriptionPresenter.savePrescription(prescriptionDTO);
+		this.prescriptions.add(prescriptionDTO);
+		this.multiPrescriptionTile.setPrescriptions(this.prescriptions);
 	}
 
 }

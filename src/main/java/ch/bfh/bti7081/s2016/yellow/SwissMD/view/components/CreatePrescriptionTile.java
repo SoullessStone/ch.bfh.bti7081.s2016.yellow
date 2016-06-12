@@ -36,7 +36,8 @@ public class CreatePrescriptionTile extends Tile {
 
 	List<CreationPrescriptiontileObserver> observer = new ArrayList<>();
 
-	public CreatePrescriptionTile(List<DrugDTO> list, PatientDTO patient) {
+	public CreatePrescriptionTile(List<DrugDTO> list, PatientDTO patient,
+			boolean replaceTileAfterCompletion) {
 		setTitleAndIcon("Neues Medikament verordnen",
 				"img/icons/eyedropper_small.png");
 		// Combobox mit allen möglichen Medikamenten
@@ -93,23 +94,28 @@ public class CreatePrescriptionTile extends Tile {
 
 				try {
 					prescriptionDTO = new PrescriptionDTO(selectedDrug,
-							selectedDosis, new DateRange(validFrom.getValue(), validUntil.getValue()), patient);
+							selectedDosis, new DateRange(validFrom.getValue(),
+									validUntil.getValue()), patient);
 					// Allen Observer Bescheid geben, dass eine Prescription
 					// erstellt wurde
 					for (CreationPrescriptiontileObserver observer : observer) {
 						observer.perscriptionCreated(prescriptionDTO);
 					}
-					// Die CreatePrescriptionTile gleich durch eine PrescriptionTile
-					// ersetzen.
-					Layout parent = (Layout) CreatePrescriptionTile.this
-							.getParent();
-					parent.replaceComponent(CreatePrescriptionTile.this,
-							new PrescriptionTile(prescriptionDTO));
+					if (replaceTileAfterCompletion) {
+						// Die CreatePrescriptionTile gleich durch eine
+						// PrescriptionTile
+						// ersetzen.
+						Layout parent = (Layout) CreatePrescriptionTile.this
+								.getParent();
+						parent.replaceComponent(CreatePrescriptionTile.this,
+								new PrescriptionTile(prescriptionDTO));
+					}
 
 				} catch (IllegalDateRangeException e) {
-					Notification.show(ILLEGAL_DATE_RANGE,Type.HUMANIZED_MESSAGE);
+					Notification.show(ILLEGAL_DATE_RANGE,
+							Type.HUMANIZED_MESSAGE);
 				}
-			
+
 			}
 		});
 		addComponent(saveNewDrug);

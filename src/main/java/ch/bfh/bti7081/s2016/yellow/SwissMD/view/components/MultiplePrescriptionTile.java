@@ -42,14 +42,14 @@ public class MultiplePrescriptionTile extends Tile {
 
 		Table table = new Table();
 		table.addContainerProperty("Medikament", String.class, null);
-		table.addContainerProperty("Dosis", Integer.class, null);
+		table.addContainerProperty("Dosis", String.class, null);
 		table.addContainerProperty("Gültig von", String.class, null);
 		table.addContainerProperty("Gültig bis", String.class, null);
 
 		for (PrescriptionDTO prescription : prescriptions) {
 
 			String drug = prescription.getDrug().getTradeName();
-			Integer dosis = prescription.getDosisInMilligrams();
+			String dosis = prescription.getDosisInMilligrams() + " mg";
 			String validFrom = format.format(prescription.getValidity().getFrom());
 			String validTo = format.format(prescription.getValidity().getTo());
 			table.addItem(new Object[] { drug, dosis, validFrom, validTo },
