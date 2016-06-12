@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
 
 /**
- * Entity that represents a drug. To use in the data access layer.
+ * Entity that represents a drug. To be uses in the data access layer.
  * 
  * @author D. Halter
  * 

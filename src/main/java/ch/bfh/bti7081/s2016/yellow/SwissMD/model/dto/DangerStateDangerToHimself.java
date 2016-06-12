@@ -3,6 +3,14 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 
+/**
+ * 
+ * Represents the danger state danger to himself for a patient
+ * 
+ * @author D. Halter
+ * 
+ */
+
 public class DangerStateDangerToHimself extends DangerState {
 
 	@Override

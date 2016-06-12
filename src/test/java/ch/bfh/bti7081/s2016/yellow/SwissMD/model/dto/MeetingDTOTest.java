@@ -14,7 +14,7 @@ public class MeetingDTOTest extends DTOTest {
 		try {
 			sut = new MeetingDTO(meeting);
 		} catch (DangerStateException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		// Assert

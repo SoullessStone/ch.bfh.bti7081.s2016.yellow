@@ -17,7 +17,6 @@ public class DiagnosisDTOTest extends DTOTest {
 			// Assert
 			super.validateDiagnosis(sut);
 		} catch (DangerStateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

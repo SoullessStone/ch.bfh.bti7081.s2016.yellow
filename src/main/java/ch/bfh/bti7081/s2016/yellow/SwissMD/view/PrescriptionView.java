@@ -19,6 +19,8 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.CustomComponent;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification.Type;
 
 /**
  * Hier werden Verschreibungen angezeigt
@@ -29,6 +31,8 @@ import com.vaadin.ui.CustomComponent;
 @SuppressWarnings("serial")
 public class PrescriptionView extends CustomComponent implements View,
 		CreationPrescriptiontileObserver {
+	private static final String MEETING_STATE_ERROR = "Falscher Meetingstatus für den Patienten. Bitte anpassen.";
+	private static final String DANGER_STATE_ERROR = "Der Patient hat keinen Gefährdungsstatus gesetzt!";
 	private PrescriptionPresenter prescriptionPresenter = new PrescriptionPresenter();
 
 	private List<PrescriptionDTO> prescriptions;
@@ -73,10 +77,10 @@ public class PrescriptionView extends CustomComponent implements View,
 				layout.addComponent(multiPrescriptionTile);
 			}
 		} catch (MeetingStateException e) {
-			// TODO Auto-generated catch block
+			Notification.show(MEETING_STATE_ERROR, Type.ERROR_MESSAGE);
 			e.printStackTrace();
 		} catch (DangerStateException e) {
-			// TODO Auto-generated catch block
+			Notification.show(DANGER_STATE_ERROR, Type.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 	}

@@ -90,8 +90,6 @@ public abstract class DTOTest {
 		patient.setLegalAid(PATIENT_LEGALAID);
 		patient.setFamilyDoctor(PATIENT_FAMILYDOCTORID);
 		patient.setDangerState(PATIENT_DANGERSTATETYPE);
-		// TODO add meetings
-		// TODO add prescriptions
 		return patient;
 	}
 
@@ -108,8 +106,7 @@ public abstract class DTOTest {
 		Assert.assertEquals(PATIENT_LEGALAID, sut.getLegalAid());
 		Assert.assertEquals(PATIENT_FAMILYDOCTORID, sut.getFamilyDoctor());
 		// Assert.assertEquals(PATIENT_DANGERSTATETYPE, sut.getDangerState());
-		// TODO test meetings
-		// TODO test prescriptions
+
 	}
 
 	public Doctor createTestDoctor() {

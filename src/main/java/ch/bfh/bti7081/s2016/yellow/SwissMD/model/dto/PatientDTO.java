@@ -8,8 +8,15 @@ import java.util.List;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
+
+/**
+ * Data transfer object for a {@code Patient} entity. To use in the views.
+ * 
+ * @author D. Halter
+ * @author K. Suter
+ * 
+ */
 
 public class PatientDTO extends PersonDTO {
 

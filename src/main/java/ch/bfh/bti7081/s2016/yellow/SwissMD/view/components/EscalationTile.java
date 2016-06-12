@@ -7,6 +7,8 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
 import com.vaadin.server.Page;
@@ -19,7 +21,9 @@ import com.vaadin.ui.Notification.Type;
 
 /**
  * 
- * Tile for the Escalation service.
+ * Tile for the Escalation service. Show a drop down menu (ComboBox) with the current available danger states.
+ * If a patient has set an danger state, the correct one will de chosen. 
+ * Once the state is changed, the data will be saved and an e-mail will be sent to the house doctor.
  * 
  * @author Dominique Halter
  *
@@ -28,6 +32,7 @@ import com.vaadin.ui.Notification.Type;
 public class EscalationTile extends Tile {
 
 	private final static String COULD_NOT_SEND_MAIL = "E-Mail konnte nicht gesendet werden";
+	private final static String COULD_NOT_SET_DANGER_STATE = "Der Gefährdungsstatus konnte nicht gesetzt werden";
 	private MeetingDTO meetingDTO;
 	private List<String> dangerStates;
 	private ComboBox dangerStatesCBox;
@@ -35,7 +40,8 @@ public class EscalationTile extends Tile {
 	public EscalationTile(MeetingDTO meetingDTO) {
 		this.meetingDTO = meetingDTO;
 		setTitle("Eskalation");
-		dangerStates = new ArrayList<String>(); // zu Testzwecken
+		dangerStates = new ArrayList<String>(); 
+		dangerStates.add("Harmlos");
 		dangerStates.add("Krise");
 		dangerStates.add("Eigengefaehrdung");
 		dangerStates.add("Fremdgefaehrdung");
@@ -43,6 +49,22 @@ public class EscalationTile extends Tile {
 		for (String dangerState : dangerStates) {
 			dangerStatesCBox.addItem(dangerState);
 		}
+		if (meetingDTO.getPatient().getDangerState()== DangerStateType.HARMLESS){
+			dangerStatesCBox.setValue(dangerStates.get(0));
+		}
+		else if(meetingDTO.getPatient().getDangerState() == DangerStateType.CRISIS){
+			dangerStatesCBox.setValue(dangerStates.get(1));
+		}
+		else if(meetingDTO.getPatient().getDangerState() == DangerStateType.DANGER_TO_HIMSELF){
+			dangerStatesCBox.setValue(dangerStates.get(2));
+		}
+		else if (meetingDTO.getPatient().getDangerState() == DangerStateType.DANGER_TO_OTHERS){
+			dangerStatesCBox.setValue(dangerStates.get(3));
+		}
+		else {
+
+		}
+
 		addComponent(dangerStatesCBox);
 		addComponent(sendButton());
 	}
@@ -85,6 +107,39 @@ public class EscalationTile extends Tile {
 				} catch (EmailException e) {
 					Notification.show(COULD_NOT_SEND_MAIL, Type.ERROR_MESSAGE);
 					e.printStackTrace();
+				}
+				// persist the new danger state
+				switch(dangerStatesCBox.getValue().toString()){
+				case "Harmlos":
+					try {
+						meetingDTO.getPatient().setDangerStateHarmless();
+					} catch (DangerStateException e) {
+						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
+						e.printStackTrace();
+					}
+				case "Krise":
+					try {
+						meetingDTO.getPatient().setDangerStateCrisis();
+					} catch (DangerStateException e) {
+						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
+						e.printStackTrace();
+					}				
+				case "Eigengefaehrdung":
+					try {
+						meetingDTO.getPatient().setDangerStateDangerToHimself();
+					} catch (DangerStateException e) {
+						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
+						e.printStackTrace();
+					}				
+				case "Fremdgefaehrdung":
+					try {
+						meetingDTO.getPatient().setDangerStateDangerToOthers();
+					} catch (DangerStateException e) {
+						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
+						e.printStackTrace();
+					}				
+				default:
+					break;
 				}
 			}
 		});

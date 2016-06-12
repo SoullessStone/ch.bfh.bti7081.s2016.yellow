@@ -5,11 +5,12 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 
 /**
  * 
- * Danger State which has been newly set. Can not get canceled or performed yet.
+ * Represents the danger state harmless . which is not really a danger state, but is needed - for a patient
  * 
- * @author K.Suter
+ * @author D. Halter
  * 
  */
+
 public class DangerStateHarmless extends DangerState {
 
 	@Override

@@ -3,6 +3,9 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.presenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification.Type;
+
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.DrugDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.DrugDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDao;
@@ -30,6 +33,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.MeetingView;
  *
  */
 public class MeetingPresenter {
+	private static final String DANGER_STATE_ERROR = "Der Patient hat keinen Gefährdungsstatus gesetzt!";
 	private MeetingDao meetingDao;
 	private DrugDao drugDao;
 	private PersonDao personDao;
@@ -140,7 +144,7 @@ public class MeetingPresenter {
 			try {
 				meetingList.add(new MeetingDTO(m));
 			} catch (DangerStateException e) {
-				// TODO Auto-generated catch block
+				Notification.show(DANGER_STATE_ERROR, Type.ERROR_MESSAGE);
 				e.printStackTrace();
 			}
 		}

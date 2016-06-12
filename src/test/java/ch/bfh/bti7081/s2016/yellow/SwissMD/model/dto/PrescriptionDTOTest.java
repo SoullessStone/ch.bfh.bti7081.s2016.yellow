@@ -19,9 +19,8 @@ public class PrescriptionDTOTest extends DTOTest {
 			// Assert
 			super.validatePrescription(sut);
 		} catch (IllegalDateRangeException e) {
-			// TODO Fail Test
+			
 		} catch (DangerStateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

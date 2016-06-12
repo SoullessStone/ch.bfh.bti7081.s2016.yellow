@@ -22,7 +22,7 @@ import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextField;
 
 /**
- * Tile for creating a new prescription
+ * Tile for creating a new prescription. Will be shown in the meeting view
  * 
  * @author D. Halter
  * 
@@ -41,17 +41,17 @@ public class CreatePrescriptionTile extends Tile {
 			boolean replaceTileAfterCompletion) {
 		setTitleAndIcon("Neues Medikament verordnen",
 				"img/icons/eyedropper_small.png");
-		// Combobox mit allen möglichen Medikamenten
+		// create a Combobox with all available drugs
 		ComboBox selectDrug = new ComboBox("Medikamente");
 		for (DrugDTO drug : list) {
 			selectDrug.addItem(drug);
 		}
 		addComponent(selectDrug);
-		// Textfeld für die Dosis
+		// text field for the dosage
 		TextField dosis = new TextField("Dosis (mg)");
 		addComponent(dosis);
 
-		// DatePicker für Gültig von und bis
+		// DatePicker for the valid from - to field
 		DateField validFrom = new DateField("Gültig von");
 		validFrom.setWidth(200, Unit.PIXELS);
 		validFrom.setDateFormat("dd.MM.yyyy");
@@ -64,13 +64,13 @@ public class CreatePrescriptionTile extends Tile {
 		validUntil.setResolution(Resolution.DAY);
 		addComponent(validUntil);
 
-		// Button, welcher die Verordnung handlet
+		// button to save the new prescription
 		Button saveNewDrug = new Button("Verordnen");
 		saveNewDrug.addClickListener(new ClickListener() {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				// Validierung
+				// validation
 				if (dosis.getValue() == null || dosis.getValue().isEmpty()) {
 					Notification.show(EMPTY_DOSIS, Type.HUMANIZED_MESSAGE);
 					return;
@@ -89,7 +89,7 @@ public class CreatePrescriptionTile extends Tile {
 							.show(DOSIS_MUST_BE_INT, Type.HUMANIZED_MESSAGE);
 					return;
 				}
-				// Zusammenstellen der gewünschten PrescriptionDTO
+				// create the new, necessary prescriptionDTO
 
 				PrescriptionDTO prescriptionDTO;
 
@@ -97,15 +97,12 @@ public class CreatePrescriptionTile extends Tile {
 					prescriptionDTO = new PrescriptionDTO(selectedDrug,
 							selectedDosis, new DateRange(validFrom.getValue(),
 									validUntil.getValue()), patient);
-					// Allen Observer Bescheid geben, dass eine Prescription
-					// erstellt wurde
+					// inform all the observers that a new prescription was created
 					for (CreationPrescriptiontileObserver observer : observer) {
 						observer.perscriptionCreated(prescriptionDTO);
 					}
 					if (replaceTileAfterCompletion) {
-						// Die CreatePrescriptionTile gleich durch eine
-						// PrescriptionTile
-						// ersetzen.
+						// replace the CreatePrescriptionTile with a PrescriptionTile
 						Layout parent = (Layout) CreatePrescriptionTile.this
 								.getParent();
 						parent.replaceComponent(CreatePrescriptionTile.this,
@@ -121,7 +118,6 @@ public class CreatePrescriptionTile extends Tile {
 		});
 		addComponent(saveNewDrug);
 		contentLayout.setMargin(true);
-		System.out.println("drug tile created");
 	}
 
 	public void addObserver(CreationPrescriptiontileObserver observer) {

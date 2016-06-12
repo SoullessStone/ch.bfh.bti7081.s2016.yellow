@@ -11,6 +11,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification.Type;
 
 /**
  * Login-View, könnte implementiert werden, falls mal Security gewünscht wäre
@@ -20,6 +21,7 @@ import com.vaadin.ui.Notification;
  */
 @SuppressWarnings("serial")
 public class LoginView extends CustomComponent implements View {
+	private final static String LOGIN_FACTORY_ERROR = "Schwerwiegender Fehler! Die Seite kann nicht aufgebaut werden.";
 	private LoginPresenter loginPresenter = new LoginPresenter(this);
 	private BaseLayout layout;
 
@@ -32,7 +34,7 @@ public class LoginView extends CustomComponent implements View {
 			setCompositionRoot(layout);
 
 		} catch (Exception e1) {
-			// TODO Go to error View
+			Notification.show(LOGIN_FACTORY_ERROR, Type.ERROR_MESSAGE);
 			e1.printStackTrace();
 		}
 	}

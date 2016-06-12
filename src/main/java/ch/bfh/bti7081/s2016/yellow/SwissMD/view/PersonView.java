@@ -57,6 +57,7 @@ public class PersonView extends CustomComponent implements View {
 	private static final String ID_NOT_A_PATIENT = "Die gesuchte Person ist kein Patient";
 	private static final String PERSON_NOT_FOUND = "Die gewünschte Person konnte nicht gefunden werden";
 	private static final String NO_PERSON_IN_SESSION = "Keine Person ausgewählt";
+	private static final String DANGER_STATE_ERROR = "Der Patient hat keinen Gefährdungsstatus gesetzt!";
 
 	private PersonPresenter personPresenter = new PersonPresenter(this);
 	private BaseLayout layout;
@@ -184,7 +185,7 @@ public class PersonView extends CustomComponent implements View {
 			}
 			layout.addComponent(diagnosisContainer);
 		} catch (DangerStateException e1) {
-			// TODO Auto-generated catch block
+			Notification.show(DANGER_STATE_ERROR, Type.ERROR_MESSAGE);
 			e1.printStackTrace();
 		}
 	}

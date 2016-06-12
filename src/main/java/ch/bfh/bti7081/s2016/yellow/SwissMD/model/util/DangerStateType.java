@@ -5,16 +5,12 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DangerStateCrisis;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DangerStateDangerToHimself;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DangerStateDangerToOthers;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DangerStateHarmless;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingState;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingStateCanceled;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingStateNew;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingStatePerformed;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingStatePlanned;
 
 /**
  * Indicates how dangerous a patient is.
  * 
- * @author D. Halter & K. Suter
+ * @author D. Halter
+ * @author K. Suter
  * 
  */
 public enum DangerStateType {

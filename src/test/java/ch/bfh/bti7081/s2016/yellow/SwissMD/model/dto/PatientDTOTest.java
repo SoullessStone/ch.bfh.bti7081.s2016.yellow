@@ -17,7 +17,7 @@ public class PatientDTOTest extends DTOTest {
 		try {
 			sut = new PatientDTO(patient);
 		} catch (DangerStateException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
