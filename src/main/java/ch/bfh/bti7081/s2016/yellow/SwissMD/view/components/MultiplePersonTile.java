@@ -124,6 +124,8 @@ public class MultiplePersonTile extends Tile {
 							patient = findPersonById(person.getId());
 							getUI().getSession().setAttribute("currentPatient",
 									patient);
+							PatientInSessionManager.getInstance()
+									.setPatientInSession(patient);
 							getUI().getSession().setAttribute("currentPerson",
 									null);
 							// Label sessionPatientLabel = (Label)
