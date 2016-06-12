@@ -4,6 +4,7 @@ import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PrescriptionPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreatePrescriptionTile;
@@ -72,6 +73,9 @@ public class PrescriptionView extends CustomComponent implements View,
 				layout.addComponent(multiPrescriptionTile);
 			}
 		} catch (MeetingStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DangerStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

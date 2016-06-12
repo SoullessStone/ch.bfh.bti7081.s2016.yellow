@@ -16,6 +16,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Drug;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 
 /**
@@ -49,7 +50,7 @@ public class PrescriptionPresenter {
 	}
 
 	public List<PrescriptionDTO> getPrescriptionsForPatient(
-			PatientDTO patientDTO) throws MeetingStateException {
+			PatientDTO patientDTO) throws MeetingStateException, DangerStateException {
 		if (patientDTO == null) {
 			throw new IllegalArgumentException("Patient was null");
 		}

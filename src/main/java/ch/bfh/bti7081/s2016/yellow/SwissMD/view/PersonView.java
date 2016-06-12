@@ -98,7 +98,11 @@ public class PersonView extends CustomComponent implements View {
 
 			createActionTile(patientDTO);
 
-			createHistoryTile(patientDTO);
+			try {
+				createHistoryTile(patientDTO);
+			} catch (DangerStateException e) {
+				e.printStackTrace();
+			}
 		} else {
 			getUI().getNavigator().navigateTo(
 					NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
@@ -137,7 +141,7 @@ public class PersonView extends CustomComponent implements View {
 		layout.addComponent(baseDataTile);
 	}
 
-	private void createHistoryTile(PatientDTO patientDTO) {
+	private void createHistoryTile(PatientDTO patientDTO) throws DangerStateException {
 		Tile historyTile = new Tile(PATIENT_HISTORY);
 			List<MeetingDTO> meetingDTOs = new ArrayList<MeetingDTO>();
 			meetingDTOs = personPresenter.getMeetingsForPatient(patientDTO

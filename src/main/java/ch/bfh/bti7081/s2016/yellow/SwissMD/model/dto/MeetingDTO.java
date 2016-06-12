@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
 
@@ -39,7 +40,7 @@ public class MeetingDTO extends GenericDTO implements Comparable<MeetingDTO> {
 	public MeetingDTO() {
 	}
 
-	public MeetingDTO(Meeting createdMeeting) {
+	public MeetingDTO(Meeting createdMeeting) throws DangerStateException {
 		Date appointmentTime = createdMeeting.getAppointmentTime();
 
 		MeetingStateType meetingState = createdMeeting.getStateType();

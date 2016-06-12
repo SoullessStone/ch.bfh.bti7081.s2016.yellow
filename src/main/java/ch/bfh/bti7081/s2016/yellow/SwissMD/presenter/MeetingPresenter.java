@@ -19,6 +19,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.MeetingView;
 
@@ -56,9 +57,10 @@ public class MeetingPresenter {
 	 * 
 	 * @param id
 	 *            the technical key of the meeting in the database
+	 * @throws DangerStateException 
 	 * 
 	 */
-	public MeetingDTO findMeetingById(Long id) {
+	public MeetingDTO findMeetingById(Long id) throws DangerStateException {
 		Meeting meeting = meetingDao.read(id);
 		if (meeting != null) {
 			return new MeetingDTO(meeting);
@@ -105,7 +107,12 @@ public class MeetingPresenter {
 		meeting.setPatient(patient);
 
 		Meeting createdMeeting = meetingDao.create(meeting);
-		return new MeetingDTO(createdMeeting);
+		try {
+			return new MeetingDTO(createdMeeting);
+		} catch (DangerStateException e) {
+			e.printStackTrace();
+		}
+		return meetingDTO;
 	}
 
 	/**
@@ -130,7 +137,12 @@ public class MeetingPresenter {
 		Patient patient = (Patient) personDao.read(id);
 		List<MeetingDTO> meetingList = new ArrayList<>();
 		for (Meeting m : meetingDao.findMeetingForPerson(patient)) {
-			meetingList.add(new MeetingDTO(m));
+			try {
+				meetingList.add(new MeetingDTO(m));
+			} catch (DangerStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		if (meetingList != null)
 			return meetingList.get(meetingList.size() - 1).getId();
@@ -138,7 +150,7 @@ public class MeetingPresenter {
 			return null;
 	}
 
-	public PatientDTO getPatient(Long patientId) throws MeetingStateException {
+	public PatientDTO getPatient(Long patientId) throws MeetingStateException, DangerStateException {
 		Patient p = (Patient) personDao.read(patientId);
 		if (p == null) {
 			throw new IllegalArgumentException("patientId not valid");

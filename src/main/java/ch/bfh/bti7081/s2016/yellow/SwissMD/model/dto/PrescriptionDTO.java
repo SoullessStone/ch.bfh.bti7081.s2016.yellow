@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 
 /**
@@ -23,7 +24,7 @@ public class PrescriptionDTO extends GenericDTO {
 		this.setValidity(validity);
 	}
 
-	public PrescriptionDTO(Prescription prescription) {
+	public PrescriptionDTO(Prescription prescription) throws DangerStateException {
 		this.patient = new PatientDTO(prescription.getPatient());
 		this.drug = new DrugDTO(prescription.getDrug());
 		this.dosisInMilligrams = prescription.getDosisInMilligrams();

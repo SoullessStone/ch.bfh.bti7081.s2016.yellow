@@ -10,6 +10,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
@@ -236,7 +237,8 @@ public class MeetingView extends CustomComponent implements View,
 						Notification.show(PATIENT_ID_NOT_A_NUMBER,
 								Type.HUMANIZED_MESSAGE);
 					} catch (MeetingStateException e1) {
-						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (DangerStateException e1) {
 						e1.printStackTrace();
 					}
 
@@ -266,7 +268,11 @@ public class MeetingView extends CustomComponent implements View,
 
 				if (meetingId != null) {
 					// Lese MeetingDTO
-					meetingDTO = meetingPresenter.findMeetingById(meetingId);
+					try {
+						meetingDTO = meetingPresenter.findMeetingById(meetingId);
+					} catch (DangerStateException e) {
+						e.printStackTrace();
+					}
 
 					if (meetingDTO != null) {
 						showMeetingInView();

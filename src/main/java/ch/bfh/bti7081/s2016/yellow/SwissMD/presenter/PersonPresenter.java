@@ -53,7 +53,11 @@ public class PersonPresenter {
 	public PersonDTO findPersonById(Long id) throws MeetingStateException {
 		Patient person = (Patient) personDao.read(id);
 		if (person != null) {
-			return new PatientDTO(person);
+			try {
+				return new PatientDTO(person);
+			} catch (DangerStateException e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}
@@ -79,8 +83,9 @@ public class PersonPresenter {
 	/**
 	 * Returns a List of {@code Patients} or {@code null} if no patients could
 	 * be found
+	 * @throws DangerStateException 
 	 */
-	public List<PatientDTO> getPatients() {
+	public List<PatientDTO> getPatients() throws DangerStateException {
 		List<Person> persons = personDao.readAll();
 		List<PatientDTO> patients = new ArrayList<PatientDTO>(persons.size());
 		for (Person person : persons) {
@@ -90,7 +95,7 @@ public class PersonPresenter {
 		return patients;
 	}
 
-	public List<MeetingDTO> getMeetingsForPatient(Long id) {
+	public List<MeetingDTO> getMeetingsForPatient(Long id) throws DangerStateException {
 		Patient patient = (Patient) personDao.read(id);
 		List<MeetingDTO> meetingList = new ArrayList<>();
 		for (Meeting m : meetingDao.findMeetingForPerson(patient)) {

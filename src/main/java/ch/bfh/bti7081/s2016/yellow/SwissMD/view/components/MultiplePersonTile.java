@@ -10,6 +10,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.PatientInSessionManager;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
@@ -98,6 +99,8 @@ public class MultiplePersonTile extends Tile {
 							patient = findPersonById(person.getId());
 						} catch (MeetingStateException e) {
 							e.printStackTrace();
+						} catch (DangerStateException e) {
+							e.printStackTrace();
 						}
 						PatientInSessionManager.getInstance()
 								.setPatientInSession(patient, null,
@@ -131,6 +134,8 @@ public class MultiplePersonTile extends Tile {
 											+ "/new="
 											+ patient.getId());
 						} catch (MeetingStateException e) {
+							e.printStackTrace();
+						} catch (DangerStateException e) {
 							e.printStackTrace();
 						}
 						PatientInSessionManager.getInstance()
@@ -192,7 +197,7 @@ public class MultiplePersonTile extends Tile {
 		updateTileValue();
 	}
 
-	public PatientDTO findPersonById(Long id) throws MeetingStateException {
+	public PatientDTO findPersonById(Long id) throws MeetingStateException, DangerStateException {
 		Patient patient = (Patient) personDao.read(id);
 		if (patient != null) {
 			return new PatientDTO(patient);

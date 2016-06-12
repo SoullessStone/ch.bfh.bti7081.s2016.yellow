@@ -8,6 +8,7 @@ import java.util.List;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Prescription;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 
 public class PatientDTO extends PersonDTO {
@@ -25,7 +26,7 @@ public class PatientDTO extends PersonDTO {
 		setDtype("Patient");
 	}
 
-	public PatientDTO(Patient patient) {
+	public PatientDTO(Patient patient) throws DangerStateException {
 		super(patient);
 		this.legalAid = patient.getLegalAid();
 		this.familyDoctor = patient.getFamilyDoctor();
@@ -33,7 +34,7 @@ public class PatientDTO extends PersonDTO {
 		if (checkDangerState != null) {
 			this.dangerState = checkDangerState.getDangerState();
 		} else {
-			this.dangerState = new DangerStateHarmless();
+			this.dangerState.setDangerStateHarmless(this);
 		}
 
 		for (Prescription prescription : patient.getPrescriptions()) {

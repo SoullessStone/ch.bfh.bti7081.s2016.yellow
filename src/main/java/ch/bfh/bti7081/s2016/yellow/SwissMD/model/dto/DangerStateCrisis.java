@@ -35,8 +35,7 @@ public class DangerStateCrisis extends DangerState {
 
 	@Override
 	DangerStateType getState() {
-		// TODO Auto-generated method stub
-		return null;
+		return DangerStateType.CRISIS;
 	}
 
 }

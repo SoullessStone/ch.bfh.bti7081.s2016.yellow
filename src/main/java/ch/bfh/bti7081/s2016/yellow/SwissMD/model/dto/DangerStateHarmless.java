@@ -5,8 +5,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 
 /**
  * 
- * Meeting which has been newly created. Can not get canceled or performed yet.
- * Must be planned first.
+ * Danger State which has been newly set. Can not get canceled or performed yet.
  * 
  * @author K.Suter
  * 
