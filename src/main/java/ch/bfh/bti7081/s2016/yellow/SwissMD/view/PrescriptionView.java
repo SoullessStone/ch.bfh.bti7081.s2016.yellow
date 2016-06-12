@@ -51,22 +51,19 @@ public class PrescriptionView extends CustomComponent implements View,
 			if (patientInSession == null) {
 				getUI().getNavigator().navigateTo(
 						NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
-			}
-
-			CreatePrescriptionTile createPrescriptionTile = new CreatePrescriptionTile(
-					prescriptionPresenter.getPossibleDrugs(), patientInSession,
-					false);
-			createPrescriptionTile.addObserver(this);
-			layout.addComponent(createPrescriptionTile);
-
-			try{
-			this.prescriptions = prescriptionPresenter
-					.getPrescriptionsForPatient(patientInSession);
-			}catch (IllegalArgumentException e){
+			} else {
+				CreatePrescriptionTile createPrescriptionTile = new CreatePrescriptionTile(
+						prescriptionPresenter.getPossibleDrugs(), patientInSession,
+						false);
+				createPrescriptionTile.addObserver(this);
+				layout.addComponent(createPrescriptionTile);
+			
+				this.prescriptions = prescriptionPresenter
+						.getPrescriptionsForPatient(patientInSession);
 				
+				this.multiPrescriptionTile = new MultiplePrescriptionTile(this.prescriptions);
+				layout.addComponent(multiPrescriptionTile);
 			}
-			this.multiPrescriptionTile = new MultiplePrescriptionTile(this.prescriptions);
-			layout.addComponent(multiPrescriptionTile);
 		} catch (MeetingStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

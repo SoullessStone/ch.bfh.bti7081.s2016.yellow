@@ -128,10 +128,10 @@ public class MultipleIllnessTile extends Tile {
 				if (patientInSession == null) {
 					getUI().getNavigator().navigateTo(
 							NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
+				} else {
+					window.setContent(new CreateDiagnosisTile(illnessToShow, patientInSession, window));
+					getUI().getCurrent().addWindow(window);
 				}
-				window.setContent(new CreateDiagnosisTile(illnessToShow, patientInSession, window));
-				getUI().getCurrent().addWindow(window);
-
 			}
 		};
 	}

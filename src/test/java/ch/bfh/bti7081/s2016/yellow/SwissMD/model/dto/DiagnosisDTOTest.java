@@ -17,12 +17,13 @@ public class DiagnosisDTOTest extends DtoTest{
 		DiagnosisDTO sut = null;
 		try {
 			sut = new DiagnosisDTO(diagnosis);
+			// Assert
+			super.validateDiagnosis(sut);
 		} catch (DangerStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		// Assert
-		super.validateDiagnosis(sut);
+
 	}
 }

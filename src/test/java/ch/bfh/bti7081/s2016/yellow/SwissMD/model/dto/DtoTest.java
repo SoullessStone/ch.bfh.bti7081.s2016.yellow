@@ -16,11 +16,11 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DateRange;
 
 public abstract class DtoTest {
-	public static String ILLNESS_CODE = "ilness-code";
-	public static Long ILLNESS_ID = 1898L;
-	public static String ILLNESS_NAME = "ilness-name";
+	public static final String ILLNESS_CODE = "ilness-code";
+	public static final Long ILLNESS_ID = 1898L;
+	public static final String ILLNESS_NAME = "ilness-name";
 
-	public static Long DRUG_ID = 12312L;
+	public static final Long DRUG_ID = 12312L;
 	private static final int DRUG_MAXDOSE = 1232135;
 	private static final String DRUG_SUBSTANCE = "Sand und Schmerz";
 	private static final String DRUG_SUBSTANCEQUANTITY = "quantity";

@@ -193,7 +193,7 @@ public class MeetingView extends CustomComponent implements View,
 			String param = event.getParameters();
 			
 			// wenn ein neues Meeting erstellt werden soll, kommt das if zum Zug
-			if (param.contains(NEW_MEETING_KEYWORD)) {
+			if (param != null && param.contains(NEW_MEETING_KEYWORD)) {
 				String[] splitted = param.split("=");
 				if (splitted.length == 2) {
 					try {

@@ -10,15 +10,17 @@ public class PrescriptionDTOTest extends DtoTest {
 	public void testConstructor() {
 		// Arrange
 		Prescription prescription = null;
+		PrescriptionDTO sut = null;
+		
 		try {
+			// Act
 			prescription = super.createTestPrescription();
+			sut = new PrescriptionDTO(prescription);
+			// Assert
+			super.validatePrescription(sut);
 		} catch (IllegalDateRangeException e) {
 			// TODO Fail Test
 		}
-		// Act
-		PrescriptionDTO sut = null;
-		sut = new PrescriptionDTO(prescription);
-		// Assert
-		super.validatePrescription(sut);
+
 	}
 }

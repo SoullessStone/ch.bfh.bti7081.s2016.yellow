@@ -110,17 +110,17 @@ public class MultiplePersonTile extends Tile {
 						System.out.println("MEETINGVIEW!!!");
 						try {
 							patient = findPersonById(person.getId());
+							getUI().getSession().setAttribute("currentPatient", patient);
+							getUI().getSession().setAttribute("currentPerson", null);
+	//						Label sessionPatientLabel = (Label) MenuTile.findComponentById(getUI(), "sessionPatientLabel");
+							getUI().getNavigator().navigateTo(
+									NavigationIndex.MEETINGVIEW
+									.getNavigationPath()
+									+ "/new=" + patient.getId()
+									);
 						} catch (MeetingStateException e) {
 							e.printStackTrace();
 						}
-						getUI().getSession().setAttribute("currentPatient", patient);
-						getUI().getSession().setAttribute("currentPerson", null);
-//						Label sessionPatientLabel = (Label) MenuTile.findComponentById(getUI(), "sessionPatientLabel");
-						getUI().getNavigator().navigateTo(
-								NavigationIndex.MEETINGVIEW
-								.getNavigationPath()
-								+ "/new=" + patient.getId()
-								);
 					}
 				});
 			}
