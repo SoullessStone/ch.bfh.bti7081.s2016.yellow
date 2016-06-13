@@ -13,7 +13,10 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextArea;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
 
 /**
@@ -46,7 +49,7 @@ public class CreateDiagnosisTile extends Tile {
 				try {
 					createDiagnosisTilePresenter.createDiagnosis(diagnosisDTO);
 				} catch (CouldNotSaveException e) {
-					// TODO Go to error view
+					Notification.show(e.getLocalizedMessage(), Type.ERROR_MESSAGE);
 					e.printStackTrace();
 				}
 				window.close();

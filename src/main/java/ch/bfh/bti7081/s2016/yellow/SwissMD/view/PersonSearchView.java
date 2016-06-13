@@ -36,7 +36,6 @@ import com.vaadin.ui.Window;
 @SuppressWarnings("serial")
 public class PersonSearchView extends CustomComponent implements View {
 	protected static final String NO_SEARCH_CRITERIA = "Weder ein Name noch ein Geburtsdatum für die Suche ausgewählt";
-
 	private static final String FOUND_COUNT_RESULTS = " Suchergebnisse wurden gefunden.";
 
 	private PersonSearchPresenter personSearchPresenter = new PersonSearchPresenter(
@@ -55,12 +54,9 @@ public class PersonSearchView extends CustomComponent implements View {
 							TileLayoutFactory.Arguments.ELEMENTS_PER_ROW
 									.getName() + ":3");
 		} catch (Exception e1) {
-			Notification.show(ErrorView.LOGIN_FACTORY_ERROR+": "+e1.getLocalizedMessage(), Type.ERROR_MESSAGE);
-			e1.printStackTrace();
 			Window window = new ErrorWindow(e1);
-			window.attach();
-			//PatientInSessionManager.getInstance().setErrorInSession(e1, getUI().getSession());
-			UI.getCurrent().getNavigator().navigateTo(NavigationIndex.ERRORVIEW.getNavigationPath());
+			UI.getCurrent().addWindow(window);
+			e1.printStackTrace();
 		}
 		setCompositionRoot(layout);
 	}

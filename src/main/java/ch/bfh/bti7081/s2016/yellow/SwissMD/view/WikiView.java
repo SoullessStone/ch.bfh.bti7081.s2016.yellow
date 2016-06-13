@@ -4,6 +4,7 @@ import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.WikiPresenter;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.ErrorWindow;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MultipleIllnessTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
@@ -19,6 +20,8 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.Window;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextField;
 
@@ -44,7 +47,8 @@ public class WikiView extends CustomComponent implements View {
 							TileLayoutFactory.Arguments.ELEMENTS_PER_ROW
 									.getName() + ":3");
 		} catch (Exception e1) {
-			// TODO Go to error View
+			Window window = new ErrorWindow(e1);
+			UI.getCurrent().addWindow(window);
 			e1.printStackTrace();
 		}
 		setCompositionRoot(layout);

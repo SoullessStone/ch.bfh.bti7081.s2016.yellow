@@ -102,7 +102,7 @@ public class MeetingPresenter {
 		Meeting meeting = new Meeting();
 		meeting.setAppointmentTime(meetingDTO.getAppointmentTime());
 		meeting.setDoctor((Doctor) personDao.read(meetingDTO.getDoctor().getId()));
-		meeting.setNotes(meetingDTO.getNotes());
+		meeting.setNotes("");
 		Patient patient = (Patient) personDao.read(meetingDTO.getPatient()
 				.getId());
 		if (patient == null) {

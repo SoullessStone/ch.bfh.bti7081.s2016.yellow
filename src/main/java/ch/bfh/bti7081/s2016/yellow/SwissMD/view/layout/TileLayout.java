@@ -74,10 +74,7 @@ public class TileLayout extends BaseLayout {
 		}
 
 		currentRow.addComponent(tile);
-		// tiles.put(currentRow, tile);
 		tile.setPos(rows.size() - 1, currentPos);
-		System.out.println("set Tile pos to " + (rows.size() - 1) + ", "
-				+ currentPos);
 	}
 
 	private void calculateElementExpansions(HorizontalLayout row) {

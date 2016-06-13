@@ -34,7 +34,6 @@ public class NavigatorUI extends UI {
 
 		for (NavigationIndex index : NavigationIndex.values()) {
 			String navPath = index.getNavigationPath();
-			// View view = (View) index.getViewClass().newInstance();
 			navigator.addView(navPath, index.getViewClass());
 		}
 

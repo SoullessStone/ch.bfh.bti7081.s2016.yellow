@@ -44,11 +44,14 @@ public class MeetingTile extends Tile {
 		this.tile.addStyleName("noshadow");
 
 		grid.addComponent(vertical, 0, 0);
-		int end = meeting.getNotes().length();
-		if (end > 100) {
-			end = 100;
+		String notesField = "";
+		if (meeting.getNotes() != null){
+			int end = meeting.getNotes().length();
+			if (end > 100) {
+				end = 100;
+			}
+			notesField = meeting.getNotes().substring(0, end);
 		}
-		String notesField = meeting.getNotes().substring(0, end);
 		grid.addComponent(new Label(notesField), 1, 0);
 		grid.setSpacing(true);
 

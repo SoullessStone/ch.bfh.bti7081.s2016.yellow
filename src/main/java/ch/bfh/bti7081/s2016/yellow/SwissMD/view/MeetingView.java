@@ -17,6 +17,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PrescriptionPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreatePrescriptionTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreationPrescriptiontileObserver;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.ErrorWindow;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.EscalationTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PrescriptionTile;
@@ -37,6 +38,8 @@ import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.Window;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextArea;
 
@@ -83,7 +86,8 @@ public class MeetingView extends CustomComponent implements View,
 									.getName() + ":3");
 			setCompositionRoot(layout);
 		} catch (Exception e1) {
-			// TODO Go to error View
+			Window window = new ErrorWindow(e1);
+			UI.getCurrent().addWindow(window);
 			e1.printStackTrace();
 		}
 
@@ -96,7 +100,7 @@ public class MeetingView extends CustomComponent implements View,
 			@Override
 			public void buttonClick(ClickEvent event) {
 				try {
-					this.notifyAll();
+					//this.notifyAll();
 					meetingDTO.setNotes(getNoteArea().getValue());
 					meetingDTO.setAppointmentTime(getAppointmentTimeDateField()
 							.getValue());
@@ -203,7 +207,6 @@ public class MeetingView extends CustomComponent implements View,
 					try {
 						// Meeting mit Patient erstellen
 						try {
-							//TODO Alex: Doctor aus Session lesen
 							MeetingDTO meetingDTO = new MeetingDTO(patientDTO,
 									SessionUtil.getDoctorInSession(getUI().getSession()),
 									new Date());

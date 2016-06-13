@@ -33,14 +33,12 @@ public class SimpleLayout extends BaseLayout {
 
 	@Override
 	public void createRowBrake() {
-		// TODO Alex Auto-generated method stub
-
+		// SimpleLayout won't support row brakes.
 	}
 
 	@Override
 	public void finishLayout() {
-		// TODO Alex Auto-generated method stub
-
+		// SimpleLayout won't support finish layout.
 	}
 
 }

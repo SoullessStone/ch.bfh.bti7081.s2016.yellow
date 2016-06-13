@@ -11,6 +11,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.DiagnosisTile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.ErrorWindow;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.GridTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MeetingTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
@@ -30,6 +31,8 @@ import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.Window;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.VerticalLayout;
 
@@ -68,7 +71,8 @@ public class PersonView extends CustomComponent implements View {
 							TileLayoutFactory.Arguments.ELEMENTS_PER_ROW
 									.getName() + ":3");
 		} catch (Exception e1) {
-			// TODO Go to error View
+			Window window = new ErrorWindow(e1);
+			UI.getCurrent().addWindow(window);
 			e1.printStackTrace();
 		}
 		setCompositionRoot(layout);
