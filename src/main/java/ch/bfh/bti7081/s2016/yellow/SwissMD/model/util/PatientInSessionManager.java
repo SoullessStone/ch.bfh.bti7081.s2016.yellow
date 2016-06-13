@@ -13,31 +13,17 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
  *
  */
 public class PatientInSessionManager {
-	private static PatientInSessionManager manager;
-	private static VaadinSession vaadinSession;
-	private PatientDTO patientInSession;
 
-	private PatientInSessionManager() {
-
+	
+	public static PatientDTO getPatientInSession(VaadinSession vaadinSession) {
+		return (PatientDTO) vaadinSession.getAttribute("currentPatient");
 	}
 
-	public static PatientInSessionManager getInstance() {
-		if (manager == null) {
-			manager = new PatientInSessionManager();
-		}
-		return manager;
-	}
-
-	public PatientDTO getPatientInSession() {
-		return patientInSession;
-	}
-
-	public void setPatientInSession(PatientDTO patient, PersonDTO person,
+	public static void setPatientInSession(PatientDTO patient, PersonDTO person,
 			VaadinSession vaadinSession) {
-		PatientInSessionManager.vaadinSession = vaadinSession;
+
 		vaadinSession.setAttribute("currentPatient", patient);
 		vaadinSession.setAttribute("currentPerson", person);
-		this.patientInSession = patient;
 	}
 
 }

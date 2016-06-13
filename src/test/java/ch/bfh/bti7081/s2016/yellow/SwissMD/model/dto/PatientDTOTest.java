@@ -16,12 +16,14 @@ public class PatientDTOTest extends DTOTest {
 		PatientDTO sut = null;
 		try {
 			sut = new PatientDTO(patient);
+			
+			// Assert
+			super.validatePatient(sut);
 		} catch (DangerStateException e) {
 			
 			e.printStackTrace();
 		}
 
-		// Assert
-		super.validatePatient(sut);
+
 	}
 }

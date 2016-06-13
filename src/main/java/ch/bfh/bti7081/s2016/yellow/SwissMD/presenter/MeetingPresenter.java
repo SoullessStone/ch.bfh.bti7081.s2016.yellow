@@ -13,6 +13,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.MeetingDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DrugDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
@@ -101,8 +102,8 @@ public class MeetingPresenter {
 			throws MeetingStateException {
 		Meeting meeting = new Meeting();
 		meeting.setAppointmentTime(meetingDTO.getAppointmentTime());
-		meeting.setDoctor((Doctor) personDao.read(6L));
-		meeting.setNotes("Automatisch Generiert, weil session fehlt");
+		meeting.setDoctor((Doctor) personDao.read(meetingDTO.getDoctor().getId()));
+		meeting.setNotes(meetingDTO.getNotes());
 		Patient patient = (Patient) personDao.read(meetingDTO.getPatient()
 				.getId());
 		if (patient == null) {

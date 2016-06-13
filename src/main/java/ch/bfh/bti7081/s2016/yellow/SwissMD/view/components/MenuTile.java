@@ -1,12 +1,17 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.PatientInSessionManager;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.themes.BaseTheme;
 import com.vaadin.ui.HorizontalLayout;
 
 /**
@@ -17,16 +22,16 @@ import com.vaadin.ui.HorizontalLayout;
  */
 @SuppressWarnings("serial")
 public class MenuTile extends Tile {
-	private static PatientInSessionTile patientInSessionTile;
+	
+	private static final String ICONS_MAGNIFYING_GLASS = "img/icons/magnifying-glass-2.png";
+	private static final String ICONS_TEAM = "img/icons/team.png";
+	private static final String ICONS_SURGEON = "img/icons/surgeon.png";
+	private static final String ICONS_BUSINESSMAN = "img/icons/businessman.png";
 
 	public MenuTile() {
+		PatientDTO patientInSession = PatientInSessionManager.getPatientInSession(UI.getCurrent().getSession());
 
-		addComponent(createViewButton(
-				NavigationIndex.PERSONSEARCHVIEW.getNavigationPath(),
-				"PersonSearch", "img/icons/magnifying-glass-2.png"));
-		addComponent(createViewButton(
-				NavigationIndex.PERSONVIEW.getNavigationPath(), "Person",
-				"img/icons/team.png"));
+		addComponent(createPersonSessionButton(patientInSession));
 		addComponent(createViewButton(
 				NavigationIndex.PRESCRIPTIONVIEW.getNavigationPath(),
 				"Prescription", "img/icons/pills-3.png"));
@@ -36,12 +41,11 @@ public class MenuTile extends Tile {
 		addComponent(createViewButton(
 				NavigationIndex.MEETINGVIEW.getNavigationPath(), "Meeting",
 				"img/icons/calendar-2.png"));
-
+		addComponent(createViewButton(
+				NavigationIndex.PERSONSEARCHVIEW.getNavigationPath(),
+				"PersonSearch", ICONS_MAGNIFYING_GLASS));
 		addComponent(logoutButton());
 
-		MenuTile.patientInSessionTile = new PatientInSessionTile(
-				PatientInSessionManager.getInstance().getPatientInSession());
-		addComponent(MenuTile.patientInSessionTile);
 		System.out.println("MenuTile created");
 
 	}
@@ -83,6 +87,18 @@ public class MenuTile extends Tile {
 
 	private String getLogoutPath() {
 		return getUI().getPage().getLocation().getPath();
+	}
+	
+	public Button createPersonSessionButton(PatientDTO patient) {
+		if (patient == null) {
+			return createViewButton(
+					NavigationIndex.PERSONVIEW.getNavigationPath(), "Person",
+					ICONS_TEAM);
+		} else {
+			return createViewButton(
+					NavigationIndex.PERSONVIEW.getNavigationPath(), patient.getName(),
+					ICONS_BUSINESSMAN);
+		}
 	}
 
 }

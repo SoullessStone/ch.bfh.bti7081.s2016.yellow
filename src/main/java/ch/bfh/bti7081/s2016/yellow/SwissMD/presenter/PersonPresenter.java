@@ -34,8 +34,7 @@ public class PersonPresenter {
 	private MeetingDao meetingDao;
 	private DiagnosisDao diagnosisDao;
 
-	public PersonPresenter(PersonView personView) {
-		System.out.println("init PersonPresenter");
+	public PersonPresenter() {
 		this.personDao = new PersonDaoImpl(new WebEntityManagerProvider());
 		this.meetingDao = new MeetingDaoImpl(new WebEntityManagerProvider());
 		this.diagnosisDao = new DiagnosisDaoImpl(new WebEntityManagerProvider());

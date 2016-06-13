@@ -200,16 +200,10 @@ public class MeetingView extends CustomComponent implements View,
 
 			// wenn ein neues Meeting erstellt werden soll, kommt das if zum Zug
 			if (param != null && param.contains(NEW_MEETING_KEYWORD)) {
-				String[] splitted = param.split("=");
-				if (splitted.length == 2) {
 					try {
-						// Versuchen, PatientenId zu lesen
-						Long patientId = Long.valueOf(splitted[1]);
-						PatientDTO patient = meetingPresenter
-								.getPatient(patientId);
 						// Meeting mit Patient erstellen
 						try {
-							MeetingDTO meetingDTO = new MeetingDTO(patient,
+							MeetingDTO meetingDTO = new MeetingDTO(patientDTO,
 									new DoctorDTO("bla", new Date()),
 									new Date());
 							MeetingDTO m;
@@ -236,13 +230,9 @@ public class MeetingView extends CustomComponent implements View,
 					} catch (NumberFormatException e) {
 						Notification.show(PATIENT_ID_NOT_A_NUMBER,
 								Type.HUMANIZED_MESSAGE);
-					} catch (MeetingStateException e1) {
-						e1.printStackTrace();
-					} catch (DangerStateException e1) {
-						e1.printStackTrace();
 					}
 
-				}
+
 			} else {
 				// Meeting soll angezeigt werden; entweder die mitgegebene Id
 				// oder dann das jüngste Meeting des sessionPatients

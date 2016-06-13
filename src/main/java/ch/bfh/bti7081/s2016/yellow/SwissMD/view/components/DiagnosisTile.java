@@ -17,8 +17,11 @@ public class DiagnosisTile extends Tile {
 		setTitleAndIcon(title, "img/icons/users_small.png");
 		addComponent(new Label("Krankheit: "
 				+ diagnosis.getIllness().toString()));
-		addComponent(new Label("Diagnostiziert am: " + diagnosis.getDate()));
+		addComponent(new Label("Diagnostiziert am: " + diagnosis.getDiagnosisDateString()));
 		addComponent(new Label("Notizen: " + diagnosis.getNotes()));
-		System.out.println("DiagnosisTile created");
+	}
+	
+	public void disableShadow(){
+		tile.addStyleName("noshadow");
 	}
 }

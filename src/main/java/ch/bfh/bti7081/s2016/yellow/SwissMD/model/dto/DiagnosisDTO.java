@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
@@ -52,6 +54,11 @@ public class DiagnosisDTO extends GenericDTO {
 
 	public Date getDate() {
 		return new Date(date.getTime());
+	}
+	
+	public String getDiagnosisDateString(){
+		DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+		return df.format(date);
 	}
 
 	public void setDate(Date date) {

@@ -59,7 +59,7 @@ public class PersonView extends CustomComponent implements View {
 	private static final String NO_PERSON_IN_SESSION = "Keine Person ausgewählt";
 	private static final String DANGER_STATE_ERROR = "Der Patient hat keinen Gefährdungsstatus gesetzt!";
 
-	private PersonPresenter personPresenter = new PersonPresenter(this);
+	private PersonPresenter personPresenter = new PersonPresenter();
 	private BaseLayout layout;
 
 	public PersonView() {
@@ -94,7 +94,6 @@ public class PersonView extends CustomComponent implements View {
 
 			GridTile medicalDataTile = new GridTile(patientDTO);
 			layout.addComponent(medicalDataTile);
-
 			createDiagnosisContainer(patientDTO);
 
 			createActionTile(patientDTO);
@@ -177,13 +176,22 @@ public class PersonView extends CustomComponent implements View {
 
 	private void createDiagnosisContainer(PatientDTO patientInSession) {
 		try {
+			
 			Tile diagnosisContainer = new Tile(DIAGNOSIS);
-			for (DiagnosisDTO diagnosisDTO : personPresenter
-					.getDiagnosisForPatient(patientInSession.getId())) {
-				diagnosisContainer.addComponent(new DiagnosisTile(diagnosisDTO,
-						diagnosisDTO.getIllness().toString()));
+
+			List<DiagnosisDTO> diagnosisForPatient = personPresenter
+					.getDiagnosisForPatient(patientInSession.getId());
+			
+			for (DiagnosisDTO diagnosisDTO : diagnosisForPatient) {
+				DiagnosisTile diagnosisTile = new DiagnosisTile(diagnosisDTO,
+						diagnosisDTO.getIllness().toString());
+				diagnosisTile.disableShadow();
+				diagnosisContainer.addComponent(diagnosisTile);
 			}
+
+			layout.createRowBrake();
 			layout.addComponent(diagnosisContainer);
+
 		} catch (DangerStateException e1) {
 			Notification.show(DANGER_STATE_ERROR, Type.ERROR_MESSAGE);
 			e1.printStackTrace();

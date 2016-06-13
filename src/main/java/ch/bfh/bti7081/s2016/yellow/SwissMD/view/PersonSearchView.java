@@ -3,17 +3,21 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.PatientInSessionManager;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonSearchPresenter;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.ErrorWindow;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MultiplePersonTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Page;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -22,6 +26,8 @@ import com.vaadin.ui.DateField;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.Window;
 
 /**
  * Hier werden Personen gesucht
@@ -51,8 +57,12 @@ public class PersonSearchView extends CustomComponent implements View {
 							TileLayoutFactory.Arguments.ELEMENTS_PER_ROW
 									.getName() + ":3");
 		} catch (Exception e1) {
-			// TODO Go to error View
+			Notification.show(ErrorView.LOGIN_FACTORY_ERROR+": "+e1.getLocalizedMessage(), Type.ERROR_MESSAGE);
 			e1.printStackTrace();
+			Window window = new ErrorWindow(e1);
+			window.attach();
+			//PatientInSessionManager.getInstance().setErrorInSession(e1, getUI().getSession());
+			UI.getCurrent().getNavigator().navigateTo(NavigationIndex.ERRORVIEW.getNavigationPath());
 		}
 		setCompositionRoot(layout);
 	}

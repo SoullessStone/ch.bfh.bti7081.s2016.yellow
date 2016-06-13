@@ -13,6 +13,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.PatientInSessionManager;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
@@ -35,24 +36,47 @@ import com.vaadin.ui.VerticalLayout;
  */
 @SuppressWarnings("serial")
 public class MultiplePersonTile extends Tile {
+	private static final String USER_PROFILE = "Benutzerprofil";
+	private static final String LINK_STYLE = "link";
+	private static final String NEW_MEETING_WITH_PATIENT = "Neues Meeting mit diesem Patient";
+	private static final String SELECT_PERSON = "Person auswählen";
+	private static final String ICONS_SURGEON = "img/icons/surgeon.png";
+	private static final String ICONS_BUSINESSMAN = "img/icons/businessman.png";
+	private static final String GRID_BORDER_STYLE = "gridBorder";
+	private static final String NEW_MEETING_PROPERTY = "Neues Meeting";
+	private static final String PROFILE_PROPERTY = "Profil";
+	private static final String BIRTHDAY_PROPERTY = "Geburtsdatum";
+	private static final String NAME_PROPERTY = "Name";
+	private static final String ICON_PROPERTY = "Icon";
+	private static final String NO_PERSON_FOUND = "Keine Personen gefunden!";
+	
 	private List<PersonDTO> persons;
-	private PersonDao personDao;
-	private VerticalLayout layout;
+	private PersonPresenter personPresenter = new PersonPresenter();	
+
 	private final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
 	public MultiplePersonTile(List<PersonDTO> persons) {
+		super();
 		this.persons = persons;
-		this.personDao = new PersonDaoImpl(new WebEntityManagerProvider());
-		layout = new VerticalLayout();
-		addComponent(layout);
-		updateTileValue();
-		System.out.println("MultiplePersonTile created");
 	}
+	
+	@Override
+	protected void createDefaultLayout() {
+		contentLayout = new VerticalLayout();
+		tile.setContent(contentLayout);
+		
+		contentLayout.setSpacing(true);
+		contentLayout.setMargin(true);
+		setStdWidth(1);
+		
+		updateTileValue();
+
+	};
 
 	private void updateTileValue() {
-		layout.removeAllComponents();
+		contentLayout.removeAllComponents();
 		if (persons == null || persons.isEmpty()) {
-			layout.addComponent(new Label("Keine Personen gefunden!"));
+			contentLayout.addComponent(new Label(NO_PERSON_FOUND));
 			return;
 		}
 		persons.sort(new Comparator<PersonDTO>() {
@@ -64,29 +88,30 @@ public class MultiplePersonTile extends Tile {
 		});
 
 		Table table = new Table();
-		table.addContainerProperty("Icon", Image.class, null);
-		table.addContainerProperty("Name", String.class, null);
-		table.addContainerProperty("Geburtsdatum", String.class, null);
-		table.addContainerProperty("Profil", Button.class, null);
-		table.addContainerProperty("Neues Meeting", Button.class, null);
+		table.setWidth("100%");
+		table.addContainerProperty(ICON_PROPERTY, Image.class, null);
+		table.addContainerProperty(NAME_PROPERTY, String.class, null);
+		table.addContainerProperty(BIRTHDAY_PROPERTY, String.class, null);
+		table.addContainerProperty(PROFILE_PROPERTY, Button.class, null);
+		table.addContainerProperty(NEW_MEETING_PROPERTY, Button.class, null);
 
 		for (PersonDTO person : persons) {
 			Image userPicture = new Image();
 			if ("Patient".equals(person.getDtype())) {
-				userPicture.setStyleName("gridBorder");
+				userPicture.setStyleName(GRID_BORDER_STYLE);
 				userPicture.setSource(new ThemeResource(
-						"img/icons/businessman.png"));
+						ICONS_BUSINESSMAN));
 			}
 			if ("Doctor".equals(person.getDtype())) {
-				userPicture.setStyleName("gridBorder");
+				userPicture.setStyleName(GRID_BORDER_STYLE);
 				userPicture
-						.setSource(new ThemeResource("img/icons/surgeon.png"));
+						.setSource(new ThemeResource(ICONS_SURGEON));
 			}
 			String name = person.getName();
 			String birthdate = format.format(person.getBirthdate());
 
-			Button profileButton = new Button("Person auswählen");
-			profileButton.setStyleName("link");
+			Button profileButton = new Button(SELECT_PERSON);
+			profileButton.setStyleName(LINK_STYLE);
 
 			Button meetingButton = null;
 
@@ -96,38 +121,33 @@ public class MultiplePersonTile extends Tile {
 					public void buttonClick(ClickEvent event) {
 						PatientDTO patient = null;
 						try {
-							patient = findPersonById(person.getId());
+							patient = (PatientDTO) personPresenter.findPersonById(person.getId());
 						} catch (MeetingStateException e) {
 							e.printStackTrace();
-						} catch (DangerStateException e) {
-							e.printStackTrace();
-						}
-						PatientInSessionManager.getInstance()
+						} 
+						
+						PatientInSessionManager
 								.setPatientInSession(patient, null,
 										getUI().getSession());
-						// Label sessionPatientLabel = (Label)
-						// MenuTile.findComponentById(getUI(),
-						// "sessionPatientLabel", patient.getName());
+
 						getUI().getNavigator().navigateTo(
 								NavigationIndex.PERSONVIEW.getNavigationPath());
 					}
 				});
 
-				meetingButton = new Button("Neues Meeting mit diesem Patient");
-				meetingButton.setStyleName("link");
+				meetingButton = new Button(NEW_MEETING_WITH_PATIENT);
+				meetingButton.setStyleName(LINK_STYLE);
 				meetingButton.addClickListener(new ClickListener() {
 					@Override
 					public void buttonClick(ClickEvent event) {
-						PatientDTO patient = null; // didn't work
-						System.out.println("MEETINGVIEW!!!");
+						PatientDTO patient = null;
 						try {
-							patient = findPersonById(person.getId());
-							PatientInSessionManager.getInstance()
+							patient = (PatientDTO) personPresenter.findPersonById(person.getId());
+
+							PatientInSessionManager
 							.setPatientInSession(patient, null,
 									getUI().getSession());
-							// Label sessionPatientLabel = (Label)
-							// MenuTile.findComponentById(getUI(),
-							// "sessionPatientLabel");
+
 							getUI().getNavigator().navigateTo(
 									NavigationIndex.MEETINGVIEW
 											.getNavigationPath()
@@ -135,19 +155,7 @@ public class MultiplePersonTile extends Tile {
 											+ patient.getId());
 						} catch (MeetingStateException e) {
 							e.printStackTrace();
-						} catch (DangerStateException e) {
-							e.printStackTrace();
 						}
-						PatientInSessionManager.getInstance()
-						.setPatientInSession(patient, null,
-								getUI().getSession());
-						// Label sessionPatientLabel = (Label)
-						// MenuTile.findComponentById(getUI(),
-						// "sessionPatientLabel");
-						getUI().getNavigator().navigateTo(
-								NavigationIndex.MEETINGVIEW.getNavigationPath()
-										+ "/new=" + patient.getId());
-
 					}
 				});
 			} else {
@@ -156,7 +164,7 @@ public class MultiplePersonTile extends Tile {
 					public void buttonClick(ClickEvent event) {
 						// set patient to null, we now have saved a
 						// non-patient-person to the session
-						PatientInSessionManager.getInstance()
+						PatientInSessionManager
 						.setPatientInSession(null, person,
 								getUI().getSession());
 						getUI().getNavigator().navigateTo(
@@ -165,21 +173,12 @@ public class MultiplePersonTile extends Tile {
 				});
 			}
 
-			Link profileLink = new Link("Benutzerprofil", new ExternalResource(
-					"#!" + NavigationIndex.PERSONVIEW + "/" + person.getId()));
-			Link meetingLink = null;
-			if (person.getDtype().toLowerCase().equals("patient")) {
-				meetingLink = new Link("Neues Meeting mit diesem Patient",
-						new ExternalResource("#!" + NavigationIndex.MEETINGVIEW
-								+ "/new=" + person.getId()));
-			}
-
 			table.addItem(new Object[] { userPicture, name, birthdate,
 					profileButton, meetingButton }, persons.indexOf(person) + 1);
 		}
 
 		table.setPageLength(table.size());
-		this.layout.addComponent(table);
+		contentLayout.addComponent(table);
 	}
 
 	public void addPerson(PersonDTO person) {
@@ -197,11 +196,4 @@ public class MultiplePersonTile extends Tile {
 		updateTileValue();
 	}
 
-	public PatientDTO findPersonById(Long id) throws MeetingStateException, DangerStateException {
-		Patient patient = (Patient) personDao.read(id);
-		if (patient != null) {
-			return new PatientDTO(patient);
-		}
-		return null;
-	}
 }

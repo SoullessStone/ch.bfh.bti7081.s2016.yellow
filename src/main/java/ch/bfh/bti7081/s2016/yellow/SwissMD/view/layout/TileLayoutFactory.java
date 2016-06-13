@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.PatientInSessionManager;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MenuTile;
 
 /**
@@ -52,8 +53,9 @@ public class TileLayoutFactory extends LayoutFactory {
 	TileLayout createLayout() {
 
 		TileLayout layout = new TileLayout(numberOfElementsPerRow);
-
-		layout.addComponent(new MenuTile());
+		MenuTile menuTile = new MenuTile();
+		
+		layout.addComponent(menuTile);
 		layout.createNewRow();
 
 		layout.baseLayout.setSizeFull();

@@ -13,11 +13,12 @@ public class MeetingDTOTest extends DTOTest {
 		MeetingDTO sut = null;
 		try {
 			sut = new MeetingDTO(meeting);
+			// Assert
+			super.validateMeeting(sut);
 		} catch (DangerStateException e) {
 			
 			e.printStackTrace();
 		}
-		// Assert
-		super.validateMeeting(sut);
+
 	}
 }
