@@ -20,14 +20,12 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonSearchView;
  *
  */
 public class PersonSearchPresenter {
-	private PersonSearchView personSearchView;
 
 	private PersonDao personDao;
 	private List<PersonDTO> cachedPersons;
 
-	public PersonSearchPresenter(PersonSearchView personSearchView) {
+	public PersonSearchPresenter() {
 		System.out.println("init PersonSearchPresenter");
-		this.personSearchView = personSearchView;
 		this.personDao = new PersonDaoImpl(new WebEntityManagerProvider());
 	}
 

@@ -33,12 +33,10 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException
  */
 public class PersonPresenter {
 	private PersonDao personDao;
-	private MeetingDao meetingDao;
 	private DiagnosisDao diagnosisDao;
 
 	public PersonPresenter() {
 		this.personDao = new PersonDaoImpl(new WebEntityManagerProvider());
-		this.meetingDao = new MeetingDaoImpl(new WebEntityManagerProvider());
 		this.diagnosisDao = new DiagnosisDaoImpl(new WebEntityManagerProvider());
 	}
 

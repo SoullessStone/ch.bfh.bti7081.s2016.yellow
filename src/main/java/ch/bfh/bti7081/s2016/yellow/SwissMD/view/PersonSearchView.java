@@ -38,8 +38,7 @@ public class PersonSearchView extends CustomComponent implements View {
 	protected static final String NO_SEARCH_CRITERIA = "Weder ein Name noch ein Geburtsdatum für die Suche ausgewählt";
 	private static final String FOUND_COUNT_RESULTS = " Suchergebnisse wurden gefunden.";
 
-	private PersonSearchPresenter personSearchPresenter = new PersonSearchPresenter(
-			this);
+	private PersonSearchPresenter personSearchPresenter = new PersonSearchPresenter();
 
 	private TextField nameField = new TextField("Name");
 	private DateField birthDateField = new DateField("Geburtsdatum");

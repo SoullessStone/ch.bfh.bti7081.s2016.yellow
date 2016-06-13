@@ -1,6 +1,8 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.SessionUtil;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
@@ -60,15 +62,22 @@ public class LoginTile extends Tile {
 		
 		DoctorDTO doctor;
 		boolean success = false;
-		try {
-			doctor = (DoctorDTO) personPresenter.findPersonById(Long.parseLong(username.getValue()));
-			if (doctor != null){
-				SessionUtil.setDoctorInSession(doctor, getUI().getSession());
-				success = true;
+		
+			try {
+				doctor = (DoctorDTO) personPresenter.findPersonById(Long.parseLong(username.getValue()));
+				if (doctor != null){
+					SessionUtil.setDoctorInSession(doctor, getUI().getSession());
+					success = true;
+				}
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			} catch (MeetingStateException e) {
+				e.printStackTrace();
+			} catch (DangerStateException e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
+
 		return success;
 
 	}

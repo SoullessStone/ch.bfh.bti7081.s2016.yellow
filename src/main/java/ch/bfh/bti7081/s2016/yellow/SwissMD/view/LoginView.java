@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.LoginPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.LoginTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
@@ -22,7 +21,6 @@ import com.vaadin.ui.Notification.Type;
 @SuppressWarnings("serial")
 public class LoginView extends CustomComponent implements View {
 	private final static String LOGIN_FACTORY_ERROR = "Schwerwiegender Fehler! Die Seite kann nicht aufgebaut werden.";
-	private LoginPresenter loginPresenter = new LoginPresenter(this);
 	private BaseLayout layout;
 
 	public LoginView() {
