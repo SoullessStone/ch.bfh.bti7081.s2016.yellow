@@ -3,12 +3,14 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.WikiPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.ErrorWindow;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MultipleIllnessTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
 
@@ -35,6 +37,7 @@ import com.vaadin.ui.TextField;
 public class WikiView extends CustomComponent implements View {
 	private static final String FOUND_COUNT_RESULTS = " Suchergebnisse wurden gefunden";
 	private static final String FOUND_TOO_MANY_RESULTS = "Zu viele Treffer. Nur 100 werden angezeigt";
+	private static final String NO_PATIENT_IN_SESSION = "Kein Patient ausgewählt";
 	private WikiPresenter wikiPresenter = new WikiPresenter(this);
 	private BaseLayout layout;
 	private TextField searchField;
@@ -56,28 +59,37 @@ public class WikiView extends CustomComponent implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		Tile tile = new Tile();
-		searchField = new TextField("Suchbegriff");
-		Button searchButton = new Button("Suchen");
-		searchButton.addClickListener(new ClickListener() {
-			@Override
-			public void buttonClick(ClickEvent event) {
-				if (!searchField.isEmpty()) {
-					List<IllnessDTO> results = wikiPresenter
-							.searchIllnesses(searchField.getValue());
-					if (results != null && !results.isEmpty()) {
-						showSearchResults(results);
+		PatientDTO patientDTO = (PatientDTO) getUI().getSession().getAttribute(
+				"currentPatient");
+		if(patientDTO == null){
+				getUI().getNavigator().navigateTo(
+						NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
+				Notification.show(NO_PATIENT_IN_SESSION, Type.HUMANIZED_MESSAGE);
+
+		} else {
+			Tile tile = new Tile();
+			searchField = new TextField("Suchbegriff");
+			Button searchButton = new Button("Suchen");
+			searchButton.addClickListener(new ClickListener() {
+				@Override
+				public void buttonClick(ClickEvent event) {
+					if (!searchField.isEmpty()) {
+						List<IllnessDTO> results = wikiPresenter
+								.searchIllnesses(searchField.getValue());
+						if (results != null && !results.isEmpty()) {
+							showSearchResults(results);
+						}
 					}
 				}
-			}
-		});
-		searchButton.setClickShortcut(KeyCode.ENTER);
-		tile.addComponent(searchField);
-		tile.addComponent(searchButton);
-		layout.addComponent(tile);
-		this.resultTile = new MultipleIllnessTile(null);
-		layout.addComponent(resultTile);
-		layout.finishLayout();
+			});
+			searchButton.setClickShortcut(KeyCode.ENTER);
+			tile.addComponent(searchField);
+			tile.addComponent(searchButton);
+			layout.addComponent(tile);
+			this.resultTile = new MultipleIllnessTile(null);
+			layout.addComponent(resultTile);
+			layout.finishLayout();
+		}
 	}
 
 	private void showSearchResults(List<IllnessDTO> results) {
