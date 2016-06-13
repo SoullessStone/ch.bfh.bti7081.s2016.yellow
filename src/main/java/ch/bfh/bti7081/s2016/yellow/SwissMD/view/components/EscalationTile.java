@@ -37,6 +37,7 @@ public class EscalationTile extends Tile {
 
 	private final static String COULD_NOT_SEND_MAIL = "E-Mail konnte nicht gesendet werden";
 	private final static String COULD_NOT_SET_DANGER_STATE = "Der Gefährdungsstatus konnte nicht gesetzt werden";
+	private final static String STATE_SAVED = "Neuer Gefährdungsstatus gespeichert";
 	private MeetingDTO meetingDTO;
 	private PatientDTO patientDTO;
 	private List<String> dangerStates;
@@ -77,13 +78,14 @@ public class EscalationTile extends Tile {
 		sendMail = new CheckBox("E-Mail an Hausarzt senden?");
 		addComponent(sendMail);
 		addComponent(sendButton());
+
 	}
 
 	/*
 	 * Button for saving the new danger state and, if the state is critical, sending an e-mail to the house doctor
 	 */
 	private Button sendButton() {
-		Button button = new Button("Meldung", new Button.ClickListener() {
+		Button button = new Button("Speichern", new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				// persist the new danger state
@@ -97,6 +99,7 @@ public class EscalationTile extends Tile {
 						else {
 							patientDTO.setDangerStateHarmless();
 							meetingPresenter.updateDangerState(patientDTO);
+							showNotification(STATE_SAVED);
 						}	
 					} catch (DangerStateException e) {
 						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
@@ -116,6 +119,7 @@ public class EscalationTile extends Tile {
 						else {
 							patientDTO.setDangerStateCrisis();
 							meetingPresenter.updateDangerState(patientDTO);
+							showNotification(STATE_SAVED);
 						}	
 					} catch (DangerStateException e) {
 						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
@@ -135,6 +139,7 @@ public class EscalationTile extends Tile {
 						else {
 							patientDTO.setDangerStateDangerToHimself();
 							meetingPresenter.updateDangerState(patientDTO);
+							showNotification(STATE_SAVED);
 						}	
 					} catch (DangerStateException e) {
 						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
@@ -154,6 +159,7 @@ public class EscalationTile extends Tile {
 						else {
 							patientDTO.setDangerStateDangerToOthers();
 							meetingPresenter.updateDangerState(patientDTO);
+							showNotification(STATE_SAVED);
 						}	
 					} catch (DangerStateException e) {
 						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
@@ -190,12 +196,7 @@ public class EscalationTile extends Tile {
 							+ "; Gefaehrdungsstufe: "
 							+ dangerStatesCBox.getValue().toString());
 					email.send();
-					Notification notify = new Notification("Erfolgreich",
-							"E-Mail erfolgreich versendet",
-							Notification.Type.ASSISTIVE_NOTIFICATION);
-					notify.setDelayMsec(500);
-					notify.setPosition(Position.MIDDLE_CENTER);
-					notify.show(Page.getCurrent());
+					showNotification("Status gespeichert und E-Mail erfolgreich versendet");
 				} catch (EmailException e) {
 					Notification.show(COULD_NOT_SEND_MAIL, Type.ERROR_MESSAGE);
 					e.printStackTrace();
@@ -203,6 +204,14 @@ public class EscalationTile extends Tile {
 			}
 		});
 		return button;
+	}
+	
+	public void showNotification(String textToShow){
+		Notification notify = new Notification(textToShow,
+				Notification.Type.ASSISTIVE_NOTIFICATION);
+		notify.setDelayMsec(500);
+		notify.setPosition(Position.MIDDLE_CENTER);
+		notify.show(Page.getCurrent());
 	}
 
 }
