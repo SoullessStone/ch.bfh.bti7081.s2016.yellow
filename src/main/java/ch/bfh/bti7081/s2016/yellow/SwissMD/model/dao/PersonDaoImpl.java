@@ -1,10 +1,9 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao;
 
-import java.util.List;
 
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
@@ -22,14 +21,27 @@ public class PersonDaoImpl extends GenericDaoImpl<Person, Long> implements
 		super(emp);
 	}
 	
-	public void updateDangerState(Patient patient) {
+	public void updateDangerState(Long id, DangerStateType ds) {
 		@SuppressWarnings("unchecked")	
-		Query updateQuery =  mEntityManager
-				.createQuery(
-						"UPDATE Person SET dangerState = :dangerState WHERE id = :id");
-		updateQuery.setParameter("dangerState", patient.getDangerState());
-		updateQuery.setParameter("id", patient.getId());
-		updateQuery.executeUpdate();
+
+		EntityTransaction tx = null;
+		try {
+		    tx = mEntityManager.getTransaction();
+		    tx.begin();
+			Query updateQuery =  mEntityManager.createQuery(
+					"UPDATE Person p SET p.dangerState = :dangerState WHERE p.id = :id")
+			.setParameter("dangerState", ds)
+			.setParameter("id", id);
+			updateQuery.executeUpdate();
+			tx.commit();
+		}
+		catch (RuntimeException e) {
+		    if ( tx != null && tx.isActive() ) tx.rollback();
+		    throw e; // or display error message
+		}
+		finally {
+			mEntityManager.close();
+		}
 	}
 	
 }

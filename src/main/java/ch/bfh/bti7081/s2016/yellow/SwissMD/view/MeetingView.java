@@ -381,7 +381,7 @@ public class MeetingView extends CustomComponent implements View,
 		
 		PatientDTO patientDTO = (PatientDTO) getUI().getSession().getAttribute(
 				"currentPatient");
-		layout.addComponent(new EscalationTile(this.meetingDTO, patientDTO));
+		layout.addComponent(new EscalationTile(this.meetingDTO, patientDTO, this.meetingPresenter));
 		layout.createRowBrake();
 
 		createPrescriptionTile();

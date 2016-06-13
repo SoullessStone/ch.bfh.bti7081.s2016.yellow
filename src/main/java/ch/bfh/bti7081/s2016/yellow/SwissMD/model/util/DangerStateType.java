@@ -29,22 +29,6 @@ public enum DangerStateType {
 	public String getDangerStateTitle() {
 		return stateTitle;
 	}
-	
-	public String getString(DangerStateType t) {
-		switch (t) {
-		case HARMLESS:
-			return "Harmlos";
-		case CRISIS:
-			return "Krise";
-		case DANGER_TO_HIMSELF:
-			return "Eigengefaehrdung";
-		case DANGER_TO_OTHERS:
-			return "Fremdgefaehrdung";
-		default:
-			break;
-		}
-		return null;
-	}
 
 	public DangerState getDangerState() {
 		return this.dangerState;

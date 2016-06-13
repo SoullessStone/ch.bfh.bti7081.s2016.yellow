@@ -108,8 +108,4 @@ public class PersonPresenter {
 		return diagnosisList;
 	}
 	
-	public void updateDangerState(PatientDTO patientDTO) throws CouldNotSaveException {
-		Patient patient = (Patient) personDao.read(patientDTO.getId());
-		personDao.updateDangerState(patient);
-	}
 }

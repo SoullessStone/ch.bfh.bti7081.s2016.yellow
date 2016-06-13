@@ -11,7 +11,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
 import com.vaadin.server.Page;
@@ -42,12 +42,12 @@ public class EscalationTile extends Tile {
 	private List<String> dangerStates;
 	private ComboBox dangerStatesCBox;
 	private CheckBox sendMail;
-	private PersonPresenter personPresenter;
+	private MeetingPresenter meetingPresenter;
 
-	public EscalationTile(MeetingDTO meetingDTO, PatientDTO patientDTO) {
+	public EscalationTile(MeetingDTO meetingDTO, PatientDTO patientDTO, MeetingPresenter meetingPresenter) {
 		this.meetingDTO = meetingDTO;
 		this.patientDTO = patientDTO;
-		this.personPresenter = new PersonPresenter();
+		this.meetingPresenter = meetingPresenter;
 		setTitle("Gefährdungsstatus des Patienten");
 		dangerStates = new ArrayList<String>(); 
 		dangerStates.add("Harmlos");
@@ -91,12 +91,12 @@ public class EscalationTile extends Tile {
 					try {
 						if (sendMail.getValue()==true){
 							patientDTO.setDangerStateHarmless();
-							personPresenter.updateDangerState(patientDTO);
+							meetingPresenter.updateDangerState(patientDTO);
 							sendMailAlert();
 						}
 						else {
 							patientDTO.setDangerStateHarmless();
-							personPresenter.updateDangerState(patientDTO);
+							meetingPresenter.updateDangerState(patientDTO);
 						}	
 					} catch (DangerStateException e) {
 						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
@@ -110,11 +110,12 @@ public class EscalationTile extends Tile {
 					try {
 						if (sendMail.getValue()==true){
 							patientDTO.setDangerStateCrisis();
-							personPresenter.updateDangerState(patientDTO);
+							meetingPresenter.updateDangerState(patientDTO);
 							sendMailAlert();
 						}
 						else {
 							patientDTO.setDangerStateCrisis();
+							meetingPresenter.updateDangerState(patientDTO);
 						}	
 					} catch (DangerStateException e) {
 						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
@@ -128,12 +129,12 @@ public class EscalationTile extends Tile {
 					try {
 						if (sendMail.getValue()==true){
 							patientDTO.setDangerStateDangerToHimself();
-							personPresenter.updateDangerState(patientDTO);
+							meetingPresenter.updateDangerState(patientDTO);
 							sendMailAlert();
 						}
 						else {
 							patientDTO.setDangerStateDangerToHimself();
-							personPresenter.updateDangerState(patientDTO);
+							meetingPresenter.updateDangerState(patientDTO);
 						}	
 					} catch (DangerStateException e) {
 						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
@@ -147,12 +148,12 @@ public class EscalationTile extends Tile {
 					try {
 						if (sendMail.getValue()==true){
 							patientDTO.setDangerStateDangerToOthers();
-							personPresenter.updateDangerState(patientDTO);
+							meetingPresenter.updateDangerState(patientDTO);
 							sendMailAlert();
 						}
 						else {
 							patientDTO.setDangerStateDangerToOthers();
-							personPresenter.updateDangerState(patientDTO);
+							meetingPresenter.updateDangerState(patientDTO);
 						}	
 					} catch (DangerStateException e) {
 						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);

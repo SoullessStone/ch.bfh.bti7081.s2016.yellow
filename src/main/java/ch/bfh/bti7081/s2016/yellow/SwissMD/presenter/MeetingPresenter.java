@@ -153,4 +153,7 @@ public class MeetingPresenter {
 		return new PatientDTO(p);
 	}
 
+	public void updateDangerState(PatientDTO patientDTO) throws CouldNotSaveException {
+		personDao.updateDangerState(patientDTO.getId(), patientDTO.getDangerState());
+	}
 }
