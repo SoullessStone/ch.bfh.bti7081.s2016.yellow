@@ -119,7 +119,6 @@ public class MultiplePersonTile extends Tile {
 						} catch (MeetingStateException e) {
 							e.printStackTrace();
 						} catch (DangerStateException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						} 
 						
@@ -153,7 +152,6 @@ public class MultiplePersonTile extends Tile {
 						} catch (MeetingStateException e) {
 							e.printStackTrace();
 						} catch (DangerStateException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
