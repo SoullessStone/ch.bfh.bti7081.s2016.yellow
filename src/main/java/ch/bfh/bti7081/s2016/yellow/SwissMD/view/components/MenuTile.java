@@ -20,7 +20,7 @@ import com.vaadin.ui.UI;
  */
 @SuppressWarnings("serial")
 public class MenuTile extends Tile {
-	
+
 	private static final String LOGOUT = "Logout";
 	private static final String PERSON = "Person";
 	private static final String BIG_STYLE = "big";
@@ -36,25 +36,29 @@ public class MenuTile extends Tile {
 	private static final String ICONS_TEAM = "img/icons/team.png";
 	private static final String ICONS_SURGEON = "img/icons/surgeon.png";
 	private static final String ICONS_BUSINESSMAN = "img/icons/businessman.png";
+	private static final String BIGPERSON_STYLE = "bigPerson";
+	private static final String LOGOUT_STYLE = "logout";
 
 	public MenuTile() {
-		PatientDTO patientInSession = SessionUtil.getPatientInSession(UI.getCurrent().getSession());
+		PatientDTO patientInSession = SessionUtil.getPatientInSession(UI
+				.getCurrent().getSession());
 
-		addComponent(createPersonSessionButton(patientInSession));
-		addComponent(createViewButton(
-				NavigationIndex.PRESCRIPTIONVIEW.getNavigationPath(),
-				PRESCRIPTION, ICONS_PILLS));
-		addComponent(createViewButton(
-				NavigationIndex.WIKIVIEW.getNavigationPath() + "/1", DIAGNOSIS,
-				ICONS_BOOKS));
-		addComponent(createViewButton(
-				NavigationIndex.MEETINGVIEW.getNavigationPath(), MEETING,
-				ICONS_CALENDAR));
+		if (patientInSession != null) {
+			addComponent(createPersonSessionButton(patientInSession));
+			addComponent(createViewButton(
+					NavigationIndex.PRESCRIPTIONVIEW.getNavigationPath(),
+					PRESCRIPTION, ICONS_PILLS, BIG_STYLE));
+			addComponent(createViewButton(
+					NavigationIndex.WIKIVIEW.getNavigationPath() + "/1",
+					DIAGNOSIS, ICONS_BOOKS, BIG_STYLE));
+			addComponent(createViewButton(
+					NavigationIndex.MEETINGVIEW.getNavigationPath(), MEETING,
+					ICONS_CALENDAR, BIG_STYLE));
+		}
 		addComponent(createViewButton(
 				NavigationIndex.PERSONSEARCHVIEW.getNavigationPath(),
-				PERSON_SEARCH, ICONS_MAGNIFYING_GLASS));
+				PERSON_SEARCH, ICONS_MAGNIFYING_GLASS, BIG_STYLE));
 		addComponent(logoutButton());
-
 	}
 
 	@Override
@@ -67,7 +71,7 @@ public class MenuTile extends Tile {
 	}
 
 	private Button createViewButton(String viewName, String displayName,
-			String path) {
+			String path, String style) {
 		Button button = new Button(displayName, new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
@@ -75,15 +79,16 @@ public class MenuTile extends Tile {
 			}
 		});
 		button.setIcon(new ThemeResource(path));
-		button.addStyleName(BIG_STYLE);
+		button.addStyleName(style);
 		return button;
 	}
 
 	private Button logoutButton() {
-		DoctorDTO doctorInSession = SessionUtil.getDoctorInSession(UI.getCurrent().getSession());
+		DoctorDTO doctorInSession = SessionUtil.getDoctorInSession(UI
+				.getCurrent().getSession());
 		String buttonText = LOGOUT;
-		
-		if (doctorInSession != null){
+
+		if (doctorInSession != null) {
 			buttonText = doctorInSession.getName();
 		}
 
@@ -95,7 +100,7 @@ public class MenuTile extends Tile {
 			}
 		});
 		button.setIcon(new ThemeResource(ICONS_EXIT));
-		button.addStyleName(BIG_STYLE);
+		button.addStyleName(LOGOUT_STYLE);
 		button.setWidthUndefined();
 		return button;
 	}
@@ -103,16 +108,18 @@ public class MenuTile extends Tile {
 	private String getLogoutPath() {
 		return getUI().getPage().getLocation().getPath();
 	}
-	
+
 	public Button createPersonSessionButton(PatientDTO patient) {
 		if (patient == null) {
-			return createViewButton(
+			Button b = createViewButton(
 					NavigationIndex.PERSONVIEW.getNavigationPath(), PERSON,
-					ICONS_TEAM);
+					ICONS_TEAM, BIGPERSON_STYLE);
+			return b;
 		} else {
-			return createViewButton(
-					NavigationIndex.PERSONVIEW.getNavigationPath(), patient.getName(),
-					ICONS_BUSINESSMAN);
+			Button b = createViewButton(
+					NavigationIndex.PERSONVIEW.getNavigationPath(),
+					patient.getName(), ICONS_BUSINESSMAN, BIGPERSON_STYLE);
+			return b;
 		}
 	}
 
