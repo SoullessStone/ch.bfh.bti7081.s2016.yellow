@@ -38,6 +38,7 @@ public class MenuTile extends Tile {
 	private static final String ICONS_BUSINESSMAN = "img/icons/businessman.png";
 	private static final String BIGPERSON_STYLE = "bigPerson";
 	private static final String LOGOUT_STYLE = "logout";
+	private static final String VIEWNAME_SESSIONKEY = "activeView";
 
 	public MenuTile() {
 		PatientDTO patientInSession = SessionUtil.getPatientInSession(UI
@@ -49,8 +50,8 @@ public class MenuTile extends Tile {
 					NavigationIndex.PRESCRIPTIONVIEW.getNavigationPath(),
 					PRESCRIPTION, ICONS_PILLS, BIG_STYLE));
 			addComponent(createViewButton(
-					NavigationIndex.WIKIVIEW.getNavigationPath() + "/1",
-					DIAGNOSIS, ICONS_BOOKS, BIG_STYLE));
+					NavigationIndex.WIKIVIEW.getNavigationPath(), DIAGNOSIS,
+					ICONS_BOOKS, BIG_STYLE));
 			addComponent(createViewButton(
 					NavigationIndex.MEETINGVIEW.getNavigationPath(), MEETING,
 					ICONS_CALENDAR, BIG_STYLE));
@@ -75,11 +76,18 @@ public class MenuTile extends Tile {
 		Button button = new Button(displayName, new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
+				UI.getCurrent().getSession()
+						.setAttribute(VIEWNAME_SESSIONKEY, viewName);
 				getUI().getNavigator().navigateTo(viewName);
 			}
 		});
 		button.setIcon(new ThemeResource(path));
-		button.addStyleName(style);
+		if (viewName.equals(UI.getCurrent().getSession().getAttribute(
+				VIEWNAME_SESSIONKEY))) {
+			button.addStyleName(style + "Active");
+		}else{
+			button.addStyleName(style);
+		}
 		return button;
 	}
 

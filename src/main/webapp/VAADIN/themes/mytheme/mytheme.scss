@@ -103,13 +103,31 @@ $v-shadow-opacity: 5%;
 		box-shadow: 0 5px 10px #777;
 	}
     
+	.v-button-bigActive{
+	    height: 55px;
+	    width: 173px;
+	  	padding: 1px 14px 0 8px;
+		-webkit-box-shadow: 0 9px 10px #3E4242;
+		-moz-box-shadow: 0 9px 10px #3E4242;
+		box-shadow: 0 9px 10px #3E4242;
+	}
+    
     .v-button-bigPerson{
 	    height: 55px;
 	  	padding: 1px 14px 0 8px;
 		-webkit-box-shadow: 0 5px 10px #777;
 		-moz-box-shadow: 0 5px 10px #777;
 		box-shadow: 0 5px 10px #777;
-        border: 2px solid #737373;
+        font-weight: bold;
+	}
+    
+    .v-button-bigPersonActive{
+	    height: 55px;
+	  	padding: 1px 14px 0 8px;
+		-webkit-box-shadow: 0 9px 10px #3E4242;
+		-moz-box-shadow: 0 9px 10px #3E4242;
+		box-shadow: 0 9px 10px #3E4242;
+        font-weight: bold;
 	}
     
     .v-button-logout{
@@ -119,6 +137,10 @@ $v-shadow-opacity: 5%;
 		-moz-box-shadow: 0 5px 10px #777;
 		box-shadow: 0 5px 10px #777;
 	}
+    
+    .active{
+        border: 10px solid black;
+    }
 	
 	.v-button-big:hover {
 		cursor:pointer;
