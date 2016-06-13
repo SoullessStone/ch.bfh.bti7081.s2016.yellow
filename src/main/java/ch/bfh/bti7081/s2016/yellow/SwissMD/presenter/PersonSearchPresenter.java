@@ -11,7 +11,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonSearchView;
 
 /**
  * Presenter für die PersonSearchView
@@ -22,6 +21,8 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonSearchView;
 public class PersonSearchPresenter {
 
 	private PersonDao personDao;
+	
+	// List of persons, will only be read once
 	private List<PersonDTO> cachedPersons;
 
 	public PersonSearchPresenter() {
@@ -29,6 +30,11 @@ public class PersonSearchPresenter {
 		this.personDao = new PersonDaoImpl(new WebEntityManagerProvider());
 	}
 
+	/**
+	 * 
+	 * @param birthdate The Persons birthdate
+	 * @return Every Person that satisfies the filter-criteria provided
+	 */
 	public List<PersonDTO> searchForBirthdate(Date birthdate) {
 		List<PersonDTO> result = new ArrayList<>();
 		for (PersonDTO p : getAllPersons()) {
@@ -39,6 +45,11 @@ public class PersonSearchPresenter {
 		return result;
 	}
 
+	/**
+	 * 
+	 * @param lastname The Persons name (first or last)
+	 * @return Every Person that satisfies the filter-criteria provided
+	 */
 	public List<PersonDTO> searchForLastName(String lastname) {
 		List<PersonDTO> result = new ArrayList<>();
 		for (PersonDTO p : getAllPersons()) {
@@ -49,6 +60,12 @@ public class PersonSearchPresenter {
 		return result;
 	}
 
+	/**
+	 * Filters all known persons with a date and string provided
+	 * @param birthdate The Persons birthdate
+	 * @param lastname The Persons name (first or last)
+	 * @return Every Person that satisfies the filter-criteria provided
+	 */
 	public List<PersonDTO> searchForBirthdateAndLastname(Date birthdate,
 			String lastname) {
 		List<PersonDTO> result = new ArrayList<>();
@@ -61,6 +78,11 @@ public class PersonSearchPresenter {
 		return result;
 	}
 
+	/**
+	 * 
+	 * @return A List of PersonDTOs representing every Person known to the
+	 *         system
+	 */
 	public List<PersonDTO> getAllPersons() {
 		if (cachedPersons != null) {
 			return cachedPersons;
