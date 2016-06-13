@@ -1,18 +1,16 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.components;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.PatientInSessionManager;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.SessionUtil;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.themes.BaseTheme;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.UI;
 
 /**
  * Stellt das Menü dar
@@ -29,7 +27,7 @@ public class MenuTile extends Tile {
 	private static final String ICONS_BUSINESSMAN = "img/icons/businessman.png";
 
 	public MenuTile() {
-		PatientDTO patientInSession = PatientInSessionManager.getPatientInSession(UI.getCurrent().getSession());
+		PatientDTO patientInSession = SessionUtil.getPatientInSession(UI.getCurrent().getSession());
 
 		addComponent(createPersonSessionButton(patientInSession));
 		addComponent(createViewButton(
@@ -73,7 +71,14 @@ public class MenuTile extends Tile {
 	}
 
 	private Button logoutButton() {
-		Button button = new Button("Logout", new Button.ClickListener() {
+		DoctorDTO doctorInSession = SessionUtil.getDoctorInSession(UI.getCurrent().getSession());
+		String buttonText = "Logout";
+		
+		if (doctorInSession != null){
+			buttonText = doctorInSession.getName();
+		}
+
+		Button button = new Button(buttonText, new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				getUI().getSession().close();
@@ -82,6 +87,7 @@ public class MenuTile extends Tile {
 		});
 		button.setIcon(new ThemeResource("img/icons/exit-2.png"));
 		button.addStyleName("big");
+		button.setWidthUndefined();
 		return button;
 	}
 

@@ -4,7 +4,6 @@ import java.text.MessageFormat;
 import java.util.Date;
 import java.util.List;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PrescriptionDTO;
@@ -13,6 +12,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.MeetingStateType;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.SessionUtil;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.MeetingPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PrescriptionPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreatePrescriptionTile;
@@ -203,8 +203,9 @@ public class MeetingView extends CustomComponent implements View,
 					try {
 						// Meeting mit Patient erstellen
 						try {
+							//TODO Alex: Doctor aus Session lesen
 							MeetingDTO meetingDTO = new MeetingDTO(patientDTO,
-									new DoctorDTO("bla", new Date()),
+									SessionUtil.getDoctorInSession(getUI().getSession()),
 									new Date());
 							MeetingDTO m;
 

@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.PatientInSessionManager;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MenuTile;
 
 /**

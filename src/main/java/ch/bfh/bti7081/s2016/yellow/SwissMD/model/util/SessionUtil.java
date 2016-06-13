@@ -1,10 +1,10 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.model.util;
 
-import com.vaadin.server.VaadinSession;
-import com.vaadin.ui.Component;
-
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
+
+import com.vaadin.server.VaadinSession;
 
 /**
  * Verbindet das MenuTile mit der Session.
@@ -12,7 +12,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
  * @author Mutz
  *
  */
-public class PatientInSessionManager {
+public class SessionUtil {
 
 	
 	public static PatientDTO getPatientInSession(VaadinSession vaadinSession) {
@@ -25,5 +25,16 @@ public class PatientInSessionManager {
 		vaadinSession.setAttribute("currentPatient", patient);
 		vaadinSession.setAttribute("currentPerson", person);
 	}
+	
+	public static void setDoctorInSession(DoctorDTO doctor,
+			VaadinSession vaadinSession) {
+
+		vaadinSession.setAttribute("currentDoctor", doctor);
+	}	
+	
+	public static DoctorDTO getDoctorInSession(VaadinSession vaadinSession) {
+		return (DoctorDTO) vaadinSession.getAttribute("currentDoctor");
+	}
+	
 
 }

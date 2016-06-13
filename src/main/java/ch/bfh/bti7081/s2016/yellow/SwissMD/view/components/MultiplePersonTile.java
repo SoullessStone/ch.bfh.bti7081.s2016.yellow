@@ -4,27 +4,21 @@ import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.List;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDao;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.PatientInSessionManager;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.SessionUtil;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
-import com.vaadin.server.ExternalResource;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Link;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 
@@ -124,9 +118,12 @@ public class MultiplePersonTile extends Tile {
 							patient = (PatientDTO) personPresenter.findPersonById(person.getId());
 						} catch (MeetingStateException e) {
 							e.printStackTrace();
+						} catch (DangerStateException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						} 
 						
-						PatientInSessionManager
+						SessionUtil
 								.setPatientInSession(patient, null,
 										getUI().getSession());
 
@@ -144,7 +141,7 @@ public class MultiplePersonTile extends Tile {
 						try {
 							patient = (PatientDTO) personPresenter.findPersonById(person.getId());
 
-							PatientInSessionManager
+							SessionUtil
 							.setPatientInSession(patient, null,
 									getUI().getSession());
 
@@ -155,6 +152,9 @@ public class MultiplePersonTile extends Tile {
 											+ patient.getId());
 						} catch (MeetingStateException e) {
 							e.printStackTrace();
+						} catch (DangerStateException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
 					}
 				});
@@ -164,7 +164,7 @@ public class MultiplePersonTile extends Tile {
 					public void buttonClick(ClickEvent event) {
 						// set patient to null, we now have saved a
 						// non-patient-person to the session
-						PatientInSessionManager
+						SessionUtil
 						.setPatientInSession(null, person,
 								getUI().getSession());
 						getUI().getNavigator().navigateTo(

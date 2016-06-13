@@ -1,8 +1,5 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.PatientInSessionManager;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.LoginPresenter;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.LoginTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;

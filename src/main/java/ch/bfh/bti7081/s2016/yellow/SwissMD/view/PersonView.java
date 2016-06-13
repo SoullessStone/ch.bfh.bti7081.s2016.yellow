@@ -9,7 +9,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.DiagnosisTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.GridTile;

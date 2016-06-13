@@ -3,7 +3,6 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.PatientInSessionManager;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonSearchPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.ErrorWindow;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MultiplePersonTile;
@@ -17,7 +16,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.Page;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;

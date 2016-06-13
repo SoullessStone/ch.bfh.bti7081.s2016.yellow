@@ -11,17 +11,18 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDao;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.PersonDaoImpl;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dao.WebEntityManagerProvider;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DiagnosisDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DoctorDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Diagnosis;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Doctor;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.PersonView;
 
 /**
  * Presenter für die Personview
@@ -47,18 +48,22 @@ public class PersonPresenter {
 	 * @param id
 	 *            the technical key of the person in the database
 	 * @throws MeetingStateException
+	 * @throws DangerStateException 
 	 * 
 	 */
-	public PersonDTO findPersonById(Long id) throws MeetingStateException {
-		Patient person = (Patient) personDao.read(id);
+	public PersonDTO findPersonById(Long id) throws MeetingStateException, DangerStateException {
+		Person person = (Person) personDao.read(id);
+		PersonDTO personDTO = null;
 		if (person != null) {
-			try {
-				return new PatientDTO(person);
-			} catch (DangerStateException e) {
-				e.printStackTrace();
+			if ("Doctor".equals(person.getDtype())){
+				personDTO = new DoctorDTO((Doctor) person);
+			} else if ("Patient".equals(person.getDtype())){
+				personDTO = new PatientDTO((Patient) person);
+			} else {
+				personDTO = new PersonDTO(person);
 			}
 		}
-		return null;
+		return personDTO;
 	}
 
 	// Not yet used
