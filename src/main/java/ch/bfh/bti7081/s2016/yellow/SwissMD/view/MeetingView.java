@@ -333,15 +333,16 @@ public class MeetingView extends CustomComponent implements View,
 		meetingTile.addComponent(buttonArea);
 		layout.addComponent(meetingTile);
 		layout.createRowBrake();
-
-		layout.addComponent(new EscalationTile(meetingDTO));
+		
+		PatientDTO patientDTO = (PatientDTO) getUI().getSession().getAttribute(
+				"currentPatient");
+		layout.addComponent(new EscalationTile(this.meetingDTO, patientDTO));
 		layout.createRowBrake();
 
 		List<PrescriptionDTO> prescriptions = meetingDTO.getPatient()
 				.getPrescriptions();
 		for (PrescriptionDTO prescriptionDTO : prescriptions) {
 			Tile prescriptionTile = new PrescriptionTile(prescriptionDTO);
-			// prescriptionTile.addComponent(getAddPrescriptionButton());
 			layout.addComponent(prescriptionTile);
 			layout.createRowBrake();
 		}

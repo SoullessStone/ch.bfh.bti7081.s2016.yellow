@@ -7,6 +7,7 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
@@ -34,11 +35,13 @@ public class EscalationTile extends Tile {
 	private final static String COULD_NOT_SEND_MAIL = "E-Mail konnte nicht gesendet werden";
 	private final static String COULD_NOT_SET_DANGER_STATE = "Der Gefährdungsstatus konnte nicht gesetzt werden";
 	private MeetingDTO meetingDTO;
+	private PatientDTO patientDTO;
 	private List<String> dangerStates;
 	private ComboBox dangerStatesCBox;
 
-	public EscalationTile(MeetingDTO meetingDTO) {
+	public EscalationTile(MeetingDTO meetingDTO, PatientDTO patientDTO) {
 		this.meetingDTO = meetingDTO;
+		this.patientDTO = patientDTO;
 		setTitle("Eskalation");
 		dangerStates = new ArrayList<String>(); 
 		dangerStates.add("Harmlos");
@@ -49,16 +52,16 @@ public class EscalationTile extends Tile {
 		for (String dangerState : dangerStates) {
 			dangerStatesCBox.addItem(dangerState);
 		}
-		if (meetingDTO.getPatient().getDangerState()== DangerStateType.HARMLESS){
+		if (patientDTO.getDangerState()== DangerStateType.HARMLESS){
 			dangerStatesCBox.setValue(dangerStates.get(0));
 		}
-		else if(meetingDTO.getPatient().getDangerState() == DangerStateType.CRISIS){
+		else if(patientDTO.getDangerState() == DangerStateType.CRISIS){
 			dangerStatesCBox.setValue(dangerStates.get(1));
 		}
-		else if(meetingDTO.getPatient().getDangerState() == DangerStateType.DANGER_TO_HIMSELF){
+		else if(patientDTO.getDangerState() == DangerStateType.DANGER_TO_HIMSELF){
 			dangerStatesCBox.setValue(dangerStates.get(2));
 		}
-		else if (meetingDTO.getPatient().getDangerState() == DangerStateType.DANGER_TO_OTHERS){
+		else if (patientDTO.getDangerState() == DangerStateType.DANGER_TO_OTHERS){
 			dangerStatesCBox.setValue(dangerStates.get(3));
 		}
 		else {
@@ -70,12 +73,55 @@ public class EscalationTile extends Tile {
 	}
 
 	/*
-	 * Button for sending a mail to the house doctor
+	 * Button for saving the new danger state and, if the state is critical, sending an e-mail to the house doctor
 	 */
 	private Button sendButton() {
 		Button button = new Button("Meldung", new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
+				// persist the new danger state
+				if (dangerStatesCBox.getValue().toString() == "Harmlos"){
+					try {
+						patientDTO.setDangerStateHarmless();
+						System.out.println("STATUS HARMLOS GESETZT");
+					} catch (DangerStateException e) {
+						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
+						e.printStackTrace();
+					}
+				}
+				else if(dangerStatesCBox.getValue().toString() == "Krise"){
+					try {
+						System.out.println("If-Schleife Krise erreicht");
+						patientDTO.setDangerStateCrisis();
+						System.out.println("Neuer Status gesetzt. Kontrolle: " + patientDTO.getDangerState().getDangerStateTitle());
+					} catch (DangerStateException e) {
+						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
+						e.printStackTrace();
+					}	
+				}
+				else if(dangerStatesCBox.getValue().toString() == "Eigengefaehrdung"){
+					try {
+						patientDTO.setDangerStateDangerToHimself();
+						sendMailAlert();
+					} catch (DangerStateException e) {
+						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
+						e.printStackTrace();
+					}	
+				}
+				else if (dangerStatesCBox.getValue().toString() == "Fremdgefaehrdung"){
+					try {
+						patientDTO.setDangerStateDangerToOthers();
+						sendMailAlert();
+					} catch (DangerStateException e) {
+						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
+						e.printStackTrace();
+					}
+				}
+			}
+			/*
+			 * Send an e-mail to the house doctor if the danger state is critical
+			 */
+			public void sendMailAlert(){
 				// Create a new e-mail
 				HtmlEmail email = new HtmlEmail();
 				email.setHostName("smtp.gmail.com");
@@ -107,39 +153,6 @@ public class EscalationTile extends Tile {
 				} catch (EmailException e) {
 					Notification.show(COULD_NOT_SEND_MAIL, Type.ERROR_MESSAGE);
 					e.printStackTrace();
-				}
-				// persist the new danger state
-				switch(dangerStatesCBox.getValue().toString()){
-				case "Harmlos":
-					try {
-						meetingDTO.getPatient().setDangerStateHarmless();
-					} catch (DangerStateException e) {
-						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
-						e.printStackTrace();
-					}
-				case "Krise":
-					try {
-						meetingDTO.getPatient().setDangerStateCrisis();
-					} catch (DangerStateException e) {
-						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
-						e.printStackTrace();
-					}				
-				case "Eigengefaehrdung":
-					try {
-						meetingDTO.getPatient().setDangerStateDangerToHimself();
-					} catch (DangerStateException e) {
-						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
-						e.printStackTrace();
-					}				
-				case "Fremdgefaehrdung":
-					try {
-						meetingDTO.getPatient().setDangerStateDangerToOthers();
-					} catch (DangerStateException e) {
-						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
-						e.printStackTrace();
-					}				
-				default:
-					break;
 				}
 			}
 		});
