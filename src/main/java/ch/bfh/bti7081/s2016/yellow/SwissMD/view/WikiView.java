@@ -127,8 +127,10 @@ public class WikiView extends CustomComponent implements View {
 				diagnosisContainer.addComponent(diagnosisTile);
 			}
 
-			layout.createRowBrake();
-			layout.addComponent(diagnosisContainer);
+			if(!diagnosisForPatient.isEmpty()) {
+				layout.createRowBrake();
+				layout.addComponent(diagnosisContainer);
+			}
 
 		} catch (DangerStateException e1) {
 			Notification.show(DANGER_STATE_ERROR, Type.ERROR_MESSAGE);
