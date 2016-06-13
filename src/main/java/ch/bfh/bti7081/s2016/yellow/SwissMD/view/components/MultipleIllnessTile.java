@@ -63,7 +63,7 @@ public class MultipleIllnessTile extends Tile {
 			descriptionButton
 					.addClickListener(getClickListenerForIllnessDescription(illness));
 
-			Button diagnosisButton = new Button("Für Patient diagnostizieren");
+			Button diagnosisButton = new Button("Diagnostizieren...");
 			diagnosisButton
 					.addClickListener(getClickListenerForIllnessDiagnosis(illness));
 

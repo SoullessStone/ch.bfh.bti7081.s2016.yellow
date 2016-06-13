@@ -44,7 +44,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @SuppressWarnings("serial")
 public class PersonView extends CustomComponent implements View {
-	private static final String DIAGNOSIS = "Diagnosen";
 	private static final String ACTIONS = "Aktionen";
 	private static final String NEW_MEETING_WITH_PATIENT = "Neues Meeting mit diesem Patient";
 	private static final String PATIENT_HISTORY = "Patientenhistory";
@@ -97,7 +96,6 @@ public class PersonView extends CustomComponent implements View {
 
 			GridTile medicalDataTile = new GridTile(patientDTO);
 			layout.addComponent(medicalDataTile);
-			createDiagnosisContainer(patientDTO);
 
 			createActionTile(patientDTO);
 
@@ -175,30 +173,6 @@ public class PersonView extends CustomComponent implements View {
 		actionsTile.addComponent(createMeetingButton);
 		layout.createRowBrake();
 		layout.addComponent(actionsTile);
-	}
-
-	private void createDiagnosisContainer(PatientDTO patientInSession) {
-		try {
-			
-			Tile diagnosisContainer = new Tile(DIAGNOSIS);
-
-			List<DiagnosisDTO> diagnosisForPatient = personPresenter
-					.getDiagnosisForPatient(patientInSession.getId());
-			
-			for (DiagnosisDTO diagnosisDTO : diagnosisForPatient) {
-				DiagnosisTile diagnosisTile = new DiagnosisTile(diagnosisDTO,
-						diagnosisDTO.getIllness().toString());
-				diagnosisTile.disableShadow();
-				diagnosisContainer.addComponent(diagnosisTile);
-			}
-
-			layout.createRowBrake();
-			layout.addComponent(diagnosisContainer);
-
-		} catch (DangerStateException e1) {
-			Notification.show(DANGER_STATE_ERROR, Type.ERROR_MESSAGE);
-			e1.printStackTrace();
-		}
 	}
 
 }

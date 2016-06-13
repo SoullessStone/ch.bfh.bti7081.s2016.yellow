@@ -2,17 +2,21 @@ package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
 import java.util.List;
 
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DiagnosisDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.WikiPresenter;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.DiagnosisTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.ErrorWindow;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MultipleIllnessTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
@@ -35,13 +39,19 @@ import com.vaadin.ui.TextField;
  */
 @SuppressWarnings("serial")
 public class WikiView extends CustomComponent implements View {
+	private static final String SEARCH = "Suchen";
+	private static final String SEARCH_ILLNESS = "Krankheit suchen";
+	private static final String DIAGNOSIS = "Diagnosen";
+	private static final String NO_PATIENT_IN_SESSION = "Kein Patient ausgewählt";
+	private static final String DANGER_STATE_ERROR = "Der Patient hat keinen Gefährdungsstatus gesetzt!";
 	private static final String FOUND_COUNT_RESULTS = " Suchergebnisse wurden gefunden";
 	private static final String FOUND_TOO_MANY_RESULTS = "Zu viele Treffer. Nur 100 werden angezeigt";
-	private static final String NO_PATIENT_IN_SESSION = "Kein Patient ausgewählt";
 	private WikiPresenter wikiPresenter = new WikiPresenter(this);
 	private BaseLayout layout;
 	private TextField searchField;
 	private MultipleIllnessTile resultTile;
+
+	private PersonPresenter personPresenter = new PersonPresenter();
 
 	public WikiView() {
 		try {
@@ -61,35 +71,36 @@ public class WikiView extends CustomComponent implements View {
 	public void enter(ViewChangeEvent event) {
 		PatientDTO patientDTO = (PatientDTO) getUI().getSession().getAttribute(
 				"currentPatient");
-		if(patientDTO == null){
-				getUI().getNavigator().navigateTo(
-						NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
-				Notification.show(NO_PATIENT_IN_SESSION, Type.HUMANIZED_MESSAGE);
-
-		} else {
-			Tile tile = new Tile();
-			searchField = new TextField("Suchbegriff");
-			Button searchButton = new Button("Suchen");
-			searchButton.addClickListener(new ClickListener() {
-				@Override
-				public void buttonClick(ClickEvent event) {
-					if (!searchField.isEmpty()) {
-						List<IllnessDTO> results = wikiPresenter
-								.searchIllnesses(searchField.getValue());
-						if (results != null && !results.isEmpty()) {
-							showSearchResults(results);
-						}
+		if (patientDTO == null) {
+			getUI().getNavigator().navigateTo(
+					NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
+			Notification.show(NO_PATIENT_IN_SESSION, Type.HUMANIZED_MESSAGE);
+		}
+		Tile tile = new Tile();
+		searchField = new TextField(SEARCH_ILLNESS);
+		Button searchButton = new Button(SEARCH);
+		searchButton.addClickListener(new ClickListener() {
+			@Override
+			public void buttonClick(ClickEvent event) {
+				if (!searchField.isEmpty()) {
+					List<IllnessDTO> results = wikiPresenter
+							.searchIllnesses(searchField.getValue());
+					if (results != null && !results.isEmpty()) {
+						showSearchResults(results);
 					}
 				}
-			});
-			searchButton.setClickShortcut(KeyCode.ENTER);
-			tile.addComponent(searchField);
-			tile.addComponent(searchButton);
-			layout.addComponent(tile);
-			this.resultTile = new MultipleIllnessTile(null);
-			layout.addComponent(resultTile);
-			layout.finishLayout();
+			}
+		});
+		searchButton.setClickShortcut(KeyCode.ENTER);
+		tile.addComponent(searchField);
+		tile.addComponent(searchButton);
+		layout.addComponent(tile);
+		this.resultTile = new MultipleIllnessTile(null);
+		layout.addComponent(resultTile);
+		if (patientDTO != null) {
+			createDiagnosisContainer(patientDTO);
 		}
+		layout.finishLayout();
 	}
 
 	private void showSearchResults(List<IllnessDTO> results) {
@@ -99,6 +110,30 @@ public class WikiView extends CustomComponent implements View {
 		}
 		Notification.show(FOUND_TOO_MANY_RESULTS, Type.HUMANIZED_MESSAGE);
 		this.resultTile.setIllnesses(results);
+	}
+
+	private void createDiagnosisContainer(PatientDTO patientInSession) {
+		try {
+
+			Tile diagnosisContainer = new Tile(DIAGNOSIS);
+
+			List<DiagnosisDTO> diagnosisForPatient = personPresenter
+					.getDiagnosisForPatient(patientInSession.getId());
+
+			for (DiagnosisDTO diagnosisDTO : diagnosisForPatient) {
+				DiagnosisTile diagnosisTile = new DiagnosisTile(diagnosisDTO,
+						diagnosisDTO.getIllness().toString());
+				diagnosisTile.disableShadow();
+				diagnosisContainer.addComponent(diagnosisTile);
+			}
+
+			layout.createRowBrake();
+			layout.addComponent(diagnosisContainer);
+
+		} catch (DangerStateException e1) {
+			Notification.show(DANGER_STATE_ERROR, Type.ERROR_MESSAGE);
+			e1.printStackTrace();
+		}
 	}
 
 }
