@@ -21,6 +21,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Meeting;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Patient;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.entity.Person;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotDeleteException;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.MeetingStateException;
 
@@ -107,5 +108,10 @@ public class PersonPresenter {
 			diagnosisList.add(new DiagnosisDTO(d));
 		}
 		return diagnosisList;
+	}
+	
+	public void updateDangerState(PatientDTO patientDTO) throws CouldNotSaveException {
+		Patient patient = (Patient) personDao.read(patientDTO.getId());
+		personDao.updateDangerState(patient);
 	}
 }

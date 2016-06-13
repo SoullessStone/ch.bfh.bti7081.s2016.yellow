@@ -8,14 +8,17 @@ import org.apache.commons.mail.HtmlEmail;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.CouldNotSaveException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.DangerStateType;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 
 import com.vaadin.server.Page;
 import com.vaadin.shared.Position;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
@@ -38,11 +41,14 @@ public class EscalationTile extends Tile {
 	private PatientDTO patientDTO;
 	private List<String> dangerStates;
 	private ComboBox dangerStatesCBox;
+	private CheckBox sendMail;
+	private PersonPresenter personPresenter;
 
 	public EscalationTile(MeetingDTO meetingDTO, PatientDTO patientDTO) {
 		this.meetingDTO = meetingDTO;
 		this.patientDTO = patientDTO;
-		setTitle("Eskalation");
+		this.personPresenter = new PersonPresenter();
+		setTitle("Gefährdungsstatus des Patienten");
 		dangerStates = new ArrayList<String>(); 
 		dangerStates.add("Harmlos");
 		dangerStates.add("Krise");
@@ -67,8 +73,9 @@ public class EscalationTile extends Tile {
 		else {
 
 		}
-
 		addComponent(dangerStatesCBox);
+		sendMail = new CheckBox("E-Mail an Hausarzt senden?");
+		addComponent(sendMail);
 		addComponent(sendButton());
 	}
 
@@ -80,39 +87,77 @@ public class EscalationTile extends Tile {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				// persist the new danger state
-				if (dangerStatesCBox.getValue().toString() == "Harmlos"){
+				if (dangerStatesCBox.getValue().toString().equalsIgnoreCase("Harmlos")){
 					try {
-						patientDTO.setDangerStateHarmless();
-						System.out.println("STATUS HARMLOS GESETZT");
+						if (sendMail.getValue()==true){
+							patientDTO.setDangerStateHarmless();
+							personPresenter.updateDangerState(patientDTO);
+							sendMailAlert();
+						}
+						else {
+							patientDTO.setDangerStateHarmless();
+							personPresenter.updateDangerState(patientDTO);
+						}	
 					} catch (DangerStateException e) {
+						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
+						e.printStackTrace();
+					} catch (CouldNotSaveException e) {
 						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
 						e.printStackTrace();
 					}
 				}
-				else if(dangerStatesCBox.getValue().toString() == "Krise"){
+				else if(dangerStatesCBox.getValue().toString().equalsIgnoreCase("Krise")){
 					try {
-						System.out.println("If-Schleife Krise erreicht");
-						patientDTO.setDangerStateCrisis();
-						System.out.println("Neuer Status gesetzt. Kontrolle: " + patientDTO.getDangerState().getDangerStateTitle());
+						if (sendMail.getValue()==true){
+							patientDTO.setDangerStateCrisis();
+							personPresenter.updateDangerState(patientDTO);
+							sendMailAlert();
+						}
+						else {
+							patientDTO.setDangerStateCrisis();
+						}	
 					} catch (DangerStateException e) {
+						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
+						e.printStackTrace();
+					} catch (CouldNotSaveException e) {
 						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
 						e.printStackTrace();
 					}	
 				}
-				else if(dangerStatesCBox.getValue().toString() == "Eigengefaehrdung"){
+				else if(dangerStatesCBox.getValue().toString().equalsIgnoreCase("Eigengefaehrdung")){
 					try {
-						patientDTO.setDangerStateDangerToHimself();
-						sendMailAlert();
+						if (sendMail.getValue()==true){
+							patientDTO.setDangerStateDangerToHimself();
+							personPresenter.updateDangerState(patientDTO);
+							sendMailAlert();
+						}
+						else {
+							patientDTO.setDangerStateDangerToHimself();
+							personPresenter.updateDangerState(patientDTO);
+						}	
 					} catch (DangerStateException e) {
+						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
+						e.printStackTrace();
+					} catch (CouldNotSaveException e) {
 						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
 						e.printStackTrace();
 					}	
 				}
-				else if (dangerStatesCBox.getValue().toString() == "Fremdgefaehrdung"){
+				else if (dangerStatesCBox.getValue().toString().equalsIgnoreCase("Fremdgefaehrdung")){
 					try {
-						patientDTO.setDangerStateDangerToOthers();
-						sendMailAlert();
+						if (sendMail.getValue()==true){
+							patientDTO.setDangerStateDangerToOthers();
+							personPresenter.updateDangerState(patientDTO);
+							sendMailAlert();
+						}
+						else {
+							patientDTO.setDangerStateDangerToOthers();
+							personPresenter.updateDangerState(patientDTO);
+						}	
 					} catch (DangerStateException e) {
+						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
+						e.printStackTrace();
+					} catch (CouldNotSaveException e) {
 						Notification.show(COULD_NOT_SET_DANGER_STATE, Type.ERROR_MESSAGE);
 						e.printStackTrace();
 					}
