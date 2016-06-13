@@ -19,6 +19,12 @@ import com.vaadin.ui.VerticalLayout;
  */
 @SuppressWarnings("serial")
 public class MultiplePrescriptionTile extends Tile {
+	private static final String MG = " mg";
+	private static final String NO_POSTPONEMENTS_FOUND = "Keine Verschreibungen für diesen Patienten gefunden.";
+	private static final String VALID_TO = "Gültig bis";
+	private static final String VALID_FROM = "Gültig von";
+	private static final String DOSIS = "Dosis (mg)";
+	private static final String DRUG = "Medikament";
 	private List<PrescriptionDTO> prescriptions;
 	private VerticalLayout layout;
 	private final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
@@ -28,14 +34,13 @@ public class MultiplePrescriptionTile extends Tile {
 		layout = new VerticalLayout();
 		addComponent(layout);
 		updateTileValue();
-		System.out.println("MultiplePrescriptionTile created");
 	}
 
 	private void updateTileValue() {
 		layout.removeAllComponents();
 		if (prescriptions == null || prescriptions.isEmpty()) {
 			layout.addComponent(new Label(
-					"Keine Verschreibungen für diesen Patienten gefunden!"));
+					NO_POSTPONEMENTS_FOUND));
 			return;
 		}
 		prescriptions.sort(new Comparator<PrescriptionDTO>() {
@@ -48,15 +53,15 @@ public class MultiplePrescriptionTile extends Tile {
 		});
 
 		Table table = new Table();
-		table.addContainerProperty("Medikament", String.class, null);
-		table.addContainerProperty("Dosis (mg)", String.class, null);
-		table.addContainerProperty("Gültig von", String.class, null);
-		table.addContainerProperty("Gültig bis", String.class, null);
+		table.addContainerProperty(DRUG, String.class, null);
+		table.addContainerProperty(DOSIS, String.class, null);
+		table.addContainerProperty(VALID_FROM, String.class, null);
+		table.addContainerProperty(VALID_TO, String.class, null);
 
 		for (PrescriptionDTO prescription : prescriptions) {
 
 			String drug = prescription.getDrug().getTradeName();
-			String dosis = prescription.getDosisInMilligrams() + " mg";
+			String dosis = prescription.getDosisInMilligrams() + MG;
 			String validFrom = format.format(prescription.getValidity()
 					.getFrom());
 			String validTo = format.format(prescription.getValidity().getTo());

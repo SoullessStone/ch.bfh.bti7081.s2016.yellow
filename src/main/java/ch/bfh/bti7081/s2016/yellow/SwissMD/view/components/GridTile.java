@@ -18,29 +18,35 @@ import com.vaadin.ui.Label;
 
 @SuppressWarnings("serial")
 public class GridTile extends Tile {
+	private static final String RISK_STYLE = "highrisk";
+	private static final String DANGER_STATE = "Gefährdung: ";
+	private static final String MAIN_DOCTOR = "Hausarzt: ";
+	private static final String ASSISTANCE = "Beistand: ";
+	private static final String RELATIVES = "Angehörige: ";
+	private static final String MEDICAL_BASE_DATA = "Medzinische Grunddaten ";
 	private PersonDaoImpl personDao;
 
 	public GridTile(PatientDTO patientDTO) {
 		personDao = new PersonDaoImpl(new WebEntityManagerProvider());
 
-		setTitle("Medzinische Grunddaten " + patientDTO.getName());
+		setTitle(MEDICAL_BASE_DATA + patientDTO.getName());
 		setStdWidth(3);
 
 		GridLayout grid = new GridLayout(2, 4);
 		grid.setSizeFull();
-		grid.addComponent(new Label("Angehörige: "));
+		grid.addComponent(new Label(RELATIVES));
 
-		grid.addComponent(new Label("Beistand: "
+		grid.addComponent(new Label(ASSISTANCE
 				+ (patientDTO.getLegalAid() != null ? personDao.read(
 						patientDTO.getLegalAid()).getName() : "---")));
 
-		grid.addComponent(new Label("Hausarzt: "
+		grid.addComponent(new Label(MAIN_DOCTOR
 				+ (patientDTO.getFamilyDoctor() != null ? personDao.read(
 						patientDTO.getFamilyDoctor()).getName() : "---")));
 
-		Label escalation = new Label("Gefährdung: " + patientDTO.getDangerState().getDangerStateTitle());
+		Label escalation = new Label(DANGER_STATE + patientDTO.getDangerState().getDangerStateTitle());
 		if (patientDTO.getDangerState() == DangerStateType.DANGER_TO_OTHERS || patientDTO.getDangerState() == DangerStateType.DANGER_TO_HIMSELF){
-			escalation.addStyleName("highrisk");
+			escalation.addStyleName(RISK_STYLE);
 		}
 		grid.addComponent(escalation);
 

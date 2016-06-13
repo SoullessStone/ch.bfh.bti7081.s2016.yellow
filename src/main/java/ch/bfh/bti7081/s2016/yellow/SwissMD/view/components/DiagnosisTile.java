@@ -13,15 +13,21 @@ import com.vaadin.ui.Label;
  */
 @SuppressWarnings("serial")
 public class DiagnosisTile extends Tile {
+	private static final String NOSHADOW_STYLE = "noshadow";
+	private static final String NOTES = "Notizen: ";
+	private static final String DIAGNOSIS_DATE = "Diagnostiziert am: ";
+	private static final String ILLNESS = "Krankheit: ";
+	private static final String ICONS_USERS = "img/icons/users_small.png";
+
 	public DiagnosisTile(DiagnosisDTO diagnosis, String title) {
-		setTitleAndIcon(title, "img/icons/users_small.png");
-		addComponent(new Label("Krankheit: "
+		setTitleAndIcon(title, ICONS_USERS);
+		addComponent(new Label(ILLNESS
 				+ diagnosis.getIllness().toString()));
-		addComponent(new Label("Diagnostiziert am: " + diagnosis.getDiagnosisDateString()));
-		addComponent(new Label("Notizen: " + diagnosis.getNotes()));
+		addComponent(new Label(DIAGNOSIS_DATE + diagnosis.getDiagnosisDateString()));
+		addComponent(new Label(NOTES + diagnosis.getNotes()));
 	}
 	
 	public void disableShadow(){
-		tile.addStyleName("noshadow");
+		tile.addStyleName(NOSHADOW_STYLE);
 	}
 }

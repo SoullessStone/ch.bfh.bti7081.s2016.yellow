@@ -15,7 +15,7 @@ import com.vaadin.ui.UI;
 /**
  * Stellt das Menü dar
  * 
- * @author Nussbaum
+ * @author nussa2
  *
  */
 @SuppressWarnings("serial")

@@ -15,20 +15,26 @@ import com.vaadin.ui.Label;
  */
 @SuppressWarnings("serial")
 public class PrescriptionTile extends Tile {
+	private static final String MG = "mg";
+	private static final String ICONS_EYEDROPPER = "img/icons/eyedropper_small.png";
+	private static final String VALID_TO = "Gültig bis: ";
+	private static final String VALID_FROM = "Gültig von: ";
+	private static final String DOSIS = "Dosis (mg): ";
+	
 	private PrescriptionDTO prescription;
 	private final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
 	public PrescriptionTile(PrescriptionDTO PrescriptionDTO) {
 		this.prescription = PrescriptionDTO;
 		setTitleAndIcon(prescription.getDrug().getTradeName(),
-				"img/icons/eyedropper_small.png");
+				ICONS_EYEDROPPER);
 
-		addComponent(new Label("Dosis (mg): " + prescription.getDosisInMilligrams()
-				+ "mg"));
+		addComponent(new Label(DOSIS + prescription.getDosisInMilligrams()
+				+ MG));
 
-		addComponent(new Label("Gültig von: "
+		addComponent(new Label(VALID_FROM
 				+ format.format(prescription.getValidity().getFrom())));
-		addComponent(new Label("Gültig bis: "
+		addComponent(new Label(VALID_TO
 				+ format.format(prescription.getValidity().getTo())));
 
 		contentLayout.setMargin(true);

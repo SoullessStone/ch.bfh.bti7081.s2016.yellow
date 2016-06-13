@@ -39,7 +39,6 @@ public class LoginView extends CustomComponent implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		Notification.show("Welcome! Please log in.");
 
 		Tile tile = new LoginTile();
 		tile.addStyleName("my-login");

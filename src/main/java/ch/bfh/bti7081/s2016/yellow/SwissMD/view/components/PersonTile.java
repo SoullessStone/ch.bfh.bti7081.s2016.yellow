@@ -17,12 +17,15 @@ import com.vaadin.ui.Label;
  */
 @SuppressWarnings("serial")
 public class PersonTile extends Tile {
+	private static final String AGE = "Alter: ";
+	private static final String NAME = "Name: ";
+	private static final String ICONS_USERS = "img/icons/users_small.png";
+
 	public PersonTile(PersonDTO person, String title) {
-		setTitleAndIcon(title, "img/icons/users_small.png");
-		addComponent(new Label("Name: " + person.getName()));
-		addComponent(new Label("Alter: "
+		setTitleAndIcon(title, ICONS_USERS);
+		addComponent(new Label(NAME + person.getName()));
+		addComponent(new Label(AGE
 				+ getAge(new Date(), person.getBirthdate())));
-		System.out.println("person tile created");
 	}
 
 	/**

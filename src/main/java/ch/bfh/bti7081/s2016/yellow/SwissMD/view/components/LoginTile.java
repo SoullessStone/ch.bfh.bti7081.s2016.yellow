@@ -19,13 +19,23 @@ import com.vaadin.ui.VerticalLayout;
 @SuppressWarnings("serial")
 public class LoginTile extends Tile {
 
+	private static final String INVALID_LOGIN = "Ungültiges Login";
+
+	private static final String LOG_IN = "Log In";
+
+	private static final String ICONS_LOCKED = "img/icons/locked-2.png";
+
+	private static final String PASSWORD = "Password";
+
+	private static final String USER_ID = "User-ID";
+
 	private PersonPresenter personPresenter = new PersonPresenter();
 
-	TextField username = new TextField("User-ID");
-	PasswordField password = new PasswordField("Password");
+	TextField username = new TextField(USER_ID);
+	PasswordField password = new PasswordField(PASSWORD);
 
 	public LoginTile() {
-		setTitleAndIcon("Login", "img/icons/locked-2.png");
+		setTitleAndIcon("Login", ICONS_LOCKED);
 		addComponent(username);
 		addComponent(password);
 		addComponent(loginButton());
@@ -44,14 +54,14 @@ public class LoginTile extends Tile {
 	}
 
 	private Button loginButton() {
-		Button button = new Button("Log In", new Button.ClickListener() {
+		Button button = new Button(LOG_IN, new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				if (doLogin()){
 					getUI().getNavigator().navigateTo(
 							NavigationIndex.MEETINGVIEW.getNavigationPath());
 				} else {
-					Notification.show("Ungültiges Login", Type.HUMANIZED_MESSAGE);
+					Notification.show(INVALID_LOGIN, Type.HUMANIZED_MESSAGE);
 				}
 			}
 		});

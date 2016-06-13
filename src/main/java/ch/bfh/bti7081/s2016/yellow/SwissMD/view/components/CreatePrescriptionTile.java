@@ -30,6 +30,13 @@ import com.vaadin.ui.TextField;
 
 @SuppressWarnings("serial")
 public class CreatePrescriptionTile extends Tile {
+	private static final String PRESCRIBE = "Verordnen";
+	private static final String VALID_TO = "Gültig bis";
+	private static final String VALID_FROM = "Gültig von";
+	private static final String DOSIS = "Dosis (mg)";
+	private static final String DRUGS = "Medikamente";
+	private static final String ICONS_EYEDROPPER = "img/icons/eyedropper_small.png";
+	private static final String PRESSCRIBE_NEW_DRUG = "Neues Medikament verordnen";
 	private static final String ILLEGAL_DATE_RANGE = "Gültig von Datum ist nach gültig bis Datum.";
 	private static final String EMPTY_DOSIS = "Konnte die Verschreibung nicht verordnen, da die Dosis leer ist.";
 	private static final String DOSIS_MUST_BE_INT = "Konnte die Verschreibung nicht verordnen, da die Dosis keine Zahl ist.";
@@ -39,33 +46,33 @@ public class CreatePrescriptionTile extends Tile {
 
 	public CreatePrescriptionTile(List<DrugDTO> list, PatientDTO patient,
 			boolean replaceTileAfterCompletion) {
-		setTitleAndIcon("Neues Medikament verordnen",
-				"img/icons/eyedropper_small.png");
+		setTitleAndIcon(PRESSCRIBE_NEW_DRUG,
+				ICONS_EYEDROPPER);
 		// create a Combobox with all available drugs
-		ComboBox selectDrug = new ComboBox("Medikamente");
+		ComboBox selectDrug = new ComboBox(DRUGS);
 		for (DrugDTO drug : list) {
 			selectDrug.addItem(drug);
 		}
 		addComponent(selectDrug);
 		// text field for the dosage
-		TextField dosis = new TextField("Dosis (mg)");
+		TextField dosis = new TextField(DOSIS);
 		addComponent(dosis);
 
 		// DatePicker for the valid from - to field
-		DateField validFrom = new DateField("Gültig von");
+		DateField validFrom = new DateField(VALID_FROM);
 		validFrom.setWidth(200, Unit.PIXELS);
 		validFrom.setDateFormat("dd.MM.yyyy");
 		validFrom.setResolution(Resolution.DAY);
 		addComponent(validFrom);
 
-		DateField validUntil = new DateField("Gültig bis");
+		DateField validUntil = new DateField(VALID_TO);
 		validUntil.setWidth(200, Unit.PIXELS);
 		validUntil.setDateFormat("dd.MM.yyyy");
 		validUntil.setResolution(Resolution.DAY);
 		addComponent(validUntil);
 
 		// button to save the new prescription
-		Button saveNewDrug = new Button("Verordnen");
+		Button saveNewDrug = new Button(PRESCRIBE);
 		saveNewDrug.addClickListener(new ClickListener() {
 
 			@Override

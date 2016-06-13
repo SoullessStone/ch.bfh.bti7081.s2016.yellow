@@ -19,6 +19,12 @@ import com.vaadin.ui.VerticalLayout;
  */
 @SuppressWarnings("serial")
 public class MeetingTile extends Tile {
+	private static final String NOSHADOW_STYLE = "noshadow";
+	private static final String STATUS = "Status: ";
+	private static final String DOCTOR = "Arzt: ";
+	private static final String PATIENT = "Patient: ";
+	private static final String ICONS_BINOCULARS = "img/icons/binoculars_small.png";
+	private static final String MEETINGDETAILS = "Meetingdetails";
 	private MeetingDTO meeting;
 
 	public MeetingTile(MeetingDTO MeetingDTO) {
@@ -29,19 +35,19 @@ public class MeetingTile extends Tile {
 		setTitle("#" + meeting.getId() + " - "
 				+ meeting.getAppointmentTimeString());
 
-		Link meetingLink = new Link("Meetingdetails", new ExternalResource("#!"
+		Link meetingLink = new Link(MEETINGDETAILS, new ExternalResource("#!"
 				+ NavigationIndex.MEETINGVIEW + "/" + meeting.getId()));
 		meetingLink
-				.setIcon(new ThemeResource("img/icons/binoculars_small.png"));
+				.setIcon(new ThemeResource(ICONS_BINOCULARS));
 
-		vertical.addComponent(new Label("Patient: "
+		vertical.addComponent(new Label(PATIENT
 				+ meeting.getPatient().getName()));
-		vertical.addComponent(new Label("Arzt: "
+		vertical.addComponent(new Label(DOCTOR
 				+ meeting.getDoctor().getName()));
-		vertical.addComponent(new Label("Status: "
+		vertical.addComponent(new Label(STATUS
 				+ meeting.getMeetingState().getLocalization()));
 		vertical.addComponent(meetingLink);
-		this.tile.addStyleName("noshadow");
+		this.tile.addStyleName(NOSHADOW_STYLE);
 
 		grid.addComponent(vertical, 0, 0);
 		String notesField = "";

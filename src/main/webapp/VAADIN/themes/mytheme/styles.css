@@ -12996,9 +12996,48 @@ div.v-layout.v-horizontal.v-widget {
 	height: 55px;
 	width: 173px;
 	padding: 1px 14px 0 8px;
-	-webkit-box-shadow: 0 4px 4px #FFFFFF;
-	-moz-box-shadow: 0 4px 4px #FFFFFF;
-	box-shadow: 0 4px 4px #FFFFFF;
+	-webkit-box-shadow: 0 5px 10px #777;
+	-moz-box-shadow: 0 5px 10px #777;
+	box-shadow: 0 5px 10px #777;
+}
+
+.mytheme .v-button-bigActive {
+	height: 55px;
+	width: 173px;
+	padding: 1px 14px 0 8px;
+	-webkit-box-shadow: 0 9px 10px #3E4242;
+	-moz-box-shadow: 0 9px 10px #3E4242;
+	box-shadow: 0 9px 10px #3E4242;
+}
+
+.mytheme .v-button-bigPerson {
+	height: 55px;
+	padding: 1px 14px 0 8px;
+	-webkit-box-shadow: 0 5px 10px #777;
+	-moz-box-shadow: 0 5px 10px #777;
+	box-shadow: 0 5px 10px #777;
+	font-weight: bold;
+}
+
+.mytheme .v-button-bigPersonActive {
+	height: 55px;
+	padding: 1px 14px 0 8px;
+	-webkit-box-shadow: 0 9px 10px #3E4242;
+	-moz-box-shadow: 0 9px 10px #3E4242;
+	box-shadow: 0 9px 10px #3E4242;
+	font-weight: bold;
+}
+
+.mytheme .v-button-logout {
+	height: 55px;
+	padding: 1px 14px 0 8px;
+	-webkit-box-shadow: 0 5px 10px #777;
+	-moz-box-shadow: 0 5px 10px #777;
+	box-shadow: 0 5px 10px #777;
+}
+
+.mytheme .active {
+	border: 10px solid black;
 }
 
 .mytheme .v-button-big:hover {

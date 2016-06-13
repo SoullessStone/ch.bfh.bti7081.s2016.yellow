@@ -4,6 +4,7 @@ import java.util.List;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.IllnessDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.model.util.SessionUtil;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
@@ -14,6 +15,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
@@ -25,6 +27,15 @@ import com.vaadin.ui.Window;
  */
 @SuppressWarnings("serial")
 public class MultipleIllnessTile extends Tile {
+	private static final String MAKE_DIAGNOSIS_CAPTION = "Diagnose erstellen";
+	private static final String BROWSER = "Browser";
+	private static final String ILLNESS = "Krankheit";
+	private static final String MORE = "Mehr...";
+	private static final String MAKE_DIAGNOSIS = "Diagnostizieren";
+	private static final String DESCRIPTION = "Beschreibung";
+	private static final String NAME = "Name";
+	private static final String CODE = "Code";
+	private static final String NO_ILLNESS_FOUND = "Keine Krankheiten gefunden!";
 	private List<IllnessDTO> illnesses;
 	private VerticalLayout layout;
 	
@@ -33,21 +44,20 @@ public class MultipleIllnessTile extends Tile {
 		layout = new VerticalLayout();
 		addComponent(layout);
 		updateTileValue();
-		System.out.println("MultipleIllnessTile created");
 	}
 
 	private void updateTileValue() {
 		layout.removeAllComponents();
 		if (this.illnesses == null || this.illnesses.isEmpty()) {
-			layout.addComponent(new Label("Keine Krankheiten gefunden!"));
+			layout.addComponent(new Label(NO_ILLNESS_FOUND));
 			return;
 		}
 
 		Table table = new Table();
-		table.addContainerProperty("Code", String.class, null);
-		table.addContainerProperty("Name", String.class, null);
-		table.addContainerProperty("Beschreibung", Button.class, null);
-		table.addContainerProperty("Diagnostizieren", Button.class, null);
+		table.addContainerProperty(CODE, String.class, null);
+		table.addContainerProperty(NAME, String.class, null);
+		table.addContainerProperty(DESCRIPTION, Button.class, null);
+		table.addContainerProperty(MAKE_DIAGNOSIS, Button.class, null);
 
 		for (IllnessDTO illness : this.illnesses) {
 
@@ -59,11 +69,11 @@ public class MultipleIllnessTile extends Tile {
 				name = illness.getName();
 			}
 
-			Button descriptionButton = new Button("Mehr...");
+			Button descriptionButton = new Button(MORE);
 			descriptionButton
 					.addClickListener(getClickListenerForIllnessDescription(illness));
 
-			Button diagnosisButton = new Button("Diagnostizieren...");
+			Button diagnosisButton = new Button(MAKE_DIAGNOSIS);
 			diagnosisButton
 					.addClickListener(getClickListenerForIllnessDiagnosis(illness));
 
@@ -82,14 +92,14 @@ public class MultipleIllnessTile extends Tile {
 			@SuppressWarnings("static-access")
 			@Override
 			public void buttonClick(ClickEvent event) {
-				final Window window = new Window("Krankheit");
+				final Window window = new Window(ILLNESS);
 				window.setWidth(1000.0f, Unit.PIXELS);
 				window.center();
 				window.setModal(true);
 				window.setResizable(false);
 
 				String search = illnessToShow.getCode().substring(0, 3);
-				BrowserFrame browser = new BrowserFrame("Browser",
+				BrowserFrame browser = new BrowserFrame(BROWSER,
 						new ExternalResource(
 								"http://www.icd-code.de/suche/icd/code/"
 										+ search + ".-.html"));
@@ -108,13 +118,12 @@ public class MultipleIllnessTile extends Tile {
 			@SuppressWarnings("static-access")
 			@Override
 			public void buttonClick(ClickEvent event) {
-				final Window window = new Window("Diagnose erstellen");
+				final Window window = new Window(MAKE_DIAGNOSIS_CAPTION);
 				window.setWidth(300.0f, Unit.PIXELS);
 				window.center();
 				window.setModal(true);
 				window.setResizable(false);
-				PatientDTO patientInSession = (PatientDTO) getUI().getSession()
-						.getAttribute("currentPatient");
+				PatientDTO patientInSession = SessionUtil.getPatientInSession(UI.getCurrent().getSession());
 				if (patientInSession == null) {
 					getUI().getNavigator().navigateTo(
 							NavigationIndex.PERSONSEARCHVIEW
