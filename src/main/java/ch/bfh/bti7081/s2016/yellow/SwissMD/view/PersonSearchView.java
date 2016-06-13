@@ -11,7 +11,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
 
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
@@ -60,17 +59,17 @@ public class PersonSearchView extends CustomComponent implements View {
 		setCompositionRoot(layout);
 	}
 
+	// Wird jedes Mal aufgerufen, wenn hierhin navigiert wird.
 	@Override
 	public void enter(ViewChangeEvent event) {
 
-		// Wird jedes Mal aufgerufen, wenn hierhin navigiert wird. Hier könnte
-		// man also den Parameter in der URL auslesen
 		Tile tile = new Tile();
 		Button searchButton = new Button("Suchen");
 		searchButton.addClickListener(new ClickListener() {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
+				// Validate the input and search according to it
 				if (nameField.isEmpty() && birthDateField.isEmpty()) {
 					Notification.show(NO_SEARCH_CRITERIA,
 							Type.HUMANIZED_MESSAGE);
