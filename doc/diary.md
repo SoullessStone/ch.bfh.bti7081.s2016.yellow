@@ -38,6 +38,10 @@ Current total: 85/90
 | 24.05.2016 | all | 4h | CS1 Task 11: Scrum Sprint 1 (Daily Scrum Meeting & Next Steps) + Start Scrum Sprint 2 |
 | 30.05.2016 | all | 4h | Backlog Grooming, End of Sprint 2 |
 | 31.05.2016 | all | 4h | Sprint 2 Review, Daily, Planning and Start of Sprint 3 |
+| 06.06.2016 | all | 4h | Daily, work together |
+| 07.06.2016 | all | 4h | Daily, work together |
+| 13.06.2016 | all | 4h | Daily, retro, last changes |
+| 14.06.2016 | all | 4h | final sprint review and presentation |
 
 ### Open Tasks
 | Name  | What | Assignee(s)  | Status (open/assigned/done) | Deadline  |
