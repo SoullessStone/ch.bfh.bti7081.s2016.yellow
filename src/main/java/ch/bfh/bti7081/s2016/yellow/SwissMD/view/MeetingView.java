@@ -343,6 +343,8 @@ public class MeetingView extends CustomComponent implements View,
 		layout.addComponent(new EscalationTile(this.meetingDTO, patientDTO));
 		layout.createRowBrake();
 
+		createPrescriptionTile();
+		
 		List<PrescriptionDTO> prescriptions = meetingDTO.getPatient()
 				.getPrescriptions();
 		for (PrescriptionDTO prescriptionDTO : prescriptions) {
@@ -351,7 +353,7 @@ public class MeetingView extends CustomComponent implements View,
 			layout.createRowBrake();
 		}
 
-		createPrescriptionTile();
+		
 	}
 
 	private void createPrescriptionTile() {

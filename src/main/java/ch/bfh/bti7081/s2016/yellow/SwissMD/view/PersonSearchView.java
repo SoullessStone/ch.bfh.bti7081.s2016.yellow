@@ -41,7 +41,7 @@ public class PersonSearchView extends CustomComponent implements View {
 	private PersonSearchPresenter personSearchPresenter = new PersonSearchPresenter(
 			this);
 
-	private TextField nameField = new TextField("Nachname");
+	private TextField nameField = new TextField("Name");
 	private DateField birthDateField = new DateField("Geburtsdatum");
 	private MultiplePersonTile resultTile;
 

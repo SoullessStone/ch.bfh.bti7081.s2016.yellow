@@ -30,8 +30,8 @@ public class MenuTile extends Tile {
 	private static final String ICONS_PILLS = "img/icons/pills-3.png";
 	private static final String PERSON_SEARCH = "Person search";
 	private static final String MEETING = "Meeting";
-	private static final String DIAGNOSIS = "Diagnosis";
-	private static final String PRESCRIPTION = "Prescription";
+	private static final String DIAGNOSIS = "Diagnosen";
+	private static final String PRESCRIPTION = "Medikamente";
 	private static final String ICONS_MAGNIFYING_GLASS = "img/icons/magnifying-glass-2.png";
 	private static final String ICONS_TEAM = "img/icons/team.png";
 	private static final String ICONS_SURGEON = "img/icons/surgeon.png";
