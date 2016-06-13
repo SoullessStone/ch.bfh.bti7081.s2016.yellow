@@ -1,8 +1,26 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.shared.ui.datefield.Resolution;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.CustomComponent;
+import com.vaadin.ui.DateField;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification.Type;
+import com.vaadin.ui.TextArea;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
@@ -19,6 +37,7 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreatePrescriptionTil
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.CreationPrescriptiontileObserver;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.ErrorWindow;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.EscalationTile;
+import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MeetingTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PrescriptionTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
@@ -27,21 +46,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
-
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.shared.ui.datefield.Resolution;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.CustomComponent;
-import com.vaadin.ui.DateField;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.Window;
-import com.vaadin.ui.Notification.Type;
-import com.vaadin.ui.TextArea;
 
 /**
  * Hier werden Meetings erfasst, geändert und angeschaut
@@ -68,6 +72,9 @@ public class MeetingView extends CustomComponent implements View,
 	private static final String MEETING_NOT_CANCELED = "Meeting konnte nicht abgesagt werden";
 	private static final String MEETING_NOT_PERFORMED = "Meeting konnte nicht durchgeführt werden";
 	private static final String NO_PATIENT_IN_SESSION = "Kein Patient ausgewählt";
+	private static final String NEW_MEETING_WITH_PATIENT = "Neues Meeting mit diesem Patient";
+	private static final String ACTIONS = "Aktionen";
+	private static final String PATIENT_HISTORY = "Patientenhistory";
 
 	private MeetingPresenter meetingPresenter = new MeetingPresenter(this);
 	private PrescriptionPresenter prescriptionPresenter = new PrescriptionPresenter();
@@ -198,7 +205,7 @@ public class MeetingView extends CustomComponent implements View,
 	public void enter(ViewChangeEvent event) {
 		PatientDTO patientDTO = (PatientDTO) getUI().getSession().getAttribute(
 				"currentPatient");
-		// SessionPatient muss gesetzt sein
+		// SessionPatient muss gesetzt sein, sonst wird auf PersonSearchView redirected
 		if (patientDTO != null) {
 			String param = event.getParameters();
 
@@ -237,27 +244,17 @@ public class MeetingView extends CustomComponent implements View,
 					}
 
 
-			} else {
-				// Meeting soll angezeigt werden; entweder die mitgegebene Id
-				// oder dann das jüngste Meeting des sessionPatients
+			} else if(param != null && !param.isEmpty()) {
+				// Meeting mit der mitgegebenen Id soll angezeigt werden
 				Long meetingId = null;
-				if (param != null && !param.isEmpty()) {
-					try {
-						meetingId = Long.valueOf(param);
-					} catch (NumberFormatException e) {
-						Notification.show(MEETING_ID_NOT_A_NUMBER,
-								Type.HUMANIZED_MESSAGE);
-						getUI().getNavigator().navigateTo(
-								NavigationIndex.PERSONSEARCHVIEW
-										.getNavigationPath());
-					}
-				} else {
-					try {
-						meetingId = meetingPresenter
-								.getNewestMeetingForPatient(patientDTO.getId());
-					} catch (MeetingStateException e) {
-						e.printStackTrace();
-					}
+				try {
+					meetingId = Long.valueOf(param);
+				} catch (NumberFormatException e) {
+					Notification.show(MEETING_ID_NOT_A_NUMBER,
+							Type.HUMANIZED_MESSAGE);
+					getUI().getNavigator().navigateTo(
+							NavigationIndex.PERSONSEARCHVIEW
+									.getNavigationPath());
 				}
 
 				if (meetingId != null) {
@@ -280,6 +277,16 @@ public class MeetingView extends CustomComponent implements View,
 							NavigationIndex.PERSONSEARCHVIEW
 									.getNavigationPath());
 				}
+				
+			} else {
+				// meetingView is loaded without any params -> we show a list of all meetings of sessionPatient
+				createActionTile(patientDTO);
+				
+				try {
+					createHistoryTile(patientDTO);
+				} catch (DangerStateException e) {
+					e.printStackTrace();
+				}
 			}
 		} else {
 			getUI().getNavigator().navigateTo(
@@ -289,6 +296,40 @@ public class MeetingView extends CustomComponent implements View,
 		layout.finishLayout();
 	}
 
+
+	private void createActionTile(PatientDTO patientDTO) {
+		Button createMeetingButton = new Button(NEW_MEETING_WITH_PATIENT);
+		createMeetingButton.addClickListener(new ClickListener() {
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				getUI().getNavigator().navigateTo(
+						NavigationIndex.MEETINGVIEW.getNavigationPath()
+								+ "/new=" + patientDTO.getId());
+			}
+		});
+		Tile actionsTile = new Tile(ACTIONS);
+		actionsTile.addComponent(createMeetingButton);
+		
+		layout.addComponent(actionsTile);
+	}
+	
+	private void createHistoryTile(PatientDTO patientDTO) throws DangerStateException {
+		Tile historyTile = new Tile(PATIENT_HISTORY);
+			List<MeetingDTO> meetingDTOs = new ArrayList<MeetingDTO>();
+			meetingDTOs = meetingPresenter.getMeetingsForPatient(patientDTO
+					.getId());
+			Collections.sort(meetingDTOs);
+			VerticalLayout verticalLayout = new VerticalLayout();
+			verticalLayout.setSpacing(true);
+			for (MeetingDTO m : meetingDTOs) {
+				verticalLayout.addComponent(new MeetingTile(m));
+			}
+			historyTile.addComponent(verticalLayout);
+			layout.createRowBrake();
+			layout.addComponent(historyTile);
+	}
+	
 	private void showMeetingInView() {
 		// MeetingDTO angemessen abbilden
 		String translatedMeetingString = meetingDTO.getMeetingState()

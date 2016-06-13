@@ -1,19 +1,20 @@
 package ch.bfh.bti7081.s2016.yellow.SwissMD.view;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.CustomComponent;
+import com.vaadin.ui.GridLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification.Type;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.Window;
 
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.DiagnosisDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.MeetingDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PatientDTO;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.model.dto.PersonDTO;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.model.exception.DangerStateException;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.presenter.PersonPresenter;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.DiagnosisTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.ErrorWindow;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.GridTile;
-import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.MeetingTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.components.PersonTile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.BaseLayout;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory;
@@ -21,20 +22,6 @@ import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.LayoutFactory.LayoutType;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.Tile;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.layout.TileLayoutFactory;
 import ch.bfh.bti7081.s2016.yellow.SwissMD.view.navigation.NavigationIndex;
-
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.CustomComponent;
-import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.Window;
-import com.vaadin.ui.Notification.Type;
-import com.vaadin.ui.VerticalLayout;
 
 /**
  * Hier werden Personen dargestellt
@@ -44,21 +31,13 @@ import com.vaadin.ui.VerticalLayout;
  */
 @SuppressWarnings("serial")
 public class PersonView extends CustomComponent implements View {
-	private static final String ACTIONS = "Aktionen";
-	private static final String NEW_MEETING_WITH_PATIENT = "Neues Meeting mit diesem Patient";
-	private static final String PATIENT_HISTORY = "Patientenhistory";
 	private static final String TELEPHONE = "Festnetz";
 	private static final String MOBILE = "Mobile";
 	private static final String ZIP_PLACE = "PLZ / Ort";
 	private static final String ADDRESS = "Adresse";
 	private static final String NAME = "Name";
 	private static final String ALLGEMEINE_GRUNDDATEN = "Allgemeine Grunddaten";
-	private static final String COULD_NOT_READ_PERSON_ID = "Ungültige Id angegeben!";
-	private static final String ID_NOT_A_NUMBER = "Übergebener Parameter ist keine Zahl";
-	private static final String ID_NOT_A_PATIENT = "Die gesuchte Person ist kein Patient";
-	private static final String PERSON_NOT_FOUND = "Die gewünschte Person konnte nicht gefunden werden";
 	private static final String NO_PERSON_IN_SESSION = "Keine Person ausgewählt";
-	private static final String DANGER_STATE_ERROR = "Der Patient hat keinen Gefährdungsstatus gesetzt!";
 
 	private PersonPresenter personPresenter = new PersonPresenter();
 	private BaseLayout layout;
@@ -96,14 +75,6 @@ public class PersonView extends CustomComponent implements View {
 
 			GridTile medicalDataTile = new GridTile(patientDTO);
 			layout.addComponent(medicalDataTile);
-
-			createActionTile(patientDTO);
-
-			try {
-				createHistoryTile(patientDTO);
-			} catch (DangerStateException e) {
-				e.printStackTrace();
-			}
 		} else {
 			getUI().getNavigator().navigateTo(
 					NavigationIndex.PERSONSEARCHVIEW.getNavigationPath());
@@ -140,39 +111,6 @@ public class PersonView extends CustomComponent implements View {
 
 		baseDataTile.addComponent(grid);
 		layout.addComponent(baseDataTile);
-	}
-
-	private void createHistoryTile(PatientDTO patientDTO) throws DangerStateException {
-		Tile historyTile = new Tile(PATIENT_HISTORY);
-			List<MeetingDTO> meetingDTOs = new ArrayList<MeetingDTO>();
-			meetingDTOs = personPresenter.getMeetingsForPatient(patientDTO
-					.getId());
-			Collections.sort(meetingDTOs);
-			VerticalLayout verticalLayout = new VerticalLayout();
-			verticalLayout.setSpacing(true);
-			for (MeetingDTO m : meetingDTOs) {
-				verticalLayout.addComponent(new MeetingTile(m));
-			}
-			historyTile.addComponent(verticalLayout);
-			layout.createRowBrake();
-			layout.addComponent(historyTile);
-	}
-
-	private void createActionTile(PatientDTO patientDTO) {
-		Button createMeetingButton = new Button(NEW_MEETING_WITH_PATIENT);
-		createMeetingButton.addClickListener(new ClickListener() {
-
-			@Override
-			public void buttonClick(ClickEvent event) {
-				getUI().getNavigator().navigateTo(
-						NavigationIndex.MEETINGVIEW.getNavigationPath()
-								+ "/new=" + patientDTO.getId());
-			}
-		});
-		Tile actionsTile = new Tile(ACTIONS);
-		actionsTile.addComponent(createMeetingButton);
-		layout.createRowBrake();
-		layout.addComponent(actionsTile);
 	}
 
 }

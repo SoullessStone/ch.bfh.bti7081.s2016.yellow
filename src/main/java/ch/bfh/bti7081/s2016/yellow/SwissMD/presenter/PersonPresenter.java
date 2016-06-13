@@ -99,15 +99,6 @@ public class PersonPresenter {
 		return patients;
 	}
 
-	public List<MeetingDTO> getMeetingsForPatient(Long id) throws DangerStateException {
-		Patient patient = (Patient) personDao.read(id);
-		List<MeetingDTO> meetingList = new ArrayList<>();
-		for (Meeting m : meetingDao.findMeetingForPerson(patient)) {
-			meetingList.add(new MeetingDTO(m));
-		}
-		return meetingList;
-	}
-
 	public List<DiagnosisDTO> getDiagnosisForPatient(Long id)
 			throws DangerStateException {
 		Patient patient = (Patient) personDao.read(id);

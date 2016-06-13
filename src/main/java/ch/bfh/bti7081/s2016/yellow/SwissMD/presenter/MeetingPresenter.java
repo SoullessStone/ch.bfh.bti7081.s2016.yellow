@@ -131,27 +131,18 @@ public class MeetingPresenter {
 		}
 		return drugDTOs;
 	}
-
+	
 	/**
-	 * Returns the newest meeting for a patient
+	 * Returns a list of meetings for a patient
 	 * 
 	 */
-	public Long getNewestMeetingForPatient(Long id)
-			throws MeetingStateException {
+	public List<MeetingDTO> getMeetingsForPatient(Long id) throws DangerStateException {
 		Patient patient = (Patient) personDao.read(id);
 		List<MeetingDTO> meetingList = new ArrayList<>();
 		for (Meeting m : meetingDao.findMeetingForPerson(patient)) {
-			try {
-				meetingList.add(new MeetingDTO(m));
-			} catch (DangerStateException e) {
-				Notification.show(DANGER_STATE_ERROR, Type.ERROR_MESSAGE);
-				e.printStackTrace();
-			}
+			meetingList.add(new MeetingDTO(m));
 		}
-		if (meetingList != null)
-			return meetingList.get(meetingList.size() - 1).getId();
-		else
-			return null;
+		return meetingList;
 	}
 
 	public PatientDTO getPatient(Long patientId) throws MeetingStateException, DangerStateException {
